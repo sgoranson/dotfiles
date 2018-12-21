@@ -1,0 +1,64 @@
+#!/bin/sh
+# Detects which OS/REV/ARCH/KERNEL
+
+OS=`uname -s`
+REV=`uname -r`
+MACH=`uname -m`
+ARCH=
+OSSTR=
+DIST=
+
+
+if [ "${OS}" = "Linux" ] ; then
+    KERNEL=`uname -r`
+    if [ -f /etc/redhat-release ] ; then
+        DIST='RedHat'
+        PSUEDONAME=`cat /etc/redhat-release | sed s/.*\(// | sed s/\)//`
+        REV=`cat /etc/redhat-release | sed s/.*release\ // | sed s/\ .*//`
+    elif [ -f /etc/SUSE-release ] ; then
+        DIST=`cat /etc/SUSE-release | tr "\n" ' '| sed s/VERSION.*//`
+        REV=`cat /etc/SUSE-release | tr "\n" ' ' | sed s/.*=\ //`
+    elif [ -f /etc/arch-release ] ; then
+        DIST='Arch'
+        REV=`cat /etc/arch-release | tr "\n" ' ' | sed s/.*=\ //`
+    elif [ -f /etc/manjaro-release ] ; then
+        DIST='Arch'
+        REV=`cat /etc/manjaro-release | tr "\n" ' ' | sed s/.*=\ //`
+    elif [ -f /etc/mandrake-release ] ; then
+        DIST='Mandrake'
+        PSUEDONAME=`cat /etc/mandrake-release | sed s/.*\(// | sed s/\)//`
+        REV=`cat /etc/mandrake-release | sed s/.*release\ // | sed s/\ .*//`
+    elif [ -f /etc/debian_version ] ; then
+        DIST="Debian"
+        REV=""
+    fi
+
+    #OSSTR="${OS} ${DIST:-xxx} ${REV}(${PSUEDONAME} ${KERNEL} ${MACH})"
+    OSSTR="${DIST}"
+
+elif $(command -v lsb_release >/dev/null); then
+    OSSTR="$(lsb_release -i | cut -d: -f2 )"
+
+elif echo ${OS} | grep -iq '^MSYS'; then
+    OS=MSYS
+    ARCH=`uname -p`
+    OSSTR="${OS} ${REV}(${ARCH} `uname -v`)"
+elif echo ${OS} | grep -iq '^darwin'; then
+    OS=DARWIN
+    ARCH=`uname -p`
+    OSSTR="${OS} ${REV}(${ARCH} `uname -v`)"
+elif echo ${OS} | grep -iq '^MINGW'; then
+    OS=MINGW
+    ARCH=`uname -p`
+    OSSTR="${OS} ${REV}(${ARCH} `uname -v`)"
+elif [ "${OS}" = "SunOS" ] ; then
+    OS=Solaris
+    ARCH=`uname -p`
+    OSSTR="${OS} ${REV}(${ARCH} `uname -v`)"
+elif [ "${OS}" = "AIX" ] ; then
+    OSSTR="${OS} `oslevel` (`oslevel -r`)"
+
+fi
+
+
+echo ${OSSTR}

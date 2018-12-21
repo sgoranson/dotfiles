@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+HOST=cnn.com
+
+rtt=$(ping $HOST -c 1 | sed -rn 's/.*time=([0-9]{1,})\.?[0-9]{0,} ms.*/\1/p')
+
+if [[ "$rtt" -lt 50 ]]; then
+    icon="%{F#98971a}%{F-}"
+elif [[ "$rtt" -lt 150 ]]; then
+    icon="%{F#d79921}%{F-}"
+else
+    icon="%{F#d60606}%{F-}"
+fi
+
+echo "%{T2}$icon %{T5} $rtt ms%{T-}"

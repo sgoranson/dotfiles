@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import csv, json, sys
+
+jfile = open(sys.argv[1])
+
+jobj = json.load(jfile)
+jfile.close()
+
+ofile = csv.writer(sys.stdout)
+
+print(jobj)
+#ofile.writerow(jobj[0].keys())
+
+for row in jobj:
+    ofile.writerow(row)

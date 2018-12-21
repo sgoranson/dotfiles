@@ -1,0 +1,32 @@
+#!/bin/sh
+# Shell script to start Vim with less.vim.
+# Read stdin if no arguments were given and stdin was redirected.
+
+VIMX=vim
+
+if command -v nvim >/dev/null 2>&1; then
+    VIMX=nvim
+fi
+
+if test -t 1; then
+  if test $# = 0; then
+    if test -t 0; then
+      echo "Missing filename" 1>&2
+      exit
+    fi
+    $VIMX -u NORC -c 'set ft=man' --cmd "source $XDG_CONFIG_HOME/nvim/vless.vim" -
+  else
+    $VIMX -u NORC --cmd "source $XDG_CONFIG_HOME/nvim/vless.vim" "$@"
+  fi
+else
+  # Output is not a terminal, cat arguments or stdin
+  if test $# = 0; then
+    if test -t 0; then
+      echo "Missing filename" 1>&2
+      exit
+    fi
+    cat
+  else
+    cat "$@"
+  fi
+fi

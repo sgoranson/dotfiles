@@ -1,0 +1,81 @@
+[user]
+    email = stephen.goranson@gmail.com
+    name = Steve Goranson
+[gui]
+    recentrepo = $HOME/dotfiles
+[user]
+    email = stephen.goranson@gmail.com
+    name = Steve Goranson
+[core]
+    longpaths = true
+    autocrlf = input
+	editor = nvim
+    excludesfile = /Users/steve/.gitignore_global
+    symlinks = true
+[push]
+    default = simple
+
+[alias]
+    comm = !git add -A && git commit -m
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    undo = reset HEAD~1 --mixed
+    restore-file = !git checkout $(git rev-list -n 1 HEAD -- "$1")~1 -- "$1"
+    files = !sh -c 'git diff --name-status $1^ $1' -
+    ls = ls-files --error-unmatch
+    amnd = commit -a --amend
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+[commit]
+    template = /Users/steve/.stCommitMsg
+
+
+[merge]
+  tool = vimdiff
+[mergetool]
+  prompt = true
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+[diff]
+  tool = vimdiff
+
+
+[mergetool "bc4"]
+    #trustExitCode = true
+    cmd = 'C:/Program Files/Beyond Compare 4/BCompare.exe' \"$LOCAL\" \"$REMOTE\" \"$BASE\" \"$MERGED\"
+
+
+[mergetool "nvimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+    keepBackup = false
+    prompt = false
+
+[mergetool "kdiff3"]
+    path = kdiff3
+    trustExitCode = false
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
+    keepBackup = false
+
+[mergetool "meld"]
+     cmd = meld "$LOCAL" "$BASE" "$REMOTE" --output "$MERGED"
+    keepBackup = false
+
+[difftool "opendiff"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path =
+[mergetool "opendiff"]
+    cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
+[github]
+	user = sgoranson

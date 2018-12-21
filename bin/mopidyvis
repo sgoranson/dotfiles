@@ -1,0 +1,9 @@
+#!env bash
+PYTHONPATH=/usr/local/lib/python2.7/site-packages nohup mopidy --config ~/mopidy.conf  >/tmp/mopidy.log 2>&1 &!
+
+local fifo
+readonly fifo='/tmp/mpd.fifo'
+
+mkfifo "$fifo"
+while :; do socat -d -d -T 1 -u UDP4-LISTEN:5555 OPEN:"$fifo"; done
+

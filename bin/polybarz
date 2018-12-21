@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+# MONITOR_LIST="$(xrandr --listmonitors | sed '1 d' | awk 'NF>1{print $NF}')"
+# MONITOR_LIST="DP-2 HDMI-0"
+
+killall polybar 2> /dev/null
+
+# for mon in $MONITOR_LIST; do
+#     echo "Launching on monitor $mon"
+#     env MONITOR="$mon" polybar def &
+# done
+env MONITOR=DP-2 DPI=192 polybar def &
+env MONITOR=DP-5 DPI=128 polybar def &
+env MONITOR=HDMI-0 DPI=128 polybar def &

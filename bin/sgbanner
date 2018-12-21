@@ -1,0 +1,45 @@
+#!/bin/sh
+
+#
+# Prints an ANSI greeting banner
+#
+# optional: color-figlet (npm -g install color-figlet)
+#           or toilet    (apt-get install toilet)
+#
+# more fonts (download and copy files to /usr/share/figlet)
+#             http://www.jave.de/figlet/figletfonts40.zip
+#
+
+if command -v color-figlet >/dev/null 2>&1; then
+    # subjectively best fonts
+    fontlist="AMC AAA01:AMC Slash:AMC Tubes:ANSI Shadow:Acrobatic:Big:Bigfig"
+    fontlist="${fontlist}:Bloody:Bulbhead:Caligraphy:Calvin S:Colossal:Cosmike"
+    fontlist="${fontlist}:Cybermedium:DOS Rebel:Def Leppard:Delta Corps Priest 1"
+    fontlist="${fontlist}:Doh:Doom:Elite:Fraktur:Georgia11:Graceful:Lean:Modular"
+    fontlist="${fontlist}:NV Script:Ogre:Poison:Star Wars:THIS:The Edge:Univers:Varsity:Whimsy"
+
+    fontname=$(echo "$fontlist" | awk  -F ':' '{ srand(); print $(int(rand() * NF + 1)) }' )
+
+    color-figlet -t "$fontname"  "HI $(whoami)"
+
+elif command -v toilet >/dev/null 2>&1; then
+    toilet -f mono12 hi $(whoami)
+
+elif command -v figlet >/dev/null 2>&1; then
+    figlet hi $(whoami)
+
+else
+    cat << 'EOF'
+ ██░ ██  ██▓       ▄▄▄▄    ▒█████    ██████   ██████
+▓██░ ██▒▓██▒      ▓█████▄ ▒██▒  ██▒▒██    ▒ ▒██    ▒
+▒██▀▀██░▒██▒      ▒██▒ ▄██▒██░  ██▒░ ▓██▄   ░ ▓██▄
+░▓█ ░██ ░██░      ▒██░█▀  ▒██   ██░  ▒   ██▒  ▒   ██▒
+░▓█▒░██▓░██░      ░▓█  ▀█▓░ ████▓▒░▒██████▒▒▒██████▒▒
+ ▒ ░░▒░▒░▓        ░▒▓███▀▒░ ▒░▒░▒░ ▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░
+ ▒ ░▒░ ░ ▒ ░      ▒░▒   ░   ░ ▒ ▒░ ░ ░▒  ░ ░░ ░▒  ░ ░
+ ░  ░░ ░ ▒ ░       ░    ░ ░ ░ ░ ▒  ░  ░  ░  ░  ░  ░
+ ░  ░  ░ ░         ░          ░ ░        ░        ░
+                        ░
+EOF
+fi
+# vim:fdm=marker:

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo -en $(echo \
+    $(curl -s "https://packages.debian.org/search?suite=default&section=all&arch=any&searchon=contents&keywords=$1") \
+       | sed 's%</*tr>%\\n%g') \
+    | grep 'class="file"' \
+    | sed 's/<[^>]*>//g' \
+| grep "/$1" \
+    | column -t

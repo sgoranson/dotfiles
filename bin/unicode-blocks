@@ -1,0 +1,28 @@
+#!env zsh
+
+# 03 greek
+# 04 cyrillic
+# 16 runic
+# 23 random shit
+# 24 random shit
+# 25 boxes
+# 26 some emoji
+# 27 crosses stars and arrows
+# 0f random shit
+# 2b shapes
+
+# 1f3 emoji suns and moons, objects
+# 1f4 enoji animals, hearts, shit
+# 1f6 emoji standard smileys
+
+#for __block in '03' '04' '16' '0f' '23' '24' '25' '26' '27' '2b' ; do
+for __block in 'f2' 'f1' 'f0' '25' 'f6'   ; do
+    echo
+    printf "block: %s\n" $__block
+    for (( __i=0; __i < 0xFF; __i++ )); do
+        __x=$(printf '%02x\n' $__i)
+        (( $__i % 10 == 0 )) && echo
+        __y="$__block$__x"
+        printf "| ${__x}: \u${__y}   "
+    done
+done

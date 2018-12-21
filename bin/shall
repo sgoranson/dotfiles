@@ -1,0 +1,660 @@
+#!/usr/bin/env bash
+
+# --- STANDARD SCRIPT-GLOBAL CONSTANTS
+
+kTHIS_NAME=${BASH_SOURCE##*/}
+kTHIS_HOMEPAGE='https://github.com/mklement0/shall'
+kTHIS_VERSION='v0.2.8' # NOTE: This assignment is automatically updated by `make version VER=<newVer>` - DO keep the 'v' prefix.
+
+unset CDPATH  # To prevent unexpected `cd` behavior.
+
+# --- Begin: STANDARD HELPER FUNCTIONS
+
+die() { echo "$kTHIS_NAME: ERROR: ${1:-"ABORTING due to unexpected error."}" 1>&2; exit ${2:-1}; }
+dieSyntax() { echo "$kTHIS_NAME: ARGUMENT ERROR: ${1:-"Invalid argument(s) specified."} Use -h for help." 1>&2; exit 2; }
+
+# SYNOPSIS
+#   openUrl <url>
+# DESCRIPTION
+#   Opens the specified URL in the system's default browser.
+openUrl() {
+  local url=$1 platform=$(uname) cmd=()
+  case $platform in
+    'Darwin') # OSX
+      cmd=( open "$url" )
+      ;;
+    'CYGWIN_'*) # Cygwin on Windows; must call cmd.exe with its `start` builtin
+      cmd=( cmd.exe /c start '' "$url " )  # !! Note the required trailing space.
+      ;;
+    'MINGW32_'*) # MSYS or Git Bash on Windows; they come with a Unix `start` binary
+      cmd=( start '' "$url" )
+      ;;
+    *) # Otherwise, assume a Freedesktop-compliant OS, which includes many Linux distros, PC-BSD, OpenSolaris, ...
+      cmd=( xdg-open "$url" )
+      ;; 
+  esac
+  "${cmd[@]}" || { echo "Cannot locate or failed to open default browser; please go to '$url' manually." >&2; return 1; }
+}
+
+# Prints the embedded Markdown-formatted man-page source to stdout.
+printManPageSource() {
+  sed -n -e $'/^: <<\'EOF_MAN_PAGE\'/,/^EOF_MAN_PAGE/ { s///; t\np;}' "$BASH_SOURCE"
+}
+
+# Opens the man page, if installed; otherwise, tries to display the embedded Markdown-formatted man-page source; if all else fails: tries to display the man page online.
+openManPage() {
+  local pager embeddedText 
+  if ! man 1 "$kTHIS_NAME" 2>/dev/null; then
+    # 2nd attempt: if present, display the embedded Markdown-formatted man-page source
+    embeddedText=$(printManPageSource)
+    if [[ -n $embeddedText ]]; then
+      pager='more'
+      command -v less &>/dev/null && pager='less' # see if the non-standard `less` is available, because it's preferable to the POSIX utility `more`
+      printf '%s\n' "$embeddedText" | "$pager"
+    else # 3rd attempt: open the the man page on the utility's website
+      openUrl "${kTHIS_HOMEPAGE}/doc/${kTHIS_NAME}.md"
+    fi
+  fi  
+}
+
+# Prints the contents of the synopsis chapter of the embedded Markdown-formatted man-page source for quick reference.
+printUsage() {
+  local embeddedText
+  # Extract usage information from the SYNOPSIS chapter of the embedded Markdown-formatted man-page source.
+  embeddedText=$(sed -n -e $'/^: <<\'EOF_MAN_PAGE\'/,/^EOF_MAN_PAGE/!d; /^## SYNOPSIS$/,/^#/{ s///; t\np; }' "$BASH_SOURCE")
+  if [[ -n $embeddedText ]]; then
+    # Print extracted synopsis chapter - remove backticks for uncluttered display.
+    printf '%s\n\n' "$embeddedText" | tr -d '`'
+  else # No SYNOPIS chapter found; fall back to displaying the man page.
+    echo "WARNING: usage information not found; opening man page instead." >&2
+    openManPage
+  fi
+}
+
+# --- End: STANDARD HELPER FUNCTIONS
+
+# ---  PROCESS STANDARD, OUTPUT-INFO-THEN-EXIT OPTIONS.
+case $1 in
+  --version)
+    # Output version number and exit, if requested.
+    echo "$kTHIS_NAME $kTHIS_VERSION"$'\nFor license information and more, visit '"$kTHIS_HOMEPAGE"; exit 0
+    ;;
+  -h|--help)
+    # Print usage information and exit.
+    printUsage; exit
+    ;;
+  --man)
+    # Display the manual page and exit, falling back to printing the embedded man-page source.
+    openManPage; exit
+    ;;
+  --man-source) # private option, used by `make update-man`
+    # Print raw, embedded Markdown-formatted man-page source and exit
+    printManPageSource; exit
+    ;;
+  --home)
+    # Open the home page and exit.
+    openUrl "$kTHIS_HOMEPAGE"; exit
+    ;;
+esac
+
+# --- Begin: FUNCTIONS
+
+unset CDPATH  # to prevent unpredictable `cd` behavior
+
+# NOTE:
+#       To remain compatible with FreeBSD as well, we AVOID PROCESS SUBSTITUTIONS in this script, 
+#       because there they're only supported with an extra configuration step that requires root privileges (`sudo mount -t fdescfs fdescfs /dev/fd`).
+
+# Helper function for exiting with error message due to runtime error.
+#   die [errMsg]
+die() {
+  echo "$kTHIS_NAME: ERROR: ${1:-"ABORTING due to unexpected error."}" 1>&2
+  exit 127  # Note: exit code was chosen to (a) not overlap with exit codes produced during normal operation, while (b) not overlapping with exit codes stemming from termination by signal.
+}
+
+# Helper function for exiting with error message due to invalid parameters.
+#   dieSyntax [errMsg]
+dieSyntax() {
+  echo "$kTHIS_NAME: ARGUMENT ERROR: ${1:-"Invalid argument(s) specified."} Use -h for help." 1>&2
+  exit 126  # Note: exit code was chosen to (a) not overlap with exit codes produced during normal operation, while (b) not overlapping with exit codes stemming from termination by signal.
+}
+
+# SYNOPSIS
+#   colorOutput colorNum [text ...]
+# DESCRIPTION
+#   Prints input in the specified color, which must be an ANSI color code (e.g., 31 for red),
+#   Uses stdin, if no arguments are specified.
+#
+#   If the variable kNO_COLOR is set, coloring is suppressed.
+#   An invoking script may set this in case output is NOT being sent to a terminal.
+#   (e.g., [[ -t 1  ]] || kNO_COLOR=1)
+colorOutput() {
+  local pre="\033[${1}m" post='\033[0m'
+  (( kNO_COLOR )) && { pre= post=; }
+  shift   
+  if (( $# )); then
+    printf "${pre}%s${post}" "$@"
+  else # stdin input
+    printf "$pre"
+    cat
+    printf "$post"
+  fi  
+}
+
+# SYNOPSIS
+#   colorCodeOutput exitCode  [text ...]
+# Colors text based on the specified exit code: if 0, green; otherwise, read.
+colorCodeOutput() {
+  (( $1 == 0 )) && green "${@:2}" || red "${@:2}"
+}
+
+# SYNOPSIS
+#  ... | colorIfFailed exitCode
+# Prints input red, if EXITCODE != 0; as is, otherwise.
+colorIfFailed() {
+  (( $1 == 0 )) && { (( $# > 1 )) && echo "$@" || cat; } || red "${@:2}"
+}
+
+green() {
+   colorOutput 32 "$@"
+}
+
+red() {
+   colorOutput 31 "$@"
+}
+
+blue() {
+   colorOutput 34 "$@"
+}
+
+underlineBlue() {
+  colorOutput '4;34' "$@"
+}
+
+
+statusMark() {
+  local mark=$(red '✗')
+  (( $1 == 0 )) && mark=$(green '✓')
+  printf '%s' "$mark"
+}
+
+# SYNOPSIS
+#   rreadlink <fileOrDirPath>
+# DESCRIPTION
+#   Prints the canonical path of the specified symlink's ultimate target.
+#   If the argument is not a symlink, its own canonical path is output; note
+#   that this means that if a non-symlink argument has symlinks in its
+#   *directory* path, they are resolved to their ultimate target.
+#   A broken symlink causes an error that reports the non-existent target.
+# NOTES
+#   Attempts to use `readlink`, which is found on most modern platforms
+#   (notable exception: HP-UX). If `readlink` is not available, output from
+#   `ls -l` is parsed, which is the only POSIX-compliant way to determine a 
+#    symlink's target.
+#    Caveat: This will break if a filename contains literal ' -> ' or has 
+#            embedded newlines.
+# THANKS
+#   Gratefully adapted from http://stackoverflow.com/a/1116890/45375
+rreadlink() ( # execute function in a *subshell* to localize the effect of `cd`, ...
+
+  local target=$1 fname targetDir readlinkexe=$(command -v readlink) CDPATH= 
+
+  # Since we'll be using `command` below for a predictable execution
+  # environment, we make sure that it has its original meaning.
+  { \unalias command; \unset -f command; } &>/dev/null
+
+  while :; do # Resolve potential symlinks until the ultimate target is found.
+      [[ -L $target || -e $target ]] || { command printf '%s\n' "$FUNCNAME: ERROR: '$target' does not exist." >&2; return 1; }
+      command cd "$(command dirname -- "$target")" # Change to target dir; necessary for correct resolution of target path.
+      fname=$(command basename -- "$target") # Extract filename.
+      [[ $fname == '/' ]] && fname='' # !! curiously, `basename /` returns '/'
+      if [[ -L $fname ]]; then
+        # Extract [next] target path, which is defined
+        # relative to the symlink's own directory.
+        if [[ -n $readlinkexe ]]; then # Use `readlink`.
+          target=$("$readlinkexe" -- "$fname")
+        else # `readlink` utility not available.
+          # Parse `ls -l` output, which, unfortunately, is the only POSIX-compliant 
+          # way to determine a symlink's target. Hypothetically, this can break with
+          # filenames containig literal ' -> ' and embedded newlines.
+          target=$(command ls -l -- "$fname")
+          target=${target#* -> }
+        fi
+        continue # Resolve [next] symlink target.
+      fi
+      break # Ultimate target reached.
+  done
+  targetDir=$(command pwd -P) # Get canonical dir. path
+  # Output the ultimate target's canonical path.
+  # Note that we manually resolve paths ending in /. and /.. to make sure we
+  # have a normalized path.
+  if [[ $fname == '.' ]]; then
+    command printf '%s\n' "${targetDir%/}"
+  elif  [[ $fname == '..' ]]; then
+    # Caveat: something like /var/.. will resolve to /private (assuming
+    # /var@ -> /private/var), i.e. the '..' is applied AFTER canonicalization.
+    command printf '%s\n' "$(command dirname -- "${targetDir}")"
+  else
+    command printf '%s\n' "${targetDir%/}/$fname"
+  fi
+)
+
+# --- MAIN BODY
+
+# --------- Constants
+
+# The shells to target by default, if installed.
+kDEFAULT_SHELLS=( sh dash bash zsh ksh )
+
+kREPL_HISTFILE=~/".${kTHIS_NAME}_history"
+
+# ----------
+# Parse options
+shellList=$SHELLS isCmdStr=0 cmdStr= fromStdin=0 interactive=0 quietStdout=0 quietAll=0 extraPassThruOpts=
+while getopts :w:l:p:qQc:si opt; do  # $opt will receive the option *letters* one by one; a trailing : means that an arg. is required.
+  [[ $opt == '?' ]] && dieSyntax "ARGUMENT ERROR: Unknown option: -$OPTARG. To pass options through to the target shells, pass them via -p."
+  [[ $opt == ':' ]] && dieSyntax "Option -$OPTARG is missing its argument."
+  case $opt in
+    w|l)  # !! -l is for backward compatibility - switched to -w to avoid confusion with native shell option -l (run as login shell)
+      shellList=$OPTARG
+      ;;
+    q)
+      quietStdout=1
+      ;;
+    Q)
+      quietAll=1
+      ;;
+    c) # note that, curiously, all shells require the argument to -c be specified as a SEPARATE argument, violating the POSIX requirement that mandatory option-arguments *also* be accepted as directly-attached values.
+       # possible rationale: additional non-option arguments can follow, representing the positional parameters that the command string will see
+      isCmdStr=1
+      cmdStr=$OPTARG
+      ;;
+    i)
+      interactive=1
+      ;;
+    s)
+      fromStdin=1
+      ;;
+    p)
+      extraPassThruOpts=$OPTARG
+      ;;
+    *)
+      dieSyntax "DESIGN ERROR: Unhandled option: $opt"
+      ;;
+  esac
+done
+
+# Determine the options to pass through to the shells invoked.
+passThruOpts=()
+if [[ -n $extraPassThruOpts ]]; then
+  # If options to pass through were explicitly specified, parse them into an array now.
+  # Note: We pass them through xargs -n 1 so as to correctly recognize embedded quoted strings.
+  IFS=$'\n' read -d '' -ra passThruOpts <<<"$(xargs -n 1 printf '%s\n' <<<"$extraPassThruOpts")"
+fi
+# The -c and -s options are special: 
+#   -c: its argument is the command to execute and must be specified *separately* from -c
+#   both -c and -s: any subsequent arguments - even if they look like options! - become the positional arguments for the code invoked
+(( fromStdin )) && passThruOpts+=( '-s' )
+(( isCmdStr )) && passThruOpts+=( '-c' "$cmdStr" )
+
+# Skip past the options.
+shift $((OPTIND - 1)) 
+
+# Interactive mode (-i):
+  # Cannot be combined with -c or -s or -q or -Q
+(( interactive && ( isCmdStr || fromStdin || quietAll || quietStdout ) )) && dieSyntax "Incompatible options specified."
+  # Doesn't support arguments.
+(( interactive && $# )) && dieSyntax "Unexpected argument(s) specified: '$*'."
+
+# For consistency we also prevent specifying *both* -c and -s, as most shells do not support input via both stdin and command string.
+# (dash is the only exception).
+(( isCmdStr && fromStdin )) && dieSyntax "Incompatible options specified: Please specify EITHER a command string OR stdin input."
+
+# See if input is to come from stdin *implicitly*.
+if (( ! (interactive  || fromStdin || isCmdStr) )); then
+  (( $# == 0 )) && fromStdin=1
+fi
+
+# ?? Activate for debugging:
+# pv shellList isCmdStr fromStdin interactive quietStdout quietAll extraPassThruOpts passThruOpts
+
+# Note that we ALSO allow stdin input from the terminal with -s (or implicitly, if no operands are specified), not just with -i: 
+# -s, in contrast with -i (REPL-style, line-by-line), allows *multiple* lines to be entered, until ⌃D is pressed to submit all lines at once.
+# This is like typing a whole script interactively.
+# With -i, only stdin input from the *terminal* makes sense.
+(( interactive )) && [[ ! -t 0 ]] && die "-i requires that stdin input be provided interactively."
+
+# If stdout wasn't connected to a terminal on entering this script, we suppress colored output.
+# Note that sending from a terminal through a *pipe* is NOT considered being connected to a terminal.
+[[ -t 1 ]] || kNO_COLOR=1
+
+# Determine what shells to invoke.
+if [[ -n $shellList ]]; then # shells were explicitly specified, either with -w or via env. variable $SHELL
+
+  shellsGiven=1
+  shellCandidates=( ${shellList//,/ } )
+
+else  # use default shells
+
+  shellsGiven=0
+  shellCandidates=( ${kDEFAULT_SHELLS[@]} )
+
+fi
+
+# Abort in case of non-existent shells, if explicitly specified); otherwise, weed them out.
+# Note: With the default shells, if 'sh' is found to be a mere symlink to 'dash', it is skipped.
+#       A mere symlink to 'bash' is NOT skipped, however, because bash behaves slightly differently when invoked as 'sh'.
+# Also: determine shells' display names.
+shells=() shellDisplayNames=() skipDash=0
+for shell in "${shellCandidates[@]}"; do
+  (( skipDash )) && [[ $shell == 'dash' ]] && continue
+  shellDisplayName=$shell
+    # Determine full shell path; if the shell cannot be located:
+    #  - if the list of shells was explicitly defined: report an error and exit
+    #  - otherwise, simply skip that shell
+  shellFullPath=$(which "$shell" 2>/dev/null) || { (( shellsGiven )) && die "Shell not found: $shell"; }
+  if [[ -n $shellFullPath ]]; then
+    if [[ $shell == 'sh' ]]; then          
+      trueShell=$(basename "$(rreadlink "$shellFullPath")")
+      if [[ "$trueShell" != "$shell" ]]; then # 'sh' is symlinked to a different executable
+        shellDisplayName+="@ (-> $trueShell)"
+        # !! If 'sh' symlinks to 'dash', we assume - given that dash has no other purpose than to be POSIX sh-compliant - that dash behaves the same as 'sh',
+        # !! irrespective of how it is invoked, so there's no point in *also* running 'dash' - hence we skip it.
+        [[ "$trueShell" == 'dash' ]] && skipDash=1
+      elif [[ $(uname) == 'Darwin' ]]; then
+        # !! On OSX, sh is a *variant* of bash: a *separate executable* that implements *additional* behaviors beyond invoking bash via a *symlink* named `sh` that points to `bash`.
+        shellDisplayName+=' (bash variant)'
+      fi
+    fi  
+    shells+=( "$shell" )
+    shellDisplayNames+=( "$shellDisplayName" )
+  fi
+done
+
+
+# Initialize temp files.
+tmpFiles=()
+tmpFileOutput=$(mktemp -t "$kTHIS_NAME-XXXX") # Works on both OSX and Linux; note: file will have random extension on OSX (e.g., '/var/folders/19/0lxcl7hd63d6fqd813glqppc0000gn/T/XXX.XJViLcM3') and none on Linux (e.g., '/tmp/vXD')
+tmpFiles+=( "$tmpFileOutput" )
+tmpFileTiming=$(mktemp -t "$kTHIS_NAME-XXXX")
+tmpFiles+=( "$tmpFileTiming" )
+if (( fromStdin )); then
+  # Note: We MUST capture the original stdin in a temp. file rather, because we need to provide the same input *multiple* times.
+  #       If we relied on the invoked shells to access the original stdin, the *first* shell would *consume* all input.
+  tmpFileStdIn=$(mktemp -t "$kTHIS_NAME-XXXX")
+  tmpFiles+=( "$tmpFileStdIn" )
+  cat >"$tmpFileStdIn"
+fi
+trap '(( interactive )) && history -w "$kREPL_HISTFILE"; rm "${tmpFiles[@]}"' EXIT # Set up exit trap to automatically clean up all temp files, and, if in interactive mode, to persist the history.
+
+# Interactive mode: configure the history function and read the history file.
+(( interactive )) && { HISTCONTROL='ignoredups'; HISTSIZE=100; HISTFILESIZE=$HISTSIZE; history -r "$kREPL_HISTFILE"; }
+
+while :; do # loop is for -i only
+
+  if (( interactive )); then
+    echo "$(blue 'Enter a command') to execute in $(blue "$(sed 's/ /, /g' <<<"${shells[@]}")") ('exit' to exit):" >/dev/tty
+    # Note: read -e turns on readline support for the usual editing and navigation keys, as well as any custom config in ~/.inputrc.
+    #       !! Sadly, custom programmable completions are ignored by read -e; the only thing you get is filename completion - see http://stackoverflow.com/q/4726695/45375
+    #       !! Working around that would (a) require bash 4+ and (b) be nontrivial.
+    read -r -e -p '> ' # Ask user for single command.
+    [[ $REPLY == 'exit' ]] && exit 0
+    [[ $REPLY == 'clear' ]] && { clear; continue; }
+    [[ -z $REPLY ]] && continue
+    history -s "$REPLY" # Add command to history.
+    passThruOpts=()
+    set -- -c -- "$REPLY"  # Set the parameters for use in the shell invocations below.
+  fi
+
+  # Invocation loop over all shells
+  i=0
+  ecOverall=0
+  shellsOk=()
+  shellsFailed=()
+  for shell in "${shells[@]}"; do
+
+    # Make stdin come from the temp. file in which we captured the original stdin.
+    (( fromStdin )) && exec < "$tmpFileStdIn"
+
+    # Invoke, capture output and timing information, and save exit code.
+    { 
+      if (( quietStdout )); then
+        time -p "$shell" "${passThruOpts[@]}" "$@" 1>/dev/null 2>"$tmpFileOutput"
+      else
+        time -p "$shell" "${passThruOpts[@]}" "$@" &>"$tmpFileOutput"
+      fi
+    } 2>"$tmpFileTiming"
+    ec=$?
+
+    if (( ec )); then
+      (( ++ecOverall ))  # We report as the exit code the number of invocations that failed.
+      shellsFailed+=( "$shell" )
+    else
+      shellsOk+=( "$shell" )
+    fi
+
+    # Print header: success/failure, shell name, timing
+    printf '%s %-50s [%s]\n' "$(statusMark $ec)" "$(underlineBlue "${shellDisplayNames[i]}")" "$(colorCodeOutput $ec "$(head -n 1 "$tmpFileTiming" | cut -d' ' -f2)s")" # | column 
+
+    # Print captured output, if requested.
+    if (( ! quietAll )); then
+      if [[ -s "$tmpFileOutput" ]]; then # Was any output captured?
+        # Print output, potentially color-coded:
+        #  - If the command succeeded, print all output *normally*.
+        #  - If it failed, print all output red.
+        #    Note: If stderr wasn't suppressed, this, unfortunately, is an all-or-nothing proposition, since we only have *combined* output without being able to tell which lines came from stdout vs. stderr.
+        cat "$tmpFileOutput" | sed 's/^/  /' | colorIfFailed $ec
+      fi
+      # Unless output was suppressed, print an empty lines between shells - even if nothing happened to be captured in this specific case. The idea is to facilitate paragraph-based parsing.
+      (( quietStdout )) || printf '\n'
+    fi
+
+    (( ++i ))
+
+  done
+
+  # Print overall result.
+  if (( ecOverall )); then # At least 1 shell reported failure.
+    (( ${#shellsFailed[@]} == 1 )) && { pluralSuffix=; conjugationSuffix1=s; } || { pluralSuffix=s; conjugationSuffix1=; }
+    (( ${#shellsOk[@]} > 0 )) && { okSuffix=" ($(green "$(sed 's/ /, /g' <<<"${shellsOk[@]}")"))" && { (( ${#shellsOk[@]} == 1 )) && conjugationSuffix2=s || conjugationSuffix2=;} ; } || okSuffix= conjugationSuffix2=
+    printf '%s - %s shell%s (%s) report%s failure, %s%s report%s success.\n' \
+      "$(red FAILED)" \
+      "$(red ${#shellsFailed[@]} | tr -d '\n')" \
+      "$pluralSuffix" \
+      "$(sed 's/ /, /g' <<<"${shellsFailed[@]}" | red | tr -d '\n')" \
+      "$conjugationSuffix1" \
+      $((( ${#shellsOk[@]} )) && printf $(green ${#shellsOk[@]}) || printf ${#shellsOk[@]}) \
+      "$okSuffix" \
+      "$conjugationSuffix2"
+  else # All shells reported success.
+    if  (( ${#shellsOk[@]} == 1 )); then
+      printf '%s - Shell %s reports success.\n' "$(green OK)" "$(sed 's/ /, /g' <<<"${shells[@]}")"
+    else
+      printf '%s - All %s shells (%s) report success.\n' "$(green OK)" "$(green ${#shells[@]})" "$(green "$(sed 's/ /, /g' <<<"${shells[@]}")")"
+    fi
+  fi
+
+  (( interactive )) || break
+
+done
+
+exit $ecOverall
+
+####
+# MAN PAGE MARKDOWN SOURCE
+#  - Place a Markdown-formatted version of the man page for this script
+#    inside the here-document below.
+#    The document must be formatted to look good in all 3 viewing scenarios:
+#     - as a man page, after conversion to ROFF with marked-man
+#     - as plain text (raw Markdown source)
+#     - as HTML (rendered Markdown)
+#  Markdown formatting tips:
+#   - GENERAL
+#     To support plain-text rendering in the terminal, limit all lines to 80 chars.,
+#     and, for similar rendering as HTML, *end every line with 2 trailing spaces*.
+#   - HEADINGS
+#     - For better plain-text rendering, leave an empty line after a heading
+#       marked-man will remove it from the ROFF version.
+#     - The first heading must be a level-1 heading containing the utility
+#       name and very brief description; append the manual-section number 
+#       directly to the CLI name; e.g.:
+#         # foo(1) - does bar
+#     - The 2nd, level-2 heading must be '## SYNOPSIS' and the chapter's body
+#       must render reasonably as plain text, because it is printed to stdout
+#       when  `-h`, `--help` is specified:
+#         Use 4-space indentation without markup for both the syntax line and the
+#         block of brief option descriptions; represent option-arguments and operands
+#         in angle brackets; e.g., '<foo>'
+#     - All other headings should be level-2 headings in ALL-CAPS.
+#   - TEXT
+#      - Use NO indentation for regular chapter text; if you do, it will 
+#        be indented further than list items.
+#      - Use 4-space indentation, as usual, for code blocks.
+#      - Markup character-styling markup translates to ROFF rendering as follows:
+#         `...` and **...** render as bolded (red) text
+#         _..._ and *...* render as word-individually underlined text
+#   - LISTS
+#      - Indent list items by 2 spaces for better plain-text viewing, but note
+#        that the ROFF generated by marked-man still renders them unindented.
+#      - End every list item (bullet point) itself with 2 trailing spaces too so
+#        that it renders on its own line.
+#      - Avoid associating more than 1 paragraph with a list item, if possible,
+#        because it requires the following trick, which hampers plain-text readability:
+#        Use '&nbsp;<space><space>' in lieu of an empty line.
+####
+: <<'EOF_MAN_PAGE'
+# shall(1) - cross-shell compatibility testing
+
+## SYNOPSIS
+
+Cross-POSIX-compatible-shell testing:
+
+Run a script file:
+
+    shall [-w <shellA>,...] [-q|-Q] [-p <opts>]     <script> [<arg>...]
+
+Execute a command string:
+
+    shall [-w <shellA>,...] [-q|-Q] [-p <opts>]  -c <cmd>    [<arg0> <arg>...]
+
+Execute commands specified via stdin:
+
+    shall [-w <shellA>,...] [-q|-Q] [-p <opts>] [-s           <arg>...]
+
+Start a REPL (run commands interactively):
+
+    shall [-w <shellA>,...]  -i
+
+Default shells targeted are `sh`, and, if installed, `dash`, `bash`, `zsh`, `ksh`.  
+Override with `-w` or environment variable `SHELLS`, using a comma-separated  
+list without spaces; e.g., `-w bash,ksh,zsh` or `SHELLS=bash,ksh,zsh`.
+
+`-q`, `-Q` quiets stdout, stdout + stderr from the script / commands invoked.  
+`-p` passes options through to the target shells.
+
+Standard options: `--help`, `--man`, `--version`, `--home`
+
+## DESCRIPTION
+
+`shall` invokes a shell script or command with multiple POSIX-like shells in  
+sequence for cross-shell compatibility testing.
+
+Pass a script *filename* as the first operand, optionally followed by arguments  
+to pass to the script.  
+If `shall` is in your system's path, you can also create executable scripts  
+based on it by using the following shebang line:
+
+    #!/usr/bin/env shall
+
+Use `-c` to specify a *command* string instead; note that the first argument  
+after the command string is assigned to `$0`(!).
+
+Use `-s` to read from *stdin*; `-s` is optional if no arguments are passed.
+
+Use `-i` to enter *interactive* mode: a simple REPL, where one command at a  
+time is read from the terminal and executed.
+
+By default, the following shells - if installed - are targeted:
+
+    sh dash bash zsh ksh
+
+To specify shells explicitly, use either of the following (in order of
+precedence):
+
+ - Option `-w <shellA>,...`; e.g., `shall -w bash,zsh ...`
+ - Environment variable `SHELLS`; e.g.: `SHELLS=bash,zsh shall ...`
+
+The exit code reflects the number of shells that reported failure; i.e.,  
+it is 0 if all shells ran the command successfully.
+
+Output is selectively colored, but only when outputting to a terminal.  
+Note that only `shall`'s own errors are sent to stderr, whereas captured  
+command/script output (interleaved stdout and stderr) is always reported via  
+stdout.  
+When outputting to a terminal and a command/script's invocation fails for a  
+given shell, the (entire) output captured is printed in red.
+
+Timing information is reported for each shell.
+
+In interactive mode (`-i`), history is maintained in file `~/.shall_history`.
+
+To get the name of the running shell from within your code in any of the  
+invocation scenarios, use `$(ps -o comm= $$)`  
+When using a command string (`-c`) or stdin input (`-s`), you can also use `$0`.
+
+## GLOBAL OPTIONS
+
+  * `-q`, `-Q`  
+    Quiet modes:   
+     `-q` suppresses stdout output from the command/script invoked.  
+     `-Q` suppresses both stdout and stderr.  
+    Note that per-shell and overall success status information is still  
+    reported.
+
+  * `-p`   
+    Allows you to pass options through to the shells invoked, as a single  
+    argument; e.g., `-p '-e -o noglob'`  
+    Make sure all shells targeted support the specified options; all  
+    POSIX-like shells should support the same options as the `set` builtin  
+    (see http://is.gd/MJPvPr).
+
+## STANDARD OPTIONS
+
+All standard options provide information only.
+
+ * `-h, --help`  
+   Prints the contents of the synopsis chapter to stdout for quick reference.
+
+ * `--man`  
+   Displays this manual page, which is a helpful alternative to using `man`,  
+   if the manual page isn't installed.
+
+ * `--version`  
+   Prints version information.
+  
+ * `--home`  
+   Opens this utility's home page in the system's default web browser.
+
+## LICENSE
+
+For license information, bug reports, and more, visit this utility's home page  
+by running `shall --home`
+
+## EXAMPLES
+
+      # Echo the name of each executing shell.
+    shall -c 'echo "Hello from $0."'
+
+      # Also echo the 1st argument passed.                
+    echo 'echo "Passed to $0: $1"' | shall -s one
+
+      # Execute a script, passing the -e shell option (abort on errror).
+    shall -p '-e' someScript
+
+      # Print the type of the 'which' command in bash and zsh.
+    shall -w bash,zsh -c 'type which'
+
+      # Enter a REPL that evaluates commands in both bash and dash.
+    SHELLS=bash,dash shall -i
+  
+EOF_MAN_PAGE

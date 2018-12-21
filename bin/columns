@@ -1,0 +1,14 @@
+#!/bin/sh
+
+awk 'FNR==1 { if (NR==FNR) print; next }
+NR==FNR {
+   for(i=1;i<=NF;i++)
+      w[i] = (w[i] <= length($i) ? length($i) : w[i])
+   next
+}
+{
+   for(i=1;i<=NF;i++)
+      printf "%*s",w[i]+(i>1?1:0),$i
+   print ""
+}
+' $1 $1
