@@ -1,0 +1,144 @@
+!Xft.dpi: 192
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+!Xft.hintstyle: hintfull
+Xft.lcdfilter: lcddefault
+!Xcursor.size: 48
+!Xcursor.theme: spg-cursor-light
+
+
+
+!URxvt.scrollBar:           true
+!URxvt.saveLines:           8192
+!URxvt.internalBorder:      0
+!URxvt.externalBorder:      0
+!URxvt.highlightSelection:  true
+!URxvt.loginShell:          true
+URxvt.termName:            xterm-256color
+!URxvt.letterSpace:         -1
+!!URxvt.font:                xft:MesloLGM Nerd Font:style=RegularForPowerline:size=11
+URxvt.font:                xft:Consolas for Powerline:style=Regular:size=11
+!URxvt.perl-ext-common:     default,tabbedex
+!URxvt.perl-ext-common: ...,tabbed,...
+URxvt.perl-ext-common:  ...,resize-font,...
+!
+!!URxvt.boldFont:           xft:DejaVu Sans Mono:pixelsize=15:style=Bold
+!
+!!URxvt.colorBD:             #FFFFFF
+!
+!URxvt.underlineColor:      white
+!URxvt.highlightColor:      darkred
+!
+!URxvt.mapAlert:            true
+!URxvt.borderColor:         black
+!URxvt.scrollColor:         black
+!URxvt*scrollBar_right:     true
+
+!# XTERM
+
+xterm*faceName:  Consolas for Powerline FixedD:style=Regular
+xterm*faceSize: 12
+xterm*saveLines: 16384
+xterm*loginShell: true
+! mouse selection stuff
+xterm*charClass: 33:48,35:48,37:48,43:48,45-47:48,64:48,95:48,126:48
+xterm*termName: xterm-256color
+xterm*eightBitInput: false
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+xterm*scrollTtyOutput: true
+xterm*scrollBar: true
+xterm*locale: UTF-8
+xterm*utf8: always
+xterm*boldMode: false
+
+!XTerm*faceSize: 12.0
+
+xterm*geometry: 100x30+100+50
+!XTerm*geometry: 150x30+100+50
+
+xterm*VT100.Translations: #override \
+              <Key>BackSpace: string(0x7F)\n\
+              <Key>Delete:    string(\033[3~)\n\
+              <Key>Home:      string(\033[1~)\n\
+              <Key>End:       string(\033[4~)
+xterm*ttyModes: erase ^?
+
+
+#define base00 #1b1918
+#define base01 #2c2421
+#define base02 #68615e
+#define base03 #766e6b
+#define base04 #9c9491
+#define base05 #a8a19f
+#define base06 #e6e2e0
+#define base07 #f1efee
+#define base08 #f22c40
+#define base09 #df5320
+#define base0A #c38418
+#define base0B #7b9726
+#define base0C #3d97b8
+#define base0D #407ee7
+#define base0E #6666ea
+#define base0F #c33ff3
+
+*foreground:   base05
+#ifdef background_opacity
+*background:   [background_opacity]base00
+#else
+*background:   base00
+#endif
+*cursorColor:  base05
+
+*color0:       base00
+*color1:       base08
+*color2:       base0B
+*color3:       base0A
+*color4:       base0D
+*color5:       base0E
+*color6:       base0C
+*color7:       base05
+
+*color8:       base03
+*color9:       base09
+*color10:      base01
+*color11:      base02
+*color12:      base04
+*color13:      base06
+*color14:      base0F
+*color15:      base07
+
+! gruvbox
+/* ! hard contrast: *background: #1d2021 */
+/* ! soft contrast: *background: #32302f */
+/* *background: #1d2021 */
+/* !*foreground: #ebdbb2   ! too light */
+/* *foreground: #928374 */
+/* ! Black + DarkGrey */
+/* *color0:  #282828 */
+/* *color8:  #928374 */
+/* ! DarkRed + Red */
+/* *color1:  #cc241d */
+/* *color9:  #fb4934 */
+/* ! DarkGreen + Green */
+/* *color2:  #98971a */
+/* *color10: #b8bb26 */
+/* ! DarkYellow + Yellow */
+/* *color3:  #d79921 */
+/* *color11: #fabd2f */
+/* ! DarkBlue + Blue */
+/* *color4:  #458588 */
+/* *color12: #83a598 */
+/* ! DarkMagenta + Magenta */
+/* *color5:  #b16286 */
+/* *color13: #d3869b */
+/* ! DarkCyan + Cyan */
+/* *color6:  #689d6a */
+/* *color14: #8ec07c */
+/* ! LightGrey + White */
+/* *color7:  #a89984 */
+/* *color15: #ebdbb2 */

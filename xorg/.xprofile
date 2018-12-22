@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# LightDM will execute this. beware
+
+
+#if [[ -f ~/.extend.xinitrc ]];then
+#    . ~/.extend.xinitrc
+#else
+#    DEFAULT_SESSION=openbox-session
+#fi
+
+XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_HOME
+
+
+userresources=$HOME/.Xresources
+usermodmap=$HOME/.xmodmaprc
+
+
+# merge in defaults and keymaps
+
+
+
+# if [ -d /etc/X11/xinit/xinitrc.d ]; then
+#   for f in /etc/X11/xinit/xinitrc.d/*; do
+#     [ -x "$f" ] && . "$f"
+#   done
+#   unset f
+# fi
+
+if [ -f "$userresources" ]; then
+    xrdb -merge "$userresources"
+fi
+
+if [ -f "$usermodmap" ]; then
+    xmodmap "$usermodmap"
+fi
+
+if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+       eval `dbus-launch --sh-syntax --exit-with-session`
+fi
+
+#exec openbox-session 2>&1 | tee /tmp/blah
+
+xset r rate 200 30
+
+# xrandr  --output HDMI-0 --dpi 96
+# xrandr  --output DP-2 --dpi 192
+
+# xinput --set-prop 11  "Device Accel Constant Deceleration" 2.0
+# xinput --set-prop 11 "Device Accel Velocity Scaling" 10
+xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
+
+imwheel --kill
+
+exec i3
+
+# sxhkd &
+# bspwm
+#setxkbmap -option caps:escape
+#xscreensaver -no-splash &
+##compton --backend glx -b -d :0
+#compton &
+#imwheel &
+#tint2 &
+#nitrogen --restore &
+## autokey-gtk &
+#volume-icon &
