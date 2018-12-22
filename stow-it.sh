@@ -5,3 +5,4 @@ stow -R i3
 stow -R kitty
 stow -R git
 stow -R xorg
+stow -R tmux
