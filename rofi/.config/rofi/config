@@ -113,7 +113,7 @@ rofi.sidebar-mode:                   false
 ! "Indicate how it match by underlining it." Set from: Default
 ! rofi.show-match:                     true
 ! "New style theme file" Set from: File
-!rofi.theme:                          arc-red-dark.rasi
+rofi.theme:                          oxide.rasi
 ! "Color scheme for normal row" Set from: XResources
 !rofi.color-normal:                   argb:00000000, #D8DEE9 , argb:00000000, #FAC863 , #1B2B34
 ! "Color scheme for urgent row" Set from: XResources

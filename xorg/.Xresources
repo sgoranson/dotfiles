@@ -69,22 +69,22 @@ xterm*VT100.Translations: #override \
 xterm*ttyModes: erase ^?
 
 
-#define base00 #1b1918
-#define base01 #2c2421
-#define base02 #68615e
-#define base03 #766e6b
-#define base04 #9c9491
-#define base05 #a8a19f
-#define base06 #e6e2e0
-#define base07 #f1efee
-#define base08 #f22c40
-#define base09 #df5320
-#define base0A #c38418
-#define base0B #7b9726
-#define base0C #3d97b8
-#define base0D #407ee7
-#define base0E #6666ea
-#define base0F #c33ff3
+#define base00 #212121
+#define base01 #363636
+#define base02 #424242
+#define base03 #5c5c5c
+#define base04 #b4b6ba
+#define base05 #c0c5ce
+#define base06 #cdd3de
+#define base07 #f3f4f5
+#define base08 #e57373
+#define base09 #f99157
+#define base0A #fac863
+#define base0B #a6bc69
+#define base0C #5fb3b3
+#define base0D #6699cc
+#define base0E #c594c5
+#define base0F #ab7967
 
 *foreground:   base05
 #ifdef background_opacity
@@ -104,41 +104,17 @@ xterm*ttyModes: erase ^?
 *color7:       base05
 
 *color8:       base03
-*color9:       base09
-*color10:      base01
-*color11:      base02
-*color12:      base04
-*color13:      base06
-*color14:      base0F
+*color9:       base08
+*color10:      base0B
+*color11:      base0A
+*color12:      base0D
+*color13:      base0E
+*color14:      base0C
 *color15:      base07
 
-! gruvbox
-/* ! hard contrast: *background: #1d2021 */
-/* ! soft contrast: *background: #32302f */
-/* *background: #1d2021 */
-/* !*foreground: #ebdbb2   ! too light */
-/* *foreground: #928374 */
-/* ! Black + DarkGrey */
-/* *color0:  #282828 */
-/* *color8:  #928374 */
-/* ! DarkRed + Red */
-/* *color1:  #cc241d */
-/* *color9:  #fb4934 */
-/* ! DarkGreen + Green */
-/* *color2:  #98971a */
-/* *color10: #b8bb26 */
-/* ! DarkYellow + Yellow */
-/* *color3:  #d79921 */
-/* *color11: #fabd2f */
-/* ! DarkBlue + Blue */
-/* *color4:  #458588 */
-/* *color12: #83a598 */
-/* ! DarkMagenta + Magenta */
-/* *color5:  #b16286 */
-/* *color13: #d3869b */
-/* ! DarkCyan + Cyan */
-/* *color6:  #689d6a */
-/* *color14: #8ec07c */
-/* ! LightGrey + White */
-/* *color7:  #a89984 */
-/* *color15: #ebdbb2 */
+*color16:      base09
+*color17:      base0F
+*color18:      base01
+*color19:      base02
+*color20:      base04
+*color21:      base06

@@ -1,8 +1,9 @@
 
 # GLOBAL/COLOR {{{
 
-set $modx Control+Shift
-set $mody Control+Shift+Mod1
+set $modx Mod1
+# set $modx Control+Shift
+set $mody Mod4
 
 
 
@@ -37,6 +38,15 @@ set $mody Control+Shift+Mod1
 # client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # client.background       #ffffff
 
+# class                 border  backgr. text    indicator child_border
+# client.focused          #2b83a6 #2b83a6 #ffffff #dddddd   #2b83a6
+# client.focused_inactive #212121 #212121 #86888c #292d2e   #5a5a5a
+# client.unfocused        #212121 #212121 #86888c #292d2e   #5a5a5a
+# client.urgent           #d64e4e #d64e4e #ffffff #d64e4e   #d64e4e
+# client.placeholder      #212121 #0c0c0c #ffffff #212121   #262626
+# client.background       #212121
+
+
 for_window [class=".*"] title_format " >_ %title "
 
 #                         border  bg      text    indicat child_border
@@ -46,9 +56,9 @@ client.unfocused          #030706 #232f3b #636d73 #4F4F4F #212a33
 client.urgent             #1A1A1A #232f3b #a5a5a5 #1A1A1A #212a33
 client.background         #1b2026
 
-#font pango: Terminus 12px
+# font pango: Terminus 12px
 # font pango: xos4 Terminus 16px
-font pango:Roboto 9
+font pango:Ubuntu 12
 
 focus_follows_mouse always
 # focus_wrapping false
@@ -70,10 +80,11 @@ bindsym $mody+b [class="^.*"] border toggle 1
 
 # start a terminal
 bindsym $modx+Return  exec --no-startup-id kitty
-# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -h 45%  termite
+bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45%  kitty
+bindsym $modx+Shift+Return exec tdrop --wm i3 -a -h 45%  kitty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  termite; focus mode_toggle
-bindsym $modx+Shift+Return exec i3-quickterm shell
-bindsym F1 exec i3-quickterm shell
+# bindsym $modx+Shift+Return exec i3-quickterm shell
+# bindsym F1 exec i3-quickterm shell
 
 # bindsym $modx+r exec rofi -run-list-command ". ~/bin/getAliases" -run-command "/usr/bin/zsh -i -c '{cmd}'" -show run
 # bindsym $modx+r exec zsh -c 'rofi -terminal xterm  -run-command "/usr/bin/zsh -i -c '{cmd}'" -show run'
@@ -105,30 +116,31 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # use Mouse+$modx to drag floating windows to their wanted position. also resizing
-floating_modifier Control
+floating_modifier $modx
 
  # }}}
 
 # WORKSPACES {{{
 set $ws1   "1: "
-set $ws2   "2: "
+set $ws2   "2: "
 set $ws3   "3: "
 set $ws4   "4: "
-set $ws5   "5: "
+set $ws5   "5: "
 set $ws6   "6: "
 set $ws7   "7: "
 set $ws8   "8: "
 set $ws9   "9: "
-set $ws10  "10: "
+set $ws10  "10: "
 
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-5
-workspace $ws5 output DP-5
-workspace $ws7 output DP-5
+workspace $ws1 output DP-1
+workspace $ws2 output DP-1
+workspace $ws3 output DP-1
+workspace $ws4 output DP-2
+workspace $ws5 output DP-2
+workspace $ws7 output DP-2
 workspace $ws8 output HDMI-0
 workspace $ws9 output HDMI-0
+workspace $ws10 output HDMI-0
 
 # move the currently focused window to the scratchpad
 bindsym $mody+Shift+z move scratchpad
@@ -333,7 +345,7 @@ bindsym $mody+w focus output right
 bindsym --whole-window $mody+button2 kill
 
 # The right button toggles floating
-bindsym --whole-window $mody+button3 floating toggle
+bindsym --whole-window Mod1+Shift+button3 floating toggle
 
 # bindsym $mody+Tab exec "rofi -show window -kb-row-down 'Control+Tab' -kb-accept-entry '!Control_R,!Control+Tab'"
 # INITRC {{{
@@ -353,7 +365,7 @@ bindsym $mody+F10 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'web
 bindsym $mody+F11 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'fzf-kill'"
 bindsym $mody+F12 exec --no-startup-id rofi-dofi.sh
 
-exec_always --no-startup-id ~/bin/polybarz
+# exec_always --no-startup-id ~/bin/polybarz
 exec_always --no-startup-id ~/bin/fix_xcursor
 exec_always --no-startup-id greenclip daemon
 
@@ -374,21 +386,56 @@ exec --no-startup-id dropbox
 
 # }}}
 
-# bar {
-#         status_command i3blocks
-# }
+# start i3bar to display a workspace bar
 bar {
-    position top
+    # font pango:Roboto 14
+    font pango:Font Awesome 5 Pro 14
+    output HDMI-1
+    output DP-1
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
+    status_command          i3blocks
+    bindsym button4         nop
+    bindsym button5         nop
+    position                bottom
+    tray_output             primary
+    separator_symbol        "·"
+    workspace_buttons       yes
+    # strip_workspace_numbers yes
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        background  #212121
+        statusline  #dddddd
+        separator   #666666
+        # class             border  backgr. text
+        focused_workspace   #2b83a6 #2b83a6 #ffffff
+        active_workspace    #212121 #212121 #ffffff
+        inactive_workspace  #212121 #212121 #86888c
+        urgent_workspace    #d64e4e #d64e4e #ffffff
     }
 }
- output "*" background  /usr/share/backgrounds/manjaro-gnome/islandiya-vestrahorn-6864.jpg fill
-# vim:ft=i3:
+
+bar {
+    # font pango:Roboto 14
+    font pango:Font Awesome 5 Pro 20
+    output DP-2
+
+    status_command          i3blocks
+    bindsym button4         nop
+    bindsym button5         nop
+    position                bottom
+    tray_output             primary
+    separator_symbol        "·"
+    workspace_buttons       yes
+    # strip_workspace_numbers yes
+
+    colors {
+        background  #212121
+        statusline  #dddddd
+        separator   #666666
+        # class             border  backgr. text
+        focused_workspace   #2b83a6 #2b83a6 #ffffff
+        active_workspace    #212121 #212121 #ffffff
+        inactive_workspace  #212121 #212121 #86888c
+        urgent_workspace    #d64e4e #d64e4e #ffffff
+    }
+}
