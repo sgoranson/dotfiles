@@ -30,31 +30,24 @@ set $mody Mod4
 # client.unfocused        #222222 #222222 #888888 #292d2e   #222222
 
 ### COLOR ###
-# # class                 border  backgr. text    indicator child_border
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-# client.urgent           #2f343a #900000 #ffffff #900000   #900000
-# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-# client.background       #ffffff
-
 # class                 border  backgr. text    indicator child_border
-# client.focused          #2b83a6 #2b83a6 #ffffff #dddddd   #2b83a6
-# client.focused_inactive #212121 #212121 #86888c #292d2e   #5a5a5a
-# client.unfocused        #212121 #212121 #86888c #292d2e   #5a5a5a
-# client.urgent           #d64e4e #d64e4e #ffffff #d64e4e   #d64e4e
-# client.placeholder      #212121 #0c0c0c #ffffff #212121   #262626
-# client.background       #212121
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
 
 
 for_window [class=".*"] title_format " >_ %title "
 
 #                         border  bg      text    indicat child_border
-client.focused            #232323 #232f3b #F7F7F7 #4F4F4F #212a33
-client.focused_inactive   #1A1A1A #232f3b #536d73 #121212 #212a33
-client.unfocused          #030706 #232f3b #636d73 #4F4F4F #212a33
-client.urgent             #1A1A1A #232f3b #a5a5a5 #1A1A1A #212a33
-client.background         #1b2026
+# client.focused            #232323 #232f3b #F7F7F7 #4F4F4F #212a33
+# client.focused_inactive   #1A1A1A #232f3b #536d73 #121212 #212a33
+# client.unfocused          #030706 #232f3b #636d73 #4F4F4F #212a33
+# client.urgent             #1A1A1A #232f3b #a5a5a5 #1A1A1A #212a33
+# client.background         #1b2026
 
 # font pango: Terminus 12px
 # font pango: xos4 Terminus 16px
@@ -66,13 +59,14 @@ focus_follows_mouse always
 #smart_borders on
 #smart_gaps on
 # new_window none
-default_border pixel 1
+default_border normal 1
 
 # bindsym Control+a exec xte 'key Home'
 # bindsym Control+e exec xte 'key End'
 
 # for_window [class="^.*"] border pixel 0
 bindsym $mody+b [class="^.*"] border toggle 1
+bindsym $mody+Shift+b [class="^.*"] border normal 0
 
 # }}}
 
@@ -80,8 +74,8 @@ bindsym $mody+b [class="^.*"] border toggle 1
 
 # start a terminal
 bindsym $modx+Return  exec --no-startup-id kitty
-bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45%  kitty
-bindsym $modx+Shift+Return exec tdrop --wm i3 -a -h 45%  kitty
+bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45% -w 80% kitty
+bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  termite; focus mode_toggle
 # bindsym $modx+Shift+Return exec i3-quickterm shell
 # bindsym F1 exec i3-quickterm shell
@@ -389,7 +383,7 @@ exec --no-startup-id dropbox
 # start i3bar to display a workspace bar
 bar {
     # font pango:Roboto 14
-    font pango:Font Awesome 5 Pro 14
+    font pango:Font Awesome 5 Pro 7
     output HDMI-1
     output DP-1
 
@@ -416,7 +410,7 @@ bar {
 
 bar {
     # font pango:Roboto 14
-    font pango:Font Awesome 5 Pro 20
+    font pango:Font Awesome 5 Pro 14
     output DP-2
 
     status_command          i3blocks
