@@ -63,7 +63,7 @@ alias crontab="VIM_CRONTAB=true crontab"
 alias cp="cp -i"
 alias rm="rm -i"
 alias mv="mv -i"
-alias tmux="TERM=xterm-256color \tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
+alias tmux="TERM=xterm-256color \tmux"
 alias vim=nvim
 alias grep='grep --color=auto'
 # -b ignore blanks -B ignore newlines
