@@ -409,16 +409,16 @@ bar {
 }
 
 bar {
-    # font pango:Roboto 14
-    font pango:Font Awesome 5 Pro 14
+    font pango:UbuntuMono Nerd Font Mono 12
+    # font pango:Ubuntu Mono 12
     output DP-2
 
     status_command          i3blocks
     bindsym button4         nop
     bindsym button5         nop
     position                bottom
-    tray_output             primary
-    separator_symbol        "·"
+    tray_output             HDMI-1
+    # separator_symbol        "|"
     workspace_buttons       yes
     # strip_workspace_numbers yes
 
