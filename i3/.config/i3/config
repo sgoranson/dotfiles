@@ -59,13 +59,13 @@ focus_follows_mouse always
 #smart_borders on
 #smart_gaps on
 # new_window none
-default_border normal 1
+default_border pixel 1
 
 # bindsym Control+a exec xte 'key Home'
 # bindsym Control+e exec xte 'key End'
 
 # for_window [class="^.*"] border pixel 0
-bindsym $mody+b [class="^.*"] border toggle 1
+bindsym $mody+b [class="^.*"] border toggle 
 bindsym $mody+Shift+b [class="^.*"] border normal 0
 
 # }}}
@@ -122,7 +122,7 @@ set $ws4   "4: "
 set $ws5   "5: "
 set $ws6   "6: "
 set $ws7   "7: "
-set $ws8   "8: "
+set $ws8   "8: "
 set $ws9   "9: "
 set $ws10  "10: "
 
@@ -359,9 +359,10 @@ bindsym $mody+F10 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'web
 bindsym $mody+F11 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'fzf-kill'"
 bindsym $mody+F12 exec --no-startup-id rofi-dofi.sh
 
-# exec_always --no-startup-id ~/bin/polybarz
+exec_always --no-startup-id ~/bin/polybarz
 exec_always --no-startup-id ~/bin/fix_xcursor
 exec_always --no-startup-id greenclip daemon
+#exec_always alttab
 
 # exec --no-startup-id xfsettingsd
 exec --no-startup-id telegram-desktop
@@ -381,55 +382,56 @@ exec --no-startup-id dropbox
 # }}}
 
 # start i3bar to display a workspace bar
-bar {
-    # font pango:Roboto 14
-    font pango:Font Awesome 5 Pro 7
-    output HDMI-1
-    output DP-1
+#bar {
+#    # font pango:Roboto 14
+#    font pango:Font Awesome 5 Pro 7
+#    output HDMI-1
+#    output DP-1
+#
+#    status_command          i3blocks
+#    bindsym button4         nop
+#    bindsym button5         nop
+#    position                bottom
+#    tray_output             primary
+#    separator_symbol        "·"
+#    workspace_buttons       yes
+#    # strip_workspace_numbers yes
+#
+#    colors {
+#        background  #212121
+#        statusline  #dddddd
+#        separator   #666666
+#        # class             border  backgr. text
+#        focused_workspace   #2b83a6 #2b83a6 #ffffff
+#        active_workspace    #212121 #212121 #ffffff
+#        inactive_workspace  #212121 #212121 #86888c
+#        urgent_workspace    #d64e4e #d64e4e #ffffff
+#    }
+#}
 
-    status_command          i3blocks
-    bindsym button4         nop
-    bindsym button5         nop
-    position                bottom
-    tray_output             primary
-    separator_symbol        "·"
-    workspace_buttons       yes
-    # strip_workspace_numbers yes
-
-    colors {
-        background  #212121
-        statusline  #dddddd
-        separator   #666666
-        # class             border  backgr. text
-        focused_workspace   #2b83a6 #2b83a6 #ffffff
-        active_workspace    #212121 #212121 #ffffff
-        inactive_workspace  #212121 #212121 #86888c
-        urgent_workspace    #d64e4e #d64e4e #ffffff
-    }
-}
-
-bar {
-    font pango:UbuntuMono Nerd Font Mono 12
-    # font pango:Ubuntu Mono 12
-    output DP-2
-
-    status_command          i3blocks
-    bindsym button4         nop
-    bindsym button5         nop
-    position                bottom
-    tray_output             HDMI-1
-    # separator_symbol        "|"
-    workspace_buttons       yes
-    # strip_workspace_numbers yes
-
-    colors {
-        background  #212121
-        statusline  #dddddd
-        separator   #666666
-        # class             border  backgr. text
-        focused_workspace   #2b83a6 #2b83a6 #ffffff
-        active_workspace    #212121 #212121 #ffffff
-        inactive_workspace  #212121 #212121 #86888c
-        urgent_workspace    #d64e4e #d64e4e #ffffff
-    }
-}
+#bar {
+#    font pango:UbuntuMono Nerd Font Mono 12
+#    # font pango:Ubuntu Mono 12
+#    output DP-2
+#    output LVDS1
+#
+#    status_command          i3blocks
+#    bindsym button4         nop
+#    bindsym button5         nop
+#    position                bottom
+#    tray_output             HDMI-1
+#    # separator_symbol        "|"
+#    workspace_buttons       yes
+#    # strip_workspace_numbers yes
+#
+#    colors {
+#        background  #212121
+#        statusline  #dddddd
+#        separator   #666666
+#        # class             border  backgr. text
+#        focused_workspace   #2b83a6 #2b83a6 #ffffff
+#        active_workspace    #212121 #212121 #ffffff
+#        inactive_workspace  #212121 #212121 #86888c
+#        urgent_workspace    #d64e4e #d64e4e #ffffff
+#    }
+#}

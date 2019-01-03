@@ -1,7 +1,7 @@
 ZDOTDIR="$HOME/.zsh"
 
 export MYOS="ARCH"
-export PAGER=bat
+export PAGER=less
 export MANPAGER=less
 export TERMINAL=kitty
 
@@ -47,7 +47,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
 
 PATH="$HOME/bin/:$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
-PATH="$HOME/go/bin:$HOME/.node/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
+PATH="$HOME/go/bin:$HOME/.node/bin/:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
 
 if which ruby >/dev/null && which gem >/dev/null; then
     PATH="$PATH:$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:"

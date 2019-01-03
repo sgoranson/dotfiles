@@ -1,5 +1,7 @@
 #!/bin/sh
 
+stow -R nvim
+stow -R polybar
 stow -R rofi
 stow -R i3
 stow -R sway

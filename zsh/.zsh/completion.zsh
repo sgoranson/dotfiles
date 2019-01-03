@@ -77,7 +77,7 @@ function is42 () {
     zstyle ':completion:*:-command-:*:'    verbose true
 
     # set format for warnings
-    zstyle ':completion:*:warnings'        format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
+    #zstyle ':completion:*:warnings'        format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
 
     # define files to ignore for zcompile
     zstyle ':completion:*:*:zcompile:*'    ignored-patterns '(*~|*.zwc)'
@@ -104,7 +104,7 @@ function is42 () {
                                                /usr/X11R6/bin
 
     # provide .. as a completion
-    zstyle ':completion:*' special-dirs ..
+    # zstyle ':completion:*' special-dirs ..
 
     ## correction
     # some people don't like the automatic correction - so run 'NOCOR=1 zsh' to deactivate it
