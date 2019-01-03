@@ -7,7 +7,7 @@ rofi.lines:                          25
 ! "Number of columns" Set from: Default
 !rofi.columns:                        3
 ! "Font to use" Set from: XResources
-rofi.font:                          Consolas NF 12
+rofi.font:                          Ubuntu Mono 12
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
@@ -97,7 +97,7 @@ rofi.sidebar-mode:                   false
 ! "Fake transparency *DEPRECATED*" Set from: Default
 ! rofi.fake-transparency:              false
 ! "DPI" Set from: XResources
-!!rofi.dpi:                            192
+!rofi.dpi:                            192
 ! "Threads to use for string matching" Set from: Default
 ! rofi.threads:                        0
 ! "Scrollbar width *DEPRECATED*" Set from: Default

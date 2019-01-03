@@ -251,7 +251,7 @@ alias find-recent-mod='find -cmin -5'
 # %p is the relpath, %T@ is unixtime. so very sortable. %t is simple ctime
 alias find-print-tlm='find . -type f -printf "%T@ %p\n"'
 alias find-most-files="du --inodes -S | sort -h"
-
+alias fc-list-sort='fc-list | cut -d: -f2,3 | sort'
 alias gpg-fingerprint='gpg --verbose --fingerprint'
 alias gpg-ls='gpg --list-keys'
 alias gpg-export='gpg --armor --export'

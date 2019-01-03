@@ -10,6 +10,7 @@ killall polybar 2> /dev/null
 #     echo "Launching on monitor $mon"
 #     env MONITOR="$mon" polybar def &
 # done
-env MONITOR=DP-2 DPI=192 polybar def &
-env MONITOR=DP-1 DPI=128 polybar def &
-env MONITOR=HDMI-1 DPI=128 polybar def &
+env MONITOR=LVDS-1 DPI=150 polybar def &
+#env MONITOR=LVDS-1 DPI=192 polybar def &
+#env MONITOR=DP-1 DPI=128 polybar def &
+#env MONITOR=HDMI-1 DPI=128 polybar def &

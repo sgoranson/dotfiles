@@ -100,7 +100,7 @@ source $ZDOTDIR/completion/git-extra
 source $ZDOTDIR/extract.plugin.zsh
 # source $HOME/bin/z.sh
 source $ZDOTDIR/zsh-autosuggestions.zsh
-source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
+# source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 
 # }}}
 
@@ -184,6 +184,30 @@ stty -ixon -ixoff
 if [ -f "$HOME/.zshmine" ]; then
     . "$HOME/.zshmine"
 fi
+
+if [ "$TERM" = "linux" ]; then
+  /bin/echo -e "
+  \e]P0000000
+  \e]P1ff5555
+  \e]P250fa7b
+  \e]P3f1fa8c
+  \e]P46790eb
+  \e]P5ff79c6
+  \e]P68be9fd
+  \e]P7bfbfbf
+  \e]P879a9ff
+  \e]P9ff6e67
+  \e]PA5af78e
+  \e]PBf4f99d
+  \e]PC79a9ff
+  \e]PDff92d0
+  \e]PE9aedfe
+  \e]PFe6e6e6
+  "
+  # get rid of artifacts
+  clear
+fi
+
 
 # export DISPLAY=:0
 

@@ -42,19 +42,22 @@ fi
 
 #exec openbox-session 2>&1 | tee /tmp/blah
 
+# keyboard rate
 xset r rate 200 30
 
+# disables mouse accel on my thinkpad
+ xinput --set-prop 12  'libinput Accel Profile Enabled' 0, 1  
 # xrandr  --output HDMI-0 --dpi 96
 # xrandr  --output DP-2 --dpi 192
 
 # xinput --set-prop 11  "Device Accel Constant Deceleration" 2.0
 # xinput --set-prop 11 "Device Accel Velocity Scaling" 10
-xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
+#xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
 
-imwheel --kill
+#imwheel --kill
 
 exec i3
-
+#openbox-session
 # sxhkd &
 # bspwm
 #setxkbmap -option caps:escape
