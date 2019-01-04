@@ -1,5 +1,6 @@
 ZDOTDIR="$HOME/.zsh"
 
+
 export MYOS="ARCH"
 export PAGER=less
 export MANPAGER=less
@@ -45,6 +46,8 @@ export BROWSER=google-chrome-stable
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
 export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
+export GHQ_ROOT=$HOME/kewl
+
 
 PATH="$HOME/bin/:$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
 PATH="$HOME/go/bin:$HOME/.node/bin/:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
