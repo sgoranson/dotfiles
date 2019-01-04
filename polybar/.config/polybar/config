@@ -1,4 +1,3 @@
-; mintyleaf polybar config
 
 [colors]
 background = #2d2d30
@@ -6,17 +5,29 @@ background-alt = #575757
 foreground = #dfdfdf
 foreground-alt = #999999
 primary = #ffffff
+border = #ffffff
 alert = #ff9999
 urgent = #A7167F
+
+[settings]
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+compositing-background = source
+compositing-foreground = source
+compositing-overline = source
+compositing-underline = source
+compositing-border = source
+screenchange-reload = true
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 
 [global/wm]
 margin-top = 0
 margin-bottom = 0
 
-
-
 [bar/def]
-monitor = ${env:MONITOR:LVDS1}
+monitor = ${env:MONITOR:DP-2}
 
 width = 100%
 height = 45
@@ -25,35 +36,60 @@ border-top-size = 0
 border-bottom-size = 0
 radius = 0
 bottom = true
+dpi = ${env:DPI:192}
+
+underline-size = 3
+underline-color = #b9b9b9
+
+bar-transparent = false
+
+; tray-background = ${colors.background}
+; tray-transparent = false
+; tray-detached = true
+; tray-underline =
+; tray-maxsize = 16
+; tray-scale = 1.5
+
+
+offset-x = 0
+offset-y = 0
 fixed-center = true
-override-redirect = true
-dpi = 162
+border-color = ${colors.border}
 background = ${colors.background}
 foreground = ${colors.foreground}
-
-line-size = 0
-line-color = #00000000
-
-
-padding-left = 0
+module-margin = 2
 padding-right = 0
+padding-left = 0
 
-module-margin = 0
 
-font-0 = Ubuntu Mono:size=13;2
-font-1 = FontAwesome:size=13;2
-font-2 = FontAwesome:size=13;2
-;font-2 = Wuncon Siji:size=13;2
-font-3 = FontAwesome:size=13;2
-font-4 = FontAwesome:size=13;2
-;font-4 = Font Awesome 5 Brands:pixelsize=14;2
+separator = |
+; HERE fonts
+; font-3 = "TerminessTTF Nerd Font Mono:style=Medium:antialias=false:size=9;0"
+; font-4 = "TerminessTTF Nerd Font Mono:style=Medium:antialias=false:size=9;0"
+; font-4 = "icomoon:style=Regular:antialias=false:size=9;4"
 
+font-0 = "Font Awesome 5 Pro Regular:style=Regular:size=11;4"
+font-1 = "Font Awesome 5 Brands Regular:style=Regular:size=11;4"
+font-2 = "Symbola:size=9:style=Regular;0"
+; font-3 = "icomoon:style=Regular:antialias=false:size=11;4"
+font-3 = "Ubuntu:style=Regular:size=10;4"
+font-4 = "Ubuntu:style=Regular:size=10;4"
 
 modules-left = i3
-modules-center = externip wlan2
-modules-right = cpu battery pulseaudio date
+modules-center = externip network
+modules-right = cpu memory filesystem battery pulseaudio date
+
+tray-position = right
+tray-padding = 1
+;tray-transparent = true
+;tray-background = #0063ff
 
 
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
 
 [module/network]
 type = internal/network
@@ -156,7 +192,6 @@ bar-volume-empty = ─
 bar-volume-empty-font = 3
 bar-volume-empty-foreground = ${colors.foreground}
 
-
 [module/filesystem]
 type = internal/fs
 interval = 25
@@ -184,33 +219,22 @@ format-prefix-foreground = #D537FB
 ;
 ;
 format = <label>  <ramp-coreload>
-label = "%{F#D537FB}%{F-} %percentage-cores:15%"
+; label = "* %{T5}%{A1:alacritty -e htop & disown:} %percentage:2%%   %{A}%{T-}"
+label = "%{F#D537FB}%{F-}"
 
-
-
-
-; Spacing between individual per-core ramps
-ramp-coreload-spacing = 1
-ramp-coreload-0 = .
+ramp-coreload-0 = ▁
 ramp-coreload-1 = ▂
 ramp-coreload-2 = ▃
 ramp-coreload-3 = ▄
 ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
-ramp-coreload-6 = ▇
-ramp-coreload-7 = █
+; ramp-coreload-0 = ▁
+; ramp-coreload-1 = ▄
+; ramp-coreload-2 = ▆
 
-
-
-
-
-
-
-
-
-
-
-
+; ramp-coreload-0-foreground = ${colors.foreground}
+; ramp-coreload-1-foreground = ${colors.alert}
+; ramp-coreload-2-foreground = ${colors.urgent}
 
 ramp-coreload-0-foreground = ${colors.foreground}
 ramp-coreload-1-foreground = ${colors.foreground}
@@ -272,6 +296,24 @@ animation-charging-3 = 
 animation-charging-4 = 
 animation-charging-framerate = 750
 
+;[module/bspwm]
+;type = internal/bspwm
+
+;label-focused = %index%
+;label-focused-background = ${colors.background-alt}
+;label-focused-underline= ${colors.primary}
+;label-focused-padding = 2
+
+;label-occupied = %index%
+;label-occupied-padding = 2
+
+;label-urgent = %index%!
+;label-urgent-background = ${colors.alert}
+;label-urgent-padding = 2
+
+;label-empty = %index%
+;label-empty-foreground = ${colors.foreground-alt}
+;label-empty-padding = 2
 
 
 
@@ -286,10 +328,10 @@ ws-icon-1 = mpd;
 ws-icon-2 = term;
 ws-icon-3 = code;
 ws-icon-4 = games;
-ws-icon-default =  
+ws-icon-default = 
 
 label-focused = %icon%
-label-focused-background = #505054 
+label-focused-background = #505054
 label-focused-padding = 1
 
 
@@ -301,7 +343,7 @@ label-urgent = %icon%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %icon% 
+label-empty = %icon%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 1
 
@@ -343,3 +385,4 @@ label-urgent = %name%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
+;; vim:ft=dosini:
