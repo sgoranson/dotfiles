@@ -66,7 +66,8 @@ export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
 # export FZF_DEFAULT_OPTS='--color=dark --reverse --ansi --exact'
 # export FZF_DEFAULT_COMMAND='\rg --hidden -S --files'
-export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact  --color=16'
+#export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact  --color=16'
+export FZF_DEFAULT_OPTS='--multi --cycle --ansi   --exact'
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
 #export ZLE_REMOVE_SUFFIX_CHARS=" \t\n;&|'"
 # export ZLE_REMOVE_SUFFIX_CHARS=\'

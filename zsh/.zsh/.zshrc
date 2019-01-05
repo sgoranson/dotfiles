@@ -100,6 +100,7 @@ source $ZDOTDIR/completion/git-extra
 source $ZDOTDIR/extract.plugin.zsh
 # source $HOME/bin/z.sh
 source $ZDOTDIR/zsh-autosuggestions.zsh
+source $ZDOTDIR/fzf-marks.plugin.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 
 # }}}
