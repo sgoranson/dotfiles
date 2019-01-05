@@ -313,8 +313,8 @@ alias rand-sh='echo $(( $(head -c 2 /dev/random | od -i  -An) % 10 ))'
 alias xclip-c='xclip -selection clipboard'
 alias xclip-p='xclip -selection clipboard -o'
 
-alias prompt.lite="export RPROMPT='$PROMPT_TIME'"
-alias prompt.full="export RPROMPT='$(__git_info) $PROMPT_TIME'"
+#alias prompt.lite="export RPROMPT='$PROMPT_TIME'"
+#alias prompt.full="export RPROMPT='$(__git_info) $PROMPT_TIME'"
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
 alias rsync-basic='rsync -Rvahz --progress'

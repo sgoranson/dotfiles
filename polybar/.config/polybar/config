@@ -75,7 +75,7 @@ font-3 = "Ubuntu:style=Regular:size=10;4"
 font-4 = "Ubuntu:style=Regular:size=10;4"
 
 modules-left = i3
-modules-center = externip network
+modules-center = externip network wlan2
 modules-right = cpu memory filesystem battery pulseaudio date
 
 tray-position = right
