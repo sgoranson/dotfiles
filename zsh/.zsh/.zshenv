@@ -35,7 +35,7 @@ export GIT_PROMPT_EXECUTABLE=${GIT_PROMPT_EXECUTABLE:-"python"}
 export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
 #export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact  --color=16'
-export FZF_DEFAULT_OPTS='--height=40% --multi --cycle --ansi   --exact  --color=16'
+export FZF_DEFAULT_OPTS='--height=40% --multi --cycle --ansi   --exact'
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
 # export FZF_DEFAULT_COMMAND='\rg --hidden -S --files'
 #export ZLE_REMOVE_SUFFIX_CHARS=" \t\n;&|'"

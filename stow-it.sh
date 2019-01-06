@@ -1,5 +1,6 @@
 #!/bin/sh
 
+stow -R config
 stow -R nvim
 stow -R polybar
 stow -R rofi
@@ -10,3 +11,4 @@ stow -R git
 stow -R xorg
 stow -R tmux
 stow -R zsh
+stow -R yay

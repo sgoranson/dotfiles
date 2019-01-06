@@ -11,13 +11,9 @@ function is42 () {
     # don't complete backup files as executables
     zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(aptitude-*|*\~)'
 
-    # start menu completion only if it could find no unambiguous initial string
-    # zstyle ':completion:*:correct:*'       insert-unambiguous true
-    # zstyle ':completion:*:corrections'     format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
-    # zstyle ':completion:*:correct:*'       original true
 
     # activate color-completion
-    # zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
+    zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
     # format on completion
     # zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'

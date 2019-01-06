@@ -1,6 +1,5 @@
-[user]
-    email = stephen.goranson@gmail.com
-    name = Steve Goranson
+[ghq]
+    root = $HOME/src
 [gui]
     recentrepo = $HOME/dotfiles
 [user]
@@ -10,7 +9,6 @@
     longpaths = true
     autocrlf = input
 	editor = nvim
-    excludesfile = /Users/steve/.gitignore_global
     symlinks = true
 [push]
     default = simple
@@ -28,8 +26,6 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
-[commit]
-    template = /Users/steve/.stCommitMsg
 
 
 [merge]
