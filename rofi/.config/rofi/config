@@ -7,7 +7,7 @@ rofi.lines:                          25
 ! "Number of columns" Set from: Default
 !rofi.columns:                        3
 ! "Font to use" Set from: XResources
-rofi.font:                          Ubuntu Mono 12
+rofi.font:                          Ubuntu Mono 26
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
