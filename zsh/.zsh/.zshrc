@@ -78,7 +78,7 @@ autoload -U +X bashcompinit && bashcompinit
 
 autoload -U zcalc
 
-eval "$(dircolors "$XDG_CONFIG_HOME"/.dircolors)"
+eval "$(dircolors "$HOME"/.dircolors)"
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh
@@ -220,5 +220,5 @@ sgbanner
 
 # }}}
 
-#prompt simpl
+prompt simpl
 # vim:fdm=marker:
