@@ -1,5 +1,6 @@
 ZDOTDIR="$HOME/.zsh"
 
+
 export MYOS="ARCH"
 export PAGER=less
 export MANPAGER=less
@@ -18,14 +19,16 @@ export BROWSER=google-chrome-stable
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
 export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
+export GHQ_ROOT=$HOME/kewl
 
-PATH="$HOME/bin/:$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
-PATH="$HOME/go/bin:$HOME/.node/bin/:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
 
-if which ruby >/dev/null && which gem >/dev/null; then
-    PATH="$PATH:$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:"
-fi
-export PATH
+PATH="$HOME/bin/:$HOME/go/bin:$HOME/.node/bin/:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
+PATH="$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
+
+#if which ruby >/dev/null && which gem >/dev/null; then
+#    PATH="$PATH:$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:"
+#fi
+#export PATH
 
 
 export HISTIGNORE="ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
@@ -34,10 +37,8 @@ export HISTIGNORE="ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export GIT_PROMPT_EXECUTABLE=${GIT_PROMPT_EXECUTABLE:-"python"}
 export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
-#export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact  --color=16'
-export FZF_DEFAULT_OPTS='--height=40% --multi --cycle --ansi   --exact'
+export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact'
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
-# export FZF_DEFAULT_COMMAND='\rg --hidden -S --files'
 #export ZLE_REMOVE_SUFFIX_CHARS=" \t\n;&|'"
 # export ZLE_REMOVE_SUFFIX_CHARS=\'
 # export ZLE_SPACE_SUFFIX_CHARS=$'|&'

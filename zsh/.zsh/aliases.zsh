@@ -24,8 +24,8 @@ function nv-d() {
 
 alias nv-z='pushd ~/.zsh;  nvim $(git -C ~/.zsh ls-files | fzf --height=40% --reverse --ansi   --exact  --color=16); popd'
 
-alias ff="fd --hidden --exclude '*.git*'"
-alias ffd="fd --type d --hidden --exclude '*.git*'"
+alias ff="fd --hidden --exclude '*.git*' --search-path ."
+alias ffd="fd --type d --hidden --exclude '*.git*' --search-path ."
 
 alias zs-a='source ~/.zsh/aliases.zsh'
 # alias ff="find ~ ! -path '*.git*' -type f"
@@ -187,6 +187,7 @@ alias svc='sudo systemctl'
 compdef _systemctl svc=systemctl
 
 alias svcj='sudo journalctl -xe'
+alias svcu='systemctl --user'
 
 AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
 
@@ -288,8 +289,6 @@ alias rand-sh='echo $(( $(head -c 2 /dev/random | od -i  -An) % 10 ))'
 alias xclip-c='xclip -selection clipboard'
 alias xclip-p='xclip -selection clipboard -o'
 
-#alias prompt.lite="export RPROMPT='$PROMPT_TIME'"
-#alias prompt.full="export RPROMPT='$(__git_info) $PROMPT_TIME'"
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
 alias rsync-basic='rsync -Rvahz --progress'
@@ -503,7 +502,7 @@ function _pacman_pkg_fzf_info() {
 
 #f5# List aliases
 _ali() {
-    local cmd=$(grep -e '^alias' ~/.config/zsh/aliases.zsh | fzf --no-sort --cycle --tac |cut -d\= -f2)
+    local cmd=$(grep -e '^alias' $ZDOTDIR/aliases.zsh | fzf --no-sort --cycle --tac |cut -d\= -f2)
     if [[ -n $cmd ]]
     then
         echo $cmd

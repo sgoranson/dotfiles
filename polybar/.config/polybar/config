@@ -27,6 +27,7 @@ margin-top = 0
 margin-bottom = 0
 
 [bar/def]
+monitor = ${env:MONITOR:LVDS1}
 
 width = 100%
 height = 45

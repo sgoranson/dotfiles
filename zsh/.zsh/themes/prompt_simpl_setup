@@ -121,7 +121,8 @@ PROMPT+='${PROMPT_LNBR2}${PROMPT_ARROW} $(_prompt_vimode)%#%f '
 	else
 	    _prompt_host="%F{12}%n@%f%F{1}%m%f "
 	fi
-RPROMPT='$(_git_status; _prompt_host)'
+function myhost() { return _prompt_host; }
+RPROMPT='$(_git_status; )'
 
 # command continuation
 PS2='%_ ==> '

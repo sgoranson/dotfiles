@@ -102,10 +102,16 @@ function is42 () {
     # provide .. as a completion
     # zstyle ':completion:*' special-dirs ..
 
+    # run rehash on completion so new installed program are found automatically:
+    function _force_rehash () {
+        (( CURRENT == 1 )) && rehash
+        return 1
+    }
+
     ## correction
     # some people don't like the automatic correction - so run 'NOCOR=1 zsh' to deactivate it
     #$if [[ "$NOCOR" -gt 0 ]] ; then
-        #zstyle ':completion:*' completer _oldlist _expand  _expand_alias _complete _files _ignored
+        zstyle ':completion:*' completer _oldlist _expand  _force_rehash _expand_alias _complete _files _ignored
         setopt nocorrect
 
     # command for process lists, the local web server details and host completion
