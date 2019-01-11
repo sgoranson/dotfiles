@@ -117,12 +117,10 @@ PROMPT+='${PROMPT_LNBR2}${PROMPT_ARROW} $(_prompt_vimode)%#%f '
 
 # right prompt
 	if [[ -z "$SSH_CLIENT" ]]; then
-	    _prompt_host="%F{4}%n@%f%F{4}%m%f "
+	RPROMPT='$(_git_status; ) %F{4}%n@%f%F{4}%m%f'
 	else
-	    _prompt_host="%F{12}%n@%f%F{1}%m%f "
+	RPROMPT='$(_git_status; ) %F{12}%n@%f%F{1}%m%f'
 	fi
-function myhost() { return _prompt_host; }
-RPROMPT='$(_git_status; )'
 
 # command continuation
 PS2='%_ ==> '
