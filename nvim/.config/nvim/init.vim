@@ -49,9 +49,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-filetype plugin indent on
-syntax enable
-
 
 "" ʕ◔ϖ◔ʔ Your settings here
 " set ambiwidth=double   " for multibyte char
@@ -62,57 +59,9 @@ else
 endif
 
 " ʕ◔ϖ◔ʔ Useful setting
-set title
-set whichwrap=b,s,h,l
-set mouse=a
-set ignorecase
-set inccommand=split
 let mapleader = "\\"
 nnoremap <Esc> :nohlsearch<CR>
 
-
-
-
-set nowritebackup
-set nobackup
-set noswapfile
-set backupdir-=.
-
-
-
-"---------------------------------------------------------------------------
-" View:
-"
-
-" Show line number.
-"set number
-" Show <TAB> and <CR>
-set list
-set listchars=tab:▸\ ,trail:-,precedes:«,nbsp:%
-" Always display statusline.
-set laststatus=2
-" Height of command line.
-set cmdheight=2
-" Not show command on statusline.
-set noshowcmd
-" Show title.
-set title
-" Title length.
-set titlelen=95
-" Disable tabline.
-set showtabline=0
-
-
-
-
-
-let &g:statusline="%{winnr('$')>1?'['.winnr().'/'.winnr('$')"
-      \ . ".(winnr('#')==winnr()?'#':'').']':''}\ "
-      \ . "%{(&previewwindow?'[preview] ':'').expand('%:t')}"
-      \ . "\ %=%{(winnr('$')==1 || winnr('#')!=winnr()) ?
-      \ '['.(&filetype!=''?&filetype.',':'')"
-      \ . ".(&fenc!=''?&fenc:&enc).','.&ff.']' : ''}"
-      \ . "%m%{printf('%'.(len(line('$'))+2).'d/%d',line('.'),line('$'))}"
 
 
 
@@ -135,3 +84,10 @@ if exists('g:gonvim_running')
   nnoremap <leader>fb :GonvimFuzzyBuffers<CR>
   nnoremap <leader>fl :GonvimFuzzyBLines<CR>
 endif
+
+filetype plugin indent on
+syn on
+
+runtime rc/options.vim
+runtime rc/keys.vim
+runtime rc/color.vim

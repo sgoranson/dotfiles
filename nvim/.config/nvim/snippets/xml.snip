@@ -1,0 +1,27 @@
+snippet plist_std
+	<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+	<plist version="1.0">
+	<dict>
+		<key>Disabled</key>
+		<false/>
+		<key>EnvironmentVariables</key>
+		<dict>
+				<key>PATH</key>
+				<string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin</string>
+		</dict>
+		<key>Label</key>
+		<string>${0:#:com.blah.app}</string>
+		<key>ProgramArguments</key>
+		<array>
+				<string>${1:#:/exe/path}</string>
+		</array>
+		<key>RunAtLoad</key>
+		<true/>
+		<key>StandardErrorPath</key>
+		<string>/tmp/logerr.txt</string>
+		<key>StandardOutPath</key>
+		<string>/tmp/logout.txt</string>
+	</dict>
+	</plist>
+

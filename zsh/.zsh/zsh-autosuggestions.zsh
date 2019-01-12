@@ -43,7 +43,7 @@ zmodload zsh/zpty
 # Uses format of `region_highlight`
 # More info: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Zle-Widgets
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=235'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=238'
 # Prefix to use when saving original versions of bound widgets
 ZSH_AUTOSUGGEST_ORIGINAL_WIDGET_PREFIX=autosuggest-orig-
 
