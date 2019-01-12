@@ -1,7 +1,7 @@
 # reset them all
 unalias -m '*'
 
-
+alias m=mark
 alias v=nvim
 alias nv="nvim +':Denite file_mru'"
 
@@ -31,8 +31,8 @@ alias zs-a='source ~/.zsh/aliases.zsh'
 # alias ff="find ~ ! -path '*.git*' -type f"
 # alias ffd="find ~ ! -path '*.git*' -type f"
 
-hash -d -- dot=/home/steve/dotfiles
-hash -d -- src=/home/steve/src
+#hash -d -- dot=/home/steve/dotfiles
+#hash -d -- src=/home/steve/src
 
 # GLOBAL {{{1
 alias open="/mnt/c/Windows/System32/cmd.exe /c start"
@@ -166,7 +166,7 @@ function AI() {
             echo $1 >> "$HOME/dotfiles/install/pkg-lists/new_arch.txt"
         fi
     fi
-    yay --needed --color=auto -S ${@}
+    yay --needed --noconfirm --color=auto -S ${@}
 }
 compdef _pacman_completions_all_packages AI=yay
 compdef _pacman_completions_all_packages AS=yay
@@ -184,8 +184,10 @@ alias netstat-listening='sudo ss -lptu'
 alias calc=pcalc
 
 alias svc='sudo systemctl'
+compdef _systemctl svc=systemctl
+
+alias svcj='sudo journalctl -xe'
 alias svcu='systemctl --user'
-alias log='sudo journalctl -xe'
 
 AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
 
@@ -197,37 +199,10 @@ AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
     alias route-print='route'
 
 
-    # oh-my-zsh/blob/master/plugins/systemd/systemd.plugin.zsh
-    user_commands=(
-    list-units is-active status show help list-unit-files
-    is-enabled list-jobs show-environment cat list-timers)
-
-    sudo_commands=(
-    start stop reload restart try-restart isolate kill
-    reset-failed enable disable reenable preset mask unmask
-    link load cancel set-environment unset-environment
-    edit)
-
-    for c in $user_commands; do; alias sc-$c="systemctl $c"; done
-    for c in $sudo_commands; do; alias sc-$c="sudo systemctl $c"; done
-
-    alias sc-enable-now="sc-enable --now"
-    alias sc-disable-now="sc-disable --now"
-    alias sc-mask-now="sc-mask --now"
 
     alias rpi-gpu='/opt/vc/bin/vcgencmd  get_mem gpu'
     alias rpi-temp='/opt/vc/bin/vcgencmd  measure_temp'
 
-    compdef _z zz
-    # compdef _systemctl svc
-    # compdef _yay yay
-    # compdef _yay AS
-    # compdef _yay AI
-    # compdef _yay AR
-    # compdef _yay AU
-    # compdef _cower AV
-    # compdef _yay AL
-    # compdef _pkgfile AF
 
 # ALIAS ARG HELPERS {{{1
 alias adb-ls-pkgs='adb shell pm list packages'
@@ -314,8 +289,6 @@ alias rand-sh='echo $(( $(head -c 2 /dev/random | od -i  -An) % 10 ))'
 alias xclip-c='xclip -selection clipboard'
 alias xclip-p='xclip -selection clipboard -o'
 
-# alias prompt.lite="export RPROMPT='$PROMPT_TIME'"
-# alias prompt.full="export RPROMPT='$(__git_info) $PROMPT_TIME'"
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
 alias rsync-basic='rsync -Rvahz --progress'

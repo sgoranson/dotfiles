@@ -103,10 +103,12 @@ if ! { . $GIT_PROMPT_SOURCE && type _git_status; } >/dev/null 2>&1; then
 fi
 
 # add hook functions
-if [[ $TERM =~ (xterm|rxvt|st) ]]; then
+if [[ $TERM =~ (xterm|rxvt|st|kitty) ]]; then
     precmd_functions+=(_prompt_precmd_title)
     preexec_functions+=(_prompt_preexec_title)
 fi
+
+
 
 # set the prompts
 PROMPT='${PROMPT_LNBR1}${PROMPT_ECODE}${PROMPT_USERCOL}${PROMPT_USERFMT} '
@@ -114,7 +116,11 @@ PROMPT+='${PROMPT_WRAPCOL}$(_prompt_dir; _promt_ranger)${PROMPT_MULTILINE}'
 PROMPT+='${PROMPT_LNBR2}${PROMPT_ARROW} $(_prompt_vimode)%#%f '
 
 # right prompt
-RPROMPT='$(_git_status; _promt_time)'
+	if [[ -z "$SSH_CLIENT" ]]; then
+	RPROMPT='$(_git_status; ) %F{4}%n@%f%F{4}%m%f'
+	else
+	RPROMPT='$(_git_status; ) %F{12}%n@%f%F{1}%m%f'
+	fi
 
 # command continuation
 PS2='%_ ==> '

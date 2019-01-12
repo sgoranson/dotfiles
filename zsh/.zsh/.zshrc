@@ -1,9 +1,8 @@
 #!env zsh
 
 # ZOPTIONS {{{
-HISTSIZE=10000000
-SAVEHIST=999999
-# HISTCONTROL=ignoredups
+HISTSIZE=99999999
+SAVEHIST=99999999
 
 if [ -z $HISTFILE ]; then
     HISTFILE=$XDG_CACHE_HOME/.zsh_history
@@ -79,9 +78,9 @@ autoload -U +X bashcompinit && bashcompinit
 
 autoload -U zcalc
 
-eval "$(dircolors "$XDG_CONFIG_HOME"/dircolors)"
+eval "$(dircolors "$HOME"/.dircolors)"
 
-# source $ZDOTDIR/prompt.zsh
+source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh
 # source $ZDOTDIR/fzf-fasd.plugin.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh

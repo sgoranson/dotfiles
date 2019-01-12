@@ -65,7 +65,7 @@ function _complete_screen_display () {
 
 # CTRL-T - Paste the selected file path(s) into the command line
 function  __fsel() {
-    local FZF_CTRL_T_COMMAND='locate \*'
+    local FZF_CTRL_T_COMMAND='fd --hidden --exclude \*.git\* --search-path .'
     local cmd="${FZF_CTRL_T_COMMAND:-"command find -L / -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
         -o -type f -print \
         -o -type d -print \
