@@ -3,16 +3,10 @@ unalias -m '*'
 
 alias m=mark
 alias v=nvim
-alias nv="nvim +':Denite file_mru'"
+alias nv="nvim +':Denite file_mru/git' ~/dotfiles"
 
 alias nv-a='nvim ~/.zsh/aliases.zsh'
 alias c=cd
-
-function nv-dd() {
-    pushd ~/dotfiles
-    nvim +':Denite file_mru/git'
-    popd
-}
 
 function nv-d() {
 
@@ -22,17 +16,11 @@ function nv-d() {
     nvim "$x"
 }
 
-alias nv-z='pushd ~/.zsh;  nvim $(git -C ~/.zsh ls-files | fzf --height=40% --reverse --ansi   --exact  --color=16); popd'
-
 alias ff="fd --hidden --exclude '*.git*' --search-path ."
 alias ffd="fd --type d --hidden --exclude '*.git*' --search-path ."
 
 alias zs-a='source ~/.zsh/aliases.zsh'
-# alias ff="find ~ ! -path '*.git*' -type f"
-# alias ffd="find ~ ! -path '*.git*' -type f"
 
-#hash -d -- dot=/home/steve/dotfiles
-#hash -d -- src=/home/steve/src
 
 # GLOBAL {{{1
 alias open="/mnt/c/Windows/System32/cmd.exe /c start"
