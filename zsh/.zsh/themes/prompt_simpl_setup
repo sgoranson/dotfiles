@@ -83,7 +83,7 @@ _promt_ranger()
 
 _prompt_precmd_title()
 {
-    print -n "\e]2;$USER@zsh - $PWD\a"
+    print -n "\e]2;$USER@$HOST - $PWD\a"
 }
 
 _prompt_preexec_title()
