@@ -153,18 +153,17 @@ umask 022
 # logcheck=30                     # every 30 seconds
 # WATCHFMT="%n from %M has %a tty%l at %T %W"
 
-
-case $TERM in
-    xterm*)
-        precmd () {
-            if [ -n "$SSH_CLIENT" ]; then
-            print -Pn "\e]0;%n@%m: %~ %x\a"
-        else
-            print -Pn "\e]0;%n: %~ %x\a"
-        fi
-        }
-        ;;
-esac
+# case $TERM in
+#     xterm*)
+#         precmd () {
+#             if [ -n "$SSH_CLIENT" ]; then
+#             print -Pn "\e]0;%n@%m:xxx %~ %x\a"
+#         else
+#             print -Pn "\e]0;%n:xxx %~ %x\a"
+#         fi
+#         }
+#         ;;
+# esac
 
 if [[ $TERM == xterm-termite ]]; then
   . /etc/profile.d/vte.sh
