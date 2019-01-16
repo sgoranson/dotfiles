@@ -16,8 +16,8 @@ function nv-d() {
     nvim "$x"
 }
 
-alias ff="fd --hidden --exclude '*.git*' --search-path ."
-alias ffd="fd --type d --hidden --exclude '*.git*' --search-path ."
+alias ff="fd --hidden --exclude '.git' --search-path ."
+alias ffd="fd --type d --hidden --exclude '.git' --search-path ."
 
 alias zs-a='source ~/.zsh/aliases.zsh'
 
@@ -204,7 +204,7 @@ alias cP='rsync --progress'
 alias curl-moz="curl -L -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.112 Safari/534.30'"
 
 # -d draw title -S sort files
-alias feh-sort='feh -g 1440x900 -d -S filename'
+alias feh-sort='feh --cache-size 2048  --auto-zoom --full-screen  --draw-filename --sort  filename .'
 
 # 0: CCW + vflip 1: 90C 2: 90CCW 3: 90CW + vflip   2,2: 180deg
 alias ffmpeg-rotate='ffmpeg -i in.mov -vf "transpose=1" out.mov'

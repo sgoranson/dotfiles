@@ -1,6 +1,5 @@
 ZDOTDIR="$HOME/.zsh"
 
-
 export MYOS="ARCH"
 export PAGER=less
 export MANPAGER=less

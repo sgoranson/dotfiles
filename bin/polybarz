@@ -12,9 +12,9 @@ killall polybar 2> /dev/null
 # done
 # env MONITOR=LVDS-1 DPI=150 polybar def &
 if [ $(hostname) = 'stinkbox' ]; then
-env MONITOR=DP-2 DPI=161 polybar def &
-env MONITOR=DP-5 DPI=91 polybar def &
+    env MONITOR=DP-2 DPI=161 polybar def &
+    env MONITOR=DP-5 DPI=91 polybar def &
 else
-env MONITOR=LVDS1 polybar def &
+    env MONITOR=LVDS1 DPI=161 polybar def &
 fi
 # env MONITOR=HDMI-1 DPI=128 polybar def &

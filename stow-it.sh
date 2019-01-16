@@ -1,5 +1,5 @@
 #!/bin/sh
-
+stow -R compton
 stow -R dircolors
 stow -R config
 stow -R nvim

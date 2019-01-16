@@ -301,3 +301,12 @@ repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk 
 
 [[plugins]]
 repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'PotatoesMaster/i3-vim-syntax'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'chrisbra/Colorizer'                # shows marks, m/ shortcuts

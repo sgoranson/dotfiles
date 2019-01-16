@@ -1,11 +1,11 @@
 
 [colors]
-background = #2d2d30
-background-alt = #575757
-foreground = #dfdfdf
+background = #0e1315
+background-alt = #383D3E
+foreground = #cfd8dc
 foreground-alt = #999999
-primary = #ffffff
-border = #ffffff
+primary = #cfd8dc
+border = #cfd8dc
 alert = #ff9999
 urgent = #A7167F
 
@@ -39,9 +39,9 @@ bottom = true
 dpi = ${env:DPI:192}
 
 underline-size = 3
-underline-color = #b9b9b9
+underline-color = #FF00EF
 
-bar-transparent = false
+bar-transparent = true
 
 ; tray-background = ${colors.background}
 ; tray-transparent = false
@@ -68,18 +68,21 @@ separator = |
 ; font-4 = "TerminessTTF Nerd Font Mono:style=Medium:antialias=false:size=9;0"
 ; font-4 = "icomoon:style=Regular:antialias=false:size=9;4"
 
-font-0 = "Font Awesome 5 Pro Regular:style=Bold:size=11;4"
-font-1 = "Font Awesome 5 Brands Regular:style=Bold:size=11;4"
+font-0 = "Font Awesome 5 Pro Regular:style=Regular:size=9;4"
+font-1 = "Font Awesome 5 Brands Regular:style=Regular:size=9;4"
+; font-0 = "Symbola:size=9:style=Regular;0"
+; font-1 = "Material Icons:size=9:style=Regular;0"
 font-2 = "Symbola:size=9:style=Regular;0"
 ; font-3 = "icomoon:style=Regular:antialias=false:size=11;4"
 font-3 = "Ubuntu Mono:style=Regular:size=10;4"
 font-4 = "Ubuntu Mono:style=Regular:size=10;4"
+; font-4 = "Material Icons:size=9:style=Regular;0"
 ;font-3 = "TerminessTTF Nerd Font:style=Medium:antialias=false:size=12;4"
 ;font-4 = "TerminessTTF Nerd Font:style=Medium:antialias=false:size=12;4"
 
 modules-left = i3
 modules-center = externip network wlan2
-modules-right = cpu memory filesystem battery pulseaudio date
+modules-right = cpu memory battery pulseaudio date
 
 tray-position = right
 tray-padding = 1
@@ -279,7 +282,7 @@ format-full = <ramp-capacity> <label-full>
 
 label-charging = "%{T5} %percentage%% %{T-}"
 ; label-discharging = "%{T5} %percentage%% %time% %consumption%w %{T-}"
-label-discharging = "%{T5} %percentage%% %time% %consumption%w %{T-}"
+label-discharging = "%{T5} %percentage%% %{T-}"
 label-full = "%{T5} %percentage%% %{T-}"
 
 ramp-capacity-0 = 
@@ -363,13 +366,13 @@ enable-click = true
 
 
 label-mode-padding = 0
-label-mode-foreground = #000
+label-mode-foreground = #FF0
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = #505054
+label-focused-background = ${colors.background-alt}
+label-focused-underline = #8900D1
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
@@ -379,7 +382,7 @@ label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+label-visible-underline = #5050B3
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
