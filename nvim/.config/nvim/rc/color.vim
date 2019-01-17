@@ -28,7 +28,7 @@ let g:gruvbox_contrast_dark = 'hard'
 
 "colorscheme one
 let color_favs = [ 'spg-gruvbox', 'base16-atelier-forest', 'one', 'base16-onedark' ]
-
+hi! Normal guibg=NONE
 
 
 "hi! Search     guibg=#1f9377 guifg=#000000

@@ -4,17 +4,11 @@ unalias -m '*'
 alias m=mark
 alias v=nvim
 alias nv="nvim +':Denite file_mru/git' ~/dotfiles"
+alias nvd="nvim +':Denite file_mru/git' ~/projects/spg-doc"
 
 alias nv-a='nvim ~/.zsh/aliases.zsh'
 alias c=cd
 
-function nv-d() {
-
-    x="$(fd --hidden --type f --exclude *.git* --search-path ~/dotfiles | fzf --height=40% --reverse --ansi   --exact  --color=16)"
-    [[ -z "$x" ]] && return 1
-
-    nvim "$x"
-}
 
 alias ff="fd --hidden --exclude '.git' --search-path ."
 alias ffd="fd --type d --hidden --exclude '.git' --search-path ."
@@ -55,7 +49,8 @@ alias tmux="TERM=xterm-256color \tmux"
 alias vim=nvim
 alias grep='grep --color=auto'
 # -b ignore blanks -B ignore newlines
-alias diff="diff -ybB"
+# alias diff="diff -ybB"
+alias diff='icdiff'
 
 alias 16=xterm_16.sh
 alias 256=xterm_256.sh
@@ -216,6 +211,8 @@ alias find-recent-mod='find -cmin -5'
 alias find-print-tlm='find . -type f -printf "%T@ %p\n"'
 alias find-most-files="du --inodes -S | sort -h"
 alias fc-list-sort='fc-list | cut -d: -f2,3 | sort'
+
+alias ghs='ghs --sort=votes'
 alias gpg-fingerprint='gpg --verbose --fingerprint'
 alias gpg-ls='gpg --list-keys'
 alias gpg-export='gpg --armor --export'
@@ -569,3 +566,8 @@ _gh_clone () {
 
 alias gh=_gh_clone
 
+function _gh_get() {
+    ghq get $1
+    ghq look $1
+}
+alias ghg=_gh_get

@@ -78,6 +78,7 @@ autoload -U +X bashcompinit && bashcompinit
 
 autoload -U zcalc
 
+eval "$(fasd --init auto)"
 eval "$(dircolors "$HOME"/.dircolors)"
 
 source $ZDOTDIR/prompt.zsh
