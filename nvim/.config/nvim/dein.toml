@@ -310,3 +310,58 @@ repo =  'PotatoesMaster/i3-vim-syntax'                # shows marks, m/ shortcut
 
 [[plugins]]
 repo =  'chrisbra/Colorizer'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'francoiscabrol/ranger.vim'                # shows marks, m/ shortcuts
+# hook_add = '''
+# let g:ranger_replace_netrw = 1
+# '''
+
+
+[[plugins]]
+repo =  'itchyny/lightline.vim'                # shows marks, m/ shortcuts
+hook_add = '''
+function! MyGitGutter()
+  if ! exists('*GitGutterGetHunkSummary')
+        \ || ! get(g:, 'gitgutter_enabled', 0)
+        \ || winwidth('.') <= 90
+    return ''
+  endif
+  let symbols = [
+        \ g:gitgutter_sign_added . ' ',
+        \ g:gitgutter_sign_modified . ' ',
+        \ g:gitgutter_sign_removed . ' '
+        \ ]
+  let hunks = GitGutterGetHunkSummary()
+  let ret = []
+  for i in [0, 1, 2]
+    if hunks[i] > 0
+      call add(ret, symbols[i] . hunks[i])
+    endif
+  endfor
+  return join(ret, ' ')
+endfunction
+
+
+let g:lightline = {
+            \ 'colorscheme': 'material',
+            \ 'enable': { 'tabline': 0 },
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste'], [ 'readonly', 'fname', 'modified' ], [ 'mygutter' ] ],
+            \ 'right': [ [ 'linez' ], [ 'percent' ], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+            \ },
+            \ 'component_function': {
+            \   'mygutter': 'MyGitGutter',
+            \   'cocstatus': 'coc#status'
+            \ }
+            \ }
+
+let g:lightline.inactive = {
+    \ 'left': [ [ 'fname' ] ],
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ] ] }
+
+let g:lightline.component = {
+    \   'fname': '%<%f',
+		    \ 'linez': '%3l:%-2L' }
+'''

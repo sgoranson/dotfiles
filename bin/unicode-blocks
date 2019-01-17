@@ -16,7 +16,7 @@
 # 1f6 emoji standard smileys
 
 #for __block in '03' '04' '16' '0f' '23' '24' '25' '26' '27' '2b' ; do
-for __block in 'f2' 'f1' 'f0' '25' 'f6'   ; do
+for __block in 'f2' 'f1' 'f0' '25' 'f6' 'E0'  ; do
     echo
     printf "block: %s\n" $__block
     for (( __i=0; __i < 0xFF; __i++ )); do

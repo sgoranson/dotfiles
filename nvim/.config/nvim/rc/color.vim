@@ -19,7 +19,6 @@ let g:terminal_color_15 = '#ebdbb2'
 
 
 let g:terminal_ansi_colors = [ '#282828', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984', '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2' ]
-
 colorscheme onedark
 set termguicolors
 " set nocursorline
