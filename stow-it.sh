@@ -1,4 +1,5 @@
 #!/bin/sh
+stow -R terminfo
 stow -R compton
 stow -R dircolors
 stow -R config

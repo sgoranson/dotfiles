@@ -154,7 +154,7 @@ function AI() {
             echo $1 >> "$HOME/dotfiles/install/pkg-lists/new_arch.txt"
         fi
     fi
-    yay --needed --noconfirm --color=auto -S ${@}
+    yay --needed --color=auto -S ${@}
 }
 compdef _pacman_completions_all_packages AI=yay
 compdef _pacman_completions_all_packages AS=yay

@@ -49,11 +49,12 @@ fi
 
 imwheel --kill
 
+# keyboard rate
+xset r rate 200 30
+
 if [ "$(hostname)" = 'stinkbox' ]; then
     #exec nvidia-settings --load-config-only
 
-    # keyboard rate
-    xset r rate 200 30
 
     xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
     # xrandr  --output DP-2 --dpi 192
