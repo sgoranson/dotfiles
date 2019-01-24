@@ -11,7 +11,7 @@ _prompt_defaults()
     : ${GIT_PROMPT_SOURCE="$HOME/.zsh/themes/git_prompt/git_prompt.zsh"}
 
     # user name/hostname format string
-    : ${PROMPT_USERFMT=""}
+    : ${PROMPT_USERFMT="%(1j. [%j].)"}
 
     # time format string
     : ${PROMPT_TIMEFMT="%*"}

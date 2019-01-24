@@ -208,6 +208,7 @@ bindkey '^xc'  jh-prev-comp
 bindkey '^xh'  run-help
 bindkey '^x^d' fzf-cdr
 bindkey '^xf' fzf-file-widget
+bindkey '^t' fzf-file-widget
 bindkey '^xr' history-incremental-search-backward
 bindkey '^xu' insert-unicode-char
 bindkey '^xe'  edit-command-line

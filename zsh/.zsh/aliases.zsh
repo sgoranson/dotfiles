@@ -3,9 +3,10 @@ unalias -m '*'
 
 alias m=mark
 alias v=nvim
-alias nv="nvim +':Denite file_mru/git' ~/dotfiles"
-alias nvd="nvim +':Denite file_mru/git' ~/projects/spg-doc"
+alias b=bat
+alias nv="nvim +'cd ~/dotfiles' +':Denite file_mru/git'"
 
+alias nv-d="nvim +'cd ~/projects/spg-doc' +':Denite file_rec/git'"
 alias nv-a='nvim ~/.zsh/aliases.zsh'
 alias c=cd
 
@@ -276,7 +277,7 @@ alias xclip-p='xclip -selection clipboard -o'
 
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
-alias rsync-basic='rsync -Rvahz --progress'
+alias rsync-basic='rsync -rvahz --progress'
 
 alias smb-ls='sudo smbclient -L eth0 -I localhost'
 

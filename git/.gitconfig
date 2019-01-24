@@ -3,7 +3,7 @@
 [gui]
     recentrepo = $HOME/dotfiles
 [user]
-    email = stephen.goranson@gmail.com
+	email = steve@stevegoranson.com
     name = Steve Goranson
 [core]
     longpaths = true

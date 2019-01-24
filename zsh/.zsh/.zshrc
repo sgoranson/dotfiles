@@ -80,6 +80,10 @@ autoload -U zcalc
 
 eval "$(fasd --init auto)"
 eval "$(dircolors "$HOME"/.dircolors)"
+if command -v rbenv &>/dev/null; then
+    eval "$(rbenv init -)"
+    source $HOME/.rbenv/completions/rbenv.zsh
+fi
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh

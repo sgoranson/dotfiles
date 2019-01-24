@@ -1,7 +1,9 @@
 ZDOTDIR="$HOME/.zsh"
 
+export EDITOR=nvim
 export MYOS="ARCH"
 export PAGER=less
+export VISUAL=bat
 export MANPAGER=less
 export TERMINAL=kitty
 export BROWSER=chromium
@@ -14,19 +16,21 @@ export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export CLICOLOR=1
-export BROWSER=google-chrome-stable
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
 export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
 export GHQ_ROOT=$HOME/kewl
 
 
-PATH="$HOME/bin/:$HOME/go/bin:$HOME/.node/bin/:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
+PATH="$HOME/bin/:$HOME/go/bin:$HOME/.node/bin/:$HOME/.rbenv/bin:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
 PATH="$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
 
-#if which ruby >/dev/null && which gem >/dev/null; then
-#    PATH="$PATH:$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:"
-#fi
+#  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+# curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
+
+# if which ruby >/dev/null && which gem >/dev/null; then
+#     PATH="$PATH:$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:"
+# fi
 #export PATH
 
 
@@ -36,7 +40,7 @@ export HISTIGNORE="ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export GIT_PROMPT_EXECUTABLE=${GIT_PROMPT_EXECUTABLE:-"python"}
 export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
-export FZF_DEFAULT_OPTS='--height=90% --multi --cycle --ansi   --exact'
+export FZF_DEFAULT_OPTS=' --multi --cycle --ansi   --exact'
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
 #export ZLE_REMOVE_SUFFIX_CHARS=" \t\n;&|'"
 # export ZLE_REMOVE_SUFFIX_CHARS=\'

@@ -3,17 +3,17 @@ rofi.modi:                           window,run,drun,keys
 ! "Window width" Set from: Default
 ! rofi.width:                          50
 ! "Number of lines" Set from: Default
-rofi.lines:                          25
+!rofi.lines:                          25
 ! "Number of columns" Set from: Default
 !rofi.columns:                        3
 ! "Font to use" Set from: XResources
-rofi.font:                          Ubuntu Mono 26
+rofi.font:                          Ubuntu Mono 18
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
 ! rofi.location:                       0
 ! "Padding" Set from: XResources
-rofi.padding:                        10
+!rofi.padding:                        10
 ! "Y-offset relative to location" Set from: Default
 ! rofi.yoffset:                        0
 ! "X-offset relative to location" Set from: Default
@@ -69,7 +69,7 @@ rofi.sidebar-mode:                   false
 ! "Row height (in chars)" Set from: Default
 ! rofi.eh:                             1
 ! "Enable auto select mode" Set from: Default
-! rofi.auto-select:                    false
+rofi.auto-select:                    false
 ! "Parse hosts file for ssh mode" Set from: Default
 ! rofi.parse-hosts:                    false
 ! "Parse known_hosts file for ssh mode" Set from: Default

@@ -125,9 +125,9 @@ floating_modifier Mod4
 # set $ws9   "9: "
 # set $ws10  "10: "
 set $ws1   "1: ⚡"
-set $ws2   "2: ♲"
-set $ws3   "3: ⚢"
-set $ws4   "4: ⚛"
+set $ws2   "2: Ψ"
+set $ws3   "3: Σ"
+set $ws4   "4: Ω"
 set $ws5   "5: ☮"
 set $ws6   "6: ☭"
 set $ws7   "7: "
@@ -209,7 +209,9 @@ bindsym $modx+Shift+l  move right
 
 # KEYS - SPLITS N FLOATS {{{
 # focus the parent container
-bindsym $modx+p focus parent
+
+bindsym $mody+p focus parent
+bindsym $modx+p exec --no-startup-id  rofi  -width 90% -dpi 160 -show window   
 
 # focus the child container
 # bindsym $modx+x focus child
