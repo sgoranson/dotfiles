@@ -425,9 +425,9 @@ noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=Cur
 noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
 noremap <silent> <Space>b  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 noremap <silent> <Space>B  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine unite:bookmark<CR>
-noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  change<CR>
+noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  change<CR>
 " noremap <silent> <Space>Co  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  colorscheme<CR>
-noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
+noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
 noremap <silent> <Space>d :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  directory_mru<CR>
 noremap <silent> <Space>e :<C-u>Denite -buffer-name='mru' -mode=insert -highlight-mode-insert=CursorLine file_mru<CR>
 
@@ -451,7 +451,7 @@ noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=Cur
 
 
 noremap <silent> <C-s> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
-noremap <silent> <C-p> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine file_mru/git<CR>
+noremap <silent> <C-p> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine sauce<CR>
 
 nnoremap <silent> ]d :<C-u>Denite -resume -buffer-name='grepit' -select=+1 -immediately<CR>
 nnoremap <silent> [d :<C-u>Denite -resume -buffer-name='grepit' -select=-1 -immediately<CR>

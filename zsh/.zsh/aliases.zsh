@@ -3,21 +3,16 @@ unalias -m '*'
 
 alias m=mark
 alias v=nvim
-alias nv="nvim +':Denite file_mru/git' ~/dotfiles"
+alias b=bat
+alias nv="nvim +'cd ~/dotfiles' +':Denite file_mru/git'"
 
+alias nv-d="nvim +'cd ~/projects/spg-doc' +':Denite file_rec/git'"
 alias nv-a='nvim ~/.zsh/aliases.zsh'
 alias c=cd
 
-function nv-d() {
 
-    x="$(fd --hidden --type f --exclude *.git* --search-path ~/dotfiles | fzf --height=40% --reverse --ansi   --exact  --color=16)"
-    [[ -z "$x" ]] && return 1
-
-    nvim "$x"
-}
-
-alias ff="fd --hidden --exclude '*.git*' --search-path ."
-alias ffd="fd --type d --hidden --exclude '*.git*' --search-path ."
+alias ff="fd --hidden --exclude '.git' --search-path ."
+alias ffd="fd --type d --hidden --exclude '.git' --search-path ."
 
 alias zs-a='source ~/.zsh/aliases.zsh'
 
@@ -55,7 +50,8 @@ alias tmux="TERM=xterm-256color \tmux"
 alias vim=nvim
 alias grep='grep --color=auto'
 # -b ignore blanks -B ignore newlines
-alias diff="diff -ybB"
+# alias diff="diff -ybB"
+alias diff='icdiff'
 
 alias 16=xterm_16.sh
 alias 256=xterm_256.sh
@@ -154,7 +150,7 @@ function AI() {
             echo $1 >> "$HOME/dotfiles/install/pkg-lists/new_arch.txt"
         fi
     fi
-    yay --needed --noconfirm --color=auto -S ${@}
+    yay --needed --color=auto -S ${@}
 }
 compdef _pacman_completions_all_packages AI=yay
 compdef _pacman_completions_all_packages AS=yay
@@ -204,7 +200,7 @@ alias cP='rsync --progress'
 alias curl-moz="curl -L -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.112 Safari/534.30'"
 
 # -d draw title -S sort files
-alias feh-sort='feh -g 1440x900 -d -S filename'
+alias feh-sort='feh --cache-size 2048  --auto-zoom --full-screen  --draw-filename --sort  filename .'
 
 # 0: CCW + vflip 1: 90C 2: 90CCW 3: 90CW + vflip   2,2: 180deg
 alias ffmpeg-rotate='ffmpeg -i in.mov -vf "transpose=1" out.mov'
@@ -216,6 +212,8 @@ alias find-recent-mod='find -cmin -5'
 alias find-print-tlm='find . -type f -printf "%T@ %p\n"'
 alias find-most-files="du --inodes -S | sort -h"
 alias fc-list-sort='fc-list | cut -d: -f2,3 | sort'
+
+alias ghs='ghs --sort=votes'
 alias gpg-fingerprint='gpg --verbose --fingerprint'
 alias gpg-ls='gpg --list-keys'
 alias gpg-export='gpg --armor --export'
@@ -279,7 +277,7 @@ alias xclip-p='xclip -selection clipboard -o'
 
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
-alias rsync-basic='rsync -Rvahz --progress'
+alias rsync-basic='rsync -rvahz --progress'
 
 alias smb-ls='sudo smbclient -L eth0 -I localhost'
 
@@ -569,3 +567,8 @@ _gh_clone () {
 
 alias gh=_gh_clone
 
+function _gh_get() {
+    ghq get $1
+    ghq look $1
+}
+alias ghg=_gh_get

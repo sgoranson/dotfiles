@@ -180,63 +180,6 @@ function grml-zsh-fg () {
 }
 zle -N grml-zsh-fg
 
-function  edit-local-widget() {
-    zle kill-buffer
-    # file=$(fd -H -tf -c never . ~ | rg -v '~$' | fzf --preview="head {}")
-    local file=$(rg --files -uu | sed 's/^\/home\/steve\///' | sed '/~$/d' | fzf --prompt='~/' \
-        --preview='[[ $(file -b --mime {}) =~ binary ]] &&
-        file -b {} ||
-        (highlight -O ansi -l {} ||
-        cat {}) 2> /dev/null | head -500'
-            )
-            if [[ -n $file ]]
-            then
-                file=$(realpath $file)
-                zle redisplay
-                if [[ ! $(file --mime $file) =~ 'binary' ]]
-                then
-                    BUFFER="vim \"${file}\""
-                    zle accept-line
-                fi
-            else
-                zle reset-prompt
-            fi
-        }
-    zle -N edit-local-widget
-
-    function edit-global-widget() {
-        zle kill-buffer
-        find_cmd="sudo rg --files -uu"
-        local file=$(
-        (eval ${find_cmd} /etc
-        eval ${find_cmd} ~/
-        eval ${find_cmd} /usr/lib
-        eval ${find_cmd} /usr/local
-        eval ${find_cmd} /usr/share
-        eval ${find_cmd} /var/log
-        eval ${find_cmd} /var/tmp
-        eval ${find_cmd} /tmp) | \
-            rg -v '~$'| fzf --preview='[[ $(file --mime {}) =~ binary ]] &&
-            echo {} is a binary file ||
-            (highlight -O ansi -l {} ||
-            cat {}) 2> /dev/null | head -500';)
-
-        if [[ -n $file && (! $(file --mime $file) =~ 'binary') ]]
-        then
-            zle redisplay
-            if [[ -w $file ]]
-            then
-                BUFFER="nvim '${file}'"
-                zle accept-line
-            else
-                BUFFER="sudo nvim '${file}'"
-                zle accept-line
-            fi
-        else
-            zle reset-prompt
-        fi
-    }
-zle -N edit-global-widget
 
 
 
@@ -260,13 +203,12 @@ bindkey '^[[B' history-substring-search-down
 bindkey '^[u'  undo
 bindkey '^j'   backward-word
 bindkey '^k'   forward-word
-bindkey '^tg'  edit-global-widget
-bindkey '^tl'  edit-local-widget
 bindkey '^tl'  insert-widget
 bindkey '^xc'  jh-prev-comp
 bindkey '^xh'  run-help
 bindkey '^x^d' fzf-cdr
 bindkey '^xf' fzf-file-widget
+bindkey '^t' fzf-file-widget
 bindkey '^xr' history-incremental-search-backward
 bindkey '^xu' insert-unicode-char
 bindkey '^xe'  edit-command-line

@@ -5,7 +5,7 @@
 /usr/bin/ruby -x "$0"                                          |
   fzf-tmux -u 30% --ansi --multi --no-hscroll --tiebreak=begin |
   awk 'BEGIN { FS = "\t" } { print $2 }'                       |
-  xargs xdg-open
+  xargs w3m
 
 exit $?
 
@@ -15,6 +15,7 @@ exit $?
 require 'json'
 FILE = '~/.config/google-chrome/Default/Bookmarks'
 CJK  = /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/
+
 
 def build parent, json
   name = [parent, json['name']].compact.join('/')

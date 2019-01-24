@@ -49,7 +49,7 @@ client.background         #1b2026
 
 # font pango: Terminus 12px
 # font pango: xos4 Terminus 16px
-font pango:Ubuntu 12
+font pango:Ubuntu 10
 
 focus_follows_mouse yes
 workspace_auto_back_and_forth yes
@@ -58,7 +58,7 @@ workspace_auto_back_and_forth yes
 #smart_borders on
 #smart_gaps on
 # new_window none
-default_border pixel 1
+default_border normal 0
 
 # bindsym Control+a exec xte 'key Home'
 # bindsym Control+e exec xte 'key End'
@@ -109,7 +109,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # use Mouse+$modx to drag floating windows to their wanted position. also resizing
-floating_modifier $modx
+floating_modifier Mod4
 
  # }}}
 
@@ -125,9 +125,9 @@ floating_modifier $modx
 # set $ws9   "9: "
 # set $ws10  "10: "
 set $ws1   "1: ⚡"
-set $ws2   "2: ♲"
-set $ws3   "3: ⚢"
-set $ws4   "4: ⚛"
+set $ws2   "2: Ψ"
+set $ws3   "3: Σ"
+set $ws4   "4: Ω"
 set $ws5   "5: ☮"
 set $ws6   "6: ☭"
 set $ws7   "7: "
@@ -209,7 +209,9 @@ bindsym $modx+Shift+l  move right
 
 # KEYS - SPLITS N FLOATS {{{
 # focus the parent container
-bindsym $modx+p focus parent
+
+bindsym $mody+p focus parent
+bindsym $modx+p exec --no-startup-id  rofi  -width 90% -dpi 160 -show window   
 
 # focus the child container
 # bindsym $modx+x focus child

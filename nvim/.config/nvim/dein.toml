@@ -1,3 +1,107 @@
+
+[[plugins]]
+repo =  'itchyny/lightline.vim'                # shows marks, m/ shortcuts
+hook_add = '''
+
+
+            "\   'filename': '%<%f',
+
+let g:lightline = {
+            \ 'component': {
+            \   'lineinfo': ' %3l:%-2L'
+            \ },
+            \ 'component_function': {
+            \   'filename': 'LightlineFilename',
+            \   'readonly': 'LightlineReadonly',
+            \   'fugitive': 'LightlineFugitive',
+            \   'mygutter': 'MyGitGutter',
+            \   'filetype': 'MyFiletype',
+            \   'fileformat': 'MyFileformat'
+            \ },
+            \ 'separator': { 'left': '', 'right': '' },
+            \ 'subseparator': { 'left': '', 'right': '' }
+            \ }
+
+let g:lightline.colorscheme = 'material'
+
+
+
+let g:lightline.active = {
+            \ 'left': [ [ 'mode', 'paste' ],
+            \           [ 'fugitive', 'filename'] ],
+            \ 'right': [ [ 'lineinfo' ],
+            \            [ 'percent' ],
+            \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
+
+function! MyGitGutter()
+    if ! exists('*GitGutterGetHunkSummary')
+                \ || ! get(g:, 'gitgutter_enabled', 0)
+                \ || winwidth('.') <= 90
+        return ''
+    endif
+    let symbols = [
+                \ g:gitgutter_sign_added . ' ',
+                \ g:gitgutter_sign_modified . ' ',
+                \ g:gitgutter_sign_removed . ' '
+                \ ]
+    let hunks = GitGutterGetHunkSummary()
+    let ret = []
+    for i in [0, 1, 2]
+        if hunks[i] > 0
+            call add(ret, symbols[i] . hunks[i])
+        endif
+    endfor
+    return join(ret, ' ')
+endfunction
+
+
+function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
+
+function! LightlineModified()
+    return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+function! LightlineReadonly()
+    return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
+endfunction
+function! LightlineFilename()
+    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \  &ft == 'unite' ? unite#get_status_string() :
+                \  &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+function! LightlineFugitive()
+    if &ft !~? 'vimfiler' && exists('*fugitive#head')
+        let branch = fugitive#head()
+        return branch !=# '' ? '⭠ '.branch : ''
+    endif
+    return ''
+endfunction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+
+
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
@@ -17,6 +121,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+
 
 [[plugins]]
 repo = 'shougo/deoplete.nvim'
@@ -60,6 +165,23 @@ hook_add = '''
     let g:deoplete#enable_camel_case = 0
     " let g:deoplete#auto_complete_delay = 50
     " let g:deoplete#auto_complete_start_length = 3
+'''
+
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build = 'bash install.sh'
+hook_add = '''
+    let g:LanguageClient_serverCommands = {
+      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+      \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
+      \ 'python': ['/usr/bin/pyls'],
+      \ 'ruby': ['/home/steve/.gem/ruby/2.5.0/bin/solargraph'],
+      \ 'html': ['/usr/bin/html-languageserver --stdio'],
+      \ 'css': ['/usr/bin/css-languageserver --stdio'],
+      \ 'zsh': ['/usr/bin/bash-language-server'],
+      \ 'bash': ['/usr/bin/bash-language-server']
+      \}
 '''
 
 [[plugins]]
@@ -144,6 +266,38 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
 
 '''
 
+
+
+
+[[plugins]]
+repo =  'iamcco/denite-source.vim'
+
+[[plugins]]
+repo =  'chemzqm/unite-location'
+
+[[plugins]]
+repo =  'zacharied/denite-nerdfont'
+
+
+[[plugins]]
+repo =  'dunstontc/projectile.nvim'
+
+
+[[plugins]]
+repo =  'bennyyip/denite-github-stars'
+hook_add = '''
+    let dgs#username='sgoranson'
+'''
+
+
+
+
+[[plugins]]
+repo =  'iamcco/devdocs.nvim'
+
+[[plugins]]
+repo =  'dunstontc/denite-mapping'
+
 [[plugins]]
 repo = 'Jagua/vim-denite-ghq'
 
@@ -187,12 +341,6 @@ repo =  'Shougo/tabpagebuffer.vim'
 repo =  'thinca/vim-ref'
 
 [[plugins]]
-repo =  'Jagua/vim-denite-ghq'
-
-[[plugins]]
-repo =  'ryanoasis/vim-devicons'
-
-[[plugins]]
 repo =  'Shougo/unite.vim'
 
 
@@ -203,8 +351,8 @@ repo =  'Shougo/unite.vim'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 
-[[plugins]]
-repo = 'rakr/vim-one'
+# [[plugins]]
+# repo = 'rakr/vim-one'
 
 [[plugins]]
 repo = 'morhetz/gruvbox'
@@ -229,9 +377,6 @@ hook_add = '''
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
 '''
-
-[[plugins]]
-repo = 'cespare/vim-toml' 
 
 
 
@@ -294,6 +439,9 @@ repo = 'tpope/vim-commentary'                      # gcc, gcW, g/TODO/Commentary
 repo = 'tpope/vim-fugitive'                        # git helper
 
 [[plugins]]
+repo = 'tommcdo/vim-exchange'                        # cx holy shit
+
+[[plugins]]
 repo = 'tpope/vim-repeat'                          # dot repeat for plugins
 
 [[plugins]]
@@ -301,3 +449,39 @@ repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk 
 
 [[plugins]]
 repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'PotatoesMaster/i3-vim-syntax'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'chrisbra/Colorizer'                # shows marks, m/ shortcuts
+
+[[plugins]]
+repo =  'francoiscabrol/ranger.vim'                # shows marks, m/ shortcuts
+# hook_add = '''
+# let g:ranger_replace_netrw = 1
+# '''
+[[plugins]]
+repo =  'rbgrouleff/bclose.vim'                # shows marks, m/ shortcuts
+
+
+[[plugins]]
+repo =  'cespare/vim-toml'                # shows marks, m/ shortcuts
+
+
+[[plugins]]
+repo =  'maralla/vim-toml-enhance'                # shows marks, m/ shortcuts
+
+
+[[plugins]]
+repo =  'ryanoasis/vim-devicons'
+hook_add = '''
+  let g:webdevicons_enable_denite = 1
+  let g:webdevicons_enable_vimfiler = 1
+  let g:webdevicons_enable = 1
+'''
+
+

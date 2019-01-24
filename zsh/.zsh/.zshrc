@@ -78,7 +78,12 @@ autoload -U +X bashcompinit && bashcompinit
 
 autoload -U zcalc
 
+eval "$(fasd --init auto)"
 eval "$(dircolors "$HOME"/.dircolors)"
+if command -v rbenv &>/dev/null; then
+    eval "$(rbenv init -)"
+    source $HOME/.rbenv/completions/rbenv.zsh
+fi
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh
@@ -100,6 +105,7 @@ source $ZDOTDIR/extract.plugin.zsh
 # source $HOME/bin/z.sh
 source $ZDOTDIR/zsh-autosuggestions.zsh
 source $ZDOTDIR/fzf-marks.plugin.zsh
+source $ZDOTDIR/plugins/pip.plugin.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 
 # }}}

@@ -19,7 +19,6 @@ let g:terminal_color_15 = '#ebdbb2'
 
 
 let g:terminal_ansi_colors = [ '#282828', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984', '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2' ]
-
 colorscheme onedark
 set termguicolors
 " set nocursorline
@@ -28,9 +27,15 @@ let g:gruvbox_contrast_dark = 'hard'
 
 "colorscheme one
 let color_favs = [ 'spg-gruvbox', 'base16-atelier-forest', 'one', 'base16-onedark' ]
+hi! Normal guibg=NONE
+" guifg=#282C34 guibg=#61AFEF
+hi Visual guifg=#282C34 guibg=#61AFEF
 
-
-
+" let g:lightline#colorscheme#material#palette.inactive = {
+"             \ 'right': [ ['#314549', '#263238', 59, 23], ['#314549', '#263238', 59, 23] ],
+"             \ 'middle': [ ['#314549', '#2E3C43', 59, 23 ] ],
+"             \ 'left': [ ['#314549', '#263238', 59, 23], ['#314549', '#263238', 59, 23] ]
+"             \ }
 "hi! Search     guibg=#1f9377 guifg=#000000
 "hi! Visual guibg=#464467
 "hi! CursorLine cterm=undercurl guibg=#000010
