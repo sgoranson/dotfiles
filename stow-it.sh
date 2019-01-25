@@ -2,7 +2,6 @@
 stow -R terminfo
 stow -R compton
 stow -R dircolors
-stow -R config
 stow -R nvim
 stow -R polybar
 stow -R rofi
@@ -14,3 +13,4 @@ stow -R xorg
 stow -R tmux
 stow -R zsh
 stow -R yay
+stow -R mpv

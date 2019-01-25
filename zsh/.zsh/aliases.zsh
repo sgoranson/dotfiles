@@ -4,6 +4,7 @@ unalias -m '*'
 alias m=mark
 alias v=nvim
 alias b=bat
+alias p=print
 alias nv="nvim +'cd ~/dotfiles' +':Denite file_mru/git'"
 
 alias nv-d="nvim +'cd ~/projects/spg-doc' +':Denite file_rec/git'"
@@ -433,7 +434,7 @@ alias -s vim='nvim'
 
 
 #f5# Create Directory and \kbd{cd} to it
-function mkcd () {
+function _mkcd () {
     if (( ARGC != 1 )); then
         printf 'usage: mkcd <new-directory>\n'
         return 1;
@@ -445,6 +446,7 @@ function mkcd () {
     fi
     builtin cd "$1"
 }
+alias mkcd=_mkcd
 
 #f5# Create temporary directory and \kbd{cd} to it
 function cdt () {
@@ -453,38 +455,31 @@ function cdt () {
 }
 
 #f5# List files which have been accessed within the last {\it n} days, {\it n} defaults to 1
-function accessed () {
-    emulate -L zsh
-    print -l -- *(a-${1:-1})
-}
+alias accessed='print -l -- *(a-${1:-1})'
 
 #f5# List files which have been changed within the last {\it n} days, {\it n} defaults to 1
-function changed () {
-    emulate -L zsh
-    print -l -- *(c-${1:-1})
-}
+alias changed='print -l -- *(c-${1:-1})'
 
 #f5# List files which have been modified within the last {\it n} days, {\it n} defaults to 1
-function modified () {
-    emulate -L zsh
-    print -l -- *(m-${1:-1})
-}
+alias modified='print -l -- *(m-${2:-1})'
 
-function _pacman_pkg_fzf_info() {
-    if [[ -n $@ ]]
 
+function _fzf-pkg() {
+    if [[ -n $@ ]]  
     then
         result=$(yay -Ssq $@ | fzf --preview 'yay -Si {}')
     else
         result=$( \
             (
-                    yay -Pc | awk '{ print $1}';
-                    ) | sort | fzf --preview 'yay -Si {}')
-                fi
+        curl https://aur.archlinux.org/packages.gz -o - 2> /dev/null | zcat;
+        pacman -Slq;
+            ) | sort | fzf --preview 'yay -Si {}')
+    fi
 
-                yay -S $result
-            }
-        alias pg=_pacman_pkg_fzf_info
+    yay -Si $result
+}
+
+alias fzf-pkg=_fzf-pkg
 
 #f5# List aliases
 _ali() {
@@ -540,35 +535,58 @@ function _hglob () {
 alias help-zshglob=_hglob
 
 
-function _edit_dotfiles() {
-    # ret=$(fd . --type f --  ~/dotfiles | fzf)
-    ret="$(git --git-dir=~/dotfiles/.git/ ls-files  | fzf)"
-
-    [[ -z "$ret" ]] && return 1
-
-
-
-
-}
-alias ed=_edit_dotfiles
-
 
 _viw() {
     vim $(which "$1")
 }
 alias viw=_viw
 
-_gh_clone () {
-    # input: usr/repo
-    USER=$(echo $@ | tr "/" " " | awk '{print $1}')
-    REPO=$(echo $@ | tr "/" " " | awk '{print $2}')
-    cd "$HOME/src" &&  hub clone $@ && cd $REPO
+function fzf-ghq() {
+    # local file="$(ghq list | fzf --preview 'tree -C {} | head -200')"
+    local file="$(ghq list  | fzf --preview-window=right:70% --preview "\rg --iglob='readme*'  --files  $GHQ_ROOT/{}/   | xargs bat --color=always ")"
+    file="$GHQ_ROOT/$file"
+    if [[ -n $file ]]
+    then
+        if [[ -d $file ]]
+        then
+            cd -- "$file"
+        else
+            # cd -- "${file:h}"
+            print -P -- "%F{9}%K{0}$file doesnt exist %f"
+        fi
+    fi
 }
-
-alias gh=_gh_clone
 
 function _gh_get() {
-    ghq get $1
-    ghq look $1
+    if [[ $ARGC == 0 ]]; then
+        fzf-ghq
+        return  
+    fi
+
+    local root="$(ghq root)/github.com/"
+    local user=$(echo $@ | tr "/" " " | awk '{print $1}')
+    local repo=$(echo $@ | tr "/" " " | awk '{print $2}')
+
+    if [[ ! -d $root ]]; then
+        print -P "%F{magenta}root doesn't exist: $root"
+        return -1
+    else
+        if [[ -d "$root/$user/$repo" ]]; then
+            pushd  "$root/$user/$repo"
+            print -P "%F{blue}we there, all is good.%f"
+            return 0
+        else
+            print -P "%F{yellow}getting....%f"
+            ghq get $user/$repo
+            pushd  "$root/$user/$repo"
+            print -P "%F{blue}we there, all is good.%f"
+        fi
+    fi
 }
 alias ghg=_gh_get
+
+function _set24bgcolor() {
+    #printf '\x1bPtmux;\x1b\x1b[48;2;%s;%s;%sm' $1 $2 $3
+    printf '\x1b[48;2;%s;%s;%sm' $1 $2 $3
+}
+alias bg24=_set24bgcolor

@@ -176,11 +176,11 @@ hook_add = '''
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
       \ 'python': ['/usr/bin/pyls'],
-      \ 'ruby': ['/home/steve/.gem/ruby/2.5.0/bin/solargraph'],
+      \ 'ruby': ['solargraph'],
       \ 'html': ['/usr/bin/html-languageserver --stdio'],
       \ 'css': ['/usr/bin/css-languageserver --stdio'],
-      \ 'zsh': ['/usr/bin/bash-language-server'],
-      \ 'bash': ['/usr/bin/bash-language-server']
+      \ 'zsh': ['/usr/bin/bash-language-server start'],
+      \ 'bash': ['/usr/bin/bash-language-server start']
       \}
 '''
 
@@ -439,6 +439,9 @@ repo = 'tpope/vim-commentary'                      # gcc, gcW, g/TODO/Commentary
 repo = 'tpope/vim-fugitive'                        # git helper
 
 [[plugins]]
+repo = 'tpope/vim-surround'                        
+
+[[plugins]]
 repo = 'tommcdo/vim-exchange'                        # cx holy shit
 
 [[plugins]]
@@ -484,4 +487,11 @@ hook_add = '''
   let g:webdevicons_enable = 1
 '''
 
+[[plugins]]
+repo =  'godlygeek/tabular'
 
+[[plugins]]
+repo =  'plasticboy/vim-markdown'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+'''

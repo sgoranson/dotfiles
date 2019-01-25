@@ -84,6 +84,10 @@ if command -v rbenv &>/dev/null; then
     eval "$(rbenv init -)"
     source $HOME/.rbenv/completions/rbenv.zsh
 fi
+if command -v rbenv &>/dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh

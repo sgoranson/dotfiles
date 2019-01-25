@@ -1,7 +1,7 @@
 
 # GLOBAL/COLOR {{{
 
-set $modx Mod1
+set $modx Mod3
 # set $modx Control+Shift
 set $mody Mod4
 
@@ -288,9 +288,9 @@ bindsym $mody+$modx+r mode "resize"
 
 
 # FOCUS {{{
-# bindsym Control+Mod1+c [class="(?i)chromium"] focus
-bindsym Control+Mod1+w [class="(?i)google-chrome"] focus
-bindsym Control+Mod1+v [class="(?i)nvim-qt"] focus
+# bindsym Control+Mod3+c [class="(?i)chromium"] focus
+bindsym Control+Mod3+w [class="(?i)google-chrome"] focus
+bindsym Control+Mod3+v [class="(?i)nvim-qt"] focus
 show_marks yes
 mode "marks" {
         # hardcoded focus keybindings
@@ -342,9 +342,9 @@ bindsym $mody+j mode "jumpers"
 bindsym $modx+Tab exec --no-startup-id rofi  -show window
 bindsym $mody+r exec --no-startup-id rofi  -show run
 bindsym $mody+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym Mod1+q kill
+bindsym Mod3+q kill
 bindsym Mod4+q kill
-bindsym Mod1+w focus output right
+bindsym Mod3+w focus output right
 
 # floating_minimum_size 371 x 548
 # floating_maximum_size 2000 x 1500
@@ -354,7 +354,7 @@ bindsym Mod1+w focus output right
 bindsym --whole-window $mody+button2 kill
 
 # The right button toggles floating
-bindsym --whole-window Mod1+Shift+button3 floating toggle
+bindsym --whole-window Mod3+Shift+button3 floating toggle
 
 # bindsym $mody+Tab exec "rofi -show window -kb-row-down 'Control+Tab' -kb-accept-entry '!Control_R,!Control+Tab'"
 # INITRC {{{

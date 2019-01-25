@@ -3,7 +3,7 @@ ZDOTDIR="$HOME/.zsh"
 export EDITOR=nvim
 export MYOS="ARCH"
 export PAGER=less
-export VISUAL=bat
+export VISUAL=nvim
 export MANPAGER=less
 export TERMINAL=kitty
 export BROWSER=chromium
@@ -18,12 +18,19 @@ export LC_ALL=$LANG
 export CLICOLOR=1
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
 export PYENV_ROOT="$HOME/.pyenv"
-export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
+# export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
 export GHQ_ROOT=$HOME/kewl
 
+# automatically remove duplicates from these arrays
+typeset -U path cdpath fpath manpath
 
-PATH="$HOME/bin/:$HOME/go/bin:$HOME/.node/bin/:$HOME/.rbenv/bin:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
-PATH="$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
+# PATH="$HOME/bin/:$HOME/go/bin:$HOME/.node/bin/:$HOME/.rbenv/bin:$HOME/.cargo/bin/:$HOME/.npm-global/bin/:/usr/bin/core_perl:$PATH"
+# PATH="$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
+
+
+path=("$HOME/bin/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" )
+path+=("$HOME/bin/color"  "/usr/bin"  "/usr/local/bin"    "/usr/local/sbin" "/bin" "/sbin" )
+
 
 #  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 # curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
@@ -40,11 +47,18 @@ export HISTIGNORE="ls:[bf]g:exit:reset:clear:cd:cd ..:cd.."
 export GIT_PROMPT_EXECUTABLE=${GIT_PROMPT_EXECUTABLE:-"python"}
 export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
-export FZF_DEFAULT_OPTS=' --multi --cycle --ansi   --exact'
+FZF_DEFAULT_OPTS=' --multi --cycle --ansi   --exact --no-mouse '
+FZF_DEFAULT_OPTS+=' --color=bg+:#263238,fg:246,fg+:#C678DD '
+FZF_DEFAULT_OPTS+=' --bind "ctrl-y:execute(echo -n {} | xclip -selection clipboard)"  '
+export FZF_DEFAULT_OPTS
+
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
-#export ZLE_REMOVE_SUFFIX_CHARS=" \t\n;&|'"
-# export ZLE_REMOVE_SUFFIX_CHARS=\'
-# export ZLE_SPACE_SUFFIX_CHARS=$'|&'
+#
+# export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+# --color=dark
+# --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
+# --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
+# '
 
 
 export LESS_TERMCAP_mb=$(printf "\e[1;31m")
@@ -54,6 +68,8 @@ export LESS_TERMCAP_se=$(printf "\e[0m")
 export LESS_TERMCAP_so=$(printf "\e[7;49;93m")
 export LESS_TERMCAP_ue=$(printf "\e[0m")
 export LESS_TERMCAP_us=$(printf "\e[1;32m")
+
+
 
 # mmm easy python versioning
 #if command -v pyenv 1>/dev/null 2>&1; then
