@@ -176,7 +176,7 @@ hook_add = '''
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
       \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
       \ 'python': ['/usr/bin/pyls'],
-      \ 'ruby': ['solargraph'],
+      \ 'ruby': ['/home/steve/.rbenv/shims/solargraph stdio'],
       \ 'html': ['/usr/bin/html-languageserver --stdio'],
       \ 'css': ['/usr/bin/css-languageserver --stdio'],
       \ 'zsh': ['/usr/bin/bash-language-server start'],
@@ -495,3 +495,36 @@ repo =  'plasticboy/vim-markdown'
 hook_add = '''
 let g:vim_markdown_folding_disabled = 1
 '''
+
+
+[[plugins]]
+repo =  'hiphish/info.vim'
+hook_add = '''
+autocmd FileType info nmap N :InfoNext<CR>
+autocmd FileType info nmap P :InfoPrev<CR>
+autocmd FileType info nmap U :InfoUp<CR>
+'''
+
+
+
+[[plugins]]
+repo =  'Rykka/riv.vim'
+hook_add = '''
+let proj1 = { 'path': '~/projects/rst-site', }
+let g:riv_projects = [proj1]
+'''
+
+[[plugins]]
+repo =  'Rykka/InstantRst'
+hook_add = '''
+let g:instant_rst_browser = 'qutebrowser'
+'''
+
+
+[[plugins]]
+repo =  'junegunn/vim-peekaboo'
+
+
+
+[[plugins]]
+repo =  'yuratomo/w3m.vim'

@@ -84,10 +84,16 @@ if command -v rbenv &>/dev/null; then
     eval "$(rbenv init -)"
     source $HOME/.rbenv/completions/rbenv.zsh
 fi
-if command -v rbenv &>/dev/null; then
+if command -v pyenv &>/dev/null; then
     eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    # eval "$(pyenv virtualenv-init -)"
 fi
+
+
+# nodejs
+source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+
+
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/zsh-history-substring-search.zsh
@@ -96,20 +102,18 @@ source $ZDOTDIR/zsh-history-substring-search.zsh
 source $ZDOTDIR/keys.zsh
 source $ZDOTDIR/clipboard.zsh
 source $ZDOTDIR/completion.zsh
-source $ZDOTDIR/git-extras-completion.zsh
 source $ZDOTDIR/s_completion.sh
-source $ZDOTDIR/fzf-marks.plugin.zsh
 source $ZDOTDIR/i3_completion.sh
 #source $ZDOTDIR/zsh-better-npm-completion.plugin.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/completion/googler_at
 
-source $ZDOTDIR/completion/git-extra
 source $ZDOTDIR/extract.plugin.zsh
 # source $HOME/bin/z.sh
 source $ZDOTDIR/zsh-autosuggestions.zsh
-source $ZDOTDIR/fzf-marks.plugin.zsh
-source $ZDOTDIR/plugins/pip.plugin.zsh
+# source /home/steve/kewl/github.com/zsh-users/zaw/zaw.zsh
+# source $ZDOTDIR/fzf-marks.plugin.zsh
+# source $ZDOTDIR/plugins/pip.plugin.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 
 # }}}

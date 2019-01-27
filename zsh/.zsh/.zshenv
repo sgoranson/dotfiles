@@ -31,7 +31,11 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/bin/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" )
 path+=("$HOME/bin/color"  "/usr/bin"  "/usr/local/bin"    "/usr/local/sbin" "/bin" "/sbin" )
 
-
+#
+# git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm  
+# source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+#
+#
 #  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 # curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
 
