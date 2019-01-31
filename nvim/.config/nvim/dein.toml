@@ -168,21 +168,19 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
+repo = 'Shougo/deoplete-lsp'
 hook_add = '''
-    let g:LanguageClient_serverCommands = {
-      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-      \ 'javascript': ['/usr/bin/javascript-typescript-stdio'],
-      \ 'python': ['/usr/bin/pyls'],
-      \ 'ruby': ['/home/steve/.rbenv/shims/solargraph stdio'],
-      \ 'html': ['/usr/bin/html-languageserver --stdio'],
-      \ 'css': ['/usr/bin/css-languageserver --stdio'],
-      \ 'zsh': ['/usr/bin/bash-language-server start'],
-      \ 'bash': ['/usr/bin/bash-language-server start']
-      \}
+call lsp#server#add('python', 'pyls')
+call lsp#server#add('javascript', 'javascript-typescript-stdio')
+call lsp#server#add('ruby', 'solargraph stdio')
+call lsp#server#add('zsh', 'bash-language-server start')
+call lsp#server#add('bash', ['bash-language-server', 'start'])
+call lsp#server#add('rust', ['rustup', 'run', 'stable', 'rls'])
 '''
+
+[[plugins]]
+repo = 'Shougo/echodoc.vim'
+
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -281,13 +279,16 @@ repo =  'zacharied/denite-nerdfont'
 
 [[plugins]]
 repo =  'dunstontc/projectile.nvim'
-
-
-[[plugins]]
-repo =  'bennyyip/denite-github-stars'
 hook_add = '''
-    let dgs#username='sgoranson'
+     let g:projectile#enable_devicons = 1
 '''
+
+
+#[[plugins]]
+#repo =  'bennyyip/denite-github-stars'
+#hook_add = '''
+#    let dgs#username='sgoranson'
+#'''
 
 
 
@@ -522,9 +523,20 @@ let g:instant_rst_browser = 'qutebrowser'
 
 
 [[plugins]]
-repo =  'junegunn/vim-peekaboo'
+repo =  'junegunn/gv.vim'
 
 
 
 [[plugins]]
 repo =  'yuratomo/w3m.vim'
+
+
+[[plugins]]
+repo =  'gregsexton/gitv'
+
+
+[[plugins]]
+repo =  'gu-fan/colorv.vim'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'

@@ -16,27 +16,6 @@ zle -N copy-earlier-word
 zle -N insert-unicode-char
 zle -N insert-last-word smart-insert-last-word
 
-function fzf-ghq() {
-    zle kill-buffer
-    # local file="$(ghq list | fzf --preview 'tree -C {} | head -200')"
-    local file="$(ghq list  | fzf --preview-window=right:70% --preview "\rg --iglob='readme*'  --files  $GHQ_ROOT/{}/   | xargs bat --color=always ")"
-    file="$GHQ_ROOT/$file"
-    if [[ -n $file ]]
-    then
-        if [[ -d $file ]]
-        then
-            cd -- "$file"
-            zle reset-prompt
-        else
-            # cd -- "${file:h}"
-            print -P -- "%F{9}%K{0}$file doesnt exist %f"
-            zle reset-prompt
-        fi
-    else
-        zle reset-prompt
-    fi
-}
-zle -N fzf-ghq
 
 function where-widget() {
     zle kill-buffer

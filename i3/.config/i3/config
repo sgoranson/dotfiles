@@ -72,9 +72,9 @@ bindsym $mody+Shift+b [class="^.*"] border normal 0
 # KEYS - WINDOW FOCUS {{{
 
 # start a terminal
-bindsym $modx+Return  exec --no-startup-id kitty
+bindsym $modx+Return  exec --no-startup-id termite
 bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45% -w 80% kitty
-bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
+bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  termite
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  termite; focus mode_toggle
 # bindsym $modx+Shift+Return exec i3-quickterm shell
 # bindsym F1 exec i3-quickterm shell

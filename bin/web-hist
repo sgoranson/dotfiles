@@ -14,8 +14,9 @@ MAGENTA="$(tput setaf 5)"
 CYAN="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-: "${HISTORY_PATH:="$HOME/.config/google-chrome/Default/History"}"
-: "${BROWSER:=google-chrome-stable}"
+# : "${HISTORY_PATH:="$HOME/.config/google-chrome/Default/History"}"
+: "${HISTORY_PATH:="$HOME/.config/chromium/Default/History"}"
+: "${BROWSER:=chromium}"
 
 COLS="$(("$(tput cols)"/2))"
 SEP='{::}'
