@@ -180,7 +180,10 @@ call lsp#server#add('rust', ['rustup', 'run', 'stable', 'rls'])
 
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
-
+hook_add = '''
+let g:echodoc#type = 'virtual'
+call echodoc#enable()
+'''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -277,11 +280,11 @@ repo =  'chemzqm/unite-location'
 repo =  'zacharied/denite-nerdfont'
 
 
-[[plugins]]
-repo =  'dunstontc/projectile.nvim'
-hook_add = '''
-     let g:projectile#enable_devicons = 1
-'''
+# [[plugins]]
+# repo =  'dunstontc/projectile.nvim'
+# hook_add = '''
+#      let g:projectile#enable_devicons = 1
+# '''
 
 
 #[[plugins]]
@@ -537,6 +540,120 @@ repo =  'gregsexton/gitv'
 
 [[plugins]]
 repo =  'gu-fan/colorv.vim'
+hook_add = '''
+
+"let g:_colorv['mode'] = 'gui'
+'''
 
 [[plugins]]
 repo = 'mattn/webapi-vim'
+
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+hook_add = '''
+nnoremap <silent>   <Space>F
+\ :<C-u>Defx -auto-cd -listed -show-ignored-files -resume -buffer-name=tab`tabpagenr()`<CR>
+
+call defx#custom#column('mark', {
+      \ 'directory_icon': '▸',
+      \ 'readonly_icon': '✗',
+      \ 'selected_icon': '✓',
+      \ })
+
+	call defx#custom#option('_', {
+	      \ 'columns': 'mark:filename:type:size:time',
+	      \ })
+
+
+	autocmd FileType defx call s:defx_my_settings()
+	function! s:defx_my_settings() abort
+
+" Define mappings
+nnoremap <silent><buffer><expr> <CR>
+\ defx#async_action('drop')
+nnoremap <silent><buffer><expr> c
+\ defx#do_action('copy')
+nnoremap <silent><buffer><expr> !
+\ defx#do_action('execute_command')
+nnoremap <silent><buffer><expr> m
+\ defx#do_action('move')
+nnoremap <silent><buffer><expr> p
+\ defx#do_action('paste')
+nnoremap <silent><buffer><expr> l
+\ defx#async_action('open')
+nnoremap <silent><buffer><expr> E
+\ defx#do_action('open', 'vsplit')
+nnoremap <silent><buffer><expr> P
+\ defx#do_action('open', 'pedit')
+nnoremap <silent><buffer><expr> K
+\ defx#do_action('new_directory')
+nnoremap <silent><buffer><expr> N
+\ defx#do_action('new_file')
+nnoremap <silent><buffer><expr> M
+\ defx#do_action('new_multiple_files')
+nnoremap <silent><buffer><expr> S
+\ defx#do_action('toggle_sort', 'Time')
+nnoremap <silent><buffer><expr> d
+\ defx#do_action('remove_trash')
+nnoremap <silent><buffer><expr> r
+\ defx#do_action('rename')
+nnoremap <silent><buffer><expr> x
+\ defx#do_action('execute_system')
+nnoremap <silent><buffer><expr> >
+\ defx#do_action('toggle_ignored_files')
+nnoremap <silent><buffer><expr> .
+\ defx#do_action('repeat')
+nnoremap <silent><buffer><expr> yy
+\ defx#do_action('yank_path')
+nnoremap <silent><buffer><expr> h
+\ defx#do_action('cd', ['..'])
+nnoremap <silent><buffer><expr> C 
+\ defx#do_action(change_vim_cwd)
+nnoremap <silent><buffer><expr> ~
+\ defx#do_action('cd')
+nnoremap <silent><buffer><expr> \
+\ defx#do_action('cd', getcwd())
+nnoremap <silent><buffer><expr> q
+\ defx#do_action('quit')
+nnoremap <silent><buffer><expr> <Space>
+\ defx#do_action('toggle_select') . 'j'
+nnoremap <silent><buffer><expr> *
+\ defx#do_action('toggle_select_all')
+nnoremap <silent><buffer><expr> j
+\ line('.') == line('$') ? 'gg' : 'j'
+nnoremap <silent><buffer><expr> k
+\ line('.') == 1 ? 'G' : 'k'
+nnoremap <silent><buffer><expr> <C-l>
+\ defx#do_action('redraw')
+nnoremap <silent><buffer><expr> <C-g>
+\ defx#do_action('print')
+nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
+\ ':<C-u>wincmd w<CR>' :
+\ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
+	endfunction
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+depends = 'denite.nvim'
+hook_add = '''
+let g:deol#prompt_pattern = '% \|%$'
+
+  " nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
+  "nnoremap <silent> N :<C-u>call deol#new({'command': 'xonsh'})<CR>
+  "nnoremap <silent> [Space]s :<C-u>Deol xonsh<CR>
+  "nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
+
+  "  nnoremap <silent> <C-t> :<C-u>Denite
+  "      \ -select=`tabpagenr()-1` -mode=normal deol:zsh<CR>
+'''
+
+

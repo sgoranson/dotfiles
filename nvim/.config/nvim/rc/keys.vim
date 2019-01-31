@@ -451,7 +451,7 @@ noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=Cur
 
 
 noremap <silent> <C-s> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
-noremap <silent> <C-p> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine sauce<CR>
+noremap <silent> <C-p> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine source<CR>
 
 nnoremap <silent> ]d :<C-u>Denite -resume -buffer-name='grepit' -select=+1 -immediately<CR>
 nnoremap <silent> [d :<C-u>Denite -resume -buffer-name='grepit' -select=-1 -immediately<CR>
@@ -462,8 +462,8 @@ nnoremap <silent> [B :<C-u>Denite -resume -buffer-name='mru' file_mru -select=-1
 
 " nnoremap <silent> <Space>v   :<C-u>VimFilerBufferDir -buffer-name=vimf  -split -force-quit<CR>
 " nnoremap <silent> <Space>v   :<C-u>VimFilerBufferDir -buffer-name=vimf  -split -force-quit<CR>
-nnoremap <silent> <Space>v :Defx `expand('%:p:h')` -toggle -split=vertical -winwidth=50 -direction=topleft<CR>
-nnoremap <silent> <Space>V :Defx `expand('%:p:h')`<CR>
+nnoremap <silent> <Space>v :Defx `expand('%:p:h')`-auto-cd -toggle -split=vertical -winwidth=50 -direction=topleft<CR>
+nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
 
 
 

@@ -35,6 +35,7 @@ path+=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bi
 # git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm  
 # source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 #
+# curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 #
 #  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 # curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
@@ -74,13 +75,6 @@ export LESS_TERMCAP_ue=$(printf "\e[0m")
 export LESS_TERMCAP_us=$(printf "\e[1;32m")
 
 
-
-# mmm easy python versioning
-#if command -v pyenv 1>/dev/null 2>&1; then
-  # eval "$(pyenv init -)"
-  # following line is sllllowwww
-  #eval "$(pyenv virtualenv-init -)"
-#fi
 
 # if command -v nvim >/dev/null 2>&1; then
 #     export MANPAGER=vless
