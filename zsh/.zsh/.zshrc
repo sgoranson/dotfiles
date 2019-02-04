@@ -59,21 +59,8 @@ setopt   AUTO_REMOVE_SLASH
 # LOAD RC's {{{
 typeset -U fpath=("$ZDOTDIR/"{completion,themes} $fpath)
 
-zmodload -i zsh/complist  # for menucomplete
-
-# Save the location of the current completion dump file.
-if [ -z "$ZSH_COMPDUMP" ]; then
-    SHORT_HOST=${HOST/.*/}
-    ZSH_COMPDUMP="${XDG_CACHE_HOME}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-fi
-
-
-autoload -U compinit
-compinit -u -d "${ZSH_COMPDUMP}"
-
 
 autoload -U promptinit && promptinit
-autoload -U +X bashcompinit && bashcompinit
 
 
 
@@ -125,22 +112,65 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 
+
+source "$ZDOTDIR/antigen.zsh"
+
+antigen use prezto
+
+antigen bundle sorin-ionescu/prezto modules/helper  # required for Git module
+antigen bundle sorin-ionescu/prezto modules/editor
+antigen bundle sorin-ionescu/prezto modules/git
+antigen bundle sorin-ionescu/prezto modules/spectrum
+antigen bundle sorin-ionescu/prezto modules/completion
+antigen bundle sorin-ionescu/prezto modules/archive
+antigen bundle sorin-ionescu/prezto modules/autosuggestions
+antigen bundle sorin-ionescu/prezto modules/history-substring-search
+antigen bundle sorin-ionescu/prezto modules/tmux
+antigen bundle sorin-ionescu/prezto modules/archive
+
+
+
+antigen apply
+
+# antigen use oh-my-zsh
+# antigen bundle git
+# antigen bundle zsh-users/zsh-completions
+
+# antigen apply
+
+zstyle ':prezto:module:autosuggestions:color' found 'fg=242'
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:session' name 'sexytime'
+  # 'environment' \
+  # 'terminal' \
+  # 'editor' \
+  # 'history' \
+  # 'directory' \
+  # 'spectrum' \
+  # 'utility' \
+  # 'completion' \
+  # 'archive' \
+  # 'history-substring-search' \
+  # 'autosuggestions' \
+  # 'ruby' \
+  # 'python' \
+  # 'prompt'
+
 source $ZDOTDIR/prompt.zsh
-source $ZDOTDIR/zsh-history-substring-search.zsh
+# source $ZDOTDIR/zsh-history-substring-search.zsh
 # source $ZDOTDIR/fzf-fasd.plugin.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 source $ZDOTDIR/keys.zsh
 source $ZDOTDIR/clipboard.zsh
-source $ZDOTDIR/completion.zsh
-source $ZDOTDIR/s_completion.sh
-source $ZDOTDIR/i3_completion.sh
+# source $ZDOTDIR/completion.zsh
+# source $ZDOTDIR/i3_completion.sh
 #source $ZDOTDIR/zsh-better-npm-completion.plugin.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/completion/googler_at
 
-source $ZDOTDIR/extract.plugin.zsh
+# source $ZDOTDIR/extract.plugin.zsh
 # source $HOME/bin/z.sh
-source $ZDOTDIR/zsh-autosuggestions.zsh
+# source $ZDOTDIR/zsh-autosuggestions.zsh
 # source /home/steve/kewl/github.com/zsh-users/zaw/zaw.zsh
 # source $ZDOTDIR/fzf-marks.plugin.zsh
 # source $ZDOTDIR/plugins/pip.plugin.zsh
