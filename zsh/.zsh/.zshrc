@@ -1,5 +1,46 @@
 #!env zsh
 
+# Check if zplug is installed
+if [[ ! -f ~/.zplug/init.zsh ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+fi
+
+# Essential
+source ~/.zplug/init.zsh
+
+
+zplug "modules/helper", from:prezto
+zplug "modules/editor", from:prezto
+zplug "modules/git", from:prezto
+zplug "modules/spectrum", from:prezto
+zplug "modules/completion", from:prezto
+zplug "modules/autosuggestions", from:prezto
+zplug "modules/history-substring-search", from:prezto
+# zplug "modules/tmux", from:prezto
+zplug "modules/archive", from:prezto
+
+zplug "lib/clipboard", from:oh-my-zsh
+zplug "lib/spectrum", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+
+zstyle ':prezto:module:autosuggestions:color' found 'fg=242'
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+# zstyle ':prezto:module:tmux:auto-start' local 'yes'
+export ZSH_TMUX_AUTOSTART=true
+# zstyle ':prezto:module:tmux:session' name 'sexytime'
+
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
 # ZOPTIONS {{{
 HISTSIZE=99999999
 SAVEHIST=99999999
@@ -112,35 +153,6 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 
-
-source "$ZDOTDIR/antigen.zsh"
-
-antigen use prezto
-
-antigen bundle sorin-ionescu/prezto modules/helper  # required for Git module
-antigen bundle sorin-ionescu/prezto modules/editor
-antigen bundle sorin-ionescu/prezto modules/git
-antigen bundle sorin-ionescu/prezto modules/spectrum
-antigen bundle sorin-ionescu/prezto modules/completion
-antigen bundle sorin-ionescu/prezto modules/archive
-antigen bundle sorin-ionescu/prezto modules/autosuggestions
-antigen bundle sorin-ionescu/prezto modules/history-substring-search
-antigen bundle sorin-ionescu/prezto modules/tmux
-antigen bundle sorin-ionescu/prezto modules/archive
-
-
-
-antigen apply
-
-# antigen use oh-my-zsh
-# antigen bundle git
-# antigen bundle zsh-users/zsh-completions
-
-# antigen apply
-
-zstyle ':prezto:module:autosuggestions:color' found 'fg=242'
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
-zstyle ':prezto:module:tmux:session' name 'sexytime'
   # 'environment' \
   # 'terminal' \
   # 'editor' \
