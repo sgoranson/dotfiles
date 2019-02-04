@@ -347,6 +347,21 @@ bindsym $mody+j mode "jumpers"
 
 bindsym $modx+Tab exec --no-startup-id rofi  -show window
 bindsym $mody+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mody+v exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+bindsym $mody+Shift+1 mark mark1
+bindsym $mody+Shift+2 mark mark2
+bindsym $mody+Shift+3 mark mark3
+bindsym $mody+Shift+4 mark mark4
+bindsym $mody+Shift+5 mark mark5
+
+# Jump to clients marked 1-5
+bindsym $mody+1 [con_mark="mark1"] focus
+bindsym $mody+2 [con_mark="mark2"] focus
+bindsym $mody+3 [con_mark="mark3"] focus
+bindsym $mody+4 [con_mark="mark4"] focus
+bindsym $mody+5 [con_mark="mark5"] focus
+
 bindsym Mod3+q kill
 bindsym Mod4+q kill
 bindsym Mod3+w focus output right

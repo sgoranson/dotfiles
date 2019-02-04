@@ -28,7 +28,7 @@ typeset -U path cdpath fpath manpath
 # PATH="$HOME/bin/color:/usr/bin:/usr/local/sbin:/usr/local/bin:/bin:/sbin:$PATH"
 
 
-path=("$HOME/bin/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" )
+path=("$HOME/bin/" "$HOME/mvp/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" )
 path+=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bin" "/sbin" )
 
 if command -v rbenv &>/dev/null; then
@@ -58,7 +58,7 @@ export TMUX_TMPDIR="$XDG_CACHE_HOME"
 
 FZF_DEFAULT_OPTS=' --multi --cycle --ansi   --exact --no-mouse '
 FZF_DEFAULT_OPTS+=' --color=bg+:#263238,fg:246,fg+:#C678DD '
-FZF_DEFAULT_OPTS+=' --bind "ctrl-y:execute(echo -n {} | xclip -selection clipboard)"  '
+FZF_DEFAULT_OPTS+=' --bind="ctrl-y:execute-silent:echo {} | head -1 | xclip -rmlastnl -selection clipboard"  '
 export FZF_DEFAULT_OPTS
 
 export FZF_DEFAULT_COMMAND="locate --regex '.*'"
