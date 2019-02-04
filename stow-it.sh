@@ -15,3 +15,4 @@ stow -R tmux
 stow -R zsh
 stow -R yay
 stow -R mpv
+stow -R colorls
