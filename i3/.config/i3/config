@@ -90,8 +90,17 @@ bindsym $modx+k focus up
 bindsym $modx+h focus left
 bindsym $modx+l focus right
 
-bindsym $mody+a focus left
-bindsym $mody+f focus right
+bindsym $modx+a focus left
+bindsym $modx+f focus right
+bindsym $modx+Shift+a workspace prev
+bindsym $modx+Shift+f workspace next
+bindsym $modx+Control+a workspace prev
+bindsym $modx+Control+f workspace next
+
+bindsym $modx+Control+Shift+f floating toggle
+bindsym $modx+Control+r exec i3-input -F 'jename workspace to "%s"' -P 'New name: '
+bindsym $modx+r exec --no-startup-id rofi  -show run
+
 
 bindsym $mody+Tab [con_mark=_last] focus
 
@@ -156,8 +165,6 @@ bindsym $mody+z scratchpad show
 
 # bindsym $modx+Control+w move workspace to output right
 # bindsym $modx+Shift+w move container to output right; focus output right
-
-bindsym $modx+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 bindsym $modx+Control+h workspace prev
 bindsym $modx+Control+l workspace next
@@ -225,7 +232,6 @@ bindsym $modx+v split v
 # bindsym $modx+o open
 
 # toggle tiling / floating
-bindsym $modx+Shift+f floating toggle
 bindsym $modx+space focus mode_toggle
 
 # enter fullscreen (maximize) mode for the focused container
@@ -340,7 +346,6 @@ bindsym $mody+j mode "jumpers"
 
 
 bindsym $modx+Tab exec --no-startup-id rofi  -show window
-bindsym $mody+r exec --no-startup-id rofi  -show run
 bindsym $mody+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 bindsym Mod3+q kill
 bindsym Mod4+q kill

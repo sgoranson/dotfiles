@@ -1,7 +1,81 @@
 #!env zsh
 
-bindkey -e
+#bindkey -e
 # zle -C most-accessed-file menu-complete _generic
+if [[ "$TERM" == 'dumb' ]]; then
+  return 1
+fi
+
+#
+# Options
+#
+
+setopt BEEP                     # Beep on error in line editor.
+
+#
+# Variables
+#
+
+# Treat these characters as part of a word.
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+
+# Use human-friendly identifiers.
+zmodload zsh/terminfo
+typeset -gA key_info
+key_info=(
+  'Control'         '\C-'
+  'ControlLeft'     '\e[1;5D \e[5D \e\e[D \eOd'
+  'ControlRight'    '\e[1;5C \e[5C \e\e[C \eOc'
+  'ControlPageUp'   '\e[5;5~'
+  'ControlPageDown' '\e[6;5~'
+  'Escape'       '\e'
+  'Meta'         '\M-'
+  'Backspace'    "^?"
+  'Delete'       "^[[3~"
+  'F1'           "$terminfo[kf1]"
+  'F2'           "$terminfo[kf2]"
+  'F3'           "$terminfo[kf3]"
+  'F4'           "$terminfo[kf4]"
+  'F5'           "$terminfo[kf5]"
+  'F6'           "$terminfo[kf6]"
+  'F7'           "$terminfo[kf7]"
+  'F8'           "$terminfo[kf8]"
+  'F9'           "$terminfo[kf9]"
+  'F10'          "$terminfo[kf10]"
+  'F11'          "$terminfo[kf11]"
+  'F12'          "$terminfo[kf12]"
+  'Insert'       "$terminfo[kich1]"
+  'Home'         "$terminfo[khome]"
+  'PageUp'       "$terminfo[kpp]"
+  'End'          "$terminfo[kend]"
+  'PageDown'     "$terminfo[knp]"
+  'Up'           "$terminfo[kcuu1]"
+  'Left'         "$terminfo[kcub1]"
+  'Down'         "$terminfo[kcud1]"
+  'Right'        "$terminfo[kcuf1]"
+  'BackTab'      "$terminfo[kcbt]"
+)
+
+# Set empty $key_info values to an invalid UTF-8 sequence to induce silent
+# bindkey failure.
+for key in "${(k)key_info[@]}"; do
+  if [[ -z "$key_info[$key]" ]]; then
+    key_info[$key]='�'
+  fi
+done
+
+#
+# Functions
+#
+# Runs bindkey but for all of the keymaps. Running it with no arguments will
+# print out the mappings for all of the keymaps.
+function bindkey-all {
+  local keymap=''
+  for keymap in $(bindkey -l); do
+    [[ "$#" -eq 0 ]] && printf "#### %s\n" "${keymap}" 1>&2
+    bindkey -M "${keymap}" "$@"
+  done
+}
 
 autoload -Uz edit-command-line
 autoload -Uz copy-earlier-word
@@ -146,14 +220,6 @@ function  rationalise-dot() {
     }
 zle -N rationalise-dot
 
-function  _jh-prev-result () {
-    hstring=$(eval `fc -l -n -1`)
-    set -A hlist ${(@s/
-    /)hstring}
-    compadd - ${hlist}
-}
-
-zle -C jh-prev-comp menu-complete _jh-prev-result
 
 function  insert-widget() {
     local target="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1 --preview 'tree -C {} | head -200')"
@@ -183,6 +249,10 @@ zle -N grml-zsh-fg
 
 
 
+# Duplicate the previous word.
+bindkey  "$key_info[BackTab]" reverse-menu-complete
+bindkey "$key_info[Control]g" undo
+bindkey "$key_info[Control]_" redo
 
 # bindkey '^Xh' _complete_help
 bindkey '^A'   beginning-of-line
@@ -197,14 +267,11 @@ bindkey '^R'   fzf-history-widget
 bindkey '^Z'   grml-zsh-fg
 bindkey '^[,'  copy-earlier-word
 bindkey '^[.'  insert-last-word
-bindkey '^[U'  redo
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-bindkey '^[u'  undo
 bindkey '^j'   backward-word
 bindkey '^k'   forward-word
 bindkey '^tl'  insert-widget
-bindkey '^xc'  jh-prev-comp
 bindkey '^xh'  run-help
 bindkey '^x^d' fzf-cdr
 bindkey '^xf' fzf-file-widget

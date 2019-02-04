@@ -31,8 +31,10 @@ alias goo=google-chrome-stable
 alias web=google-chrome-stable
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 
-alias ls="\ls -A --file-type --color=auto"
-alias ll="ls -lhAtr --file-type --color=auto"
+#alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
+alias ls="colorls --almost-all --group-directories-first"
+# alias ll="ls -lhAtr --file-type --color=auto"
+alias ll="colorls -lAtr --group-directories-first"
 alias pu="pushd"
 alias po="popd"
 # alias ff="\rg --color=auto --hidden --files"
@@ -120,10 +122,10 @@ fi
 # cheat sheets
 alias cheatsh='curl cheat.sh'
 
-if command -v ccat >/dev/null 2>&1; then
-    alias -g L=' | ccat | vless'
+if command -v bat >/dev/null 2>&1; then
+    alias -g L=' | bat'
 else
-    alias -g L=' | vless'
+    alias -g L=' | less'
 fi
 
 alias pkg-config="pkg-config  --keep-system-libs  --keep-system-cflags"

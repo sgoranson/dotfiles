@@ -31,6 +31,10 @@ typeset -U path cdpath fpath manpath
 path=("$HOME/bin/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" )
 path+=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bin" "/sbin" )
 
+if command -v rbenv &>/dev/null; then
+    eval "$(rbenv init -)"
+    source $HOME/.rbenv/completions/rbenv.zsh
+fi
 #
 # git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm  
 # source ~/.zsh-nvm/zsh-nvm.plugin.zsh

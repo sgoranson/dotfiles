@@ -10,6 +10,7 @@
     autocrlf = input
 	editor = nvim
     symlinks = true
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [push]
     default = simple
 
