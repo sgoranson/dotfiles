@@ -27,9 +27,8 @@ alias CM='chmod a+x'
 alias AX='chmod a+x'
 alias w='which'
 alias pb=pastebin
-alias goo=google-chrome-stable
-alias web=google-chrome-stable
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
+alias chrome='google-chrome-stable --new-window'
 
 #alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
 alias ls="colorls --almost-all --group-directories-first"
@@ -465,23 +464,6 @@ alias changed='print -l -- *(c-${1:-1})'
 #f5# List files which have been modified within the last {\it n} days, {\it n} defaults to 1
 alias modified='print -l -- *(m-${2:-1})'
 
-
-function _fzf-pkg() {
-    if [[ -n $@ ]]  
-    then
-        result=$(yay -Ssq $@ | fzf --preview 'yay -Si {}')
-    else
-        result=$( \
-            (
-        curl https://aur.archlinux.org/packages.gz -o - 2> /dev/null | zcat;
-        pacman -Slq;
-            ) | sort | fzf --preview 'yay -Si {}')
-    fi
-
-    yay -Si $result
-}
-
-alias fzf-pkg=_fzf-pkg
 
 #f5# List aliases
 _ali() {

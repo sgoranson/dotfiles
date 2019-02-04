@@ -1,13 +1,13 @@
 ! "Enabled modi" Set from: Default
 rofi.modi:                           window,run,drun,keys
 ! "Window width" Set from: Default
-! rofi.width:                          50
+rofi.width:                          80
 ! "Number of lines" Set from: Default
 !rofi.lines:                          25
 ! "Number of columns" Set from: Default
 !rofi.columns:                        3
 ! "Font to use" Set from: XResources
-rofi.font:                          Ubuntu Mono 18
+rofi.font:                          Ubuntu Mono 25
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
@@ -65,7 +65,7 @@ rofi.run-shell-command:                {terminal} -e "zsh -c '{cmd} && read'"
 ! "Cycle through the results list" Set from: Default
 ! rofi.cycle:                          true
 ! "Enable sidebar-mode" Set from: Default
-rofi.sidebar-mode:                   false
+rofi.sidebar-mode:                   true
 ! "Row height (in chars)" Set from: Default
 ! rofi.eh:                             1
 ! "Enable auto select mode" Set from: Default
@@ -77,7 +77,7 @@ rofi.auto-select:                    false
 ! "Set the modi to combine in combi mode" Set from: Default
 ! rofi.combi-modi:                     window,run
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
-! rofi.matching:                       normal
+rofi.matching:                       fuzzy
 ! "Tokenize input string" Set from: Default
 ! rofi.tokenize:                       true
 ! "Monitor id to show on" Set from: Default
@@ -91,7 +91,7 @@ rofi.auto-select:                    false
 ! "Separator style (none, dash, solid) *DEPRECATED*" Set from: XResources
 /* rofi.separator-style:                dash */
 ! "Hide scroll-bar *DEPRECATED*" Set from: Default
-! rofi.hide-scrollbar:                 false
+rofi.hide-scrollbar:                 true
 ! "Fullscreen" Set from: Default
 ! rofi.fullscreen:                     false
 ! "Fake transparency *DEPRECATED*" Set from: Default
