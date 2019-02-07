@@ -23,7 +23,7 @@ rofi.font:                          Ubuntu Mono 25
 ! "Whether to load and show icons" Set from: Default
 rofi.show-icons:                     true
 ! "Terminal to use" Set from: Default
-rofi.terminal:                       termite
+rofi.terminal:                       kitty
 
 ! "Ssh client to use" Set from: Default
 rofi.ssh-client:                     ssh

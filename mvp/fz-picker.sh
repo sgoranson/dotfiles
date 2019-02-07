@@ -1,0 +1,4 @@
+#!env zsh
+
+
+yad --color

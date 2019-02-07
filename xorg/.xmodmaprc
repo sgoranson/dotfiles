@@ -23,5 +23,7 @@ keycode 135 = Super_R NoSymbol Super_R
 ! keysym h = h H Left
 ! keysym l = l L Right
 ! keysym k = k K Up
-! keysym j = j J Down
+!| keysym j = j J Down
+keysym Tab = Tab Find
+
 

@@ -22,6 +22,7 @@
     files = !sh -c 'git diff --name-status $1^ $1' -
     ls = ls-files --error-unmatch
     amnd = commit -a --amend
+	clo = clone --recursive
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
@@ -76,3 +77,5 @@
     trustExitCode = true
 [github]
 	user = sgoranson
+[submodule]
+	recurse = true

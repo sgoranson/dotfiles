@@ -108,7 +108,8 @@ nmap     <silent> K  ciW
 " nmap     <silent> ^  viW
 nmap     <silent> S  :w<CR>
 nmap     <silent> X  :bd<CR>
-nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
+" nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
+nnoremap <silent> Q :Bclose<CR>
 
 nnoremap <silent> <C-w><C-v> :<C-u>vsplit<CR>:wincmd w<CR>
 " nnoremap <silent> <leader>wo  :<C-u>only<CR>
@@ -414,6 +415,8 @@ cmap <C-K> <S-Right>
 cmap <C-L> <Right>
 cmap <C-p> <Up>
 cmap <C-n> <Down>
+cnoremap <C-f> <C-n>
+cnoremap <C-b> <C-p>
 " # }}}
 
 "  Denite  {{{1

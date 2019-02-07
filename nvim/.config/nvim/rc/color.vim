@@ -19,17 +19,34 @@ let g:terminal_color_15 = '#ebdbb2'
 
 
 let g:terminal_ansi_colors = [ '#282828', '#cc241d', '#98971a', '#d79921', '#458588', '#b16286', '#689d6a', '#a89984', '#928374', '#fb4934', '#b8bb26', '#fabd2f', '#83a598', '#d3869b', '#8ec07c', '#ebdbb2' ]
-colorscheme onedark
-set termguicolors
-" set nocursorline
-"colorscheme spg-gruvbox
-let g:gruvbox_contrast_dark = 'hard'
 
-"colorscheme one
-let color_favs = [ 'spg-gruvbox', 'base16-atelier-forest', 'one', 'base16-onedark' ]
-hi! Normal guibg=NONE
-" guifg=#282C34 guibg=#61AFEF
-hi Visual guifg=#282C34 guibg=#61AFEF
+set termguicolors
+
+if 1 == 1
+    colorscheme onedark
+    " set nocursorline
+    "colorscheme spg-gruvbox
+    let g:gruvbox_contrast_dark = 'hard'
+
+    "colorscheme one
+    let color_favs = [ 'spg-gruvbox', 'base16-atelier-forest', 'one', 'base16-onedark' ]
+    hi! Normal guibg=NONE
+    " guifg=#282C34 guibg=#61AFEF
+    hi Visual guifg=#282C34 guibg=#61AFEF
+    hi Search guifg=#282C34 guibg=#8ec07c
+else
+    colorscheme dracula
+    hi! Normal guibg=NONE
+endif
+
+
+
+
+
+
+
+
+
 
 " let g:lightline#colorscheme#material#palette.inactive = {
 "             \ 'right': [ ['#314549', '#263238', 59, 23], ['#314549', '#263238', 59, 23] ],

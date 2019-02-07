@@ -1,68 +1,49 @@
 #!env zsh
 
-# Check if zplug is installed
-if [[ ! -f ~/.zplug/init.zsh ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-fi
 
-# Essential
-source ~/.zplug/init.zsh
+source "$ZDOTDIR/antigen.zsh"
 
 
-zplug "modules/helper", from:prezto
-zplug "modules/editor", from:prezto
-zplug "modules/git", from:prezto
-zplug "modules/spectrum", from:prezto
-zplug "modules/completion", from:prezto
-zplug "modules/autosuggestions", from:prezto
-zplug "modules/history-substring-search", from:prezto
-# zplug "modules/tmux", from:prezto
-zplug "modules/archive", from:prezto
+antigen use oh-my-zsh
 
-zplug "lib/clipboard", from:oh-my-zsh
-zplug "lib/spectrum", from:oh-my-zsh
-zplug "plugins/tmux", from:oh-my-zsh
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+antigen bundle git
+antigen bundle spectrum
+antigen bundle extract
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-history-substring-search
 
 
-zstyle ':prezto:module:autosuggestions:color' found 'fg=242'
+
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
-# zstyle ':prezto:module:tmux:auto-start' local 'yes'
-export ZSH_TMUX_AUTOSTART=true
-# zstyle ':prezto:module:tmux:session' name 'sexytime'
+
+antigen apply
 
 
-# Then, source plugins and add commands to $PATH
-zplug load
+
 
 # ZOPTIONS {{{
 HISTSIZE=99999999
 SAVEHIST=99999999
 
-if [ -z $HISTFILE ]; then
-    HISTFILE=$XDG_CACHE_HOME/.zsh_history
-fi
+export HISTFILE=$XDG_CACHE_HOME/.zsh_history
 
 autoload -U colors
 colors
 zmodload zsh/zpty
 
-
 ## History command configuration
-setopt EXTENDED_HISTORY       # record timestamp of command in HISTFILE
-setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
-setopt HIST_IGNORE_SPACE      # ignore commands that start with space
-setopt NO_HIST_VERIFY            # show command with history expansion to user before running it
-setopt INC_APPEND_HISTORY     # add commands to HISTFILE in order of execution
-setopt SHARE_HISTORY          # share command history data
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt inc_append_history     # add commands to HISTFILE in order of execution
+setopt share_history          # share command history data
 
+
+
+setopt autocontinue         # disowned shit will continue 
 
 
 setopt globdots
@@ -106,7 +87,14 @@ autoload -U promptinit && promptinit
 
 
 eval "$(fasd --init auto)"
-eval "$(dircolors "$HOME"/.dircolors)"
+# eval "$(cat "$ZDOTDIR/vividrc")"
+#
+if command -v vivid &>/dev/null; then
+    export LS_COLORS="$(vivid generate ayu)"
+else
+    eval "$(dircolors "$HOME"/.dircolors)"
+fi
+
 if command -v rbenv &>/dev/null; then
     eval "$(rbenv init -)"
     source $HOME/.rbenv/completions/rbenv.zsh
@@ -153,6 +141,12 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 
+
+
+
+
+# antigen apply
+
   # 'environment' \
   # 'terminal' \
   # 'editor' \
@@ -174,7 +168,7 @@ source $ZDOTDIR/prompt.zsh
 # source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 source $ZDOTDIR/keys.zsh
 source $ZDOTDIR/clipboard.zsh
-# source $ZDOTDIR/completion.zsh
+source $ZDOTDIR/completion.zsh
 # source $ZDOTDIR/i3_completion.sh
 #source $ZDOTDIR/zsh-better-npm-completion.plugin.zsh
 source $ZDOTDIR/aliases.zsh
@@ -201,7 +195,7 @@ if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
 fi
 chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-  ls
+  ls --color=auto
 }
 
 
@@ -293,4 +287,9 @@ cat ~/bin/ansi/cat.txt
 # }}}
 
 prompt simpl
+
+# Autostart if not already in tmux and enabled.
+# if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+#     tmux new-session
+# fi
 # vim:fdm=marker:

@@ -72,10 +72,10 @@ bindsym $mody+Shift+b [class="^.*"] border normal 0
 # KEYS - WINDOW FOCUS {{{
 
 # start a terminal
-bindsym $modx+Return  exec --no-startup-id termite
+bindsym $modx+Return  exec --no-startup-id kitty
 bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45% -w 80% kitty
-bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  termite
-# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  termite; focus mode_toggle
+bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
+# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  kitty; focus mode_toggle
 # bindsym $modx+Shift+Return exec i3-quickterm shell
 # bindsym F1 exec i3-quickterm shell
 
@@ -97,10 +97,15 @@ bindsym $modx+Shift+f workspace next
 bindsym $modx+Control+a workspace prev
 bindsym $modx+Control+f workspace next
 
-bindsym $modx+Control+Shift+f floating toggle
+bindsym $mody+f floating toggle
+bindsym $mody+Shift+f focus mode_toggle
+
 bindsym $modx+Control+r exec i3-input -F 'jename workspace to "%s"' -P 'New name: '
 bindsym $modx+r exec --no-startup-id rofi  -show run
 bindsym $mody+r exec --no-startup-id rofi  -show run
+
+bindsym $mody+t exec tdrop current
+
 
 # move the currently focused window to the scratchpad
 bindsym $mody+Shift+z move scratchpad
@@ -220,7 +225,6 @@ bindsym $modx+Shift+l  move right
 # focus the parent container
 
 bindsym $mody+p focus parent
-bindsym $modx+p exec --no-startup-id  rofi  -width 90% -dpi 160 -show window   
 
 # focus the child container
 # bindsym $modx+x focus child
@@ -233,8 +237,6 @@ bindsym $modx+v split v
 
 # bindsym $modx+o open
 
-# toggle tiling / floating
-bindsym $modx+space focus mode_toggle
 
 # enter fullscreen (maximize) mode for the focused container
 bindsym $modx+m fullscreen toggle
@@ -335,9 +337,9 @@ bindsym $mody+m mode "marks"
 # shortcuts
 mode "jumpers" {
 
-        bindsym h exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'web-hist'"; mode "default"
-        bindsym b exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'web-bookmarks.rb'"; mode "default"
-        bindsym k exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'fzf-kill'"; mode "default"
+        bindsym h exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'web-hist'"; mode "default"
+        bindsym b exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'web-bookmarks.rb'"; mode "default"
+        bindsym k exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'fzf-kill'"; mode "default"
 
         # Exit to the default mode
         bindsym Return mode "default"
@@ -385,16 +387,17 @@ bindsym --whole-window Mod3+Shift+button3 floating toggle
 # assign [class="(?i)(?:spotify)"]  → $ws7
 
 for_window [class="(?i)(?:gpick)"] floating enable
+for_window [class="(?i)(?:yad)"] floating enable
 for_window [class="(?i)(?:nitrogen)"] floating enable
 for_window [class="(?i)(?:doc-browser)"] floating enable
 # for_window [class="mpv"] floating enable
-# for_window [class="FLOATMITE"] floating enable
+for_window [class="FLOATMITE"] floating enable
 # for_window [class="FLOATMITE"] resize set 2000 1400
 assign [class="FLOATMITE"] → output primary
 
-bindsym $mody+F9 exec --no-startup-id termite --class=FLOATMITE -e "web-hist"
-bindsym $mody+F10 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'web-bookmarks.rb'"
-bindsym $mody+F11 exec --no-startup-id termite --class=FLOATMITE -e "zsh -c 'fzf-kill'"
+bindsym $mody+F9 exec --no-startup-id kitty --class=FLOATMITE -e "web-hist"
+bindsym $mody+F10 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'web-bookmarks.rb'"
+bindsym $mody+F11 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'fzf-kill'"
 bindsym $mody+F12 exec --no-startup-id rofi-dofi.sh
 
 exec_always --no-startup-id ~/bin/polybarz
@@ -406,7 +409,7 @@ exec_always --no-startup-id greenclip daemon
 exec --no-startup-id telegram-desktop
 # exec --no-startup-id spotify
 # exec --no-startup-id google-chrome-stable
-# exec --no-startup-id termite
+# exec --no-startup-id kitty
 exec --no-startup-id dunst
 
 exec --no-startup-id nitrogen --restore
@@ -418,6 +421,20 @@ exec --no-startup-id dropbox
 exec --no-startup-id alttabhax
 
 # }}}
+bar {
+        status_command i3blocks
+        tray_output primary
+      font pango:xos4 Consolas NF 11
+    colors {
+        statusline  #dddddd
+        separator   #666666
+        # class             border  backgr. text
+        focused_workspace   #2b83a6 #2b83a6 #ffffff
+        active_workspace    #212121 #212121 #ffffff
+        inactive_workspace  #212121 #212121 #86888c
+        urgent_workspace    #d64e4e #d64e4e #ffffff
+    }
+}
 
 # start i3bar to display a workspace bar
 # bar {

@@ -92,3 +92,26 @@ syn on
 runtime rc/options.vim
 runtime rc/keys.vim
 runtime rc/color.vim
+
+
+
+augroup MyVimrc
+    autocmd!
+augroup END
+
+" remember position
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" fix dein syntax hilight
+autocmd MyVimrc BufNewFile,BufRead dein*.toml call s:syntax_range_dein()
+
+function! s:syntax_range_dein() abort
+  let start = '^\s*hook_\%('.
+  \           'add\|source\|post_source\|post_update'.
+  \           '\)\s*=\s*%s'
+
+  call SyntaxRange#Include(printf(start, "'''"), "'''", 'vim', '')
+  call SyntaxRange#Include(printf(start, '"""'), '"""', 'vim', '')
+endfunction
+
+

@@ -77,7 +77,7 @@ function is42 () {
 
     # define files to ignore for zcompile
     zstyle ':completion:*:*:zcompile:*'    ignored-patterns '(*~|*.zwc)'
-    zstyle ':completion:correct:'          prompt 'correct to: %e'
+    # zstyle ':completion:correct:'          prompt 'correct to: %e'
 
     # Ignore completion functions for commands you don't have:
     zstyle ':completion::(^approximate*):*:functions' ignored-patterns '_*'
@@ -86,9 +86,9 @@ function is42 () {
     zstyle ':completion:*:processes-names' command 'ps c -u ${USER} -o command | uniq'
 
     # complete manual by their section
-    zstyle ':completion:*:manuals'    separate-sections true
-    zstyle ':completion:*:manuals.*'  insert-sections   true
-    zstyle ':completion:*:man:*'      menu yes select
+    # zstyle ':completion:*:manuals'    separate-sections true
+    # zstyle ':completion:*:manuals.*'  insert-sections   true
+    # zstyle ':completion:*:man:*'      menu yes select
 
     # Search path for sudo completion
     zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \
@@ -155,7 +155,7 @@ function is42 () {
     # with commands that provide a --help option with "standard" gnu-like output.)
     for compcom in cp deborphan df feh fetchipac gpasswd head hnb ipacsum mv \
                    pal stow uname fzf pandoc zenity; do
-        [[ -z ${_comps[$compcom]} ]] && compdef _gnu_generic ${compcom}
+        compdef _gnu_generic ${compcom}
     done; unset compcom
 
     # see upgrade function in this file

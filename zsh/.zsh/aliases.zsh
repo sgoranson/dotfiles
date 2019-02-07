@@ -30,10 +30,11 @@ alias pb=pastebin
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 
-#alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
-alias ls="colorls --almost-all --group-directories-first"
-# alias ll="ls -lhAtr --file-type --color=auto"
-alias ll="colorls -lAtr --group-directories-first"
+alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
+ alias ll="ls -lhAtr --file-type --color=auto"
+# alias ls="colorls --almost-all"
+# alias lsg="colorls --almost-all --group-directories-first"
+# alias ll="colorls -lAtr"
 alias pu="pushd"
 alias po="popd"
 # alias ff="\rg --color=auto --hidden --files"
@@ -48,6 +49,7 @@ alias crontab="VIM_CRONTAB=true crontab"
 alias cp="cp -i"
 alias rm="rm -i"
 alias mv="mv -i"
+alias ln="ln -i --backup=numbered"
 alias tmux="TERM=xterm-256color \tmux"
 alias vim=nvim
 alias grep='grep --color=auto'
@@ -75,8 +77,11 @@ alias a4="awk '{ print \$4}'"
 alias a5="awk '{ print \$5}'"
 
 alias -g G=' | grep -i'
+alias -g F=' | fzf'
 alias -g H=' | head'
-alias -g Hl=' --help |& less -r'
+# alias -g Hl=' --help |& less -r'
+alias -g GH='--help |& less'
+# alias -g GH='--help |& less +/'
 alias -g C=' | xclip -r -selection clipboard -i'
 
 alias PI="pip install --user --upgrade"

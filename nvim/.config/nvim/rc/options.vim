@@ -42,7 +42,7 @@ set linebreak                         " Wrap lines at convenient points
 set laststatus=2                      " always show statusline
 set list                              " enable showing the chars above
 set guioptions=egrLtmc
-set showtabline=1
+set showtabline=2
 " set guifont=Consolas_for_Powerline_FixedD:h12:cANSI:qDRAFT
 " set tabline=%!Tabline()
 let &showbreak = '+++ '
@@ -143,14 +143,14 @@ set gdefault                         " s///g implied
 set noautoread                        " dont silently reload files changed outside vim
 set backspace=indent,eol,start        " Allow backspace in insert mode
 set complete=.,w,b,u,t
-set completeopt=longest,menuone
+set completeopt=longest,menuone,preview
 set expandtab
 set fileencoding=utf-8                " The encoding written to file.
 
 set viewoptions-=options              " when we save a view dont save options
 set hidden                            " buffers can exist sans window
 set history=10000                     " Store lots of :cmdline history
-set ignorecase                        " Ignore case when searching...
+set noignorecase                        " Ignore case when searching...
 set smartcase                         " ...unless we type a capital
 " set iskeyword+=_,$,@,%,-
 
@@ -186,11 +186,11 @@ set wildignore=*.o,*.obj,*~           "stuff to ignore when tab completing
 set nowildignorecase
 set wildmenu                          "enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest            " shows a list
-"set wildmode=longest:full             " shows a menu
+" set wildmode=longest:full,full
 " setglobal fileencoding=utf-8          " The encoding written to file.
 " set fileformat=unix                     " attempt to always use <NL>
 " set fileformats=unix
 
 set nospell
-
+let g:ft_man_folding_enable=1
 " # }}}
