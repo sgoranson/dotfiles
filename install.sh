@@ -1,11 +1,21 @@
+#!/usr/bin/bash 
+
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo $DIR
+exit
+
 mkdir -p "$HOME/.local/share/steve"
 
 mkdir -p  "$HOME/.cache/dein/repos/github.com/"
 
-ln -i -s -f --backup=numbered "$HOME/.local/share/steve" "$HOME/data"
-ln -i -s -f --backup=numbered "$HOME/dotfiles" "$HOME/dot"
-ln -i -s -f --backup=numbered "$HOME/.config" "$HOME/cfg"
+ln -i -s --no-target-directory  "$HOME/.local/share/steve" "$HOME/data"
+ln -i -s --no-target-directory  "$HOME/dotfiles" "$HOME/dot"
+ln -i -s --no-target-directory  "$HOME/.config" "$HOME/cfg"
 
-ln -i -s -f --backup=numbered "$HOME/.cache/dein/repos/github.com/" "$HOME/plugs"
+ln -i -s --no-target-directory  "$HOME/.cache/dein/repos/github.com/" "$HOME/plugs"
 
+mkdir -p "$HOME/data/nvim/session"
+
+./stow-it.sh 
 

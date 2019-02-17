@@ -11,20 +11,19 @@ clear Mod3
 clear Mod4
 clear Mod5
 clear Control
-add Mod4 = Control_R
-add Mod4 = Super_R
+
 add Control = Control_L
 
 add Mod1 = Alt_R
-!add Mod1 = Mode_switch
-add Mod3 = Alt_L
+add Mod3 = Control_R
+add Mod4 = Super_R
 
 
 ! <space> <108> <135>
-keycode 108 = Super_R NoSymbol Super_R
+! keycode 108 = Super_R NoSymbol Super_R
 
 
-keycode 135 = Alt_R NoSymbol Alt_R
+! keycode 135 = Alt_R NoSymbol Alt_R
 !keycode 151 = Mode_switch NoSymbol Mode_switch
 
 ! keysym h = h H Left

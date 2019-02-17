@@ -1,0 +1,45 @@
+hook_add = '''
+
+" remember position
+autocmd MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+
+" Update filetype.
+autocmd MyAutoCmd BufWritePost * nested
+\ if &l:filetype ==# '' || exists('b:ftdetect')
+\ |   unlet! b:ftdetect
+\ |   filetype detect
+\ | endif
+
+" Reload .vimrc automatically.
+autocmd MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | redraw
+
+" Auto reload VimScript.
+autocmd MyAutoCmd BufWritePost,FileWritePost *.vim nested
+\ if &l:autoread > 0 | source <afile> |
+\   echo 'source ' . bufname('%') |
+\ endif
+'''
+
+[ftplugin]
+
+vim = '''
+if line('$') > 1000
+  syntax sync minlines=200
+endif
+
+setlocal foldmethod=indent
+setlocal shiftwidth=2 softtabstop=2
+setlocal iskeyword+=:,#
+'''
+
+qfreplace = 'setlocal nofoldenable'
+
+toml = 'syntax sync minlines=500'
+
+help = '''
+setlocal iskeyword+=:
+setlocal iskeyword+=#
+setlocal iskeyword+=-
+'''
+

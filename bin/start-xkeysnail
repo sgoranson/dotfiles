@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+
+sudo killall -q xkeysnail
+while pgrep -x xkeysnail >/dev/null; do sleep 1; done
+
+{ sudo xkeysnail  ~/.config/xkeysnail/config.py & } >/tmp/xkeysnail.log
+
+sleep 5 
+sudo xmodmap ~/.xmodmaprc
+ while !  xmodmap -pm | grep -Pq 'mod3\s+Control_R'; do 
+    sudo xmodmap ~/.xmodmaprc
+    sleep 1
+ done
+
+xset r rate 200 30

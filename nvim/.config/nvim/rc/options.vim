@@ -43,6 +43,7 @@ set laststatus=2                      " always show statusline
 set list                              " enable showing the chars above
 set guioptions=egrLtmc
 set showtabline=2
+set guifont=Consolas\ NF:style=Book:h12
 " set guifont=Consolas_for_Powerline_FixedD:h12:cANSI:qDRAFT
 " set tabline=%!Tabline()
 let &showbreak = '+++ '
@@ -150,7 +151,7 @@ set fileencoding=utf-8                " The encoding written to file.
 set viewoptions-=options              " when we save a view dont save options
 set hidden                            " buffers can exist sans window
 set history=10000                     " Store lots of :cmdline history
-set noignorecase                        " Ignore case when searching...
+set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...unless we type a capital
 " set iskeyword+=_,$,@,%,-
 
@@ -160,11 +161,9 @@ set noswapfile
 set undofile
 set backupdir-=.
 set directory-=.                      " plz stop leaving swp files errywhere
-set backupdir-=.
 set undodir-=.
 set nopaste
 set nostartofline                     " scroll w/ switching to sol
-set swapfile
 set nocindent
 set autoindent
 set smartindent

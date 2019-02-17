@@ -6,61 +6,17 @@ scriptencoding utf-8
 let g:mapleader = '\'
 let g:maplocalleader = '\'
 
-"  F keys (level 0) {{{1
-"  Ergo comfort:    80% (bit of a reach)
-"  Ergo speed:      100% (single keystroke)
-"  Available slots: ~12 (use sparingly)
-nnoremap <F1> :vertical resize +5<cr>
-nnoremap <F2> :vertical resize -5<cr>
 
-
-noremap! <F2> <C-R>"
-
-
-" # }}}
-
-"  Ctrl + [A-Z] (Level 1) {{{1
-"  Ergo comfort:    100% (never leaves home)
-"  Ergo speed:      90% (single+mod keystroke)
-"  Available slots: ~50 (use sparingly)
-" nmap <C-o>   <Plug>EnhancedJumpsLocalOlder zz
-" nmap <C-i>   <Plug>EnhancedJumpsLocalNewer zz
-" <C-S-o>
-" nmap <F17>   <Plug>EnhancedJumpsRemoteOlder
-" <C-S-i>
-" nmap <F16>   <Plug>EnhancedJumpsRemoteNewer
-"nmap <C-x>   :bd<CR>
-
-" nmap <c-h> :exe 'normal ' . (virtcol('$')/2) . '|'
-
-
-
-
-
-" noremap <MiddleMouse> <LeftMouse><MiddleMouse>
-
-" noremap <LeftRelease> <LeftRelease>y
-
+map ' `
+nnoremap <silent> <Esc>     :<C-u>:nohlsearch<CR><Esc>
 
 map  <C-h>  <Plug>(easymotion-bl)
 map  <C-l>  <Plug>(easymotion-wl)
 
-" map <RightMouse> "+P
-" fold open
-" noremap <2-LeftMouse> zA
 noremap <RightMouse> "0p
 
 map  <C-j> <Plug>(easymotion-W)
 map  <C-k> <Plug>(easymotion-B)
-
-" if has('macunix')
-"     map  <Down> <Plug>(easymotion-sol-j)
-"     map  <Up>   <Plug>(easymotion-sol-k)
-" else
-"     map  <C-j> <Plug>(easymotion-sol-j)
-"     map  <C-k> <Plug>(easymotion-sol-k)
-" endif
-
 
 noremap <C-u> 2<C-u>
 noremap <C-d> 2<C-d>
@@ -70,15 +26,13 @@ vnoremap s :s//cg<Left><left><left>
 
 nnoremap ( [(
 nnoremap ) ])
-" <C-9>
 
 " easy macro usage
 vnoremap <C-q>     :<C-U>'<,'>g/./ norm @q<CR>
 nnoremap <C-q>     @q
 
 nnoremap <silent> #         <C-^>
-nnoremap <silent> <S-space> i<Space><Esc>
-nnoremap <silent> <Esc>     :<C-u>:nohlsearch<CR><Esc>
+nnoremap <silent> <M-Space> i<Space><Esc>
 " vnoremap <silent> <Space>   I<Space><Esc>gv
 nnoremap <silent> <CR>      za
 

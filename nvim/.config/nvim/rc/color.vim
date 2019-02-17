@@ -22,7 +22,7 @@ let g:terminal_ansi_colors = [ '#282828', '#cc241d', '#98971a', '#d79921', '#458
 
 set termguicolors
 
-if 1 == 1
+if 1 == 0
     colorscheme onedark
     " set nocursorline
     "colorscheme spg-gruvbox
@@ -34,9 +34,11 @@ if 1 == 1
     " guifg=#282C34 guibg=#61AFEF
     hi Visual guifg=#282C34 guibg=#61AFEF
     hi Search guifg=#282C34 guibg=#8ec07c
-else
+elseif 1 == 2
     colorscheme dracula
     hi! Normal guibg=NONE
+else
+    colorscheme PaperColor
 endif
 
 

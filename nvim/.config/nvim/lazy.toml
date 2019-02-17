@@ -1,4 +1,91 @@
+[[plugins]]
+repo = 'lambdalisue/vim-gista'
+on_cmd = 'Gista'
 
+[[plugins]]
+repo = 'lambdalisue/vim-gista-unite'
+depends = 'vim-gista'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+
+[[plugins]]
+repo = 'honza/vim-snippets'
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+depends = ['context_filetype.vim']
+on_event = 'InsertCharPre'
+hook_source = '''
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-s>"
+let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+
+  function! UltiSnipsCallUnite()
+    Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
+    return ''
+  endfunction
+
+  inoremap <silent> <F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+  nnoremap <silent> <F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-zsh'
+on_ft = ['zsh', 'sh']
+
+
+[[plugins]]
+repo = 'shougo/deoplete.nvim'
+depends = 'context_filetype.vim'
+on_event = 'InsertEnter'
+hook_source = '''
+    let g:deoplete#enable_at_startup = 1
+    call deoplete#custom#source('ultisnips', 'rank', 1000)
+    " ditch fuzzy mwatching
+    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+
+    " call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
+    call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
+    call deoplete#custom#source('clang', 'max_pattern_length', -1)
+
+
+    let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
+    let g:deoplete#sources#ternjs#types = 1
+    let g:deoplete#sources#ternjs#docs = 1
+
+"   let g:deoplete#keyword_patterns = {}
+"   let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
+"   let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
+"
+"   let g:deoplete#omni#input_patterns = {}
+"   let g:deoplete#omni#input_patterns.python = ''
+"
+"
+"   let g:deoplete#omni#functions = {}
+"
+"   let g:deoplete#omni#functions.javascript = [ 'tern#Complete', 'jspc#omni' ]
+"
+"   let g:tern#command = ["/usr/bin/tern"]
+"   let g:tern#arguments = ["--persistent"]
+"
+"
+"   let g:deoplete#sources#jedi#enable_typeinfo = 0
+"   let g:deoplete#sources#jedi#show_docstring = 1
+"
+"   " inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
+"
+"   "let g:deoplete#enable_refresh_always = 0
+"   let g:deoplete#enable_camel_case = 0
+"   " let g:deoplete#auto_complete_delay = 50
+    " let g:deoplete#auto_complete_start_length = 3
+    call deoplete#enable()
+'''
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
 on_event = 'CompleteDone'
@@ -217,8 +304,12 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
 
     call s:profile(s:denite_options)
 
-  nnoremap <silent> <space>/ :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-  nnoremap <silent> * :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
+  nnoremap <silent> <space>/      :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
+  nnoremap <silent> *           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
+  nnoremap <silent> ;;          :<C-u>Denite command command_history<CR>
+
+  nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register register neoyank<CR>
+  xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register register neoyank<CR>
 
 '''
 
@@ -264,9 +355,20 @@ on_source = 'denite.nvim'
 repo =  'neoclide/vim-easygit'
 on_source = 'denite.nvim'
 
+# [[plugins]]
+# repo =  'neoclide/denite-extra'
+# on_source = 'denite.nvim'
+# on_cmd = 'SessionLoad'
+# hook_source = '''
+# let g:denite_source_session_path=expand("~/data/nvim/session")    
+# '''
+
 [[plugins]]
-repo =  'neoclide/denite-extra'
+repo =  'rafi/vim-denite-session'
 on_source = 'denite.nvim'
+hook_source = '''
+let g:session_directory=expand("~/data/nvim/session")    
+'''
 
 [[plugins]]
 repo =  'Shougo/unite-outline'
@@ -278,9 +380,47 @@ repo =  'Shougo/unite.vim'
 on_source = 'denite.nvim'
 hook_source = '''
 
+		let g:unite_source_menu_menus = {}
+		let g:unite_source_menu_menus.test = {
+		      \     'description' : 'Test menu',
+		      \ }
+		let g:unite_source_menu_menus.test.candidates = {
+		      \   'ghci'      : 'VimShellInteractive ghci',
+		      \ }
+		function g:unite_source_menu_menus.test.map(key, value)
+		  return {
+		      \       'word' : a:key, 'kind' : 'command',
+		      \       'action__command' : a:value,
+		      \     }
+		endfunction
+
+		let g:unite_source_menu_menus.test2 = {
+		      \     'description' : 'Test menu2',
+		      \ }
+		let g:unite_source_menu_menus.test2.command_candidates = {
+		      \   'python'    : 'VimShellInteractive python',
+		      \ }
+
+		let g:unite_source_menu_menus.test3 = {
+		      \     'description' : 'Test menu3',
+		      \ }
+		let g:unite_source_menu_menus.test3.command_candidates = [
+		      \   ['ruby', 'VimShellInteractive ruby'],
+		      \   ['python', 'VimShellInteractive python'],
+		      \ ]
+
+		let g:unite_source_menu_menus.zsh = {
+		      \     'description' : 'zsh files',
+		      \ }
+		let g:unite_source_menu_menus.zsh.file_candidates = [
+		      \       ['zshenv'    , '~/.zshenv'],
+		      \       ['zshrc'     , '~/.zshrc'],
+		      \       ['zplug'     , '~/.zplug'],
+		      \ ]
 
 let g:unite_enable_start_insert=1
-"-prompt-visible -prompt-focus -select=0 -no-auto-resize -prompt=>      
+let g:unite_data_directory=expand("~/data/unite")
+
 "	 Like ctrlp.vim settings.
 	call unite#custom#profile('default', 'context', {
 	\   'start_insert': 1,
@@ -295,12 +435,11 @@ let g:unite_enable_start_insert=1
 	function! s:unite_my_settings()"{{{
 	  " Overwrite settings.
 
-	  "imap <buffer> <Esc>      <Plug>(unite_insert_leave)
+	  imap <buffer> <Esc>      <Plug>(unite_insert_leave)
 	  " Runs "split" action by <C-s>.
 	  imap <silent><buffer><expr> <C-v>     unite#do_action('splitv')
 	  imap <silent><buffer><expr> <C-o>     <Plug>(unite_insert_leave)
 	  imap <silent><buffer><expr> <C-p>     unite#do_action('preview')
-	  imap <silent><buffer><expr> <Esc>     <Plug>(unite_all_exit)
 	  imap <silent><buffer><expr> <C-x>h     <Plug>(unite_quick_help)
 
 	  imap <buffer><expr> j unite#smart_map('j', '')
@@ -309,6 +448,7 @@ let g:unite_enable_start_insert=1
 	  imap <buffer> <c-k>   <Plug>(unite_select_previous_line)
 	  imap <buffer> '     <Plug>(unite_quick_match_default_action)
 	  nmap <buffer> '     <Plug>(unite_quick_match_default_action)
+	  nmap <buffer>  <Esc>     <Plug>(unite_all_exit)
 	  imap <buffer><expr> x
 	          \ unite#smart_map('x', "\<Plug>(unite_quick_match_jump)")
 	  nmap <buffer> x     <Plug>(unite_quick_match_jump)
@@ -353,36 +493,6 @@ repo = 'inkarkat/vim-SyntaxRange'
 [[plugins]]
 repo = 'Shougo/neco-syntax'
 
-
-[[plugins]]
-repo = 'honza/vim-snippets'
-
-[[plugins]]
-repo = 'SirVer/ultisnips'
-hook_add = '''
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-s>"
-let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-
-  function! UltiSnipsCallUnite()
-    Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
-    return ''
-  endfunction
-
-  inoremap <silent> <F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-  nnoremap <silent> <F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-
-'''
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-
-[[plugins]]
-repo = 'zchee/deoplete-zsh'
-on_ft = ['zsh', 'sh']
 
 
 

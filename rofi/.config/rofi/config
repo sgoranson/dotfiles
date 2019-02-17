@@ -149,9 +149,9 @@ rofi.kb-accept-alt:                  Shift+Return
 ! "The display name of this browser" Set from: Default
 ! rofi.display-keys:
 ! "Paste primary selection" Set from: XResources
-rofi.kb-primary-paste:               Control+V,Shift+Insert
+rofi.kb-primary-paste:               Shift+Insert
 ! "Paste clipboard" Set from: XResources
-rofi.kb-secondary-paste:             Control+v,Insert
+rofi.kb-secondary-paste:             Insert
 ! "Clear input line" Set from: XResources
 rofi.kb-clear-line:                  Control+w
 ! "Beginning of line" Set from: XResources

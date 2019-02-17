@@ -1,9 +1,14 @@
 #!/bin/bash
 
 # Capture the current clipboard
-BEFORE="$( xclip -o -selection clipboard )"
 
-rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+# BEFORE="$( xclip -o -selection clipboard )"
+
+# ret=$(rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'  -kb-custom-1 Control+v -kb-custom-2 Control+c)
+
+ret="$(greenclip print | rofi -dmenu -kb-custom-1 Control+v -kb-custom-2 Control+c)"
+
+
 sleep 0.5
 
 # Capture the selection

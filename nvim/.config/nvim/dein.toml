@@ -1,6 +1,18 @@
 [[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+build = './install.sh'
+
+[[plugins]]
 repo = 'tpope/vim-fugitive'                        # git helper
 
+[[plugins]]
+repo = 'xolox/vim-misc'                        # git helper
+
+[[plugins]]
+repo = 'xolox/vim-session'                        # git helper
+hook_add = '''
+let g:session_autoload = 'no' 
+'''
 
 
 [[plugins]]
@@ -13,8 +25,8 @@ repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
 
 [[plugins]]
 repo =  'rbgrouleff/bclose.vim'                # shows marks, m/ shortcuts
-[[plugins]]
 
+[[plugins]]
 repo = 'Shougo/dein.vim' 
 
 [[plugins]]
@@ -42,7 +54,7 @@ hook_add = '''
              \ 'subseparator': { 'left': '', 'right': '' }
              \ }
 
- let g:lightline.colorscheme = 'material'
+ let g:lightline.colorscheme = 'PaperColor'
 
 
  		let g:lightline.tabline = {
@@ -151,57 +163,6 @@ build = 'make'
 
 
 
-
-[[plugins]]
-repo = 'tbodt/deoplete-tabnine'
-build = './install.sh'
-
-
-
-
-[[plugins]]
-repo = 'shougo/deoplete.nvim'
-hook_add = '''
-    let g:deoplete#enable_at_startup = 1
-    call deoplete#custom#source('ultisnips', 'rank', 1000)
-    " ditch fuzzy mwatching
-    call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-
-    " call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
-    call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
-    call deoplete#custom#source('clang', 'max_pattern_length', -1)
-
-
-    let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-    let g:deoplete#sources#ternjs#types = 1
-    let g:deoplete#sources#ternjs#docs = 1
-
-"   let g:deoplete#keyword_patterns = {}
-"   let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-"   let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
-"
-"   let g:deoplete#omni#input_patterns = {}
-"   let g:deoplete#omni#input_patterns.python = ''
-"
-"
-"   let g:deoplete#omni#functions = {}
-"
-"   let g:deoplete#omni#functions.javascript = [ 'tern#Complete', 'jspc#omni' ]
-"
-"   let g:tern#command = ["/usr/bin/tern"]
-"   let g:tern#arguments = ["--persistent"]
-"
-"
-"   let g:deoplete#sources#jedi#enable_typeinfo = 0
-"   let g:deoplete#sources#jedi#show_docstring = 1
-"
-"   " inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
-"
-"   "let g:deoplete#enable_refresh_always = 0
-"   let g:deoplete#enable_camel_case = 0
-"   " let g:deoplete#auto_complete_delay = 50
-    " let g:deoplete#auto_complete_start_length = 3
-'''
 
 # [[plugins]]
 # repo = 'Shougo/deoplete-lsp'

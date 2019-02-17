@@ -1,4 +1,5 @@
 #!/bin/sh
+stow -R xkeysnail
 stow -R terminfo
 stow -R ranger
 stow -R compton

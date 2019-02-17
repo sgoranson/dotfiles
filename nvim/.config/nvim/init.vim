@@ -9,7 +9,12 @@ else
   let $XDG_CACHE_HOME  = expand($HOME.'/.cache')
 endif
 
+augroup MyAutoCmd
+    autocmd!
+augroup END
+
 "" ʕ◔ϖ◔ʔ disable python2
+let g:session_directory=expand("~/data/nvim/session")    
 let g:loaded_python_provider = 1
 let g:python3_host_prog  = '/usr/bin/python3'
 "let g:python2_host_prog  = 'python2'
@@ -18,6 +23,10 @@ let g:python3_host_prog  = '/usr/bin/python3'
 let s:dein_dir = expand($XDG_CACHE_HOME) . '/dein'
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let $NVIM_PYTHON_LOG_FILE = s:dein_dir . '/nvimpython.log'
+
+let g:dein#enable_notification = 1
+let g:dein#install_log_filename = '~/dein.log'
+
 
 " ʕ◔ϖ◔ʔ Clone dein.vim repository if it's not exits.
 if !isdirectory(s:dein_repo_dir)
@@ -31,7 +40,6 @@ let g:dein#install_process_timeout = 9600
 if dein#load_state(expand(s:dein_dir))
   call dein#begin(expand(s:dein_dir))
 
-  call dein#add('Shougo/dein.vim')
   if exists('g:gonvim_running')
     call dein#add('akiyosi/gonvim-fuzzy')
   endif
@@ -40,8 +48,10 @@ if dein#load_state(expand(s:dein_dir))
   let s:toml_dir  = expand($XDG_CONFIG_HOME) . '/nvim'
   let s:toml_file = s:toml_dir . '/dein.toml'
   let s:toml_lazy_file = s:toml_dir . '/lazy.toml'
+  let s:toml_ft_file = s:toml_dir . '/ft.toml'
   call dein#load_toml(s:toml_file, {'lazy': 0})
   call dein#load_toml(s:toml_lazy_file, {'lazy': 1})
+  call dein#load_toml(s:toml_ft_file)
 
   call dein#end()
   call dein#save_state()
@@ -91,22 +101,9 @@ endif
 filetype plugin indent on
 syn on
 
-runtime rc/options.vim
-runtime rc/keys.vim
-runtime rc/color.vim
-runtime rc/functions.vim
-
-
-
-augroup MyVimrc
-    autocmd!
-augroup END
-
-" remember position
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " fix dein syntax hilight
-autocmd MyVimrc BufNewFile,BufRead dein*.toml call s:syntax_range_dein()
+autocmd MyAutoCmd BufNewFile,BufRead *.toml call s:syntax_range_dein()
 
 function! s:syntax_range_dein() abort
   let start = '^\s*hook_\%('.
@@ -117,4 +114,10 @@ function! s:syntax_range_dein() abort
   call SyntaxRange#Include(printf(start, '"""'), '"""', 'vim', '')
 endfunction
 
+
+
+runtime rc/options.vim
+runtime rc/keys.vim
+runtime rc/color.vim
+runtime rc/functions.vim
 
