@@ -45,7 +45,7 @@ def _get_options(args):
             help="Display with horizontal orientation."),
         ]
 
-    parser = OptionParser(version=__version__, option_list=option_list)
+    parser = OptionParser(option_list=option_list)
 
     convert_option_list = [
         make_option("-r", "--256to88", action="store", dest="reduce",

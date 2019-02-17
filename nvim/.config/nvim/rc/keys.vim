@@ -16,9 +16,6 @@ nnoremap <F2> :vertical resize -5<cr>
 
 noremap! <F2> <C-R>"
 
-noremap  <F3> "zy
-noremap  <F4> "zp
-noremap! <F4> <C-R>z
 
 " # }}}
 
@@ -40,9 +37,9 @@ noremap! <F4> <C-R>z
 
 
 
-	" noremap <MiddleMouse> <LeftMouse><MiddleMouse>
+" noremap <MiddleMouse> <LeftMouse><MiddleMouse>
 
-	" noremap <LeftRelease> <LeftRelease>y
+" noremap <LeftRelease> <LeftRelease>y
 
 
 map  <C-h>  <Plug>(easymotion-bl)
@@ -54,7 +51,7 @@ map  <C-l>  <Plug>(easymotion-wl)
 noremap <RightMouse> "0p
 
 map  <C-j> <Plug>(easymotion-W)
-map  <C-k> <Plug>(easymotion-sol-k)
+map  <C-k> <Plug>(easymotion-B)
 
 " if has('macunix')
 "     map  <Down> <Plug>(easymotion-sol-j)
@@ -68,21 +65,12 @@ map  <C-k> <Plug>(easymotion-sol-k)
 noremap <C-u> 2<C-u>
 noremap <C-d> 2<C-d>
 
-nnoremap <S-Insert> "+p
-inoremap <S-Insert> <C-R>+
 
 vnoremap s :s//cg<Left><left><left>
 
 nnoremap ( [(
 nnoremap ) ])
 " <C-9>
-nnoremap <F18>  ?{<CR>:nohlsearch<CR>
-" <C-0>
-nnoremap <F19>  /{<CR>:nohlsearch<CR>
-" <C-S-9>
-nnoremap <F20>  ?{<CR>:nohlsearch<CR>
-" <C-S-0>
-nnoremap <F21>  /{<CR>:nohlsearch<CR>
 
 " easy macro usage
 vnoremap <C-q>     :<C-U>'<,'>g/./ norm @q<CR>
@@ -95,8 +83,16 @@ nnoremap <silent> <Esc>     :<C-u>:nohlsearch<CR><Esc>
 nnoremap <silent> <CR>      za
 
 autocmd FileType qf unmap <CR>
+autocmd FileType Help <silent> map q :close<CR>
+"nnoremap Q :Bclose<CR>
+nnoremap <silent><expr>  Q &ft != 'help' ? ':Bclose<CR>' : ':close<CR>'
+" nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
 " noremap  <silent> H  ^
 " noremap  <silent> L  $
+nnoremap vv viW
+nnoremap vq vi'
+
+
 map  H  <Plug>(easymotion-bl)
 map  L  <Plug>(easymotion-wl)
 
@@ -107,13 +103,11 @@ nmap     <silent> K  ciW
 " nmap     <silent> Q  cib
 " nmap     <silent> ^  viW
 nmap     <silent> S  :w<CR>
-nmap     <silent> X  :bd<CR>
-" nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
-nnoremap <silent> Q :Bclose<CR>
-
 nnoremap <silent> <C-w><C-v> :<C-u>vsplit<CR>:wincmd w<CR>
+nnoremap <silent> <C-w>v :<C-u>vsplit<CR>:wincmd w<CR>
 " nnoremap <silent> <leader>wo  :<C-u>only<CR>
 " nnoremap <silent> <leader>ww      :wincmd w<CR>
+nnoremap <silent> <leader>w      :set wrap!<CR>
 
 inoremap <C-H> <Left>
 inoremap <C-L> <Right>
@@ -173,7 +167,7 @@ nnoremap <silent>       gi   '.
 "noremap <silent>        gp    o<Esc>p'[=']']o<Esc>
 
 " reselect after paste
-nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
+nnoremap <expr> gv    "`[".getregtype(v:register)[0]."`]"
 nnoremap ,v `[V`]
 nnoremap ,[ `[V`]<
 nnoremap ,] `[V`]>
@@ -305,10 +299,10 @@ xmap <silent><leader>sn <Plug>(neosnippet_expand_target)
 
 
 function! Paste(regname, pasteType, pastecmd)
-  let reg_type = getregtype(a:regname)
-  call setreg(a:regname, getreg(a:regname), a:pasteType)
-  exe 'normal "'.a:regname . a:pastecmd
-  call setreg(a:regname, getreg(a:regname), reg_type)
+    let reg_type = getregtype(a:regname)
+    call setreg(a:regname, getreg(a:regname), a:pasteType)
+    exe 'normal "'.a:regname . a:pastecmd
+    call setreg(a:regname, getreg(a:regname), reg_type)
 endfunction
 
 nmap <Leader>lP :call Paste(v:register, "l", "P")<CR>
@@ -334,8 +328,7 @@ nnoremap  <leader>r      :registers<CR>
 nnoremap <silent><Leader>tq :ThesaurusQueryReplaceCurrentWord<CR>
 
 
-nnoremap <silent><Leader>q :wqa<CR>
-
+"
 nnoremap <silent><Leader>ww :!google-chrome-stable %<CR>
 
 " toggle all/none folds
@@ -481,8 +474,8 @@ inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>" : <SID>check_back_space(
             \ "\<TAB>" : deoplete#manual_complete()
 
 function! s:check_back_space() abort
-  let l:col = col('.') - 1
-  return !l:col || getline('.')[l:col - 1]  =~# '\s'
+    let l:col = col('.') - 1
+    return !l:col || getline('.')[l:col - 1]  =~# '\s'
 endfunction
 
 
@@ -507,32 +500,32 @@ inoremap <silent><expr><C-l>       deoplete#complete_common_string()
 inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
 
 " <C-j>, <C-k>"
- imap <expr><Down>  pumvisible() ? "\<Tab>" : "\<Down>"
- imap <expr><Up>  pumvisible() ? "\<S-Tab>" : "\<Up>"
+imap <expr><Down>  pumvisible() ? "\<Tab>" : "\<Down>"
+imap <expr><Up>  pumvisible() ? "\<S-Tab>" : "\<Up>"
 
 
 
 
 
- inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
- inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
- " <C-h>, <BS>: close popup and delete backword char.
- inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
- inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
- " <CR>: close popup and save indent.
- inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
- function! s:my_cr_function() abort
-   return deoplete#close_popup() . "\<CR>"
- endfunction
-
-
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+    return deoplete#close_popup() . "\<CR>"
+endfunction
 
 
- imap <C-s>  <Plug>(neosnippet_expand_or_jump)
- smap <C-s>  <Plug>(neosnippet_expand_or_jump)
- xmap <C-s>  <Plug>(neosnippet_expand_target)
+
+
+imap <C-s>  <Plug>(neosnippet_expand_or_jump)
+smap <C-s>  <Plug>(neosnippet_expand_or_jump)
+xmap <C-s>  <Plug>(neosnippet_expand_target)
 " # }}}
 
 "  Plumbing  {{{1

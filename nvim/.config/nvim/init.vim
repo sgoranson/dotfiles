@@ -1,4 +1,4 @@
-" ʕ◔ϖ◔ʔ Environment variable
+"3 ʕ◔ϖ◔ʔ Environment variable
 if has("win64")
   let $XDG_CONFIG_HOME = expand($LOCALAPPDATA)
   let $XDG_DATA_HOME = expand($LOCALAPPDATA)
@@ -10,9 +10,9 @@ else
 endif
 
 "" ʕ◔ϖ◔ʔ disable python2
-" let g:loaded_python_provider = 1
-let g:python3_host_prog  = 'python3'
-let g:python2_host_prog  = 'python2'
+let g:loaded_python_provider = 1
+let g:python3_host_prog  = '/usr/bin/python3'
+"let g:python2_host_prog  = 'python2'
 
 " ʕ◔ϖ◔ʔ Define dein repo path
 let s:dein_dir = expand($XDG_CACHE_HOME) . '/dein'
@@ -39,7 +39,9 @@ if dein#load_state(expand(s:dein_dir))
   " ʕ◔ϖ◔ʔ Define dein toml file
   let s:toml_dir  = expand($XDG_CONFIG_HOME) . '/nvim'
   let s:toml_file = s:toml_dir . '/dein.toml'
+  let s:toml_lazy_file = s:toml_dir . '/lazy.toml'
   call dein#load_toml(s:toml_file, {'lazy': 0})
+  call dein#load_toml(s:toml_lazy_file, {'lazy': 1})
 
   call dein#end()
   call dein#save_state()
@@ -92,6 +94,7 @@ syn on
 runtime rc/options.vim
 runtime rc/keys.vim
 runtime rc/color.vim
+runtime rc/functions.vim
 
 
 

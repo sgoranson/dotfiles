@@ -26,7 +26,7 @@ typeset -U path cdpath fpath manpath
 
 
 
-path=("$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/" "$HOME/.pyenv/bin" "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
+path=("$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/"  "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
 path=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bin" "/sbin"  $path )
 
 export PATH

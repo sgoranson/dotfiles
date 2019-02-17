@@ -73,8 +73,8 @@ bindsym $mody+Shift+b [class="^.*"] border normal 0
 
 # start a terminal
 bindsym $modx+Return  exec --no-startup-id kitty
-bindsym Mod4+F5 exec tdrop --wm i3 -a -h 45% -w 80% kitty
-bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
+# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
+bindsym $modx+Shift+Return exec tdrop   -a  -x 10% -y 20%  -h 55% -w 80%  kitty   
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  kitty; focus mode_toggle
 # bindsym $modx+Shift+Return exec i3-quickterm shell
 # bindsym F1 exec i3-quickterm shell
@@ -100,7 +100,7 @@ bindsym $modx+Control+f workspace next
 bindsym $mody+f floating toggle
 bindsym $mody+Shift+f focus mode_toggle
 
-bindsym $modx+Control+r exec i3-input -F 'jename workspace to "%s"' -P 'New name: '
+bindsym $modx+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 bindsym $modx+r exec --no-startup-id rofi  -show run
 bindsym $mody+r exec --no-startup-id rofi  -show run
 
@@ -115,7 +115,7 @@ bindsym $mody+Shift+z move scratchpad
 bindsym $mody+z scratchpad show
 
 
-bindsym $mody+Tab [con_mark=_last] focus
+# bindsym $mody+Tab [con_mark=_last] focus
 
 # reload the configuration file
 bindsym $modx+F1 restart
@@ -213,7 +213,7 @@ bindsym $modx+Shift+0 move container to workspace $ws10
 bindsym $modx+Shift+o move container to workspace next
 bindsym $modx+Shift+i move container to workspace prev
 
-# move focused window
+# move focused windowjjjj
 bindsym $modx+Shift+j  move down
 bindsym $modx+Shift+k  move up
 bindsym $modx+Shift+h  move left
@@ -351,7 +351,7 @@ bindsym $mody+j mode "jumpers"
 
 bindsym $modx+Tab exec --no-startup-id rofi  -show window
 bindsym $mody+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym $mody+v exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mody+v exec --no-startup-id ~/bin/greenclip-paste.sh 
 
 bindsym $mody+Shift+1 mark mark1
 bindsym $mody+Shift+2 mark mark2
@@ -390,6 +390,7 @@ for_window [class="(?i)(?:gpick)"] floating enable
 for_window [class="(?i)(?:yad)"] floating enable
 for_window [class="(?i)(?:nitrogen)"] floating enable
 for_window [class="(?i)(?:doc-browser)"] floating enable
+for_window [title="(?i)(?:Event Tester)"] floating enable
 # for_window [class="mpv"] floating enable
 for_window [class="FLOATMITE"] floating enable
 # for_window [class="FLOATMITE"] resize set 2000 1400
@@ -400,7 +401,7 @@ bindsym $mody+F10 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'web-b
 bindsym $mody+F11 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'fzf-kill'"
 bindsym $mody+F12 exec --no-startup-id rofi-dofi.sh
 
-exec_always --no-startup-id ~/bin/polybarz
+# exec_always --no-startup-id ~/bin/polybarz
 exec_always --no-startup-id ~/bin/fix_xcursor
 exec_always --no-startup-id greenclip daemon
 #exec_always alttab

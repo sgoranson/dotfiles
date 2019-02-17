@@ -95,45 +95,6 @@ else
     eval "$(dircolors "$HOME"/.dircolors)"
 fi
 
-if command -v rbenv &>/dev/null; then
-    eval "$(rbenv init -)"
-    source $HOME/.rbenv/completions/rbenv.zsh
-fi
-# Lazy load rbenv
-# if type rbenv &> /dev/null; then
-#   local RBENV_SHIMS="${RBENV_ROOT:-${HOME}/.rbenv}/shims"
-#   export PATH="${RBENV_SHIMS}:${PATH}"
-#   source $(whence -p rbenv)/../../completions/rbenv.zsh
-#   function rbenv() {
-#     unset -f rbenv > /dev/null 2>&1
-#     eval "$(command rbenv init -)"
-#     rbenv "$@"
-#   }
-# fi
-
-
-# if command -v pyenv &>/dev/null; then
-#     eval "$(pyenv init -)"
-# fi
-
-# Try to find pyenv, if it's not on the path
-export PYENV_ROOT="${PYENV_ROOT:=${HOME}/.pyenv}"
-if ! type pyenv > /dev/null && [ -f "${PYENV_ROOT}/bin/pyenv" ]; then
-    export PATH="${PYENV_ROOT}/bin:${PATH}"
-fi
-
-# Lazy load pyenv
-if type pyenv > /dev/null; then
-    export PATH="${PYENV_ROOT}/bin:${PYENV_ROOT}/shims:${PATH}"
-    function pyenv() {
-        unset -f pyenv
-        eval "$(command pyenv init -)"
-        pyenv $@
-    }
-fi
-
-
-
 
 # nodejs
 export NVM_LAZY_LOAD=true
@@ -163,24 +124,14 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
   # 'prompt'
 
 source $ZDOTDIR/prompt.zsh
-# source $ZDOTDIR/zsh-history-substring-search.zsh
-# source $ZDOTDIR/fzf-fasd.plugin.zsh
-# source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 source $ZDOTDIR/keys.zsh
 source $ZDOTDIR/clipboard.zsh
 source $ZDOTDIR/completion.zsh
 # source $ZDOTDIR/i3_completion.sh
-#source $ZDOTDIR/zsh-better-npm-completion.plugin.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/completion/googler_at
+# source $ZDOTDIR/anyenv.sh
 
-# source $ZDOTDIR/extract.plugin.zsh
-# source $HOME/bin/z.sh
-# source $ZDOTDIR/zsh-autosuggestions.zsh
-# source /home/steve/kewl/github.com/zsh-users/zaw/zaw.zsh
-# source $ZDOTDIR/fzf-marks.plugin.zsh
-# source $ZDOTDIR/plugins/pip.plugin.zsh
-# source $ZDOTDIR/zsh-interactive-cd.plugin.zsh
 
 # }}}
 
@@ -240,9 +191,9 @@ stty -ixon -ixoff
 
 
 
-if [ -f "$HOME/.zshmine" ]; then
-    . "$HOME/.zshmine"
-fi
+# if [ -f "$HOME/.zshmine" ]; then
+#     . "$HOME/.zshmine"
+# fi
 
 if [ "$TERM" = "linux" ]; then
   /bin/echo -e "

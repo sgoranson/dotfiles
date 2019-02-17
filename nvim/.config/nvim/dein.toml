@@ -1,111 +1,135 @@
+[[plugins]]
+repo = 'tpope/vim-fugitive'                        # git helper
+
+
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk jumps
+
+[[plugins]]
+repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
+
+
+
+[[plugins]]
+repo =  'rbgrouleff/bclose.vim'                # shows marks, m/ shortcuts
+[[plugins]]
+
+repo = 'Shougo/dein.vim' 
 
 [[plugins]]
 repo =  'itchyny/lightline.vim'                # shows marks, m/ shortcuts
 hook_add = '''
 
 
-            "\   'filename': '%<%f',
+             "\   'filename': '%<%f',
 
 
-let g:lightline = {
-            \ 'component': {
-            \   'lineinfo': ' %3l:%-2L'
-            \ },
-            \ 'component_function': {
-            \   'filename': 'LightlineFilename',
-            \   'readonly': 'LightlineReadonly',
-            \   'fugitive': 'LightlineFugitive',
-            \   'mygutter': 'MyGitGutter',
-            \   'filetype': 'MyFiletype',
-            \   'fileformat': 'MyFileformat'
-            \ },
-            \ 'separator': { 'left': '', 'right': '' },
-            \ 'subseparator': { 'left': '', 'right': '' }
-            \ }
+ let g:lightline = {
+             \ 'component': {
+             \   'lineinfo': ' %3l:%-2L'
+             \ },
+             \ 'component_function': {
+             \   'gitdir': 'LightlineGitdir',
+             \   'filename': 'LightlineFilename',
+             \   'readonly': 'LightlineReadonly',
+             \   'fugitive': 'LightlineFugitive',
+             \   'mygutter': 'MyGitGutter',
+             \   'filetype': 'MyFiletype',
+             \   'fileformat': 'MyFileformat'
+             \ },
+             \ 'separator': { 'left': '', 'right': '' },
+             \ 'subseparator': { 'left': '', 'right': '' }
+             \ }
 
-let g:lightline.colorscheme = 'material'
-
-
-		let g:lightline.tabline = {
-		    \ 'left': [ [ 'tabs' ] ],
-		    \ 'right': [ [ 'absolutepath' ] ] }
+ let g:lightline.colorscheme = 'material'
 
 
-
-let g:lightline.active = {
-            \ 'left': [ [ 'mode', 'paste' ],
-            \           [ 'fugitive', 'filename'] ],
-            \ 'right': [ [ 'lineinfo' ],
-            \            [ 'percent' ],
-            \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
-
-function! MyGitGutter()
-    if ! exists('*GitGutterGetHunkSummary')
-                \ || ! get(g:, 'gitgutter_enabled', 0)
-                \ || winwidth('.') <= 90
-        return ''
-    endif
-    let symbols = [
-                \ g:gitgutter_sign_added . ' ',
-                \ g:gitgutter_sign_modified . ' ',
-                \ g:gitgutter_sign_removed . ' '
-                \ ]
-    let hunks = GitGutterGetHunkSummary()
-    let ret = []
-    for i in [0, 1, 2]
-        if hunks[i] > 0
-            call add(ret, symbols[i] . hunks[i])
-        endif
-    endfor
-    return join(ret, ' ')
-endfunction
+ 		let g:lightline.tabline = {
+ 		    \ 'left': [ [ 'tabs' ] ],
+ 		    \ 'right': [ [ 'absolutepath' ] ] }
 
 
-function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
 
-function! MyFileformat()
-    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-endfunction
+ let g:lightline.active = {
+             \ 'left': [ [ 'mode', 'paste' ],
+             \           [ 'fugitive', 'gitdir', 'relativepath'] ],
+             \ 'right': [ [ 'lineinfo' ],
+             \            [ 'percent' ],
+             \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 
-function! LightlineModified()
-    return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-function! LightlineReadonly()
-    return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
-endfunction
-function! LightlineFilename()
-    return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-                \  &ft == 'unite' ? unite#get_status_string() :
-                \  &ft == 'vimshell' ? vimshell#get_status_string() :
-                \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-                \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-endfunction
-function! LightlineFugitive()
-    if &ft !~? 'vimfiler' && exists('*fugitive#head')
-        let branch = fugitive#head()
-        return branch !=# '' ? '⭠ '.branch : ''
-    endif
-    return ''
+
+function! LightlineGitdir()
+  let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
+"  let path = expand('%:p')
+"  if path[:len(root)-1] ==# root
+"    return path[len(root)+1:]
+"  endif
+"  return expand('%')
+return root
 endfunction
 
 
 
+ function! MyGitGutter()
+     if ! exists('*GitGutterGetHunkSummary')
+                 \ || ! get(g:, 'gitgutter_enabled', 0)
+                 \ || winwidth('.') <= 90
+         return ''
+     endif
+     let symbols = [
+                 \ g:gitgutter_sign_added . ' ',
+                 \ g:gitgutter_sign_modified . ' ',
+                 \ g:gitgutter_sign_removed . ' '
+                 \ ]
+     let hunks = GitGutterGetHunkSummary()
+     let ret = []
+     for i in [0, 1, 2]
+         if hunks[i] > 0
+             call add(ret, symbols[i] . hunks[i])
+         endif
+     endfor
+     return join(ret, ' ')
+ endfunction
 
-		let g:lightline.enable = {
-		    \ 'statusline': 1,
-		    \ 'tabline': 1
-		    \ }
+
+ function! MyFiletype()
+     return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+ endfunction
+
+ function! MyFileformat()
+     return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+ endfunction
+
+ function! LightlineModified()
+     return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+ endfunction
+ function! LightlineReadonly()
+     return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
+ endfunction
+ function! LightlineFilename()
+     return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+                 \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+                 \  &ft == 'unite' ? unite#get_status_string() :
+                 \  &ft == 'vimshell' ? vimshell#get_status_string() :
+                 \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                 \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+ endfunction
+ function! LightlineFugitive()
+     if &ft !~? 'vimfiler' && exists('*fugitive#head')
+         let branch = fugitive#head()
+         return branch !=# '' ? '⭠ '.branch : ''
+     endif
+     return ''
+ endfunction
 
 
 
 
-
-
-
-
+ 		let g:lightline.enable = {
+ 		    \ 'statusline': 1,
+ 		    \ 'tabline': 1
+ 		    \ }
 
 
 
@@ -113,32 +137,27 @@ endfunction
 
 
 [[plugins]]
-repo = 'Shougo/dein.vim'
-
-[[plugins]]
-repo = 'honza/vim-snippets'
-
-[[plugins]]
-repo = 'SirVer/ultisnips'
+repo =  'ryanoasis/vim-devicons'
+#on_cmd = ['WebDevIconsGetFileFormatSymbol']
 hook_add = '''
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-s>"
-let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
-
+  let g:webdevicons_enable_denite = 1
+  let g:webdevicons_enable_vimfiler = 1
+  let g:webdevicons_enable = 1
 '''
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+
+
 
 [[plugins]]
 repo = 'tbodt/deoplete-tabnine'
 build = './install.sh'
 
-[[plugins]]
-repo = 'zchee/deoplete-zsh'
-on_ft = ['zsh', 'sh']
+
+
 
 [[plugins]]
 repo = 'shougo/deoplete.nvim'
@@ -195,175 +214,9 @@ hook_add = '''
 # call lsp#server#add('rust', ['rustup', 'run', 'stable', 'rls'])
 # '''
 
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-hook_add = '''
-let g:echodoc#type = 'virtual'
-call echodoc#enable()
-'''
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_add = '''
-if executable('rg')
-    call denite#custom#var('file_rec', 'command', ['rg', '--files', '--hidden', '--glob', '!.git'])
-
-    call denite#custom#var('grep', 'command', ['rg'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading', '-S'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'final_opts', [])
-else
-    call denite#custom#var('file_rec', 'command',
-                \ ['ag', '--follow', '--hidden', '--nocolor', '--nogroup', '-g', ''])
-endif
-
-call denite#custom#alias('source', 'file_mru/git', 'file_mru')
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-        \   ['git', 'ls-files', '--cached', '--others', '--exclude-standard'] )
-
-call denite#custom#alias('source', 'grep/git', 'grep')
-call denite#custom#var('grep/git', 'command', ['git', '--no-pager', 'grep'])
-call denite#custom#var('grep/git', 'default_opts',
-        \   ['--ignore-case', '--cached', '--untracked', '--exclude-standard', '-nH'] )
-call denite#custom#var('grep/git', 'recursive_opts', [])
-call denite#custom#var('grep/git', 'pattern_opt', ['--extended-regexp'])
-call denite#custom#var('grep/git', 'separator', [])
-call denite#custom#var('grep/git', 'final_opts', [])
-
-
-"call denite#custom#var('commands', 'config', g:vim_home_dir . '/mycmds.json' )
-
-
-call denite#custom#source('unite:mapping', 'sorters', ['sorter/word'])
-
-call denite#custom#var('neoyank', 'default_action', ['yank'])
-
-call denite#custom#source('grep,grep/git,file_mru,buffer,file_rec/git,line,help,unite', 'matchers', ['matcher_substring'])
-call denite#custom#source('file_rec', 'matchers', ['matcher_substring', 'matcher_project_files'])
-call denite#custom#source('file_mru/git', 'matchers', ['matcher_substring', 'matcher_project_files'])
-call denite#custom#source('line', 'converters', ['converter_relative_word'])
-
-    call denite#custom#map('insert', '<Down>', '<C-G>')
-    call denite#custom#map('insert', '<C-j>', '<C-G>')
-    call denite#custom#map('insert', '<Up>', '<C-T>')
-    call denite#custom#map('insert', '<C-k>', '<C-T>')
-
-    call denite#custom#map('insert','<C-f>','<denite:scroll_page_forwards>','noremap')
-    call denite#custom#map('insert','<C-b>','<denite:scroll_page_backwards>','noremap')
-
-    call denite#custom#map('insert','<Tab>','<denite:move_to_next_line>','noremap')
-    call denite#custom#map('insert','<C-s>','<denite:do_action:split>','noremap')
-    call denite#custom#map('insert','<C-v>','<denite:do_action:vsplit>','noremap')
-    call denite#custom#map('insert','<C-y>','<denite:do_action:yank>','noremap')
-    call denite#custom#map('insert','<S-Tab>','<denite:move_to_previou_line>','noremap')
-    call denite#custom#map('insert','<C-space>','<denite:choose_action>','noremap')
-
-
-    let s:denite_options = {'default' : {
-        \ 'winheight' : 15,
-        \ 'mode' : 'insert',
-        \ 'smartcase' : 'true',
-        \ 'highlight_matched_char' : 'Function',
-        \ 'highlight_matched_range' : 'Function',
-        \ 'direction': 'rightbelow',
-        \ 'statusline' : 'false',
-        \'prompt' : 'λ',
-        \ }}
-
-    function! s:profile(opts) abort
-    for fname in keys(a:opts)
-    for dopt in keys(a:opts[fname])
-call denite#custom#option(fname, dopt, a:opts[fname][dopt])
-    endfor
-    endfor
-    endfunction
-
-    runtime rc/menu.vim
-
-    call s:profile(s:denite_options)
-
-'''
 
 
 
-
-[[plugins]]
-repo =  'iamcco/denite-source.vim'
-
-[[plugins]]
-repo =  'chemzqm/unite-location'
-
-[[plugins]]
-repo =  'zacharied/denite-nerdfont'
-
-
-[[plugins]]
-repo =  'dunstontc/projectile.nvim'
-hook_add = '''
-     let g:projectile#enable_devicons = 1
-'''
-
-
-[[plugins]]
-repo =  'bennyyip/denite-github-stars'
-hook_source = '''
-    let dgs#username='sgoranson'
-'''
-
-
-
-
-[[plugins]]
-repo =  'iamcco/devdocs.nvim'
-
-# [[plugins]]
-# repo =  'dunstontc/denite-mapping'
-
-[[plugins]]
-repo = 'Jagua/vim-denite-ghq'
-
-
-
-[[plugins]]
-repo =  'Shougo/neomru.vim'
-
-[[plugins]]
-repo =  'Shougo/neoyank.vim'
-hook_add = '''
-let g:neoyank#file = expand('$XDG_CACHE_HOME/neoyank.yanks')
-" let g:neoyank#save_registers = [ '"' ]
-let g:neoyank#limit = 10
-'''
-
-[[plugins]]
-repo =  'neoclide/denite-git'
-
-[[plugins]]
-repo =  'neoclide/vim-easygit'
-
-[[plugins]]
-repo =  'neoclide/denite-extra'
-
-[[plugins]]
-repo =  'Shougo/unite-outline'
-
-[[plugins]]
-repo =  'Shougo/tabpagebuffer.vim'
-
-[[plugins]]
-repo =  'thinca/vim-ref'
-
-[[plugins]]
-repo =  'Shougo/unite.vim'
-hook_add = '''
-
-	call unite#custom#profile('default', 'context', { 'start_insert': 1, 'winheight': 10, 'direction': 'botright' })
-
-let g:unite_enable_start_insert=1
-'''
 
 
 
@@ -391,6 +244,12 @@ repo = 'lifepillar/vim-solarized8'
 
 [[plugins]]
 repo = 'airblade/vim-rooter'    
+hook_add = '''
+
+    "let g:rooter_manual_only = 0
+    let g:rooter_silent_chdir = 1
+    let g:rooter_resolve_links = 1
+'''
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
@@ -398,10 +257,6 @@ hook_add = '''
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_ignore_pattern = '^\%(\.git\|\.DS_Store\)$'
 '''
-
-[[plugins]]
-repo = 'haya14busa/dein-command.vim'
-
 
 
 
@@ -446,8 +301,61 @@ let g:EasyMotion_smartcase = 1
 [[plugins]]
 repo =  'junegunn/vim-easy-align'                   # ga =
 
-[[plugins]]
-repo = 'chrisbra/vim-zsh'                          # :Delete, :Rename, :SudoWrite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#[[plugins]]
+#repo = 'vim-airline/vim-airline-themes'
+#
+#
+#[[plugins]]
+#repo = 'vim-airline/vim-airline'
+#hook_add = '''
+#
+#
+#
+#  let g:airline_powerline_fonts = 1
+#    let g:airline_theme='minimalist'
+#    let g:airline_minimalist_showmod = 1
+#
+#  let g:airline_left_sep = ''
+#  let g:airline_left_alt_sep = ''
+#  let g:airline_right_sep = ''
+#  let g:airline_right_alt_sep = ''
+#
+#
+#  if ! exists('g:airline_symbols')
+#      let g:airline_symbols = {}
+#  endif
+#
+#  let g:airline_symbols.branch = ''
+#  let g:airline_symbols.readonly = ''
+#  let g:airline_symbols.linenr = '☰'
+#  let g:airline_symbols.maxlinenr = ''
+#
+#let g:airline#extensions#tabline#enabled = 1
+#let g:airline#extensions#tabline#show_buffers = 0
+#let g:airline#extensions#tabline#show_splits = 0
+#let g:airline#extensions#tabline#show_tabs = 1
+#let g:airline#extensions#tabline#show_tab_nr = 1
+#let g:airline#extensions#tabline#show_tab_type = 1
+#let g:airline#extensions#tabline#close_symbol = '×'
+#let g:airline#extensions#tabline#show_close_button = 0
+#
+#  let g:airline#extensions#languageclient#enabled = 1
+#'''
 
 [[plugins]]
 repo = 'tpope/vim-eunuch'                          # :Delete, :Rename, :SudoWrite
@@ -458,8 +366,6 @@ repo = 'tpope/vim-unimpaired'                      # yo, ]b, etc
 [[plugins]]
 repo = 'tpope/vim-commentary'                      # gcc, gcW, g/TODO/Commentary
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'                        # git helper
 
 [[plugins]]
 repo = 'tpope/vim-surround'                        
@@ -470,226 +376,7 @@ repo = 'tommcdo/vim-exchange'                        # cx holy shit
 [[plugins]]
 repo = 'tpope/vim-repeat'                          # dot repeat for plugins
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk jumps
 
-[[plugins]]
-repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
 
 [[plugins]]
 repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
-
-[[plugins]]
-repo =  'PotatoesMaster/i3-vim-syntax'                # shows marks, m/ shortcuts
-
-[[plugins]]
-repo =  'chrisbra/Colorizer'                # shows marks, m/ shortcuts
-
-[[plugins]]
-repo =  'francoiscabrol/ranger.vim'                # shows marks, m/ shortcuts
-# hook_add = '''
-# let g:ranger_replace_netrw = 1
-# '''
-[[plugins]]
-repo =  'rbgrouleff/bclose.vim'                # shows marks, m/ shortcuts
-
-
-[[plugins]]
-repo =  'cespare/vim-toml'                # shows marks, m/ shortcuts
-
-
-[[plugins]]
-repo =  'maralla/vim-toml-enhance'                # shows marks, m/ shortcuts
-
-
-[[plugins]]
-repo =  'ryanoasis/vim-devicons'
-hook_add = '''
-  let g:webdevicons_enable_denite = 1
-  let g:webdevicons_enable_vimfiler = 1
-  let g:webdevicons_enable = 1
-'''
-
-[[plugins]]
-repo =  'godlygeek/tabular'
-
-[[plugins]]
-repo =  'plasticboy/vim-markdown'
-hook_add = '''
-let g:vim_markdown_folding_disabled = 1
-'''
-
-
-[[plugins]]
-repo =  'hiphish/info.vim'
-hook_add = '''
-autocmd FileType info nmap N :InfoNext<CR>
-autocmd FileType info nmap P :InfoPrev<CR>
-autocmd FileType info nmap U :InfoUp<CR>
-'''
-
-
-
-[[plugins]]
-repo =  'Rykka/riv.vim'
-hook_add = '''
-let proj1 = { 'path': '~/projects/rst-site', }
-let g:riv_projects = [proj1]
-'''
-
-[[plugins]]
-repo =  'Rykka/InstantRst'
-hook_add = '''
-let g:instant_rst_browser = 'qutebrowser'
-'''
-
-
-[[plugins]]
-repo =  'junegunn/gv.vim'
-
-
-
-[[plugins]]
-repo =  'yuratomo/w3m.vim'
-
-
-[[plugins]]
-repo =  'gregsexton/gitv'
-
-
-[[plugins]]
-repo =  'gu-fan/colorv.vim'
-hook_add = '''
-
-"let g:_colorv['mode'] = 'gui'
-'''
-
-[[plugins]]
-repo = 'mattn/webapi-vim'
-
-
-[[plugins]]
-repo = 'Shougo/defx.nvim'
-hook_add = '''
-nnoremap <silent>   <Space>F
-\ :<C-u>Defx -auto-cd -listed -show-ignored-files -resume -buffer-name=tab`tabpagenr()`<CR>
-
-call defx#custom#column('mark', {
-      \ 'directory_icon': '▸',
-      \ 'readonly_icon': '✗',
-      \ 'selected_icon': '✓',
-      \ })
-
-	call defx#custom#option('_', {
-	      \ 'columns': 'mark:filename:type:size:time',
-	      \ })
-
-
-	autocmd FileType defx call s:defx_my_settings()
-	function! s:defx_my_settings() abort
-
-" Define mappings
-nnoremap <silent><buffer><expr> <CR>
-\ defx#async_action('drop')
-nnoremap <silent><buffer><expr> c
-\ defx#do_action('copy')
-nnoremap <silent><buffer><expr> !
-\ defx#do_action('execute_command')
-nnoremap <silent><buffer><expr> m
-\ defx#do_action('move')
-nnoremap <silent><buffer><expr> p
-\ defx#do_action('paste')
-nnoremap <silent><buffer><expr> l
-\ defx#async_action('open')
-nnoremap <silent><buffer><expr> E
-\ defx#do_action('open', 'vsplit')
-nnoremap <silent><buffer><expr> P
-\ defx#do_action('open', 'pedit')
-nnoremap <silent><buffer><expr> K
-\ defx#do_action('new_directory')
-nnoremap <silent><buffer><expr> N
-\ defx#do_action('new_file')
-nnoremap <silent><buffer><expr> M
-\ defx#do_action('new_multiple_files')
-nnoremap <silent><buffer><expr> S
-\ defx#do_action('toggle_sort', 'Time')
-nnoremap <silent><buffer><expr> d
-\ defx#do_action('remove_trash')
-nnoremap <silent><buffer><expr> r
-\ defx#do_action('rename')
-nnoremap <silent><buffer><expr> x
-\ defx#do_action('execute_system')
-nnoremap <silent><buffer><expr> >
-\ defx#do_action('toggle_ignored_files')
-nnoremap <silent><buffer><expr> .
-\ defx#do_action('repeat')
-nnoremap <silent><buffer><expr> yy
-\ defx#do_action('yank_path')
-nnoremap <silent><buffer><expr> h
-\ defx#do_action('cd', ['..'])
-nnoremap <silent><buffer><expr> C 
-\ defx#do_action(change_vim_cwd)
-nnoremap <silent><buffer><expr> ~
-\ defx#do_action('cd')
-nnoremap <silent><buffer><expr> \
-\ defx#do_action('cd', getcwd())
-nnoremap <silent><buffer><expr> q
-\ defx#do_action('quit')
-nnoremap <silent><buffer><expr> <Space>
-\ defx#do_action('toggle_select') . 'j'
-nnoremap <silent><buffer><expr> *
-\ defx#do_action('toggle_select_all')
-nnoremap <silent><buffer><expr> j
-\ line('.') == line('$') ? 'gg' : 'j'
-nnoremap <silent><buffer><expr> k
-\ line('.') == 1 ? 'G' : 'k'
-nnoremap <silent><buffer><expr> <C-l>
-\ defx#do_action('redraw')
-nnoremap <silent><buffer><expr> <C-g>
-\ defx#do_action('print')
-nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-\ ':<C-u>wincmd w<CR>' :
-\ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
-	endfunction
-'''
-
-[[plugins]]
-repo = 'Shougo/neco-syntax'
-
-
-[[plugins]]
-repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'Shougo/deol.nvim'
-depends = 'denite.nvim'
-hook_add = '''
-let g:deol#prompt_pattern = '% \|%$'
-
-  " nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
-  "nnoremap <silent> N :<C-u>call deol#new({'command': 'xonsh'})<CR>
-  "nnoremap <silent> [Space]s :<C-u>Deol xonsh<CR>
-  "nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
-
-  "  nnoremap <silent> <C-t> :<C-u>Denite
-  "      \ -select=`tabpagenr()-1` -mode=normal deol:zsh<CR>
-'''
-
-
-[[plugins]]
-repo = 'inkarkat/vim-SyntaxRange'
-
-
-[[plugins]]
-repo = 'regedarek/zoomwin'
-
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-
-
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-hook_add = '''
-let g:airline#extensions#tabline#enabled = 1
-'''

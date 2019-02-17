@@ -1,5 +1,6 @@
 ! "Enabled modi" Set from: Default
-rofi.modi:                           window,run,drun,keys
+rofi.theme:   Arc-Dark-Numix.rasi                       
+!rofi.modi:                           window,run,drun,keys
 ! "Window width" Set from: Default
 rofi.width:                          80
 ! "Number of lines" Set from: Default
@@ -7,7 +8,7 @@ rofi.width:                          80
 ! "Number of columns" Set from: Default
 !rofi.columns:                        3
 ! "Font to use" Set from: XResources
-rofi.font:                          Ubuntu Mono 25
+rofi.font:                          Ubuntu Mono 20
 ! "Border width" Set from: Default
 ! rofi.bw:                             1
 ! "Location on screen" Set from: Default
@@ -113,7 +114,6 @@ rofi.hide-scrollbar:                 true
 ! "Indicate how it match by underlining it." Set from: Default
 ! rofi.show-match:                     true
 ! "New style theme file" Set from: File
-rofi.theme:                          oxide.rasi
 ! "Color scheme for normal row" Set from: XResources
 !rofi.color-normal:                   argb:00000000, #D8DEE9 , argb:00000000, #FAC863 , #1B2B34
 ! "Color scheme for urgent row" Set from: XResources
@@ -125,7 +125,7 @@ rofi.theme:                          oxide.rasi
 ! "Accept entry" Set from: XResources
 rofi.kb-accept-entry:                Control+m,Return
 ! "Use entered text as command (in ssh/run modi)" Set from: XResources
-rofi.kb-accept-custom:               Control+Return
+/* rofi.kb-accept-custom:               Control+Return */
 ! "Use alternate accept command." Set from: XResources
 rofi.kb-accept-alt:                  Shift+Return
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
@@ -285,3 +285,4 @@ rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
 ! vim:set ft=xdefaults:
+rofi.theme: /usr/share/rofi/themes/Arc-Dark-Hibiscus.rasi

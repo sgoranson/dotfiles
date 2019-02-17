@@ -9,7 +9,7 @@ scriptencoding utf-8
 
 
 set mouse=a
-set clipboard=
+set clipboard=unnamed
 set inccommand=split                   " holycrap there's interactive %s colors now!!!!
 set cursorline                         " highlight current line
 set colorcolumn=102                    " try not to code paste here
@@ -22,7 +22,7 @@ set sessionoptions-=globals
 
 set foldenable                        " fold by default
 set foldlevelstart=99                 " 0 is start folded
-" set foldlevel=99                      " 0 is start folded
+set foldlevel=99                      " 0 is start folded
 set foldmethod=marker                 " default marker folding
 "set foldnestmax=20                   " deepest fold is 3 levels
 
@@ -31,7 +31,7 @@ set nolazyredraw                        " supposedly speeds things up
 set number                            " Line numbers are good
 set showcmd                           " Show incomplete cmds down the bottom
 set showmode                          " Show current mode down the bottom
-set noshowmatch                         " matching parens highlight
+set showmatch                         " matching parens highlight
 set title
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 " set guicursor=n-v-c:ver90,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:Cursor/Cursor
@@ -60,7 +60,7 @@ set scrolloff=2                       " Start scrolling when we're 8 lines away 
 set sidescrolloff=2
 set sidescroll=1
 set signcolumn=yes
-set wrap                            " Don't wrap lines
+set nowrap                            " Don't wrap lines
 
 set t_vb=                             " disable the fk'ing bell
 set novisualbell                      " No sounds
@@ -186,6 +186,7 @@ set wildignore=*.o,*.obj,*~           "stuff to ignore when tab completing
 set nowildignorecase
 set wildmenu                          "enable ctrl-n and ctrl-p to scroll thru matches
 set wildmode=list:longest            " shows a list
+" set helpheight=50
 " set wildmode=longest:full,full
 " setglobal fileencoding=utf-8          " The encoding written to file.
 " set fileformat=unix                     " attempt to always use <NL>

@@ -60,7 +60,10 @@ if [ "$(hostname)" = 'stinkbox' ]; then
     # xrandr  --output DP-2 --dpi 192
 else
 # disables mouse accel on my thinkpad
-    xinput --set-prop 12  'libinput Accel Profile Enabled' 0, 1
+    trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
+    xinput --set-prop $trackpointid  'libinput Accel Profile Enabled' 0, 1
+# disables touchpad
+     xinput --list | grep -i touchpad | grep --only-matching --perl-regexp '(?#id=)\d\d' | xargs xinput --disable
 fi
 
 
