@@ -1,6 +1,6 @@
 ! "Enabled modi" Set from: Default
 rofi.theme:   Arc-Dark-Numix.rasi                       
-!rofi.modi:                           window,run,drun,keys
+rofi.modi:                           window,run,drun,keys
 ! "Window width" Set from: Default
 rofi.width:                          80
 ! "Number of lines" Set from: Default

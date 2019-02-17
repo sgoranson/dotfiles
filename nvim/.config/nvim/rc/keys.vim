@@ -90,7 +90,7 @@ nnoremap <silent><expr>  Q &ft != 'help' ? ':Bclose<CR>' : ':close<CR>'
 " noremap  <silent> H  ^
 " noremap  <silent> L  $
 nnoremap vv viW
-nnoremap vq vi'
+nnoremap vq viq
 
 
 map  H  <Plug>(easymotion-bl)

@@ -304,18 +304,6 @@ repo =  'junegunn/vim-easy-align'                   # ga =
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #[[plugins]]
 #repo = 'vim-airline/vim-airline-themes'
 #

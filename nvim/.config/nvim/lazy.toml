@@ -490,7 +490,7 @@ repo =  'gregsexton/gitv'
 
 
 [[plugins]]
-repo =  'gu-fan/colorv.vim'
+repo =  'sgoranson/colorv.vim'
 on_cmd = 'ColorV'
 hook_add = '''
 

@@ -5,7 +5,8 @@ set $modx Mod3
 # set $modx Control+Shift
 set $mody Mod4
 
-
+default_orientation horizontal
+workspace_layout tabbed
 
 # Xresources      var      value       fallback
 # set_from_resource $bg      background  #cec3ba
@@ -19,22 +20,6 @@ set $mody Mod4
 # set_from_resource $cyan    color6      #4a6c72
 # set_from_resource $grey    color7      #617274
 
-
-# # clas                  bd         bg      txt      ind     child_bd
-# client.focused_inactive $grey     $bg      $black   $bg      $grey
-# client.urgent           $red      $bg      $red     $red     $red
-# client.focused          #83a598 #222222 #888888 #292d2e   #285577
-# client.unfocused        #222222 #222222 #888888 #292d2e   #222222
-# client.placeholder      $red      $bg      $bg      $bg      $red
-# client.background       $bg
-
-
-# client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-# client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-# client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-# client.urgent           #2f343a #900000 #ffffff #900000   #900000
-# client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-# client.background       #ffffff
 
 
 
@@ -58,14 +43,24 @@ workspace_auto_back_and_forth yes
 #smart_borders on
 #smart_gaps on
 # new_window none
-default_border normal 0
+default_border normal 1
 
 # bindsym Control+a exec xte 'key Home'
 # bindsym Control+e exec xte 'key End'
 
 # for_window [class="^.*"] border pixel 0
 bindsym $mody+b [class="^.*"] border toggle
-bindsym $mody+Shift+b [class="^.*"] border normal 0
+mode "borders" {
+
+	bindsym 0 [class="^.*"] border normal 0; mode "default"
+	bindsym 1 [class="^.*"] border normal 1; mode "default"
+
+	bindsym 2 [class="^.*"] border normal 2; mode "default"
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mody+Shift+b mode "borders"
 
 # }}}
 
@@ -224,7 +219,8 @@ bindsym $modx+Shift+l  move right
 # KEYS - SPLITS N FLOATS {{{
 # focus the parent container
 
-bindsym $mody+p focus parent
+bindsym $modx+p focus parent
+bindsym $modx+Shift+p focus child
 
 # focus the child container
 # bindsym $modx+x focus child
@@ -267,34 +263,6 @@ bindsym $mody+plus  gaps outer all plus  5
 bindsym $mody+minus gaps outer all minus 5
 # }}}
 
-# RESIZE {{{
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h       resize shrink width 10 px or 10 ppt
-        bindsym j       resize grow height 10 px or 10 ppt
-        bindsym k         resize shrink height 10 px or 10 ppt
-        bindsym l      resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $modx+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mody+r mode "default"
-}
-
-bindsym $mody+$modx+r mode "resize"
-# }}}
 
 
 # FOCUS {{{

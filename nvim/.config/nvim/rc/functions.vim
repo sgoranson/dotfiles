@@ -106,7 +106,7 @@ augroup END
 
 " ########### functions ########### {{{
 
-function s:MkdirP()
+function! SGMkdirP()
   let dir = expand('%:p:h')
 
   if dir =~ '://'
@@ -119,7 +119,7 @@ function s:MkdirP()
   endif
 endfunction
 
-autocmd BufWritePre * call s:MkdirP()
+autocmd BufWritePre * call SGMkdirP()
 
 
 
