@@ -1,23 +1,38 @@
 #!env zsh
 
-
-source "$ZDOTDIR/antigen.zsh"
-
-
-antigen use oh-my-zsh
-
-antigen bundle git
-antigen bundle spectrum
-antigen bundle extract
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle zsh-users/zsh-history-substring-search
-
-
-
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+export  ENHANCD_FILTER=fzy 
+export ENHANCD_COMMAND=cd
 
-antigen apply
+# Zplug init
+#------------------------------------i
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update 
+fi
+source ~/.zplug/init.zsh
+# zplug "b4b4r07/enhancd", use:init.sh, defer:3
+# zplug "mollifier/anyframe"
+zplug "plugins/extract",   from:oh-my-zsh, lazy:true
+zplug "plugins/spectrum",   from:oh-my-zsh, lazy:true
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'zsh-users/zsh-completions', lazy:true
+zplug "zsh-users/zsh-history-substring-search"
+# zplug "jhawthorn/fzy", \
+#     as:command, \
+#     rename-to:fzy, \
+#     hook-build:"make && sudo make install"
+
+# zplug 'mafredri/zsh-async', from:github
+# zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
+# zplug "themes/robbyrussell", from:oh-my-zsh
+
+if (( 1 )); then
+zplug check || zplug install
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load 
 
 
 
@@ -27,6 +42,12 @@ HISTSIZE=99999999
 SAVEHIST=99999999
 
 export HISTFILE=$XDG_CACHE_HOME/.zsh_history
+
+
+
+
+
+
 
 autoload -U colors
 colors
@@ -86,7 +107,7 @@ autoload -U promptinit && promptinit
 
 
 
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 # eval "$(cat "$ZDOTDIR/vividrc")"
 #
 if command -v vivid &>/dev/null; then
@@ -97,8 +118,8 @@ fi
 
 
 # nodejs
-export NVM_LAZY_LOAD=true
-source ~/.zsh-nvm/zsh-nvm.plugin.zsh
+# export NVM_LAZY_LOAD=true
+# source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 
@@ -106,22 +127,12 @@ source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 
-# antigen apply
-
-  # 'environment' \
-  # 'terminal' \
-  # 'editor' \
-  # 'history' \
-  # 'directory' \
-  # 'spectrum' \
-  # 'utility' \
-  # 'completion' \
-  # 'archive' \
-  # 'history-substring-search' \
-  # 'autosuggestions' \
-  # 'ruby' \
-  # 'python' \
-  # 'prompt'
+#Set some zsh completion Options
+#autoload -U compinit
+#compinit -C
+##Complete my dot files please
+_comp_options+=(globdots)
+#zmodload -i zsh/complist
 
 source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/keys.zsh
@@ -130,10 +141,13 @@ source $ZDOTDIR/completion.zsh
 # source $ZDOTDIR/i3_completion.sh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/completion/googler_at
+source $ZDOTDIR/z.sh
 # source $ZDOTDIR/anyenv.sh
 
 
 # }}}
+
+
 
 
 # DIRECTORY HISTORY {{{

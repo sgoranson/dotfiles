@@ -1,5 +1,5 @@
 # reset them all
-unalias -m '*'
+# unalias -m '*'
 
 alias m=mark
 alias v=nvim
@@ -109,8 +109,9 @@ alias SGG='echo tert.havkwhaxvr@arg | tr a-z@. n-za-m.@'
 
 # dir shortcuts
 alias ddot="pu ~/dotfiles"
+alias mkdir="mkdir -p"
 
-mkd() { mkdir -p ${1:?} && cd $1 }
+mkdirc() { mkdir -p ${1:?} && cd $1 }
 a() { awk "{ print \$${1:-0} }" } # shortcut for awk '/ print $1/'
     hh() { $1 --help | vless }
     hex2dec() { perl -e "print hex $1" }
@@ -538,7 +539,7 @@ function fzf-ghq() {
     then
         if [[ -d $file ]]
         then
-            cd -- "$file"
+            builtin cd -- "$file"
         else
             # cd -- "${file:h}"
             print -P -- "%F{9}%K{0}$file doesnt exist %f"

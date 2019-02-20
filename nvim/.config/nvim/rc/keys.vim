@@ -43,8 +43,8 @@ nnoremap <silent><expr>  Q &ft != 'help' ? ':Bclose<CR>' : ':close<CR>'
 " nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
 " noremap  <silent> H  ^
 " noremap  <silent> L  $
-nnoremap vv viW
-nnoremap vq viq
+nmap vv viW
+nmap vq viq
 
 
 map  H  <Plug>(easymotion-bl)
@@ -221,8 +221,7 @@ nnoremap <silent><leader>cg  :Gcd<CR>
 
 nnoremap <silent><leader>cl  :set cursorline!<CR>
 
-" clipboard delete
-noremap  <silent><leader>d       "+d
+noremap  <silent><leader>d       "_d
 
 nnoremap <silent><leader>ed  :e <C-R>=expand('%:h').'/'<cr>
 

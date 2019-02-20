@@ -1,4 +1,6 @@
 #!/bin/sh
+stow -R userdirs
+stow -R dunst
 stow -R xkeysnail
 stow -R terminfo
 stow -R ranger

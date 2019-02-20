@@ -2,8 +2,6 @@
 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-echo $DIR
-exit
 
 mkdir -p "$HOME/.local/share/steve"
 
@@ -17,5 +15,5 @@ ln -i -s --no-target-directory  "$HOME/.cache/dein/repos/github.com/" "$HOME/plu
 
 mkdir -p "$HOME/data/nvim/session"
 
-./stow-it.sh 
+$DIR/stow-it.sh 
 

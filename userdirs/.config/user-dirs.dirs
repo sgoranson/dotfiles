@@ -1,0 +1,13 @@
+# from rubickcz/dotfiles
+# I don't want my home to get polluted with directories, so I only set dir for
+# downloads. All other dirs will be buried in /other/xdg_dirs
+
+XDG_DOWNLOAD_DIR="$HOME/downloads"
+
+XDG_DESKTOP_DIR="$HOME/other/xdg_dirs/desktop"
+XDG_TEMPLATES_DIR="$HOME/other/xdg_dirs/templates"
+XDG_PUBLICSHARE_DIR="$HOME/other/xdg_dirs/public"
+XDG_DOCUMENTS_DIR="$HOME/other/xdg_dirs/documents"
+XDG_MUSIC_DIR="$HOME/other/xdg_dirs/music"
+XDG_PICTURES_DIR="$HOME/other/xdg_dirs/pictures"
+XDG_VIDEOS_DIR="$HOME/other/xdg_dirs/videos"

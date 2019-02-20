@@ -2,10 +2,14 @@
 # vim: set filetype=ruby:
 # b - browse Chrome bookmarks with fzf
 
-/usr/bin/ruby -x "$0"                                          |
-  fzf-tmux -u 30% --ansi --multi --no-hscroll --tiebreak=begin |
-  awk 'BEGIN { FS = "\t" } { print $2 }'                       |
-  xargs w3m
+ret=$(/usr/bin/ruby -x "$0"  | fzf-tmux -u 30% --ansi --multi --no-hscroll --tiebreak=begin | awk 'BEGIN { FS = "\t" } { print $2 }')
+
+                                                                                          if [[ "$ret" =~ http ]]; then
+                                                                                              google-chrome-stable $ret >/dev/null 2>&1 &
+                                                                                              fi
+
+
+
 
 exit $?
 

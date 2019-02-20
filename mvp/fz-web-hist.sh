@@ -14,9 +14,9 @@ MAGENTA="$(tput setaf 5)"
 CYAN="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
-# : "${HISTORY_PATH:="$HOME/.config/google-chrome/Default/History"}"
-: "${HISTORY_PATH:="$HOME/.config/chromium/Default/History"}"
-: "${BROWSER:=chromium}"
+: "${HISTORY_PATH:="$HOME/.config/google-chrome/Default/History"}"
+# : "${HISTORY_PATH:="$HOME/.config/chromium/Default/History"}"
+: "${BROWSER:=google-chrome-stable}"
 
 COLS="$(("$(tput cols)"/2))"
 SEP='{::}'
@@ -57,7 +57,7 @@ function chromehist() { # {{{
 	local urls
 	urls="$(get_history | search)"
 	# shellcheck disable=SC2086
-	"$BROWSER" $urls > /dev/null 2> /dev/null
+	google-chrome-stable $urls > /dev/null 2> /dev/null
 }
 # }}}
 

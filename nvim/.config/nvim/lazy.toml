@@ -598,14 +598,21 @@ on_cmd = 'W3m'
 [[plugins]]
 repo =  'gregsexton/gitv'
 
-
 [[plugins]]
-repo =  'sgoranson/colorv.vim'
-on_cmd = 'ColorV'
+repo =  'KabbAmine/vCoolor.vim'
 hook_add = '''
+    let g:vcoolor_disable_mappings = 1
+    '''
+on_cmd = 'Vcoolor'
 
-"let g:_colorv['mode'] = 'gui'
-'''
+
+# [[plugins]]
+# repo =  'sgoranson/colorv.vim'
+# on_cmd = 'ColorV'
+# hook_add = '''
+
+# "let g:_colorv['mode'] = 'gui'
+# '''
 
 [[plugins]]
 repo = 'mattn/webapi-vim'

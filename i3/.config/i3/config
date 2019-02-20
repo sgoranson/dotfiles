@@ -38,7 +38,7 @@ font pango:Ubuntu 10
 
 focus_follows_mouse yes
 workspace_auto_back_and_forth yes
-# focus_wrapping false
+focus_wrapping force
 
 #smart_borders on
 #smart_gaps on
@@ -97,9 +97,8 @@ bindsym $mody+Shift+f focus mode_toggle
 
 bindsym $modx+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 bindsym $modx+r exec --no-startup-id rofi  -show run
-bindsym $mody+r exec --no-startup-id rofi  -show run
 
-bindsym $mody+t exec tdrop current
+bindsym $mody+Shift+t exec tdrop current
 
 
 # move the currently focused window to the scratchpad
@@ -364,10 +363,6 @@ for_window [class="FLOATMITE"] floating enable
 # for_window [class="FLOATMITE"] resize set 2000 1400
 assign [class="FLOATMITE"] → output primary
 
-bindsym $mody+F9 exec --no-startup-id kitty --class=FLOATMITE -e "web-hist"
-bindsym $mody+F10 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'web-bookmarks.rb'"
-bindsym $mody+F11 exec --no-startup-id kitty --class=FLOATMITE -e "zsh -c 'fzf-kill'"
-bindsym $mody+F12 exec --no-startup-id rofi-dofi.sh
 
 # exec_always --no-startup-id ~/bin/polybarz
 exec_always --no-startup-id ~/bin/fix_xcursor
@@ -384,78 +379,62 @@ exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id compton -b
 exec --no-startup-id dropbox
-# exec --no-startup-id clipmenud
-#exec --no-startup-id pnmixer
-#exec --no-startup-id batterymon
 exec --no-startup-id alttabhax
 exec --no-startup-id ~/bin/start-xkeysnail
 
 # }}}
-bar {
-        status_command i3blocks
-        tray_output primary
-      font pango:xos4 Consolas NF 11
-    colors {
-        statusline  #dddddd
-        separator   #666666
-        # class             border  backgr. text
-        focused_workspace   #2b83a6 #2b83a6 #ffffff
-        active_workspace    #212121 #212121 #ffffff
-        inactive_workspace  #212121 #212121 #86888c
-        urgent_workspace    #d64e4e #d64e4e #ffffff
-    }
+set $mode_launcher do: [h]ist [b]ookmarks [k]ill
+bindsym $mody+p mode "$mode_launcher"
+
+mode "$mode_launcher" {
+    bindsym h exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-hist.sh"; mode "default"
+    bindsym b exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-bookmarks.rb"; mode "default"
+    bindsym k exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-kill.sh"; mode "default"
+
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
 }
 
-# start i3bar to display a workspace bar
-# bar {
-#     # font pango:Roboto 14
-#     font pango:Font Awesome 5 Pro 7
-#     output HDMI-1
-#     output DP-1
+# resize window (you can also use the mouse for that)
+ mode "resize" {
+         # These bindings trigger as soon as you enter the resize mode
+ 
+         # same bindings, but for the arrow keys
+         bindsym Left        resize shrink width 10 px or 10 ppt
+         bindsym Down        resize grow height 10 px or 10 ppt
+         bindsym Up          resize shrink height 10 px or 10 ppt
+         bindsym Right       resize grow width 10 px or 10 ppt
+ 
+         # back to normal: Enter or Escape or Mod1+r
+         bindsym Return mode "default"
+         bindsym Escape mode "default"
+         bindsym Mod1+r mode "default"
+ }
+ 
+ bindsym $mody+r mode "resize"
 
-#     status_command          i3blocks
-#     bindsym button4         nop
-#     bindsym button5         nop
-#     position                bottom
-#     tray_output             primary
-#     separator_symbol        "·"
-#     workspace_buttons       yes
-#     # strip_workspace_numbers yes
 
-#     colors {
-#         background  #212121
-#         statusline  #dddddd
-#         separator   #666666
-#         # class             border  backgr. text
-#         focused_workspace   #2b83a6 #2b83a6 #ffffff
-#         active_workspace    #212121 #212121 #ffffff
-#         inactive_workspace  #212121 #212121 #86888c
-#         urgent_workspace    #d64e4e #d64e4e #ffffff
-#     }
-# }
 
-# bar {
-#     font pango:UbuntuMono Nerd Font Mono 12
-#     # font pango:Ubuntu Mono 12
-#     output DP-2
 
-#     status_command          i3blocks
-#     bindsym button4         nop
-#     bindsym button5         nop
-#     position                bottom
-#     tray_output             HDMI-1
-#     # separator_symbol        "|"
-#     workspace_buttons       yes
-#     # strip_workspace_numbers yes
+bar {
+    status_command python ~/.config/i3/pystatus.py
+    # status_command i3blocks          
+      # status_command 2>/tmp/i3blocks.err /path/to/i3blocks -vvv -c /path/to/config | tee /tmp/i3blocks.out
+        binding_mode_indicator yes
+        tray_output primary
+        font pango: Ubuntu Mono 11
+        colors {
+             background       #21212111
+            # background       #ffffff11
+                statusline   #bfbfbf
+                separator #666666
 
-#     colors {
-#         background  #212121
-#         statusline  #dddddd
-#         separator   #666666
-#         # class             border  backgr. text
-#         focused_workspace   #2b83a6 #2b83a6 #ffffff
-#         active_workspace    #212121 #212121 #ffffff
-#         inactive_workspace  #212121 #212121 #86888c
-#         urgent_workspace    #d64e4e #d64e4e #ffffff
-#     }
-# }
+# class             border  backgr. text
+                focused_workspace   #2b83a6 #2b83a6 #ffffff
+                active_workspace    #212121 #212121 #ffffff
+                inactive_workspace  #212121 #212121 #86888c
+                urgent_workspace    #d64e4e #d64e4e #ffffff
+        }
+}
+

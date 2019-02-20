@@ -100,7 +100,7 @@ function is42 () {
                                                /usr/X11R6/bin
 
     # provide .. as a completion
-    # zstyle ':completion:*' special-dirs ..
+    zstyle ':completion:*' special-dirs false
 
     # run rehash on completion so new installed program are found automatically:
     function _force_rehash () {

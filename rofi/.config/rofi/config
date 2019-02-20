@@ -39,7 +39,7 @@ rofi.run-command:                    {cmd}
 ! "Run command to execute that runs in shell" Set from: Default
 !
 !rofi.run-shell-command:              xterm -hold -e '{cmd}'
-rofi.run-shell-command:                {terminal} -e "zsh -c '{cmd} && read'"
+rofi.run-shell-command:                {terminal} -- zsh -c "{cmd}"
 
 
 
@@ -285,4 +285,4 @@ rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
 ! vim:set ft=xdefaults:
-rofi.theme: /usr/share/rofi/themes/Arc-Dark-Hibiscus.rasi
+rofi.theme: /usr/share/rofi/themes/Arc-Punch.rasi

@@ -38,7 +38,7 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 let g:dein#install_process_timeout = 9600
 
 if dein#load_state(expand(s:dein_dir))
-  call dein#begin(expand(s:dein_dir))
+  call dein#begin(expand(s:dein_dir), [expand('<sfile>')])
 
   if exists('g:gonvim_running')
     call dein#add('akiyosi/gonvim-fuzzy')

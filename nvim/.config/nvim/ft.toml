@@ -19,6 +19,12 @@ autocmd MyAutoCmd BufWritePost,FileWritePost *.vim nested
 \ if &l:autoread > 0 | source <afile> |
 \   echo 'source ' . bufname('%') |
 \ endif
+
+
+" Disable paste.
+autocmd MyAutoCmd InsertLeave *
+      \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
+      \ if &l:diff | diffupdate | endif
 '''
 
 [ftplugin]
