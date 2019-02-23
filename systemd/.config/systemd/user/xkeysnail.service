@@ -1,0 +1,22 @@
+# 1. Copy this to ~/.config/systemd/user/xkeysnail.service
+# 2. systemctl --user enable xkeysnail
+#
+# Note that you need to set proper $DISPLAY on your environment.
+
+[Unit]
+Description=xkeysnail
+
+[Service]
+KillMode=process
+ExecStart=/usr/bin/sudo /usr/bin/xkeysnail --watch /home/steve/.config/xkeysnail/config.py
+ExecStartPre=/usr/bin/xhost +SI:localuser:root
+ExecStartPost=/usr/bin/xset r rate 200 30
+ExecStop=/usr/bin/sudo /usr/bin/killall xkeysnail
+Type=simple
+RestartSec=10
+
+
+Environment=DISPLAY=:0.0
+
+[Install]
+WantedBy=default.target
