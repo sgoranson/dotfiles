@@ -5,9 +5,9 @@ from xkeysnail.transform import *
 
 # [Global modemap] Change modifier keys as in xmodmap
 define_modmap({
-    Key.RIGHT_ALT: Key.RIGHT_META, #mod4
-    Key.COMPOSE: Key.RIGHT_ALT,     #mod1
-    Key.LEFT_ALT: Key.RIGHT_CTRL #mod3
+    # Key.RIGHT_ALT: Key.RIGHT_META, #mod4
+    Key.COMPOSE: Key.RIGHT_ALT,
+    # Key.LEFT_ALT: Key.RIGHT_ALT
     })
 
 # [Conditional modmap] Change modifier keys in certain applications
@@ -21,10 +21,11 @@ define_modmap({
 define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
     # Key.ENTER: [Key.ENTER, Key.LEFT_META],
-    Key.ENTER: [Key.ENTER, Key.RIGHT_ALT], #mod1
+    Key.ENTER: [Key.ENTER, Key.RIGHT_ALT],
+    Key.SPACE: [Key.SPACE, Key.LEFT_SHIFT],
 
     # Capslock is escape when pressed and released. Control when held down.
-    Key.CAPSLOCK: [Key.ESC, Key.RIGHT_CTRL]  #mod3
+    Key.CAPSLOCK: [Key.ESC, Key.LEFT_META]
     # To use this example, you can't remap capslock with define_modmap.
     })
 

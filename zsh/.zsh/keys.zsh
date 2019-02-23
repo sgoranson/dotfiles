@@ -1,6 +1,6 @@
 #!env zsh
 
-#bindkey -e
+bindkey -e
 # zle -C most-accessed-file menu-complete _generic
 if [[ "$TERM" == 'dumb' ]]; then
   return 1
@@ -255,8 +255,8 @@ bindkey "$key_info[Control]g" undo
 bindkey "$key_info[Control]_" redo
 
 # bindkey '^Xh' _complete_help
-bindkey '^A'   beginning-of-line
-bindkey '^E'   end-of-line
+# bindkey '^A'   beginning-of-line
+# bindkey '^E'   end-of-line
 bindkey '^H'   backward-char
 bindkey '^I'   expand-or-complete-with-dots
 bindkey '^L'   forward-char
@@ -280,7 +280,7 @@ bindkey '^tw' where-widget
 bindkey '^xr' history-incremental-search-backward
 bindkey '^xu' insert-unicode-char
 bindkey '^xe'  edit-command-line
-bindkey -s     '^xg' ' 2>&1 '
+# bindkey -s     '^xg' ' 2>&1 '
 bindkey .      rationalise-dot
 bindkey -M     isearch . self-insert
 

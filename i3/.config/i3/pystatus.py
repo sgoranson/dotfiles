@@ -56,18 +56,31 @@ status.register(
 
 # ALSA SOUND ----------------------------------------------------------
 status.register(
-    "alsa",
+    "pulseaudio",
     on_leftclick="amixer -D pulse set Master toggle",
     # on_rightclick="pavucontrol",
-    color=color03,
-    color_muted=color01,
-    format=" {volume}%",
-    format_muted=' [muted]',
+    # bar_type='horizontal',
+    color_muted='#EDBE9B',
+    color_unmuted='#BD1D00',
+    multi_colors=True,
+    format="vol {volume_bar}",
+    format_muted='vol [muted]',
 )
+# status.register(
+#     "alsa",
+#     on_leftclick="amixer -D pulse set Master toggle",
+#     # on_rightclick="pavucontrol",
+#     color=color03,
+#     color_muted=color01,
+#     format=" {volume_bar}",
+#     format_muted=' [muted]',
+# )
 status.register("network",
     interface="wlp3s0",
-    format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
+    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
+    format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
     dynamic_color=True,
+    graph_style="braille-fill",
     separate_color=True,
     start_color=color14,
     end_color=color15,

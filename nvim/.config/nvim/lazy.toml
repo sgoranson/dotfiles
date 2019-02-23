@@ -222,6 +222,7 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
+on_event = 'VimEnter'
 hook_source = '''
 let g:dgs#username='sgoranson'
 
@@ -305,14 +306,65 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
     call s:profile(s:denite_options)
 
   nnoremap <silent> <space>/      :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-  nnoremap <silent> *           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
-  nnoremap <silent> ;;          :<C-u>Denite command command_history<CR>
+  nnoremap <silent> <space>*           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
+  nnoremap <silent> ;;          :<C-u>Denite command_history<CR>
 
   nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register register neoyank<CR>
   xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register register neoyank<CR>
 
-'''
+noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 
+
+noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -highlight-mode-insert=CursorLine register<CR>
+
+noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine line<CR>
+noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
+noremap <silent> <Space>b  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
+noremap <silent> <Space>B  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine unite:bookmark<CR>
+noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  change<CR>
+" noremap <silent> <Space>Co  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  colorscheme<CR>
+noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
+noremap <silent> <Space>d :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  directory_mru<CR>
+noremap <silent> <Space>e :<C-u>Denite -buffer-name='mru' -mode=insert -highlight-mode-insert=CursorLine file_mru<CR>
+
+nnoremap <silent> <Space>f :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine
+            \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+
+nnoremap <silent> <Space>gr :<C-u>Denite  -mode=normal -highlight-mode-insert=CursorLine -buffer-name='grepit' -vertical-preview -resume<CR>
+nnoremap <silent> <Space>gp :<C-u>Denite  -mode=normal  -highlight-mode-normal=CursorLine  -post-action=open
+            \ -buffer-name='grepit' -no-empty
+            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
+
+noremap <silent> <Space>h  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine -smartcase help<CR>
+noremap <silent> <Space>j  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine jump<CR>
+nnoremap <silent> <Space>M  :<C-u>Denite -mode=insert -highlight-mode-insert=CursorLine unite:mapping<CR>
+noremap <silent> <Space>m  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  mark<CR>
+noremap <silent> <Space>o  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine outline<CR>
+noremap <silent> <Space>r  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine file_mru/git<CR>
+noremap <silent> <Space>S  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
+noremap <silent> <Space>s  :<C-u>Startify<CR>
+noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:tab<CR>
+
+
+noremap <silent> <C-s> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
+
+nnoremap <silent> ]d :<C-u>Denite -resume -buffer-name='grepit' -select=+1 -immediately<CR>
+nnoremap <silent> [d :<C-u>Denite -resume -buffer-name='grepit' -select=-1 -immediately<CR>
+
+
+nnoremap <silent> ]B :<C-u>Denite -resume -buffer-name='mru' file_mru -select=+1 -immediately <CR>
+nnoremap <silent> [B :<C-u>Denite -resume -buffer-name='mru' file_mru -select=-1 -immediately <CR>
+
+nnoremap <silent> <Space>v :Defx `expand('%:p:h')`-auto-cd -toggle -split=vertical -winwidth=50 -direction=topleft<CR>
+nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
+
+
+
+
+nnoremap <silent> <Space>* :<C-u>DeniteCursorWord  -mode=insert -highlight-mode-insert=CursorLine
+            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
+
+'''
 
 
 

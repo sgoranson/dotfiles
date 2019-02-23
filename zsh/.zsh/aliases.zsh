@@ -178,8 +178,9 @@ alias calc=pcalc
 alias svc='sudo systemctl'
 compdef _systemctl svc=systemctl
 
-alias svcj='sudo journalctl -xe'
-alias svcu='systemctl --user'
+alias svc-j='sudo journalctl -xe'
+alias svc-u='systemctl --user'
+alias svc-u-reload='systemctl --user daemon-reload'
 
 AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
 

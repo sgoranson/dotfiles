@@ -1,9 +1,9 @@
 
 # GLOBAL/COLOR {{{
 
-set $modx Mod3
+set $modx Mod4
 # set $modx Control+Shift
-set $mody Mod4
+set $mody Mod4+Mod1
 
 default_orientation horizontal
 workspace_layout tabbed
@@ -85,12 +85,20 @@ bindsym $modx+k focus up
 bindsym $modx+h focus left
 bindsym $modx+l focus right
 
-bindsym $modx+a focus left
-bindsym $modx+f focus right
-bindsym $modx+Shift+a workspace prev
-bindsym $modx+Shift+f workspace next
-bindsym $modx+Control+a workspace prev
-bindsym $modx+Control+f workspace next
+bindsym $modx+Shift+h  workspace prev
+bindsym $modx+Shift+l  workspace next
+bindsym Control+Mod1+h  workspace prev
+bindsym Control+Mod1+l  workspace next
+
+
+bindsym $modx+Shift+o move container to workspace next
+bindsym $modx+Shift+i move container to workspace prev
+
+# move focused windowjjjj
+bindsym $modx+Down  move down
+bindsym $modx+Up  move up
+bindsym $modx+Left  move left
+bindsym $modx+Right  move right
 
 bindsym $mody+f floating toggle
 bindsym $mody+Shift+f focus mode_toggle
@@ -118,8 +126,15 @@ bindsym $modx+F2 reload
 bindsym $modx+F3 exec "i3-msg exit"
 
 bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindcode 115  exec pulseaudio-ctl up
 bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindcode 114  exec pulseaudio-ctl down
 bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindcode 113  exec pulseaudio-ctl mute
+bindcode 151 exec --no-startup-id rofi  -show run
+bindsym F6 exec pulseaudio-ctl down
+bindsym F7 exec pulseaudio-ctl up
+bindsym F8 exec pulseaudio-ctl mute
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
@@ -167,8 +182,6 @@ workspace $ws10 output DP-1
 # bindsym $modx+Control+w move workspace to output right
 # bindsym $modx+Shift+w move container to output right; focus output right
 
-bindsym $modx+Control+h workspace prev
-bindsym $modx+Control+l workspace next
 bindsym $modx+o focus output prev
 bindsym $modx+i focus output next
 
@@ -202,16 +215,6 @@ bindsym $modx+Shift+8 move container to workspace $ws8
 bindsym $modx+Shift+9 move container to workspace $ws9
 bindsym $modx+Shift+0 move container to workspace $ws10
 
-# bindsym $modx+Shift+p move container to output right; focus output right
-# bindsym $modx+Shift+u move container to output left; focus output left
-bindsym $modx+Shift+o move container to workspace next
-bindsym $modx+Shift+i move container to workspace prev
-
-# move focused windowjjjj
-bindsym $modx+Shift+j  move down
-bindsym $modx+Shift+k  move up
-bindsym $modx+Shift+h  move left
-bindsym $modx+Shift+l  move right
 
 # }}}
 
@@ -380,7 +383,7 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id compton -b
 exec --no-startup-id dropbox
 exec --no-startup-id alttabhax
-exec --no-startup-id ~/bin/start-xkeysnail
+# exec --no-startup-id ~/bin/start-xkeysnail
 
 # }}}
 set $mode_launcher do: [h]ist [b]ookmarks [k]ill
