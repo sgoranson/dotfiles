@@ -74,6 +74,9 @@ rm -rf *
 echo -e ${infoColor}"END OF FORMATTING"
 sleep 3
 
+exit
+
+
 #Update local mirrors
 echo -e ${infoColor}"UPDATING LOCAL MIRRORS"
 echo -e ${outputColor}
