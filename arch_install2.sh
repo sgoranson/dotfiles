@@ -24,7 +24,8 @@ mkfs -t ext4 -F ${DISK}2
 mount -v ${DISK}2 /mnt
 
 # install base packages
-pacstrap /mnt base base-devel vim sudo dhcpcd linux-lts linux-lts-headers dkms grub openssh
+#pacstrap /mnt base base-devel vim sudo dhcpcd linux-lts linux-lts-headers dkms grub openssh
+pacstrap /mnt base base-devel vim sudo dhcpcd  grub openssh
 
 # generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -34,7 +35,7 @@ cat > /mnt/install.sh << EOFEOF
 #!/bin/bash
 
 # remove non-LTS kernel
-pacman --noconfirm -R linux
+#pacman --noconfirm -R linux
 
 # set timezone
 ln -sf /usr/share/zoneinfo/Canada/Halifax /etc/localtime
@@ -66,7 +67,8 @@ sed -i.bak 's/^.*PermitRootLogin.*\$/PermitRootLogin\ yes/g' /etc/ssh/sshd_confi
 systemctl enable sshd.service
 
 # create initramfs
-mkinitcpio -p linux-lts
+#mkinitcpio -p linux-lts
+mkinitcpio
 
 # set root password
 echo "root:root" | chpasswd
