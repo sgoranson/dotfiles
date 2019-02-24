@@ -1,5 +1,6 @@
 #!/bin/sh
 stow -R userdirs
+stow -R alacritty
 stow -R dunst
 stow -R xkeysnail
 stow -R terminfo

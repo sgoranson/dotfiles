@@ -3,6 +3,7 @@
 set $modx Mod4
 # set $modx Control+Shift
 set $mody Mod4+Mod1
+set $myterm alacritty  
 
 default_orientation horizontal
 workspace_layout tabbed
@@ -65,9 +66,9 @@ bindsym $mody+Shift+b mode "borders"
 # KEYS  {{{
 
 # start a terminal
-bindsym $modx+Return  exec --no-startup-id kitty
-bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  kitty   
-# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  kitty; focus mode_toggle
+bindsym $modx+Return  exec --no-startup-id $myterm
+bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  $myterm   
+# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  $myterm; focus mode_toggle
 
 
 # change focus
@@ -315,7 +316,7 @@ exec_always --no-startup-id greenclip daemon
 exec --no-startup-id telegram-desktop
 # exec --no-startup-id spotify
 # exec --no-startup-id google-chrome-stable
-# exec --no-startup-id kitty
+# exec --no-startup-id $myterm
 exec --no-startup-id dunst
 
 exec --no-startup-id nitrogen --restore

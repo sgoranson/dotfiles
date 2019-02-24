@@ -1201,6 +1201,9 @@ fun! s:apply_syntax_highlightings()
   exec 'hi Statement' . s:fg_pink . s:ft_none
   exec 'hi Conditional' . s:fg_purple . s:ft_bold
   exec 'hi manSubheading' . s:fg_purple . s:ft_bold
+  exec 'hi manBold' . s:fg_orange 
+  exec 'hi manItalic' . s:fg_red . s:ft_bold
+  exec 'hi manUnderline' . s:fg_blue
   exec 'hi Repeat' . s:fg_purple . s:ft_bold
   exec 'hi Label' . s:fg_blue
   exec 'hi Operator' . s:fg_aqua . s:ft_none

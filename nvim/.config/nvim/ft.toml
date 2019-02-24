@@ -33,7 +33,7 @@ man = '''
 set mouse=a
 "highlight default link manBold manUnderline
 "highlight default link manItalic manUnderline
-highlight! default link manSubheading Conditional
+"highlight! default link manSubheading Conditional
 '''
 
 vim = '''
