@@ -66,11 +66,8 @@ bindsym $mody+Shift+b mode "borders"
 
 # start a terminal
 bindsym $modx+Return  exec --no-startup-id kitty
-# bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m -h 45%  kitty
-bindsym $modx+Shift+Return exec tdrop   -a  -x 10% -y 20%  -h 55% -w 80%  kitty   
+bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  kitty   
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  kitty; focus mode_toggle
-# bindsym $modx+Shift+Return exec i3-quickterm shell
-# bindsym F1 exec i3-quickterm shell
 
 
 # change focus
@@ -113,6 +110,10 @@ bindsym $modx+r exec --no-startup-id rofi  -show run
 bindsym Mod1+Tab exec --no-startup-id rofi  -show window
 bindsym $modx+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 bindsym $mody+v exec --no-startup-id ~/bin/greenclip-paste.sh 
+
+bindsym Mod3+q kill
+bindsym Mod4+q kill
+bindsym Mod3+w focus output right
 
 # reload the configuration file
 bindsym $modx+F1 restart
@@ -276,9 +277,6 @@ bindsym $mody+5 [con_mark="mark5"] focus
 # }}}
 
 
-bindsym Mod3+q kill
-bindsym Mod4+q kill
-bindsym Mod3+w focus output right
 
 # floating_minimum_size 371 x 548
 # floating_maximum_size 2000 x 1500

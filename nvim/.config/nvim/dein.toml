@@ -6,6 +6,9 @@ build = './install.sh'
 repo = 'tpope/vim-fugitive'                        # git helper
 
 [[plugins]]
+repo = 'vim-scripts/SyntaxAttr.vim'                        # git helper
+
+[[plugins]]
 repo = 'xolox/vim-misc'                        # git helper
 
 [[plugins]]

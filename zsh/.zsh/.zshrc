@@ -13,10 +13,10 @@ fi
 source ~/.zplug/init.zsh
 # zplug "b4b4r07/enhancd", use:init.sh, defer:3
 # zplug "mollifier/anyframe"
-zplug "plugins/extract",   from:oh-my-zsh, lazy:true
-zplug "plugins/spectrum",   from:oh-my-zsh, lazy:true
+zplug "plugins/extract",   from:oh-my-zsh
+zplug "plugins/spectrum",   from:oh-my-zsh
 zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions', lazy:true
+zplug 'zsh-users/zsh-completions'
 zplug "zsh-users/zsh-history-substring-search"
 # zplug "jhawthorn/fzy", \
 #     as:command, \
@@ -147,7 +147,26 @@ source $ZDOTDIR/z.sh
 
 # }}}
 
+# Lazy load rbenv {{{
+#  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+#
 
+if [[ ! -d $HOME/.rbenv ]]; then
+    printf '\e[30;44minstalling rbenv...'
+    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
+fi
+
+if type rbenv &> /dev/null; then
+  local RBENV_SHIMS="${RBENV_ROOT:-${HOME}/.rbenv}/shims"
+  export PATH="${RBENV_SHIMS}:${PATH}"
+  source $HOME/.rbenv/completions/rbenv.zsh
+  function rbenv() {
+    unset -f rbenv > /dev/null 2>&1
+    eval "$(command rbenv init -)"
+    rbenv "$@"
+  }
+fi
+# }}}
 
 
 # DIRECTORY HISTORY {{{
@@ -175,8 +194,6 @@ zstyle ':chpwd:*' recent-dirs-file $ZSH_CDR_DIR/recent-dirs
 zstyle ':chpwd:*' recent-dirs-max 90
 # fall through to cd
 zstyle ':chpwd:*' recent-dirs-default yes
-
-
 
 # }}}
 

@@ -25,9 +25,16 @@ autocmd MyAutoCmd BufWritePost,FileWritePost *.vim nested
 autocmd MyAutoCmd InsertLeave *
       \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
       \ if &l:diff | diffupdate | endif
+
 '''
 
 [ftplugin]
+man = '''
+set mouse=a
+"highlight default link manBold manUnderline
+"highlight default link manItalic manUnderline
+highlight! default link manSubheading Conditional
+'''
 
 vim = '''
 if line('$') > 1000
@@ -39,7 +46,10 @@ setlocal shiftwidth=2 softtabstop=2
 setlocal iskeyword+=:,#
 '''
 
-qfreplace = 'setlocal nofoldenable'
+qfreplace = '''
+setlocal nofoldenable
+wincmd L
+'''
 
 toml = 'syntax sync minlines=500'
 
