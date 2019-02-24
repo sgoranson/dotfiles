@@ -12,6 +12,7 @@ repo = 'xolox/vim-misc'                        # git helper
 repo = 'xolox/vim-session'                        # git helper
 hook_add = '''
 let g:session_autoload = 'no' 
+let g:session_autosave = 'no'
 '''
 
 
@@ -29,133 +30,8 @@ repo =  'rbgrouleff/bclose.vim'                # shows marks, m/ shortcuts
 [[plugins]]
 repo = 'Shougo/dein.vim' 
 
-# [[plugins]]
-# repo =  'itchyny/lightline.vim'                # shows marks, m/ shortcuts
-# hook_add = '''
 
 
-#              "\   'filename': '%<%f',
-
-
-#  let g:lightline = {
-#              \ 'component': {
-#              \   'lineinfo': ' %3l:%-2L'
-#              \ },
-#              \ 'component_function': {
-#              \   'gitdir': 'LightlineGitdir',
-#              \   'filename': 'LightlineFilename',
-#              \   'readonly': 'LightlineReadonly',
-#              \   'fugitive': 'LightlineFugitive',
-#              \   'mygutter': 'MyGitGutter',
-#              \   'filetype': 'MyFiletype',
-#              \   'fileformat': 'MyFileformat'
-#              \ },
-#              \ 'separator': { 'left': '', 'right': '' },
-#              \ 'subseparator': { 'left': '', 'right': '' }
-#              \ }
-
-#  let g:lightline.colorscheme = 'PaperColor'
-
-
-#  		let g:lightline.tabline = {
-#  		    \ 'left': [ [ 'tabs' ] ],
-#  		    \ 'right': [ [ 'absolutepath' ] ] }
-
-
-
-#  let g:lightline.active = {
-#              \ 'left': [ [ 'mode', 'paste' ],
-#              \           [ 'fugitive', 'gitdir', 'relativepath'] ],
-#              \ 'right': [ [ 'lineinfo' ],
-#              \            [ 'percent' ],
-#              \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
-
-
-# function! LightlineGitdir()
-#   let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
-# "  let path = expand('%:p')
-# "  if path[:len(root)-1] ==# root
-# "    return path[len(root)+1:]
-# "  endif
-# "  return expand('%')
-# return root
-# endfunction
-
-
-
-#  function! MyGitGutter()
-#      if ! exists('*GitGutterGetHunkSummary')
-#                  \ || ! get(g:, 'gitgutter_enabled', 0)
-#                  \ || winwidth('.') <= 90
-#          return ''
-#      endif
-#      let symbols = [
-#                  \ g:gitgutter_sign_added . ' ',
-#                  \ g:gitgutter_sign_modified . ' ',
-#                  \ g:gitgutter_sign_removed . ' '
-#                  \ ]
-#      let hunks = GitGutterGetHunkSummary()
-#      let ret = []
-#      for i in [0, 1, 2]
-#          if hunks[i] > 0
-#              call add(ret, symbols[i] . hunks[i])
-#          endif
-#      endfor
-#      return join(ret, ' ')
-#  endfunction
-
-
-#  function! MyFiletype()
-#      return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-#  endfunction
-
-#  function! MyFileformat()
-#      return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
-#  endfunction
-
-#  function! LightlineModified()
-#      return &ft =~ 'help\|vimfiler' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-#  endfunction
-#  function! LightlineReadonly()
-#      return &ft !~? 'help\|vimfiler' && &readonly ? '⭤' : ''
-#  endfunction
-#  function! LightlineFilename()
-#      return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
-#                  \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-#                  \  &ft == 'unite' ? unite#get_status_string() :
-#                  \  &ft == 'vimshell' ? vimshell#get_status_string() :
-#                  \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-#                  \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
-#  endfunction
-#  function! LightlineFugitive()
-#      if &ft !~? 'vimfiler' && exists('*fugitive#head')
-#          let branch = fugitive#head()
-#          return branch !=# '' ? '⭠ '.branch : ''
-#      endif
-#      return ''
-#  endfunction
-
-
-
-
-#  		let g:lightline.enable = {
-#  		    \ 'statusline': 1,
-#  		    \ 'tabline': 1
-#  		    \ }
-
-
-
-# '''
-
-
-[[plugins]]
-repo =  'ryanoasis/vim-devicons'
-#on_cmd = ['WebDevIconsGetFileFormatSymbol']
-hook_add = '''
-  let g:webdevicons_enable_denite = 1
-  let g:webdevicons_enable_vimfiler = 1
-  let g:webdevicons_enable = 1
-'''
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
@@ -265,53 +141,54 @@ repo =  'junegunn/vim-easy-align'                   # ga =
 
 
 
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
+# [[plugins]]
+# repo = 'vim-airline/vim-airline-themes'
 
 
-[[plugins]]
-repo = 'vim-airline/vim-airline'
-hook_add = '''
+# [[plugins]]
+# repo = 'vim-airline/vim-airline'
+# hook_add = '''
 
 
 
-  let g:airline_powerline_fonts = 1
-    let g:airline_theme='minimalist'
-    let g:airline_minimalist_showmod = 1
+#   let g:airline_powerline_fonts = 1
+#     let g:airline_theme='minimalist'
+#     let g:airline_minimalist_showmod = 1
 
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
+#   let g:airline_left_sep = ''
+#   let g:airline_left_alt_sep = ''
+#   let g:airline_right_sep = ''
+#   let g:airline_right_alt_sep = ''
 
 
-  if ! exists('g:airline_symbols')
-      let g:airline_symbols = {}
-  endif
+#   if ! exists('g:airline_symbols')
+#       let g:airline_symbols = {}
+#   endif
 
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.readonly = ''
-  let g:airline_symbols.linenr = '☰'
-  let g:airline_symbols.maxlinenr = ''
+#   let g:airline_symbols.branch = ''
+#   let g:airline_symbols.readonly = ''
+#   let g:airline_symbols.linenr = '☰'
+#   let g:airline_symbols.maxlinenr = ''
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 1
-let g:airline#extensions#tabline#close_symbol = '×'
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+# let g:airline#extensions#tabline#enabled = 1
+# let g:airline#extensions#tabline#show_buffers = 0
+# let g:airline#extensions#tabline#show_splits = 0
+# let g:airline#extensions#tabline#show_tabs = 1
+# let g:airline#extensions#tabline#show_tab_nr = 0
+# let g:airline#extensions#tabline#show_tab_type = 1
+# let g:airline#extensions#tabline#close_symbol = '×'
+# let g:airline#extensions#tabline#show_close_button = 0
+# " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+# let g:airline#extensions#tabline#fnamemod = ':t' 
+#   let g:airline#extensions#languageclient#enabled = 1
 
-  let g:airline#extensions#languageclient#enabled = 1
-
-  function! AirlineInit()
-"  let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
-    let g:airline_section_d = airline#section#create(['%{getcwd()}'])
-  endfunction
-  autocmd User AirlineAfterInit call AirlineInit()
-'''
+#   function! AirlineInit()
+# "  let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
+#     " let g:airline_section_d = airline#section#create(['%{getcwd()}'])
+#     let g:airline_section_c = airline#section#create_left(['%{fnamemodify(getcwd(),":~")}', '%{airline#extensions#fugitiveline#bufname()}'])
+#   endfunction
+#   autocmd User AirlineAfterInit call AirlineInit()
+# '''
 
 [[plugins]]
 repo = 'tpope/vim-eunuch'                          # :Delete, :Rename, :SudoWrite

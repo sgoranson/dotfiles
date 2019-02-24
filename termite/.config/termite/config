@@ -22,7 +22,7 @@ search_wrap = true
 urgent_on_bell = true
 
 [hints]
-font = Monospace 12
+font = UbuntuMono Nerd Font Mono 12
 foreground = #dcdccc
 background = #3f3f3f
 active_foreground = #e68080

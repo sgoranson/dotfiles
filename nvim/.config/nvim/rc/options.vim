@@ -151,7 +151,7 @@ set fileencoding=utf-8                " The encoding written to file.
 set viewoptions-=options              " when we save a view dont save options
 set hidden                            " buffers can exist sans window
 set history=10000                     " Store lots of :cmdline history
-set ignorecase                        " Ignore case when searching...
+set noignorecase                        " Ignore case when searching...
 set smartcase                         " ...unless we type a capital
 " set iskeyword+=_,$,@,%,-
 

@@ -295,6 +295,7 @@ alias sed-strip-ansi='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g
 alias sshfs-umount='fusermount3 -u'
 alias sshfs-basic='sshfs alarm@alarmpi:  ~/mnt/alarm'
 
+alias ss-listening='sudo ss -lptu'
 alias term-set-title='echo -ne "\e]0;$(hostname)\a"'
 
 alias thumbnail-gen='mogrify -verbose -path thumbs/256  -thumbnail 256x256^ *(.)'

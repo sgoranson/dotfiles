@@ -53,6 +53,8 @@ if dein#load_state(expand(s:dein_dir))
   call dein#load_toml(s:toml_lazy_file, {'lazy': 1})
   call dein#load_toml(s:toml_ft_file)
 
+
+
   call dein#end()
   call dein#save_state()
 endif
