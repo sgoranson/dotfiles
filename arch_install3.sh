@@ -27,23 +27,23 @@ strUsername='steve'
 echo -e ${infoColor}"Welcome to the Spot Communication's Arch Linux installer and configurator"
 echo -e ${outputColor}
 
-parted ${strInstallDrive} rm 1
-parted ${strInstallDrive} rm 2
-parted ${strInstallDrive} rm 3
-parted ${strInstallDrive} rm 4
-parted ${strInstallDrive} rm 5
-parted ${strInstallDrive} rm 6
+parted ${strInstallDrive} rm 1 --script || true
+parted ${strInstallDrive} rm 2 --script || true
+parted ${strInstallDrive} rm 3 --script || true
+parted ${strInstallDrive} rm 4 --script || true
+parted ${strInstallDrive} rm 5 --script || true
+parted ${strInstallDrive} rm 6 --script || true
 dd if=/dev/zero of=${strInstallDrive} bs=512 count=10
 
 # parted ${strInstallDrive} mklabel gpt
 # parted ${strInstallDrive} mkpart primary fat32 1MiB ${strPartitionSizeBoot}
-parted ${strInstallDrive} mklabel msdos
-parted ${strInstallDrive} mkpart primary ext4 1MiB ${strPartitionSizeBoot}
+parted ${strInstallDrive} mklabel msdos --script
+#parted ${strInstallDrive} mkpart primary ext4 1MiB ${strPartitionSizeBoot}
 
-parted mkpart primary ext4 1MiB 100MiB
-parted set 1 boot on
-parted mkpart primary ext4 100MiB 90%
-parted mkpart primary linux-swap 90% 100%
+parted ${strInstallDrive}  mkpart primary ext4 1MiB 100MiB --script
+parted ${strInstallDrive}  set 1 boot on --script
+parted ${strInstallDrive}  mkpart primary ext4 100MiB 90% --script
+parted ${strInstallDrive}  mkpart primary linux-swap 90% 100% --script
 
 
 echo -e ${infoColor}"END OF PARTITIONING"
@@ -52,7 +52,7 @@ sleep 3
 
 #Format the partitions
 # mkfs.vfat -F32 ${strInstallDrive}1
-mkfs.ext4 {$strInstallDrive}1
+mkfs.ext4 ${strInstallDrive}1
 mkfs.ext4 ${strInstallDrive}2
 mkswap ${strInstallDrive}3
 swapon ${strInstallDrive}3
@@ -73,8 +73,6 @@ rm -rf *
 # cd ~
 echo -e ${infoColor}"END OF FORMATTING"
 sleep 3
-
-exit
 
 
 #Update local mirrors
