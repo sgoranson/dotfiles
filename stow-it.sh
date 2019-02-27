@@ -1,4 +1,5 @@
 #!/bin/sh
+stow -R npm
 stow -R userdirs
 stow -R alacritty
 stow -R dunst

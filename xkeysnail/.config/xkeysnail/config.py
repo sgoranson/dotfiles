@@ -22,7 +22,6 @@ define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
     # Key.ENTER: [Key.ENTER, Key.LEFT_META],
     Key.ENTER: [Key.ENTER, Key.RIGHT_ALT],
-    Key.SPACE: [Key.SPACE, Key.LEFT_SHIFT],
 
     # Capslock is escape when pressed and released. Control when held down.
     Key.CAPSLOCK: [Key.ESC, Key.LEFT_META]
@@ -47,32 +46,32 @@ define_multipurpose_modmap({
 #     K("C-s"): K("C-k"),
 # }, "Zeal")
 
-define_keymap(lambda wm_class: wm_class not in ("Emacs", "kitty"), {
-    # Cursor
-    K("C-p"): with_mark(K("up")),
-    K("C-n"): with_mark(K("down")),
-    K("C-h"): with_mark(K("backspace")),
-    # Forward/Backward word
-    K("M-b"): with_mark(K("C-left")),
-    K("M-f"): with_mark(K("C-right")),
-    # Beginning/End of line
-    K("C-a"): with_mark(K("home")),
-    K("C-e"): with_mark(K("end")),
-    # Delete
-    K("C-d"): [K("delete"), set_mark(False)],
-    K("M-d"): [K("C-delete"), set_mark(False)],
-    # Kill line
-    K("C-k"): [K("Shift-end"), K("C-x"), set_mark(False)],
-    # Cancel
-    K("C-g"): [K("esc"), set_mark(False)],
-    # C-x YYY
-    K("C-x"): {
-        # C-x h (select all)
-        K("h"): [K("C-home"), K("C-a"), set_mark(True)],
-        # C-x u (undo)
-        K("u"): [K("C-z"), set_mark(False)],
-        }
-    }, "Emacs-like keys")
+# define_keymap(lambda wm_class: wm_class not in ("Emacs", "kitty"), {
+#     # Cursor
+#     K("C-p"): with_mark(K("up")),
+#     K("C-n"): with_mark(K("down")),
+#     K("C-h"): with_mark(K("backspace")),
+#     # Forward/Backward word
+#     K("M-b"): with_mark(K("C-left")),
+#     K("M-f"): with_mark(K("C-right")),
+#     # Beginning/End of line
+#     K("C-a"): with_mark(K("home")),
+#     K("C-e"): with_mark(K("end")),
+#     # Delete
+#     K("C-d"): [K("delete"), set_mark(False)],
+#     K("M-d"): [K("C-delete"), set_mark(False)],
+#     # Kill line
+#     K("C-k"): [K("Shift-end"), K("C-x"), set_mark(False)],
+#     # Cancel
+#     K("C-g"): [K("esc"), set_mark(False)],
+#     # C-x YYY
+#     K("C-x"): {
+#         # C-x h (select all)
+#         K("h"): [K("C-home"), K("C-a"), set_mark(True)],
+#         # C-x u (undo)
+#         K("u"): [K("C-z"), set_mark(False)],
+#         }
+#     }, "Emacs-like keys")
 # Emacs-like keybindings in non-Emacs applications
 # define_keymap(lambda wm_class: wm_class not in ("Emacs", "URxvt"), {
 #     # Cursor

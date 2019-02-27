@@ -1,38 +1,5 @@
 #!env zsh
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
-export  ENHANCD_FILTER=fzy 
-export ENHANCD_COMMAND=cd
-
-# Zplug init
-#------------------------------------i
-if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update 
-fi
-source ~/.zplug/init.zsh
-# zplug "b4b4r07/enhancd", use:init.sh, defer:3
-# zplug "mollifier/anyframe"
-zplug "plugins/extract",   from:oh-my-zsh
-zplug "plugins/spectrum",   from:oh-my-zsh
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions'
-zplug "zsh-users/zsh-history-substring-search"
-# zplug "jhawthorn/fzy", \
-#     as:command, \
-#     rename-to:fzy, \
-#     hook-build:"make && sudo make install"
-
-# zplug 'mafredri/zsh-async', from:github
-# zplug 'sindresorhus/pure', use:pure.zsh, from:github, as:theme
-# zplug "themes/robbyrussell", from:oh-my-zsh
-
-if (( 1 )); then
-zplug check || zplug install
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load 
 
 
 
@@ -45,18 +12,13 @@ export HISTFILE=$XDG_CACHE_HOME/.zsh_history
 
 
 
-
-
-
-
 autoload -U colors
 colors
-zmodload zsh/zpty
 
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt no_hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
@@ -76,7 +38,7 @@ setopt   IGNORE_EOF
 setopt   AUTOCD
 setopt   AUTOPUSHD
 setopt   PUSHD_IGNORE_DUPS
-setopt   PUSHDMINUS
+setopt   NOPUSHDMINUS
 setopt   PUSHDSILENT
 setopt   PUSHDTOHOME
 setopt   CDABLEVARS
@@ -88,11 +50,11 @@ setopt   PROMPTSUBST       # Allow for functions in the prompt.
 setopt   PROMPTPERCENT
 
 setopt   LONG_LIST_JOBS
-setopt   MARK_DIRS         # Add "/" if completes directory
-setopt   MAGIC_EQUAL_SUBST # Enable completion in "--option=arg"
+setopt   MARK_DIRS          # Add "/" if completes directory
+setopt   MAGIC_EQUAL_SUBST  # Enable completion in "--option=arg"
 setopt   NO_MENU_COMPLETE   # DO NOT AUTOSELECT THE FIRST COMPLETION ENTRY
 setopt   NOFLOWCONTROL
-setopt   AUTO_MENU         # SHOW COMPLETION MENU ON SUCCESIVE TAB PRESS
+setopt   AUTO_MENU          # SHOW COMPLETION MENU ON SUCCESIVE TAB PRESS
 setopt   COMPLETE_IN_WORD
 setopt   ALWAYS_TO_END
 setopt   COMPLETEALIASES
@@ -122,15 +84,11 @@ fi
 # source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
-
-
-
-
-
 #Set some zsh completion Options
-#autoload -U compinit
-#compinit -C
+autoload -U compinit
+compinit -C
 ##Complete my dot files please
+
 _comp_options+=(globdots)
 #zmodload -i zsh/complist
 
@@ -142,30 +100,18 @@ source $ZDOTDIR/completion.zsh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/completion/googler_at
 source $ZDOTDIR/z.sh
+source $ZDOTDIR/zsh-history-substring-search.zsh
+source $ZDOTDIR/zsh-autosuggestions.zsh
+source $ZDOTDIR/extract.plugin.zsh
+
 # source $ZDOTDIR/anyenv.sh
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=4,fg=0'
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=9,fg=white,bold'
+export HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS=''
+export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=''
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
 
-# }}}
-
-# Lazy load rbenv {{{
-#  curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
-#
-
-if [[ ! -d $HOME/.rbenv ]]; then
-    printf '\e[30;44minstalling rbenv...'
-    curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash 
-fi
-
-if type rbenv &> /dev/null; then
-  local RBENV_SHIMS="${RBENV_ROOT:-${HOME}/.rbenv}/shims"
-  export PATH="${RBENV_SHIMS}:${PATH}"
-  source $HOME/.rbenv/completions/rbenv.zsh
-  function rbenv() {
-    unset -f rbenv > /dev/null 2>&1
-    eval "$(command rbenv init -)"
-    rbenv "$@"
-  }
-fi
 # }}}
 
 
@@ -190,8 +136,10 @@ mkdir -p $ZSH_CDR_DIR
 autoload -Uz chpwd_recent_dirs cdr
 autoload -U add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
+add-zsh-hook -Uz zsh_directory_name zsh_directory_name_cdr
 zstyle ':chpwd:*' recent-dirs-file $ZSH_CDR_DIR/recent-dirs
-zstyle ':chpwd:*' recent-dirs-max 90
+zstyle ':chpwd:*' recent-dirs-max 40
+zstyle ':chpwd:*' recent-dirs-prune parent
 # fall through to cd
 zstyle ':chpwd:*' recent-dirs-default yes
 

@@ -3,6 +3,9 @@ function is42 () {
     return 1
 }
 
+    # don't prompt me for long completion lists
+    export LISTMAX=9999
+
     # Make sure the completion system is initialised
 
     # allow one error for every three characters typed in approximate completer
@@ -10,6 +13,9 @@ function is42 () {
 
     # don't complete backup files as executables
     zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(aptitude-*|*\~)'
+
+    # cool thing that highlights the prefix
+    zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==90=01}:${(s.:.)LS_COLORS}")'
 
 
     # activate color-completion
@@ -86,9 +92,9 @@ function is42 () {
     zstyle ':completion:*:processes-names' command 'ps c -u ${USER} -o command | uniq'
 
     # complete manual by their section
-    # zstyle ':completion:*:manuals'    separate-sections true
+    zstyle ':completion:*:manuals'    separate-sections true
     # zstyle ':completion:*:manuals.*'  insert-sections   true
-    # zstyle ':completion:*:man:*'      menu yes select
+    zstyle ':completion:*:man:*'      menu yes select
 
     # Search path for sudo completion
     zstyle ':completion:*:sudo:*' command-path /usr/local/sbin \

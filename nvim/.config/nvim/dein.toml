@@ -1,6 +1,42 @@
+# [[plugins]]
+# repo = 'tbodt/deoplete-tabnine'
+# build = './install.sh'
+
 [[plugins]]
-repo = 'tbodt/deoplete-tabnine'
-build = './install.sh'
+repo = 'autozimu/LanguageClient-neovim'
+rev = 'next'
+build =  'bash install.sh'
+hook_add = '''
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+ let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
+'''
+
+
+[[plugins]]
+repo = 'ncm2/ncm2'
+hook_add = '''
+    " enable ncm2 for all buffers
+    autocmd BufEnter * call ncm2#enable_for_buffer()
+
+    " IMPORTANT: :help Ncm2PopupOpen for more information
+    set completeopt=noinsert,menuone,noselect
+      set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+" set complete=.,w,b,u,t
+"set completeopt=longest,menuone,preview
+'''
+[[plugins]]
+repo = 'ncm2/ncm2-bufword'
+[[plugins]]
+repo = 'ncm2/ncm2-path'
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+                     
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'                        # git helper

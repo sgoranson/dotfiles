@@ -63,11 +63,72 @@ bindsym $mody+Shift+b mode "borders"
 
 # }}}
 
+# MODES {{{
+set $mode_launcher do: [h]ist [b]ookmarks [k]ill
+
+mode "$mode_launcher" {
+    bindsym h exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-hist.sh"; mode "default"
+    bindsym b exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-bookmarks.rb"; mode "default"
+    bindsym k exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-kill.sh"; mode "default"
+
+    # bindsym Control+Mod3+w [class="(?i)google-chrome"] focus
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+# resize window (you can also use the mouse for that)
+ mode "resize" {
+         # These bindings trigger as soon as you enter the resize mode
+ 
+         # same bindings, but for the arrow keys
+         bindsym Left        resize shrink width 10 px or 10 ppt
+         bindsym Down        resize grow height 10 px or 10 ppt
+         bindsym Up          resize shrink height 10 px or 10 ppt
+         bindsym Right       resize grow width 10 px or 10 ppt
+ 
+         # back to normal: Enter or Escape or Mod1+r
+         bindsym Return mode "default"
+         bindsym Escape mode "default"
+         bindsym Mod1+r mode "default"
+} 
+
+show_marks yes
+mode "marks" {
+        # hardcoded focus keybindings
+        bindsym w [class="(?i)google-chrome"] focus; mode "default"
+        bindsym v [class="(?i)nvim-qt"] focus; mode "default"
+
+
+        # keybindings for marking and jumping to clients
+        bindsym m exec i3-input -F 'mark %s' -P 'Mark name: '
+        bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+        # Assign marks to keys 1-5
+        bindsym Shift+1 mark mark1
+        bindsym Shift+2 mark mark2; mode "default"
+        bindsym Shift+3 mark mark3; mode "default"
+        bindsym Shift+4 mark mark4; mode "default"
+        bindsym Shift+5 mark mark5; mode "default"
+
+        # Jump to clients marked 1-5
+        bindsym 1 [con_mark="mark1"] focus
+        bindsym 2 [con_mark="mark2"] focus; mode "default"
+        bindsym 3 [con_mark="mark3"] focus; mode "default"
+        bindsym 4 [con_mark="mark4"] focus; mode "default"
+        bindsym 5 [con_mark="mark5"] focus; mode "default"
+
+        # Exit to the default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+ # }}}
+
 # KEYS  {{{
 
 # start a terminal
 bindsym $modx+Return  exec --no-startup-id $myterm
-bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  $myterm   
+bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  alacritty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  $myterm; focus mode_toggle
 
 
@@ -108,13 +169,15 @@ bindsym $modx+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name
 bindsym $modx+r exec --no-startup-id rofi  -show run
 
 
-bindsym Mod1+Tab exec --no-startup-id rofi  -show window
 bindsym $modx+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 bindsym $mody+v exec --no-startup-id ~/bin/greenclip-paste.sh 
 
 bindsym Mod3+q kill
 bindsym Mod4+q kill
 bindsym Mod3+w focus output right
+
+bindsym $modx+s layout toggle splitv splith tabbed
+
 
 # reload the configuration file
 bindsym $modx+F1 restart
@@ -139,6 +202,30 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 # use Mouse+$modx to drag floating windows to their wanted position. also resizing
 floating_modifier Mod4
 
+# The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mody+button2 kill
+
+# The right button toggles floating
+bindsym --whole-window Mod3+Shift+button3 floating toggle
+
+bindsym $mody+p mode "$mode_launcher"
+bindsym $mody+r mode "resize"
+
+# bindsym $mody+Tab exec "rofi -show window -kb-row-down 'Control+Tab' -kb-accept-entry '!Control_R,!Control+Tab'"
+bindsym $mody+m mode "marks"
+bindsym $mody+Shift+1 mark mark1
+bindsym $mody+Shift+2 mark mark2
+bindsym $mody+Shift+3 mark mark3
+bindsym $mody+Shift+4 mark mark4
+bindsym $mody+Shift+5 mark mark5
+
+# Jump to clients marked 1-5
+bindsym $mody+1 [con_mark="mark1"] focus
+bindsym $mody+2 [con_mark="mark2"] focus
+bindsym $mody+3 [con_mark="mark3"] focus
+bindsym $mody+4 [con_mark="mark4"] focus
+bindsym $mody+5 [con_mark="mark5"] focus
+bindsym Mod1+Tab [con_mark="_last"] focus
  # }}}
 
 # WORKSPACES {{{
@@ -232,66 +319,7 @@ bindsym $mody+plus  gaps outer all plus  5
 bindsym $mody+minus gaps outer all minus 5
 # }}}
 
-# FOCUS {{{
-show_marks yes
-mode "marks" {
-        # hardcoded focus keybindings
-        bindsym w [class="(?i)google-chrome"] focus; mode "default"
-        bindsym v [class="(?i)nvim-qt"] focus; mode "default"
-
-
-        # keybindings for marking and jumping to clients
-        bindsym m exec i3-input -F 'mark %s' -P 'Mark name: '
-        bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
-
-        # Assign marks to keys 1-5
-        bindsym Shift+1 mark mark1
-        bindsym Shift+2 mark mark2; mode "default"
-        bindsym Shift+3 mark mark3; mode "default"
-        bindsym Shift+4 mark mark4; mode "default"
-        bindsym Shift+5 mark mark5; mode "default"
-
-        # Jump to clients marked 1-5
-        bindsym 1 [con_mark="mark1"] focus
-        bindsym 2 [con_mark="mark2"] focus; mode "default"
-        bindsym 3 [con_mark="mark3"] focus; mode "default"
-        bindsym 4 [con_mark="mark4"] focus; mode "default"
-        bindsym 5 [con_mark="mark5"] focus; mode "default"
-
-        # Exit to the default mode
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mody+m mode "marks"
-bindsym $mody+Shift+1 mark mark1
-bindsym $mody+Shift+2 mark mark2
-bindsym $mody+Shift+3 mark mark3
-bindsym $mody+Shift+4 mark mark4
-bindsym $mody+Shift+5 mark mark5
-
-# Jump to clients marked 1-5
-bindsym $mody+1 [con_mark="mark1"] focus
-bindsym $mody+2 [con_mark="mark2"] focus
-bindsym $mody+3 [con_mark="mark3"] focus
-bindsym $mody+4 [con_mark="mark4"] focus
-bindsym $mody+5 [con_mark="mark5"] focus
-# }}}
-
-
-
-# floating_minimum_size 371 x 548
-# floating_maximum_size 2000 x 1500
-
-# bindsym --release button2 kill
-# The middle button and a modifer over any part of the window kills the window
-bindsym --whole-window $mody+button2 kill
-
-# The right button toggles floating
-bindsym --whole-window Mod3+Shift+button3 floating toggle
-
-# bindsym $mody+Tab exec "rofi -show window -kb-row-down 'Control+Tab' -kb-accept-entry '!Control_R,!Control+Tab'"
-
-# INITRC {{{
+# STARTUP EXE {{{
 # assign [class="(?i)(?:telegramdesktop)"] → $ws8
 # assign [class="(?i)(?:google-chrome)"]  → $ws2
 # assign [class="(?i)(?:spotify)"]  → $ws7
@@ -322,44 +350,10 @@ exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id compton -b
 exec --no-startup-id dropbox
-# exec --no-startup-id alttabhax
+exec --no-startup-id alttabhax
 # exec --no-startup-id ~/bin/start-xkeysnail
 
 # }}}
-
-set $mode_launcher do: [h]ist [b]ookmarks [k]ill
-bindsym $mody+p mode "$mode_launcher"
-
-mode "$mode_launcher" {
-    bindsym h exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-hist.sh"; mode "default"
-    bindsym b exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-web-bookmarks.rb"; mode "default"
-    bindsym k exec --no-startup-id kitty --class=FLOATMITE -- zsh -c "fz-kill.sh"; mode "default"
-
-    # bindsym Control+Mod3+w [class="(?i)google-chrome"] focus
-
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
-}
-
-# resize window (you can also use the mouse for that)
- mode "resize" {
-         # These bindings trigger as soon as you enter the resize mode
- 
-         # same bindings, but for the arrow keys
-         bindsym Left        resize shrink width 10 px or 10 ppt
-         bindsym Down        resize grow height 10 px or 10 ppt
-         bindsym Up          resize shrink height 10 px or 10 ppt
-         bindsym Right       resize grow width 10 px or 10 ppt
- 
-         # back to normal: Enter or Escape or Mod1+r
-         bindsym Return mode "default"
-         bindsym Escape mode "default"
-         bindsym Mod1+r mode "default"
- }
- 
- bindsym $mody+r mode "resize"
-
-
 
 # BAR {{{
 bar {

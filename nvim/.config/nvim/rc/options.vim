@@ -137,14 +137,12 @@ let &statusline = g:active_statusline
 
 " Etc {{{
 set shellcmdflag&
-set shell&
+set shell=/usr/bin/zsh\ -l
 set shellxquote&
 set formatoptions=jql
 set gdefault                         " s///g implied
 set noautoread                        " dont silently reload files changed outside vim
 set backspace=indent,eol,start        " Allow backspace in insert mode
-set complete=.,w,b,u,t
-set completeopt=longest,menuone,preview
 set expandtab
 set fileencoding=utf-8                " The encoding written to file.
 

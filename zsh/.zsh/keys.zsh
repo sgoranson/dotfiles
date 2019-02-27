@@ -56,13 +56,13 @@ key_info=(
   'BackTab'      "$terminfo[kcbt]"
 )
 
-# Set empty $key_info values to an invalid UTF-8 sequence to induce silent
-# bindkey failure.
-for key in "${(k)key_info[@]}"; do
-  if [[ -z "$key_info[$key]" ]]; then
-    key_info[$key]='�'
-  fi
-done
+# # Set empty $key_info values to an invalid UTF-8 sequence to induce silent
+# # bindkey failure.
+# for key in "${(k)key_info[@]}"; do
+#   if [[ -z "$key_info[$key]" ]]; then
+#     key_info[$key]='�'
+#   fi
+# done
 
 #
 # Functions

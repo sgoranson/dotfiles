@@ -3,14 +3,14 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+  TERM: alacritty
 
 window:
   # Window dimensions (changes require restart)
@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 150
+    lines: 40
 
   # Window padding (changes require restart)
   #
@@ -158,9 +158,9 @@ colors:
   #
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
-  #cursor:
-  #  text: '0x000000'
-  #  cursor: '0xffffff'
+  cursor:
+    text: '0x000000'
+    cursor: '0xD554AD'
 
 
 
@@ -445,8 +445,8 @@ alt_send_esc: true
 #   - AppKeypad
 key_bindings:
   # (Windows/Linux only)
-  #- { key: V,        mods: Control|Shift,    action: Paste               }
-  #- { key: C,        mods: Control|Shift,    action: Copy                }
+  - { key: V,        mods: Control|Shift,    action: Paste               }
+  - { key: C,        mods: Control|Shift,    action: Copy                }
   #- { key: Insert,   mods: Shift,   action: PasteSelection               }
   #- { key: Key0,     mods: Control, action: ResetFontSize                }
   #- { key: Equals,   mods: Control, action: IncreaseFontSize             }
@@ -464,10 +464,10 @@ key_bindings:
   #- { key: Q,        mods: Command, action: Quit                         }
   #- { key: W,        mods: Command, action: Quit                         }
 
-  - { key: Paste,                   action: Paste                        }
-  - { key: Copy,                    action: Copy                         }
-  - { key: L,        mods: Control, action: ClearLogNotice               }
-  - { key: L,        mods: Control, chars: "\x0c"                        }
+  # - { key: Paste,                   action: Paste                        }
+  # - { key: Copy,                    action: Copy                         }
+  # - { key: L,        mods: Control, action: ClearLogNotice               }
+  # - { key: L,        mods: Control, chars: "\x0c"                        }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
@@ -481,8 +481,8 @@ key_bindings:
   - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                      }
   - { key: Back,                    chars: "\x7f"                        }
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
-  - { key: Insert,                  chars: "\x1b[2~"                     }
-  - { key: Delete,                  chars: "\x1b[3~"                     }
+  # - { key: Insert,                  chars: "\x1b[2~"                     }
+  # - { key: Delete,                  chars: "\x1b[3~"                     }
   - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }
   - { key: Left,     mods: Control, chars: "\x1b[1;5D"                   }
   - { key: Left,     mods: Alt,     chars: "\x1b[1;3D"                   }

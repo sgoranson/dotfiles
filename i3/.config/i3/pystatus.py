@@ -4,6 +4,8 @@ import subprocess
 import os
 import os.path
 
+import os
+
 from i3pystatus import Status
 
 from i3pystatus.weather import weathercom
@@ -32,6 +34,25 @@ color15 = '#5f8787'
 color16 = '#5fafd7'
 color17 = '#d7af00'
 
+# color00 = '#808080'
+# color01 = '#808080'
+# color02 = '#808080'
+# color03 = '#808080'
+# color04 = '#808080'
+# color05 = '#808080'
+# color06 = '#808080'
+# color07 = '#808080'
+# color08 = '#808080'
+# color09 = '#808080'
+# color10 = '#808080'
+# color11 = '#808080'
+# color12 = '#808080'
+# color13 = '#808080'
+# color14 = '#808080'
+# color15 = '#808080'
+# color16 = '#808080'
+# color17 = '#808080'
+
 status = Status()
 
 
@@ -39,7 +60,7 @@ status = Status()
 status.register(
     "clock",
     hints={"markup": "pango"},
-    format=' %H:%M:%S',
+    format=' %a %e %I:%M:%S',
     color=color02,
     interval=1,
     # on_leftclick="zenity --calendar --text ''",
@@ -55,26 +76,26 @@ status.register(
 #   )
 
 # ALSA SOUND ----------------------------------------------------------
-status.register(
-    "pulseaudio",
-    on_leftclick="amixer -D pulse set Master toggle",
-    # on_rightclick="pavucontrol",
-    # bar_type='horizontal',
-    color_muted='#EDBE9B',
-    color_unmuted='#BD1D00',
-    multi_colors=True,
-    format="vol {volume_bar}",
-    format_muted='vol [muted]',
-)
 # status.register(
-#     "alsa",
+#     "pulseaudio",
 #     on_leftclick="amixer -D pulse set Master toggle",
 #     # on_rightclick="pavucontrol",
-#     color=color03,
-#     color_muted=color01,
-#     format=" {volume_bar}",
-#     format_muted=' [muted]',
+#     # bar_type='horizontal',
+#     color_muted='#EDBE9B',
+#     color_unmuted='#BD1D00',
+#     multi_colors=True,
+#     format="vol {volume_bar}",
+#     format_muted='vol [muted]',
 # )
+status.register(
+    "alsa",
+    on_leftclick="amixer -D pulse set Master toggle",
+    # on_rightclick="pavucontrol",
+    color=color03,
+    color_muted=color01,
+    format="墳  {volume}%",
+    format_muted=' [muted]',
+)
 status.register("network",
     interface="wlp3s0",
     # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
@@ -183,9 +204,9 @@ status.register(
     format='{current_temp}{temp_unit}[ {icon}][ {update_error}]',
     colorize=True,
     color_icons={
-        'Fair': ('☼ معتدل', '#ffcc00'),
+        'Fair': ('☼ معتدل', color01),
         'Cloudy': ('☁ غائم', '#f8f8ff'),
-        'Partly Cloudy': ('☁ غائم جزئيا', '#844747'),
+        'Partly Cloudy': ('☁ غائم جزئيا', color01),
         'Fog': (' الضباب', '#949494'),
         'Sunny': ('☀ مشمس', '#ffff00'),
         'default': ('', None),

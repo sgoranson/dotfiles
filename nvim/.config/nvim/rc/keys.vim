@@ -36,13 +36,8 @@ nnoremap <silent> <M-Space> i<Space><Esc>
 " vnoremap <silent> <Space>   I<Space><Esc>gv
 nnoremap <silent> <CR>      za
 
-autocmd FileType qf unmap <CR>
-autocmd FileType Help <silent> map q :close<CR>
 "nnoremap Q :Bclose<CR>
 nnoremap <silent><expr>  Q &ft != 'help' ? ':Bclose<CR>' : ':close<CR>'
-" nnoremap <silent><expr> Q winnr('$') != 1 ? ':<C-u>close<CR>' : ":echo 'no sir i wont'<CR>"
-" noremap  <silent> H  ^
-" noremap  <silent> L  $
 nmap vv viW
 nmap vq viq
 
@@ -283,6 +278,7 @@ nnoremap <silent><Leader>tq :ThesaurusQueryReplaceCurrentWord<CR>
 
 "
 nnoremap <silent><Leader>ww :!google-chrome-stable %<CR>
+nnoremap <silent><Leader>q :quitall!<CR>
 
 " toggle all/none folds
 nnoremap <silent><expr><leader>z  &foldlevel > 0 ? ':norm zMzz<CR>' : ':norm zRzz<CR>'
@@ -372,56 +368,68 @@ cnoremap <C-b> <C-p>
 " # }}}
 
 "  Completion  {{{1
-inoremap <silent><expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
-            \ "\<TAB>" : deoplete#manual_complete()
+" When the <Enter> key is pressed while the popup menu is visible, it only
+    " hides the menu. Use this mapping to close the menu and also start a new
+    " line.
+    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-function! s:check_back_space() abort
-    let l:col = col('.') - 1
-    return !l:col || getline('.')[l:col - 1]  =~# '\s'
-endfunction
+    " Use <TAB> to select the popup menu:
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
+"inoremap <silent><expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
+"inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
+"            \ "\<TAB>" : deoplete#manual_complete()
 
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <silent><expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <silent><expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-inoremap <silent><expr><C-g>       deoplete#refresh()
-inoremap <silent><expr><C-l>       deoplete#complete_common_string()
-
-"imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function() abort
-""  return deoplete#cancel_popup() . "\<CR>"
-"   if  pumvisible()
-"       "return deoplete#close_popup()."\<C-y>"
-"       return deoplete#close_popup()
-"   else
-"       return "\<CR>"
-"   endif"
+"function! s:check_back_space() abort
+"    let l:col = col('.') - 1
+"    return !l:col || getline('.')[l:col - 1]  =~# '\s'
 "endfunction
-inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
-
-" <C-j>, <C-k>"
-imap <expr><Down>  pumvisible() ? "\<Tab>" : "\<Down>"
-imap <expr><Up>  pumvisible() ? "\<S-Tab>" : "\<Up>"
 
 
 
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <silent><expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <silent><expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+"inoremap <silent><expr><C-g>       deoplete#refresh()
+"inoremap <silent><expr><C-l>       deoplete#complete_common_string()
+
+""imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+""function! s:my_cr_function() abort
+"""  return deoplete#cancel_popup() . "\<CR>"
+""   if  pumvisible()
+""       "return deoplete#close_popup()."\<C-y>"
+""       return deoplete#close_popup()
+""   else
+""       return "\<CR>"
+""   endif"
+""endfunction
+"inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
+
+"" <C-j>, <C-k>"
+"imap <expr><Down>  pumvisible() ? "\<Tab>" : "\<Down>"
+"imap <expr><Up>  pumvisible() ? "\<S-Tab>" : "\<Up>"
 
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-    return deoplete#close_popup() . "\<CR>"
-endfunction
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+"" <C-h>, <BS>: close popup and delete backword char.
+"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+"" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function() abort
+"    return deoplete#close_popup() . "\<CR>"
+"endfunction
 
 
 

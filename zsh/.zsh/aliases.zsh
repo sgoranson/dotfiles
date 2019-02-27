@@ -29,6 +29,7 @@ alias w='which'
 alias pb=pastebin
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
+alias web='google-chrome-stable --new-window'
 
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
  alias ll="ls -lhAtr --file-type --color=auto"

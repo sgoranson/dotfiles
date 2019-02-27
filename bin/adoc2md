@@ -1,0 +1,19 @@
+#!/bin/bash
+
+in_adoc="${1:?}"
+in="${1%.*}"
+
+# foo.xml will be output into the same directory as foo.adoc
+asciidoctor -b docbook $in_adoc
+
+# Unicode symbols were mangled in foo.md. Quick workaround:
+iconv -t utf-8 ${in}.xml | pandoc -f docbook -t gfm --columns=120 | iconv -f utf-8 > ${in}.md
+
+# Convert docbook to markdown
+# pandoc -f docbook -t gfm "${in}.xml" -o ${in}.md
+
+
+# Pandoc inserted hard line breaks at 72 characters. Removed like so:
+# pandoc -f docbook -t gfm --wrap=none # don't wrap lines at all
+
+# pandoc -f docbook -t gfm --columns=120 # extend line breaks to 120

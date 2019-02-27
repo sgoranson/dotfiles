@@ -44,7 +44,7 @@ esac
 
 # Run over remaining arguments and open in BROWSER.
 for page in "$@"
-do open "${MANCX_URL}/${page}${section}"
+do $BROWSER "${MANCX_URL}/${page}${section}"
 done
 
 # Copyright (c) 2010 by Ryan Tomayko <http://tomayko.com/about>
