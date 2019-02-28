@@ -1,4 +1,4 @@
-pbcopy() { xclip -selection clipboard }
+pbcopy() { xclip -selection clipboard 2>/dev/null}
 pbpaste() { xclip -selection clipboard -o }
 
 pb-kill-line () {

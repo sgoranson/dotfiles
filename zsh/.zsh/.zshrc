@@ -1,9 +1,6 @@
 #!env zsh
 
 
-
-
-
 # ZOPTIONS {{{
 HISTSIZE=99999999
 SAVEHIST=99999999
@@ -18,7 +15,7 @@ colors
 ## History command configuration
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt no_hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
@@ -98,6 +95,7 @@ source $ZDOTDIR/clipboard.zsh
 source $ZDOTDIR/completion.zsh
 # source $ZDOTDIR/i3_completion.sh
 source $ZDOTDIR/aliases.zsh
+source $ZDOTDIR/arch.zsh
 source $ZDOTDIR/completion/googler_at
 source $ZDOTDIR/z.sh
 source $ZDOTDIR/zsh-history-substring-search.zsh

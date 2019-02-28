@@ -16,7 +16,7 @@ set colorcolumn=102                    " try not to code paste here
 set foldcolumn=2                       " pretty column display folds
 set synmaxcol=200
 syn sync minlines=256
-syn sync maxlines=500
+" syn sync maxlines=500
 set conceallevel=0                    " plz dont hide stuff
 set sessionoptions-=globals
 
@@ -149,7 +149,7 @@ set fileencoding=utf-8                " The encoding written to file.
 set viewoptions-=options              " when we save a view dont save options
 set hidden                            " buffers can exist sans window
 set history=10000                     " Store lots of :cmdline history
-set noignorecase                        " Ignore case when searching...
+set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...unless we type a capital
 " set iskeyword+=_,$,@,%,-
 

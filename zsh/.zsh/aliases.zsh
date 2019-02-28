@@ -165,14 +165,6 @@ compdef _pacman_completions_all_packages AI=yay
 compdef _pacman_completions_all_packages AS=yay
 _yay &>/dev/null
 
-alias pac-update-all="pacaur --noconfirm -Syu"
-alias pac-list-aur-pkgs="pacaur -Qm | awk '{print \$1}'"
-alias pac-list-manual-pkgs="pacman -Qe | awk '{print \$1}'"
-alias pac-list-pkgs-in-group="pacman -Sgg"
-
-
-alias pacman-keyring-fix="sudo pacman-key --init && sudo pacman-key --populate && sudo pacman-key --refresh-keys && sudo pacman -Sy archlinux-keyring"
-alias pacman-mirror-update='sudo reflector --verbose -n 10 -c US --sort rate --save /etc/pacman.d/mirrorlist'
 alias netstat-listening='sudo ss -lptu'
 alias calc=pcalc
 
@@ -308,6 +300,7 @@ alias ttycast="ttyd -p 8888 bash -c 'tmux new-session -d -s cast \; split-window
 
 alias useradd='useradd --create-home'
 
+alias virt-install-arch='virt-install --name arch-linux_testing4 --memory 2024 --vcpus=2,maxvcpus=4 --cpu host --cdrom /home/steve/Downloads/archlinux-2019.02.01-x86_64.iso --disk size=10,format=qcow2 --network user --virt-type kvm'
 alias vnc-x11="sudo x11vnc -rfbauth /home/steve/.vnc/passwd  -auth guess  -geometry 1920x1080  -display :0"
 alias vnc-kill="vncserver -kill :1"
 alias vnc-nopasswd="vncserver :6 -SecurityTypes None  -geometry 2000x950"
@@ -555,10 +548,12 @@ function _gh_get() {
         fzf-ghq
         return  
     fi
-
+    
+    local repo="${1:t}"
+    local user="${1:h:t}"
     local root="$(ghq root)/github.com/"
-    local user=$(echo $@ | tr "/" " " | awk '{print $1}')
-    local repo=$(echo $@ | tr "/" " " | awk '{print $2}')
+    # local user=$(echo $@ | tr "/" " " | awk '{print $1}')
+    # local repo=$(echo $@ | tr "/" " " | awk '{print $2}')
 
     if [[ ! -d $root ]]; then
         print -P "%F{magenta}root doesn't exist: $root"

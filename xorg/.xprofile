@@ -40,5 +40,5 @@ else
 fi
 
 
-# exec i3
-exec openbox-session
+exec i3
+# exec openbox-session
