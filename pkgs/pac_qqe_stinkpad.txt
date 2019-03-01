@@ -328,9 +328,6 @@ neovim-qt
 nerd-fonts-ubuntu-mono
 netctl
 nethogs
-network-manager-applet
-networkmanager
-networkmanager-dispatcher-ntpd
 networkmanager-openconnect
 networkmanager-openvpn
 networkmanager-pptp
@@ -513,6 +510,7 @@ thunar-archive-plugin
 thunar-dropbox-git
 thunar-media-tags-plugin
 thunar-volman
+tigervnc
 timeshift
 tint2
 tldr
@@ -576,6 +574,7 @@ wpa_actiond
 wpa_supplicant
 wttr
 wvdial
+x11vnc
 xapps
 xbindkeys
 xcape
