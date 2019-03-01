@@ -399,6 +399,7 @@ powertop
 ppp
 pptpclient
 pragha
+prettier
 procps-ng
 psmisc
 pulseaudio

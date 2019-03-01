@@ -118,6 +118,7 @@ endfunction
 
 
 
+runtime rc/autocmd.vim
 runtime rc/options.vim
 runtime rc/keys.vim
 runtime rc/color.vim

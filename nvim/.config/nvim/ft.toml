@@ -44,6 +44,7 @@ endif
 setlocal foldmethod=indent
 setlocal shiftwidth=2 softtabstop=2
 setlocal iskeyword+=:,#
+setlocal equalprg=prettier\ --stdin\ --stdin-filepath=/tmp/tmpx\ --parser=html
 '''
 
 qf = '''

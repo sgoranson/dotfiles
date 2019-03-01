@@ -27,6 +27,18 @@ hook_add = '''
     " IMPORTANT: :help Ncm2PopupOpen for more information
     set completeopt=noinsert,menuone,noselect
       set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+
+
+call ncm2#register_source({'name' : 'css',
+            \ 'priority': 9, 
+            \ 'subscope_enable': 1,
+            \ 'scope': ['css', 'scss', 'less'],
+            \ 'mark': 'css',
+            \ 'word_pattern': '[\w\-]+',
+            \ 'complete_pattern': ':\s*',
+            \ 'on_complete': ['ncm2#on_complete#omni',
+            \               'csscomplete#CompleteCSS'],
+            \ })
 " set complete=.,w,b,u,t
 "set completeopt=longest,menuone,preview
 '''
@@ -36,6 +48,15 @@ repo = 'ncm2/ncm2-bufword'
 repo = 'ncm2/ncm2-path'
 [[plugins]]
 repo = 'roxma/nvim-yarp'
+[[plugins]]
+repo = 'ncm2/ncm2-vim'
+[[plugins]]
+repo = 'Shougo/neco-vim'
+[[plugins]]
+repo = 'ncm2/ncm2-html-subscope'
+[[plugins]]
+repo = 'ncm2/ncm2-tern'
+build = 'npm install'
                      
 
 [[plugins]]
@@ -254,6 +275,8 @@ repo = 'tpope/vim-repeat'                          # dot repeat for plugins
 repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
 hook_add = '''
 let g:formatters_python = ['yapf']
+let g:formatters_javascript = ['prettier']
+let g:formatters_css = ['prettier']
 '''
 [[plugins]]
 repo =  'chrisbra/Colorizer'

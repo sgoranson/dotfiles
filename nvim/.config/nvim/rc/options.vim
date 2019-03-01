@@ -14,8 +14,9 @@ set inccommand=split                   " holycrap there's interactive %s colors 
 set cursorline                         " highlight current line
 set colorcolumn=102                    " try not to code paste here
 set foldcolumn=2                       " pretty column display folds
-set synmaxcol=200
-syn sync minlines=256
+" set synmaxcol=200
+" syn sync minlines=256
+set redrawtime=10000
 " syn sync maxlines=500
 set conceallevel=0                    " plz dont hide stuff
 set sessionoptions-=globals
@@ -46,7 +47,7 @@ set showtabline=2
 set guifont=Consolas\ NF:style=Book:h12
 " set guifont=Consolas_for_Powerline_FixedD:h12:cANSI:qDRAFT
 " set tabline=%!Tabline()
-let &showbreak = '+++ '
+" let &showbreak = '+++ '
 
 if ! has('win32')
     "set listchars=tab:→\ ,eol:↲,nbsp:␣,extends:⟩,precedes:⟨
