@@ -130,7 +130,7 @@ partition_drive() {
     # 100 MB /boot partition, everything else under LVM
     parted -s "$dev" \
         mklabel gpt \
-        mkpart primary ext2 1 100% \
+        mkpart primary ext4 1 100% \
         set 1 boot on 
 }
 
@@ -164,7 +164,7 @@ install_packages() {
 
     # General utilities/libraries
     # packages+=' alsa-utils aspell-en chromium cpupower gvim mlocate net-tools ntp openssh p7zip pkgfile powertop python python2 rsync sudo unrar unzip wget zip systemd-sysvcompat zsh grml-zsh-config'
-    packages+='pkgfile zsh grml-zsh-config'
+    packages+='pkgfile zsh grml-zsh-config terminus-font'
 
     # Development packages
     # packages+=' apache-ant cmake gdb git maven mercurial subversion tcpdump valgrind wireshark-gtk'
