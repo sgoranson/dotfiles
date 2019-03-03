@@ -15,9 +15,6 @@ USER_NAME='steve'
 # System timezone.
 TIMEZONE='America/New_York'
 
-KEYMAP='us'
-# KEYMAP='dvorak'
-
 # Choose your video driver
 # For Intel
 VIDEO_DRIVER="i915"
@@ -44,11 +41,11 @@ setup() {
     echo 'Mounting filesystems'
     mount_filesystems "$DRIVE"1
 
-    echo 'Installing fstab'
-    genfstab -U  /mnt >> /mnt/etc/fstab
-
     echo 'Installing base system'
     install_base
+
+    echo 'Installing fstab'
+    genfstab -U  /mnt >> /mnt/etc/fstab
 
     echo 'Chrooting into installed system to continue setup...'
     cp $0 /mnt/setup.sh
@@ -66,20 +63,8 @@ setup() {
 }
 
 configure() {
-    local boot_dev="$DRIVE"1
-    local lvm_dev="$DRIVE"2
-
     echo 'Installing additional packages'
     install_packages
-
-    echo 'Installing yay'
-    install_yay
-
-    echo 'Installing AUR packages'
-    install_aur_packages
-
-    echo 'Updating pkgfile database'
-    update_pkgfile
 
     echo 'Setting hostname'
     set_hostname "$HOSTNAME"
@@ -102,8 +87,8 @@ configure() {
     echo 'Configuring initial ramdisk'
     set_initcpio
 
-    echo 'Setting initial daemons'
-    set_daemons 
+    # echo 'Setting initial daemons'
+    #set_daemons 
 
     echo 'Configuring bootloader'
     set_syslinux 
@@ -124,8 +109,17 @@ configure() {
     echo 'Creating initial user'
     create_user "$USER_NAME" "$USER_NAME"
 
-    echo 'Building locate database'
-    update_locate
+    echo 'Installing yay'
+    install_yay
+
+    echo 'Installing AUR packages'
+    install_aur_packages
+
+    echo 'Updating pkgfile database'
+    update_pkgfile
+
+    # echo 'Building locate database'
+    #update_locate
 
     rm /setup.sh
 }
@@ -157,7 +151,7 @@ mount_filesystems() {
 install_base() {
     echo 'Server = https://arch.mirror.square-r00t.net/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 
-    pacstrap /mnt base base-devel
+    pacstrap /mnt base base-devel gptfdisk  
     pacstrap /mnt syslinux
 }
 
@@ -170,16 +164,13 @@ install_packages() {
 
     # General utilities/libraries
     # packages+=' alsa-utils aspell-en chromium cpupower gvim mlocate net-tools ntp openssh p7zip pkgfile powertop python python2 rsync sudo unrar unzip wget zip systemd-sysvcompat zsh grml-zsh-config'
-    packages+=' zsh grml-zsh-config'
+    packages+='pkgfile zsh grml-zsh-config'
 
     # Development packages
     # packages+=' apache-ant cmake gdb git maven mercurial subversion tcpdump valgrind wireshark-gtk'
 
     # Netcfg
-    if [ -n "$WIRELESS_DEVICE" ]
-    then
-        packages+=' netcfg ifplugd dialog wireless_tools wpa_actiond wpa_supplicant'
-    fi
+    packages+=' netctl dialog dhcpcd ifplugd wireless_tools wpa_actiond wpa_supplicant'
 
     # Java stuff
     # packages+=' icedtea-web-java7 jdk7-openjdk jre7-openjdk'
@@ -220,15 +211,15 @@ install_packages() {
         packages+=' xf86-video-vesa'
     fi
 
-    pacman -Sy --noconfirm $packages
+    pacman -Sy --noconfirm --needed $packages
 }
 
 install_yay() {
-    mkdir /tmp/foo
+    sudo -u steve mkdir /tmp/foo
     cd /tmp/foo
-    curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz | tar xzf -
+    sudo -u steve sh -c 'curl https://aur.archlinux.org/cgit/aur.git/snapshot/yay-bin.tar.gz | tar xzf -'
     cd yay-bin
-    makepkg -si --noconfirm --asroot
+    sudo -u steve makepkg -si --noconfirm
 
     cd /
     rm -rf /tmp/foo
@@ -237,9 +228,6 @@ install_yay() {
 install_aur_packages() {
     mkdir /foo
     export TMPDIR=/foo
-    packer -S --noconfirm android-udev
-    packer -S --noconfirm chromium-pepper-flash-stable
-    packer -S --noconfirm chromium-libpdf-stable
     unset TMPDIR
     rm -rf /foo
 }
@@ -257,18 +245,18 @@ set_hostname() {
 set_timezone() {
     local timezone="$1"; shift
 
-    ln -sT "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
+    ln -sfT "/usr/share/zoneinfo/$TIMEZONE" /etc/localtime
 }
 
 set_locale() {
-    echo 'LANG="en_US.UTF-8"' >> /etc/locale.conf
+    echo 'LANG="en_US.UTF-8"' > /etc/locale.conf
     echo 'LC_COLLATE="C"' >> /etc/locale.conf
-    echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+    echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
     locale-gen
 }
 
 set_keymap() {
-    echo "KEYMAP=$KEYMAP" > /etc/vconsole.conf
+    echo "KEYMAP=us" > /etc/vconsole.conf
 }
 
 set_hosts() {
@@ -552,10 +540,10 @@ set_sudoers() {
 root ALL=(ALL) ALL
 
 ## Uncomment to allow members of group wheel to execute any command
-%wheel ALL=(ALL) ALL
+# %wheel ALL=(ALL) ALL
 
 ## Same thing without a password
-# %wheel ALL=(ALL) NOPASSWD: ALL
+%wheel ALL=(ALL) NOPASSWD: ALL
 
 ## Uncomment to allow members of group sudo to execute any command
 # %sudo ALL=(ALL) ALL
@@ -711,7 +699,7 @@ create_user() {
     local name="$1"; shift
     local password="$1"; shift
 
-    useradd -m -s /bin/zsh -G adm,systemd-journal,wheel,rfkill,games,network,video,audio,optical,floppy,storage,scanner,power,adbusers,wireshark "$name"
+    useradd -m -s /bin/zsh -G adm,systemd-journal,wheel,rfkill,games,network,video,audio,optical,floppy,storage,scanner,power "$name"
     echo -en "$password\n$password" | passwd "$name"
 }
 
