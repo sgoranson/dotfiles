@@ -372,7 +372,7 @@ on_event = 'TextYankPost'
 on_source = 'denite.nvim'
 hook_add = '''
 let g:neoyank#file = expand('$XDG_CACHE_HOME/neoyank.yanks')
-let g:neoyank#save_registers = [ '"+' ]
+let g:neoyank#save_registers = [ '"', '+' ]
 let g:neoyank#limit = 25
 '''
 
@@ -472,8 +472,8 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
   nnoremap <silent> <space>*           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
   nnoremap <silent> ;;          :<C-u>Denite command_history<CR>
 
-  nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register register neoyank<CR>
-  xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register register neoyank<CR>
+  nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register neoyank<CR>
+  xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register neoyank<CR>
 
 noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 
@@ -543,13 +543,6 @@ on_source = 'denite.nvim'
 repo =  'zacharied/denite-nerdfont'
 on_source = 'denite.nvim'
 
-
-[[plugins]]
-repo =  'bennyyip/denite-github-stars'
-on_source = 'denite.nvim'
-hook_add = '''
-    let g:dgs#username='sgoranson'
-'''
 
 [[plugins]]
 repo = 'Jagua/vim-denite-ghq'
@@ -764,8 +757,6 @@ on_ft = 'toml'
 
 
 
-[[plugins]]
-repo =  'godlygeek/tabular'
 
 [[plugins]]
 repo =  'plasticboy/vim-markdown'
@@ -786,19 +777,6 @@ autocmd FileType info nmap U :InfoUp<CR>
 
 
 
-[[plugins]]
-repo =  'Rykka/riv.vim'
-hook_add = '''
-let proj1 = { 'path': '~/projects/rst-site', }
-let g:riv_projects = [proj1]
-'''
-
-[[plugins]]
-repo =  'Rykka/InstantRst'
-hook_add = '''
-let g:instant_rst_browser = 'qutebrowser'
-'''
-
 
 [[plugins]]
 repo =  'junegunn/gv.vim'
@@ -813,12 +791,6 @@ on_cmd = 'W3m'
 [[plugins]]
 repo =  'gregsexton/gitv'
 
-[[plugins]]
-repo =  'KabbAmine/vCoolor.vim'
-hook_add = '''
-    let g:vcoolor_disable_mappings = 1
-    '''
-on_cmd = 'Vcoolor'
 
 
 # [[plugins]]

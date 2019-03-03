@@ -21,7 +21,7 @@ define_modmap({
 define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
     # Key.ENTER: [Key.ENTER, Key.LEFT_META],
-    Key.ENTER: [Key.ENTER, Key.RIGHT_ALT],
+    # Key.ENTER: [Key.ENTER, Key.RIGHT_ALT],
 
     # Capslock is escape when pressed and released. Control when held down.
     Key.CAPSLOCK: [Key.ESC, Key.LEFT_META]
@@ -30,15 +30,20 @@ define_multipurpose_modmap({
 
 
 # Keybindings for Firefox/Chrome
-# define_keymap(re.compile("Firefox|Google-chrome"), {
-#     # Ctrl+Alt+j/k to switch next/previous tab
-#     K("C-M-j"): K("C-TAB"),
-#     K("C-M-k"): K("C-Shift-TAB"),
-#     # Type C-j to focus to the content
-#     K("C-j"): K("C-f6"),
-#     # very naive "Edit in editor" feature (just an example)
-#     K("C-o"): [K("C-a"), K("C-c"), launch(["gedit"]), sleep(0.5), K("C-v")]
-#     }, "Firefox and Chrome")
+define_keymap(re.compile("Firefox|Google-chrome"), {
+
+    K("C-x"): {
+        # C-x h (select all)
+        K("t"): K("C-Shift-TAB"),
+        K("esc"): pass_through_key,
+    },
+    K("C-x"): {
+        # C-x h (select all)
+        K("t"): K("C-TAB"),
+        K("esc"): pass_through_key,
+    },
+
+    }, "Firefox and Chrome")
 
 # Keybindings for Zeal https://github.com/zealdocs/zeal/
 # define_keymap(re.compile("Zeal"), {

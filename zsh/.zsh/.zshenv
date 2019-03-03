@@ -17,7 +17,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export CLICOLOR=1
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
-# export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/rg.conf
+export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config
 export GHQ_ROOT=$HOME/kewl
 
 export MANPATH=":$HOME/.local/share/man"

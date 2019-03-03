@@ -247,6 +247,33 @@ function grml-zsh-fg () {
 zle -N grml-zsh-fg
 
 
+typeset -a ealiases
+ealiases=()
+
+function ealias()
+{
+    alias $1
+    ealiases+=(${1%%\=*})
+}
+
+function expand-ealias()
+{
+    if [[ $LBUFFER =~ "\<(${(j:|:)ealiases})\$" ]]; then
+        zle _expand_alias
+        zle expand-word
+    fi
+    zle magic-space
+}
+
+zle -N expand-ealias
+
+bindkey -M emacs ' '        expand-ealias
+bindkey -M emacs '^ '       magic-space     # control-space to bypass completion
+bindkey -M isearch " "      magic-space     # normal space during searches
+
+ealias gc='git commit'
+ealias gp='git push'
+
 
 
 # Duplicate the previous word.
@@ -271,15 +298,15 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^j'   backward-word
 bindkey '^k'   forward-word
+bindkey '^tg'  fzf-qhq
 bindkey '^tl'  insert-widget
-bindkey '^xh'  run-help
+bindkey '^tw'  where-widget
 bindkey '^x^d' fzf-cdr
-bindkey '^xf' fzf-file-widget
-bindkey '^tg' fzf-qhq
-bindkey '^tw' where-widget
-bindkey '^xr' history-incremental-search-backward
-bindkey '^xu' insert-unicode-char
 bindkey '^xe'  edit-command-line
+bindkey '^xf'  fzf-file-widget
+bindkey '^xh'  run-help
+bindkey '^xr'  history-incremental-search-backward
+bindkey '^xu'  insert-unicode-char
 # bindkey -s     '^xg' ' 2>&1 '
 bindkey .      rationalise-dot
 bindkey -M     isearch . self-insert

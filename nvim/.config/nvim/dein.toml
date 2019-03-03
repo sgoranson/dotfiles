@@ -280,3 +280,13 @@ let g:formatters_css = ['prettier']
 '''
 [[plugins]]
 repo =  'chrisbra/Colorizer'
+
+[[plugins]]
+repo =  'godlygeek/tabular'
+
+[[plugins]]
+repo =  'KabbAmine/vCoolor.vim'
+hook_add = '''
+    let g:vcoolor_disable_mappings = 1
+    '''
+on_cmd = 'Vcoolor'

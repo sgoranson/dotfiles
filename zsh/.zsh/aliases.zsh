@@ -41,7 +41,7 @@ alias po="popd"
 # alias ff="\rg --color=auto --hidden --files"
 alias gs="git status"
 
-alias pss='sudo ps axo pid,ppid,start_time,stat,args --sort=start_time'
+alias pss='ps -aef --sort=start_time'
 alias psst='sudo ps axjf'
 alias psl='ps wwaxo pid,ppid,stat,args --sort=start_time'
 
@@ -110,9 +110,11 @@ alias SGG='echo tert.havkwhaxvr@arg | tr a-z@. n-za-m.@'
 
 # dir shortcuts
 alias ddot="pu ~/dotfiles"
-alias mkdir="mkdir -p"
+alias mkdir="env mkdir -p"
 
-mkdirc() { mkdir -p ${1:?} && cd $1 }
+mkdirc() { env mkdir -p ${1:?} && cd $1 }
+mkd() { env mkdir -p ${1:?} && cd $1 }
+
 a() { awk "{ print \$${1:-0} }" } # shortcut for awk '/ print $1/'
     hh() { $1 --help | vless }
     hex2dec() { perl -e "print hex $1" }
@@ -120,9 +122,9 @@ a() { awk "{ print \$${1:-0} }" } # shortcut for awk '/ print $1/'
 
 # no file --no-heading, search --hidden, -uu ignore nvc ignores, follow syms -f, smartcase -S
 if command -v rg >/dev/null 2>&1; then
-    alias rgg="\rg --no-heading --no-filename --no-line-number --hidden"
-    alias rg="\rg --no-heading --hidden"
-    alias rgf="\rg --hidden --files"
+    alias rgg="\rg  --no-filename --no-line-number"
+    # alias rg="\rg --no-heading --hidden"
+    alias rgf="\rg --files"
 fi
 
 # cheat sheets
@@ -152,23 +154,19 @@ alias AL="yay --color=auto -Ql --noconfirm"
 alias AR="yay --color=auto -R"
 alias AF="pkgfile"
 alias AU="yay --needed --color=auto -Syu"
+alias AI="yay --needed --color=auto -S"
 
-function AI() {
-    if [ $? -eq 0 ]; then
-        if ! grep -Eq "^${1}$" "$HOME/dotfiles/install/pkg-lists/new_arch.txt" ; then
-            echo $1 >> "$HOME/dotfiles/install/pkg-lists/new_arch.txt"
-        fi
-    fi
-    yay --needed --color=auto -S ${@}
-}
-compdef _pacman_completions_all_packages AI=yay
-compdef _pacman_completions_all_packages AS=yay
-_yay &>/dev/null
+# compdef _pacman_completions_all_packages AI=yay
+# compdef _pacman_completions_all_packages AS=yay
+# _yay &>/dev/null
 
 alias netstat-listening='sudo ss -lptu'
 alias calc=pcalc
 
 alias svc='sudo systemctl'
+alias svcstat='sudo systemctl status'
+alias svcstop='sudo systemctl stop'
+alias svcstart='sudo systemctl start'
 compdef _systemctl svc=systemctl
 
 alias svc-j='sudo journalctl -xe'
@@ -298,7 +296,7 @@ alias tmux-window-hostname='tmux rename-window "$(hostname -s)"'
 
 alias ttycast="ttyd -p 8888 bash -c 'tmux new-session -d -s cast \; split-window -d \; attach -t cast'"
 
-alias useradd='useradd --create-home'
+alias useradd='useradd -m -G wheel -s /usr/bin/zsh'
 
 alias virt-install-arch='virt-install --name arch-linux_testing4 --memory 2024 --vcpus=2,maxvcpus=4 --cpu host --cdrom /home/steve/Downloads/archlinux-2019.02.01-x86_64.iso --disk size=10,format=qcow2 --network user --virt-type kvm'
 alias vnc-x11="sudo x11vnc -rfbauth /home/steve/.vnc/passwd  -auth guess  -geometry 1920x1080  -display :0"

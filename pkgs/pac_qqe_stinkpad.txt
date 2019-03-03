@@ -190,7 +190,6 @@ glxinfo
 gmrun
 gnome-disk-utility
 gnome-icon-theme
-gnome-keyring
 gnome-screenshot
 gnu-netcat
 go-md2man
@@ -368,6 +367,7 @@ pamac-aur
 pandoc-bin
 paper-icon-theme
 papirus-icon-theme-git
+parallel
 partclone
 parted
 partimage
@@ -672,4 +672,5 @@ zsh-completions
 zsh-history-substring-search
 zsh-lovers
 zsh-syntax-highlighting
+zulucrypt
 zyre-git

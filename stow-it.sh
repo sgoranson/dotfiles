@@ -1,4 +1,5 @@
 #!/bin/sh
+stow -R ripgrep
 stow -R npm
 stow -R userdirs
 stow -R alacritty

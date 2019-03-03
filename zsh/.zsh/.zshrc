@@ -142,8 +142,22 @@ zstyle ':chpwd:*' recent-dirs-prune parent
 zstyle ':chpwd:*' recent-dirs-default yes
 
 # }}}
+#
+# GPG {{{
+# AGENT_SOCK=$(gpgconf --list-dirs | grep agent-socket | cut -d : -f 2)
 
+# if [[ ! -S $AGENT_SOCK ]]; then
+#   gpg-agent --daemon --use-standard-socket &>/dev/null
+# fi
+# export GPG_TTY=$TTY
+GPG_TTY=$(tty)
+export GPG_TTY
+# }}}
+#
 # ETC {{{
+
+
+
 umask 022
 
 # get a prompt if ppl be loggin

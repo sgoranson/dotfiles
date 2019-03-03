@@ -1,2 +1,2 @@
-setlocal equalprg=prettier\ --stdin\ --stdin-filepath=/tmp/tmpx\ --parser=html
+setlocal equalprg=prettier\ --stdin\ --stdin-filepath=/tmp/tmpx\ --parser=html --tab-width=4
 
