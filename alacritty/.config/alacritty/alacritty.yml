@@ -448,6 +448,8 @@ key_bindings:
   # (Windows/Linux only)
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
+  - { key: V,        mods: Super,    action: Paste               }
+  - { key: C,        mods: Super,    action: Copy                }
   - { key: F1,                      chars: "\x1bOP"                      }
   - { key: F2,                      chars: "\x1bOQ"                      }
   - { key: F3,                      chars: "\x1bOR"                      }

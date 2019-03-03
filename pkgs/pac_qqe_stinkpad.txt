@@ -98,6 +98,7 @@ castnow-git
 catfish
 cheat-git
 chrome-remote-desktop
+clipster-git
 clonezilla
 cmatrix
 colordiff

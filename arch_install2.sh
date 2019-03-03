@@ -122,6 +122,7 @@ sleep 3
 # arch-chroot /mnt /bin/bash -c 'echo "default arch" >> /boot/loader/loader.conf\'
 # arch-chroot /mnt grub-install --target=i386-pc --recheck ${strInstallDrive}
 # arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
+# sed  -r 's/root=\S+/root=\/dev\/sda1/g'
 
 echo -e ${infoColor}"END OF BOOTLOADER INSTALLATION"
 sleep 3
