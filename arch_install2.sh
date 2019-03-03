@@ -1,99 +1,148 @@
 #!/bin/bash
 
-DISK=/dev/sda
-SWAP_SIZE_GB=2
+set -euo pipefail
 
-SWAP_SIZE=$(expr ${SWAP_SIZE_GB} \* 1024 \* 1024 \* 1024)
+coloroff='\e[0m'
+black='\e[0;30m'
+blue='\e[0;34m'
+cyan='\e[0;36m'
+green='\e[0;32m'
+purple='\e[0;35m'
+red='\e[0;31m'
+white='\e[0;37m'
+yellow='\e[0;33m'
+infoColor=${green}
+questionColor=${red}
+outputColor=${yellow}
 
-CAPACITY=$(sfdisk -l ${DISK} | grep \/dev | awk '{print $5}')
-SECTORS=$(sfdisk -l ${DISK} | grep \/dev | awk '{print $7}')
-BYTES_PER_SECTOR=$(expr ${CAPACITY} / ${SECTORS})
 
-START_SECTOR=2048
-SWAP_SECTORS=$(expr ${SWAP_SIZE} / ${BYTES_PER_SECTOR})
-ROOT_START_SECTOR=$(expr ${START_SECTOR} + ${SWAP_SECTORS})
+strInstallDrive=/dev/sda
+strLanguage='en_US.UTF-8'
+strTimezone='America/New_York'
+strHostname='archbox1'
+strUsername='steve'
 
-echo "label: dos" | sfdisk ${DISK}
-echo "${START_SECTOR} ${SWAP_SECTORS} S -" | sfdisk ${DISK} --append
-echo "${ROOT_START_SECTOR} - L -" | sfdisk ${DISK} --append
 
-mkswap ${DISK}1
-swapon ${DISK}1
+#Intro
+echo -e ${infoColor}"Welcome to the Spot Communication's Arch Linux installer and configurator"
+echo -e ${outputColor}
 
-mkfs -t ext4 -F ${DISK}2
-mount -v ${DISK}2 /mnt
+parted ${strInstallDrive} rm 1 --script || true
+parted ${strInstallDrive} rm 2 --script || true
+parted ${strInstallDrive} rm 3 --script || true
+parted ${strInstallDrive} rm 4 --script || true
+parted ${strInstallDrive} rm 5 --script || true
+parted ${strInstallDrive} rm 6 --script || true
+dd if=/dev/zero of=${strInstallDrive} bs=512 count=10
 
-# install base packages
-#pacstrap /mnt base base-devel vim sudo dhcpcd linux-lts linux-lts-headers dkms grub openssh
-pacstrap /mnt base base-devel vim sudo dhcpcd  grub openssh
+parted ${strInstallDrive} mklabel gpt --script
+# parted ${strInstallDrive} mkpart primary fat32 1MiB 100MiB --script
+# parted ${strInstallDrive} mklabel msdos --script
+#parted ${strInstallDrive} mkpart primary ext4 1MiB ${strPartitionSizeBoot}
 
-# generate fstab
-genfstab -U /mnt >> /mnt/etc/fstab
+# parted ${strInstallDrive}  mkpart primary ext4 1MiB 100MiB --script
+parted ${strInstallDrive}  mkpart primary ext4 100MiB 100% --script
+parted ${strInstallDrive}  set 1 boot on --script
+# parted ${strInstallDrive}  mkpart primary linux-swap 90% 100% --script
 
-# create chroot script
-cat > /mnt/install.sh << EOFEOF
-#!/bin/bash
 
-# remove non-LTS kernel
-#pacman --noconfirm -R linux
+echo -e ${infoColor}"END OF PARTITIONING"
+echo -e ${outputColor}
+sleep 3
 
-# set timezone
-ln -sf /usr/share/zoneinfo/Canada/Halifax /etc/localtime
+#Format the partitions
+# mkfs.vfat -F32 ${strInstallDrive}1
+# mkfs.ext4 ${strInstallDrive}1
+mkfs.ext4 ${strInstallDrive}1
+# mkswap ${strInstallDrive}3
+# swapon ${strInstallDrive}3
+sync
 
-# generate /etc/adjtime
-hwclock --systohc
+#Mount the partitions
+mount ${strInstallDrive}1 /mnt
 
-# generate locales
-sed -i.bak 's/^#\\(en_US\\.UTF-8.*\\)\$/\\1/g' /etc/locale.gen
-locale-gen
+echo -e ${infoColor}"END OF FORMATTING"
+sleep 3
 
-# configure locales
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-# setup hostname
-echo "arch-base" > /etc/hostname
-cat > /etc/hosts << "EOF"
-127.0.0.1    localhost
-::1          localhost
-127.0.1.1    arch-base.localdomain    arch-base
-EOF
+#Update local mirrors
+echo -e ${infoColor}"UPDATING LOCAL MIRRORS"
+echo -e ${outputColor}
+pacman -Sy reflector --noconfirm
+reflector --verbose --country 'United States' -l 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist
+sleep 3
 
-# enable dhcp
-NIC=\$(ip -o link show | grep BROADCAST | awk '{print \$2}' | sed 's/://g' | head -n 1)
-systemctl enable dhcpcd@\${NIC}
+#Install the base system
+echo -e ${infoColor}"INSTALLING THE BASE SYSTEM"
+echo -e ${outputColor}
+pacstrap  /mnt base base-devel zsh vim sudo wget iw wpa_supplicant reflector syslinux os-prober
+sleep 3
 
-# enable sshd
-sed -i.bak 's/^.*PermitRootLogin.*\$/PermitRootLogin\ yes/g' /etc/ssh/sshd_config
-systemctl enable sshd.service
 
-# create initramfs
-#mkinitcpio -p linux-lts
-mkinitcpio
+#Generate an fstab
+echo -e ${infoColor}"GENERATING FSTAB"
+genfstab -U  /mnt >> /mnt/etc/fstab
 
-# set root password
-echo "root:root" | chpasswd
+#Set timezone
+echo -e ${infoColor}"START OF SETTING TIMEZONE"
+echo -e ${outputColor}
+arch-chroot /mnt /bin/bash -c "ln -s /usr/share/zoneinfo/${strTimezone} /etc/localtime"
+arch-chroot /mnt hwclock --systohc 
+echo -e ${infoColor}"END OF SETTING TIMEZONE"
+sleep 3
 
-# set GRUB defaults
-sed -i.bak 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*$/GRUB_CMDLINE_LINUX_DEFAULT="quiet nomodeset"/g' /etc/default/grub
 
-# install bootloader
-grub-install --target=i386-pc ${DISK}
+#Set locale
+echo -e ${infoColor}"START OF SETTING LOCALE"
+echo -e ${outputColor}
+arch-chroot /mnt /bin/bash -c "sed -i 's/#${strLanguage}/${strLanguage}/' /etc/locale.gen"
+arch-chroot /mnt locale-gen
+arch-chroot /mnt /bin/bash -c "echo LANG=${strLanguage} > /etc/locale.conf"
+echo -e ${infoColor}"END OF SETTING LOCALE"
+sleep 3
 
-# configure bootloader
-grub-mkconfig -o /boot/grub/grub.cfg
 
-EOFEOF
+#Set hostname
+echo -e ${infoColor}"START OF SETTING HOSTNAME"
+arch-chroot /mnt /bin/bash -c "echo ${strHostname} > /etc/hostname"
+arch-chroot /mnt /bin/bash -c "sed -i 's/localhost /localhost $strHostname/' /etc/hosts"
+echo -e ${infoColor}"END OF SETTING HOSTNAME"
+sleep 3
 
-# set chroot installer execute bit
-chmod +x /mnt/install.sh
+#Install the bootloader
+# echo -e ${infoColor}"START OF BOOTLOADER INSTALLATION"
+# echo -e ${outputColor}
+# arch-chroot /mnt pacman -S dosfstools
+# arch-chroot /mnt bootctl --path=/boot install
+# arch-chroot /mnt /bin/bash -c 'echo "title Arch Linux" >> /boot/loader/entries/arch.conf\'
+# arch-chroot /mnt /bin/bash -c 'echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf\'
+# arch-chroot /mnt /bin/bash -c 'echo "initrc /initramfs-linux.img" >> /boot/loader/entries/arch.conf\'
+# arch-chroot /mnt /bin/bash -c $'echo "options root=${strInstallDrive}1 rw resume=${strInstallDrive}3" >> /boot/loader/entries/arch.conf\'
+# arch-chroot /mnt /bin/bash -c 'echo "timeout 0" > /boot/loader/loader.conf\' #There is only 1 > because the file is created on install, and were overwriting it
+# arch-chroot /mnt /bin/bash -c 'echo "default arch" >> /boot/loader/loader.conf\'
+# arch-chroot /mnt grub-install --target=i386-pc --recheck ${strInstallDrive}
+# arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg
 
-# enter chroot
-arch-chroot /mnt /install.sh
+echo -e ${infoColor}"END OF BOOTLOADER INSTALLATION"
+sleep 3
 
-# dismount swap
-swapoff ${DISK}1
+#Set root password
+echo -e ${infoColor}"SETTING ROOT PASSWORD"
+echo -e ${outputColor}
+echo "root:root" | arch-chroot /mnt chpasswd
+sleep 3
 
-# dismount root
-umount /mnt
+#Create a user account
+echo -e ${infoColor}"START OF USER ACCOUNT CREATION"
+echo -e ${outputColor}
+arch-chroot /mnt useradd -m -G wheel -s /usr/bin/zsh ${strUsername}
+arch-chroot /mnt usermod -aG audio,games,rfkill,users,uucp,video,wheel ${strUsername}
+echo '%wheel ALL=(ALL) NOPASSWD: ALL' > /mnt/etc/sudoers.d/10-installer
+echo "${strUsername}:${strUsername}" | arch-chroot /mnt chpasswd
+echo -e ${infoColor}"END OF USER ACCOUNT CREATION"
+sleep 3
 
-reboot
+
+#Finish up
+echo -e ${infoColor}"FINISHING UP. reboot now"
+umount -R /mnt
