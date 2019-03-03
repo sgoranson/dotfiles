@@ -1,0 +1,20 @@
+#!/bin/bash
+
+for cmd in git stow; do
+    if ! command -v $cmd 2>/dev/null; then
+        if ! sudo pacman -S $cmd --needed --noconfirm; then
+            sudo pacman -Sy
+        fi
+        sudo pacman -S $cmd --needed --noconfirm
+    fi
+done
+
+mkdir -p ~/.config
+mkdir -p ~/.cache
+mkdir -p ~/.local
+
+git clone https://github.com/sgoranson/dotfiles ~/.dotfiles
+cd ~/.dotfiles
+
+
+
