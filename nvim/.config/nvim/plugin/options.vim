@@ -14,9 +14,10 @@ set inccommand=split                   " holycrap there's interactive %s colors 
 set cursorline                         " highlight current line
 set colorcolumn=102                    " try not to code paste here
 set foldcolumn=2                       " pretty column display folds
-" set synmaxcol=200
-" syn sync minlines=256
-set redrawtime=10000
+set synmaxcol=200
+syn sync minlines=256
+
+" set redrawtime=10000
 " syn sync maxlines=500
 set conceallevel=0                    " plz dont hide stuff
 set sessionoptions-=globals

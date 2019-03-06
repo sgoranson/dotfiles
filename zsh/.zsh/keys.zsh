@@ -301,7 +301,7 @@ bindkey '^k'   forward-word
 bindkey '^tg'  fzf-qhq
 bindkey '^tl'  insert-widget
 bindkey '^tw'  where-widget
-bindkey '^x^d' fzf-cdr
+bindkey '^d' fzf-cdr
 bindkey '^xe'  edit-command-line
 bindkey '^xf'  fzf-file-widget
 bindkey '^xh'  run-help

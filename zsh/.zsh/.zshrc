@@ -84,6 +84,8 @@ fi
 #Set some zsh completion Options
 autoload -U compinit
 compinit -C
+
+autoload -U +X bashcompinit && bashcompinit
 ##Complete my dot files please
 
 _comp_options+=(globdots)
@@ -96,6 +98,7 @@ source $ZDOTDIR/completion.zsh
 # source $ZDOTDIR/i3_completion.sh
 source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/arch.zsh
+source $ZDOTDIR/github.zsh
 source $ZDOTDIR/completion/googler_at
 source $ZDOTDIR/z.sh
 source $ZDOTDIR/zsh-history-substring-search.zsh

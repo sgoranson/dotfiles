@@ -127,7 +127,7 @@ mode "marks" {
 # KEYS  {{{
 
 # start a terminal
-bindsym $modx+Return  exec --no-startup-id $myterm
+bindsym --release $modx+Return  exec --no-startup-id $myterm
 bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  alacritty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  $myterm; focus mode_toggle
 
@@ -213,7 +213,6 @@ bindsym --whole-window Mod3+Shift+button3 floating toggle
 bindsym $mody+p mode "$mode_launcher"
 bindsym $mody+r mode "resize"
 
-# bindsym $mody+Tab exec "rofi -show window -kb-row-down 'Control+Tab' -kb-accept-entry '!Control_R,!Control+Tab'"
 bindsym $mody+m mode "marks"
 bindsym $mody+Shift+1 mark mark1
 bindsym $mody+Shift+2 mark mark2
@@ -228,6 +227,7 @@ bindsym $mody+3 [con_mark="mark3"] focus
 bindsym $mody+4 [con_mark="mark4"] focus
 bindsym $mody+5 [con_mark="mark5"] focus
 bindsym Mod1+Tab [con_mark="_last"] focus
+bindsym $modx+Tab exec "rofi -show window -dpi 131 -width 90%"
  # }}}
 
 # WORKSPACES {{{
@@ -340,7 +340,6 @@ assign [class="FLOATMITE"] → output primary
 # exec_always --no-startup-id ~/bin/polybarz
 exec_always --no-startup-id ~/bin/fix_xcursor
 # exec_always --no-startup-id greenclip daemon
-#exec_always alttab
 
 # exec --no-startup-id xfsettingsd
 exec --no-startup-id telegram-desktop
@@ -354,7 +353,7 @@ exec --no-startup-id compton -b
 exec --no-startup-id dropbox
 exec --no-startup-id alttabhax
 exec --no-startup-id clipster -d
-# exec --no-startup-id ~/bin/start-xkeysnail
+exec --no-startup-id ~/bin/start-xkeysnail
 
 # }}}
 
@@ -365,7 +364,9 @@ bar {
       # status_command 2>/tmp/i3blocks.err /path/to/i3blocks -vvv -c /path/to/config | tee /tmp/i3blocks.out
         binding_mode_indicator yes
         tray_output primary
-        font pango: Ubuntu Mono 11
+        # font pango:  UbuntuMono Nerd Font Mono 11
+        font pango:  Ubuntu Mono 11
+        # font pango:  RobotMono NF 11
         colors {
              background       #21212111
             # background       #ffffff11

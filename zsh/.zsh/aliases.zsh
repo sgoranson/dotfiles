@@ -5,10 +5,10 @@ alias m=mark
 alias v=nvim
 alias b=bat
 alias p=print
-alias nv="nvim +'cd ~/dotfiles' +':Denite file_mru/git'"
+alias nv="nvim +'cd ~/.dot' +':Denite file_mru/git'"
 
 alias nv-d="nvim +'cd ~/projects/spg-doc' +':Denite file_rec/git'"
-alias nv-a='nvim ~/.zsh/aliases.zsh'
+alias nva='nvim ~/.zsh/aliases.zsh'
 alias c=cd
 
 
@@ -30,6 +30,7 @@ alias pb=pastebin
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 alias web='google-chrome-stable --new-window'
+alias nwjsgif='cd ~/Dropbox/nwjs && nw .' 
 
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
  alias ll="ls -lhAtr --file-type --color=auto"
@@ -41,7 +42,7 @@ alias po="popd"
 # alias ff="\rg --color=auto --hidden --files"
 alias gs="git status"
 
-alias pss='ps -aef --sort=start_time'
+alias pss="ps -aef --sort=start_time | awk '\$3 != 2'"
 alias psst='sudo ps axjf'
 alias psl='ps wwaxo pid,ppid,stat,args --sort=start_time'
 
@@ -154,11 +155,13 @@ alias AL="yay --color=auto -Ql --noconfirm"
 alias AR="yay --color=auto -R"
 alias AF="pkgfile"
 alias AU="yay --needed --color=auto -Syu"
-alias AI="yay --needed --color=auto -S"
+alias AI="yay --noconfirm --needed --color=auto -S"
+alias AD="yay  --color=auto -Si"
 
-# compdef _pacman_completions_all_packages AI=yay
-# compdef _pacman_completions_all_packages AS=yay
-# _yay &>/dev/null
+# AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
+ compdef _pacman_completions_all_packages AI=yay
+ compdef _pacman_completions_all_packages AS=yay
+ _yay &>/dev/null
 
 alias netstat-listening='sudo ss -lptu'
 alias calc=pcalc
@@ -173,7 +176,6 @@ alias svc-j='sudo journalctl -xe'
 alias svc-u='systemctl --user'
 alias svc-u-reload='systemctl --user daemon-reload'
 
-AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
 
     # -i interfaces. shows packets/sec
     alias netstat-bps="netstat -i"

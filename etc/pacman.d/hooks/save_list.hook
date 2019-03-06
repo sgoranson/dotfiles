@@ -6,4 +6,4 @@ Target = *
 
 [Action]
 When = PostTransaction
-Exec = /bin/sh -c '{ fx="/home/steve/.dotfiles/pkgs/pac_qqe_${HOSTNAME}.txt";  echo "spg ${fx}..."; touch "$fx"; chown steve.steve "$fx"; /usr/bin/pacman -Qqe > "$fx"; }'
+Exec = /bin/sh -c '{ fx="/home/steve/.dot/pkgs/pac_qqe_${HOSTNAME}.txt";  echo "spg ${fx}..."; touch "$fx"; chown steve.steve "$fx"; /usr/bin/pacman -Qqe > "$fx"; }'

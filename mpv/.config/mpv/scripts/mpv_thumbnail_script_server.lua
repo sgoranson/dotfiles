@@ -342,14 +342,11 @@ function round_rect(ass, x0, y0, x1, y1, rtl, rtr, rbr, rbl)
 end
 local SCRIPT_NAME = "mpv_thumbnail_script"
 
--- local default_cache_base = ON_WINDOWS and os.getenv("TEMP") or "/tmp/"
-    local default_cache_base = join_paths(os.getenv("HOME"), "tmp"),
+local default_cache_base = ON_WINDOWS and os.getenv("TEMP") or "/tmp/"
 
 local thumbnailer_options = {
     -- The thumbnail directory
-    cache_directory = "/home/steve/tmp/mpv_thumbs_cache",
-    -- cache_directory = join_paths(os.getenv("HOME"), "mpv_thumbs_cache"),
-    -- cache_directory = join_paths(os.getenv("HOME"), "mpv_thumbs_cache"),
+    cache_directory = join_paths(default_cache_base, "mpv_thumbs_cache"),
 
     ------------------------
     -- Generation options --

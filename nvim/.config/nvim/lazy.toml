@@ -35,7 +35,7 @@ hook_add = '''
 '''
 
 
-
+# lightline {{{
 [[plugins]]
 repo =  'itchyny/lightline.vim'                # shows marks, m/ shortcuts
 depends =  'vim-devicons'
@@ -160,6 +160,8 @@ endfunction
 
 
 '''
+# }}}
+
 [[plugins]]
 repo = 'lambdalisue/vim-gista'
 on_cmd = 'Gista'
@@ -249,6 +251,8 @@ on_ft = ['zsh', 'sh']
 #     " let g:deoplete#auto_complete_start_length = 3
 #     call deoplete#enable()
 # '''
+
+
 [[plugins]]
 repo = 'Shougo/echodoc.vim'
 on_event = 'CompleteDone'
@@ -260,20 +264,20 @@ call echodoc#enable()
 [[plugins]]
 repo =  'iamcco/devdocs.nvim'
 
-[[plugins]]
-repo = 'Shougo/deol.nvim'
-depends = 'denite.nvim'
-hook_source = '''
-"   let g:deol#prompt_pattern = '% \|%$'
+# [[plugins]]
+# repo = 'Shougo/deol.nvim'
+# depends = 'denite.nvim'
+# hook_source = '''
+# "   let g:deol#prompt_pattern = '% \|%$'
 
-" nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
-"nnoremap <silent> N :<C-u>call deol#new({'command': 'xonsh'})<CR>
-"nnoremap <silent> [Space]s :<C-u>Deol xonsh<CR>
-"nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
+# " nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
+# "nnoremap <silent> N :<C-u>call deol#new({'command': 'xonsh'})<CR>
+# "nnoremap <silent> [Space]s :<C-u>Deol xonsh<CR>
+# "nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
 
-"  nnoremap <silent> <C-t> :<C-u>Denite
-"      \ -select=`tabpagenr()-1` -mode=normal deol:zsh<CR>
-'''
+# "  nnoremap <silent> <C-t> :<C-u>Denite
+# "      \ -select=`tabpagenr()-1` -mode=normal deol:zsh<CR>
+# '''
 
 
 
@@ -820,3 +824,6 @@ repo = 'Shougo/neco-vim'
 on_ft = 'vim'
 
 
+[[plugins]]
+repo = 'freitass/todo.txt-vim'
+on_ft = 'todo'

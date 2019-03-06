@@ -166,5 +166,6 @@ function is42 () {
 
     # see upgrade function in this file
     compdef _hosts upgrade
+    compdef  _todo.sh todo   
 
 kitty + complete setup zsh | source /dev/stdin

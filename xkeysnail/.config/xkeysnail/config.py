@@ -21,7 +21,7 @@ define_modmap({
 define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
     # Key.ENTER: [Key.ENTER, Key.LEFT_META],
-    # Key.ENTER: [Key.ENTER, Key.RIGHT_ALT],
+    Key.ENTER: [Key.ENTER, Key.LEFT_CTRL],
 
     # Capslock is escape when pressed and released. Control when held down.
     Key.CAPSLOCK: [Key.ESC, Key.LEFT_META]

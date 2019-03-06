@@ -12,11 +12,19 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
     \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ 'ruby': ['solargraph', 'stdio'],
     \ }
  let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
 '''
 
+[[plugins]]
+repo = 'mbbill/undotree'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+hook_add = '''
+let g:neoterm_autoinsert = 1
+'''
 
 [[plugins]]
 repo = 'ncm2/ncm2'

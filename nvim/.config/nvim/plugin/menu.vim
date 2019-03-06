@@ -19,4 +19,4 @@ let s:menus.my_commands.command_candidates = [
             \ ['Format code', 'FormatCode', 'go,python'],
             \ ]
 
-call denite#custom#var('menu', 'menus', s:menus)
+" call denite#custom#var('menu', 'menus', s:menus)

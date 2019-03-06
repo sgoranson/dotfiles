@@ -60,7 +60,7 @@ status = Status()
 status.register(
     "clock",
     hints={"markup": "pango"},
-    format=' %a %e %I:%M:%S',
+    format="<span lang='clock' weight='normal' face='Font Awesome 5 Free Solid'></span> %a %e %I:%M:%S",
     color=color02,
     interval=1,
     # on_leftclick="zenity --calendar --text ''",
@@ -93,13 +93,23 @@ status.register(
     # on_rightclick="pavucontrol",
     color=color03,
     color_muted=color01,
-    format="墳  {volume}%",
+    format="墳{volume}%",
     format_muted=' [muted]',
 )
 status.register("network",
     interface="wlp3s0",
     # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
     format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
+    dynamic_color=True,
+    graph_style="braille-fill",
+    separate_color=True,
+    start_color=color14,
+    end_color=color15,
+    )
+status.register("network",
+    interface="enp0s25",
+    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
+    format_up=" {network_graph_recv}  {network_graph_sent}",
     dynamic_color=True,
     graph_style="braille-fill",
     separate_color=True,
@@ -135,7 +145,7 @@ status.register("network",
 # battery
 status.register(
     'battery',
-    format='\u3000 {percentage:.0f}%[ ({remaining})]',
+    format=' {percentage:.0f}%[ ({remaining})]',
     not_present_text="",
     alert=True,
     alert_percentage=5,
@@ -146,7 +156,7 @@ status.register(
 # TEMPIRATURE ---------------------------------------------------------
 status.register(
     "temp",
-    format=" {temp}°",
+    format=" {temp}°",
     #color        =tempFColor,
     color=color06,
     alert_color=color01,
