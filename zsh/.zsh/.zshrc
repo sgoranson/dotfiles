@@ -110,8 +110,20 @@ export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=4,fg=0'
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=9,fg=white,bold'
 export HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS=''
 export HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=''
+if [[ $TERM == linux ]]; then
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
+else
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
+fi
 
+export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+	forward-char
+	end-of-line
+	vi-forward-char
+	vi-end-of-line
+	vi-add-eol
+    magic-space
+)
 
 # }}}
 
@@ -139,8 +151,8 @@ autoload -U add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 add-zsh-hook -Uz zsh_directory_name zsh_directory_name_cdr
 zstyle ':chpwd:*' recent-dirs-file $ZSH_CDR_DIR/recent-dirs
-zstyle ':chpwd:*' recent-dirs-max 40
-zstyle ':chpwd:*' recent-dirs-prune parent
+zstyle ':chpwd:*' recent-dirs-max 80
+# zstyle ':chpwd:*' recent-dirs-prune parent
 # fall through to cd
 zstyle ':chpwd:*' recent-dirs-default yes
 

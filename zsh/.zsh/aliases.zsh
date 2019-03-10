@@ -30,7 +30,6 @@ alias pb=pastebin
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 alias web='google-chrome-stable --new-window'
-alias nwjsgif='cd ~/Dropbox/nwjs && nw .' 
 
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
  alias ll="ls -lhAtr --file-type --color=auto"
@@ -214,6 +213,7 @@ alias find-recent-mod='find -cmin -5'
 alias find-print-tlm='find . -type f -printf "%T@ %p\n"'
 alias find-most-files="du --inodes -S | sort -h"
 alias fc-list-sort='fc-list | cut -d: -f2,3 | sort'
+alias fc-cache='fc-cache -f -v'
 
 alias ghs='ghs --sort=votes'
 alias gpg-fingerprint='gpg --verbose --fingerprint'

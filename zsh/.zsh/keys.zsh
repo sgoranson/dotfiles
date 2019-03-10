@@ -199,6 +199,15 @@ function fzf-cdr() {
 }
 zle -N fzf-cdr
 
+function fzf-cdr2() {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+}
+zle -N fzf-cdr2
+
 
 
 function  expand-or-complete-with-dots() {
@@ -301,7 +310,8 @@ bindkey '^k'   forward-word
 bindkey '^tg'  fzf-qhq
 bindkey '^tl'  insert-widget
 bindkey '^tw'  where-widget
-bindkey '^d' fzf-cdr
+bindkey '^d' fzf-cdr2
+bindkey '^xd' fzf-cdr
 bindkey '^xe'  edit-command-line
 bindkey '^xf'  fzf-file-widget
 bindkey '^xh'  run-help
