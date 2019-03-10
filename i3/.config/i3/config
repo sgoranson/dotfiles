@@ -359,13 +359,13 @@ exec --no-startup-id ~/bin/start-xkeysnail
 
 # BAR {{{
 bar {
-    status_command python ~/.config/i3/pystatus.py
-    # status_command i3blocks          
-      # status_command 2>/tmp/i3blocks.err /path/to/i3blocks -vvv -c /path/to/config | tee /tmp/i3blocks.out
+     status_command python ~/.config/i3/pystatus.py
+    # status_command python  ~/.local/lib/python3.7/site-packages/powerline/bindings/i3/powerline-i3.py  
+
         binding_mode_indicator yes
         tray_output primary
           # font pango:   xos4 Terminus 10
-          font pango:   monospace 10
+          font pango:    Ubuntu Mono derivative Powerline 10
           # font pango:  Ubuntu Mono, siji, FontAwesome 11
         # font -wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1
 

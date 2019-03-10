@@ -100,7 +100,7 @@ source $ZDOTDIR/aliases.zsh
 source $ZDOTDIR/arch.zsh
 source $ZDOTDIR/github.zsh
 source $ZDOTDIR/completion/googler_at
-source $ZDOTDIR/z.sh
+# source $ZDOTDIR/z.sh
 source $ZDOTDIR/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-autosuggestions.zsh
 source $ZDOTDIR/extract.plugin.zsh

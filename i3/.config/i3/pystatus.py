@@ -169,8 +169,9 @@ status.register(
 # load
 # status.register(
 #     "load",
-#     format="  {avg1}",
+#     format=' {avg1} {avg5} {avg15}',
 #     color=color10,
+#     critical_limit=6,
 # )
 
 # CPU USAGE -----------------------------------------------------------

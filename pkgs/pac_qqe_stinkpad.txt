@@ -165,6 +165,7 @@ seahorse
 sed
 shadow
 siji-git
+socat
 speedtest-cli
 stow
 sudo
@@ -187,6 +188,7 @@ thunar
 thunar-thumbnailers
 tldr
 tmux
+tmux-mem-cpu-load-git
 todotxt-git
 tor
 tor-browser-en
@@ -196,6 +198,7 @@ ttf-material-icons
 ttf-roboto
 ttf-ubuntu-font-family
 ttf-unifont
+ttyload
 tumbler
 usbutils
 util-linux

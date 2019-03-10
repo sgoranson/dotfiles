@@ -199,58 +199,6 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 
 '''
 
-[[plugins]]
-repo = 'zchee/deoplete-zsh'
-on_ft = ['zsh', 'sh']
-
-
-
-# [[plugins]]
-# repo = 'shougo/deoplete.nvim'
-# depends = 'context_filetype.vim'
-# on_event = 'InsertEnter'
-# hook_source = '''
-#     let g:deoplete#enable_at_startup = 1
-#     call deoplete#custom#source('ultisnips', 'rank', 1000)
-#     " ditch fuzzy mwatching
-#     call deoplete#custom#source('_', 'matchers', ['matcher_head'])
-
-#     " call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
-#     call deoplete#custom#source('clang', 'input_pattern', '\.\w*|\.->\w*|\w+::\w*')
-#     call deoplete#custom#source('clang', 'max_pattern_length', -1)
-
-
-#     let g:deoplete#sources#ternjs#tern_bin = '/usr/bin/tern'
-#     let g:deoplete#sources#ternjs#types = 1
-#     let g:deoplete#sources#ternjs#docs = 1
-
-# "   let g:deoplete#keyword_patterns = {}
-# "   let g:deoplete#keyword_patterns._ = '[a-zA-Z_]\k*\(?'
-# "   let g:deoplete#keyword_patterns.tex = '[^\w|\s][a-zA-Z_]\w*'
-# "
-# "   let g:deoplete#omni#input_patterns = {}
-# "   let g:deoplete#omni#input_patterns.python = ''
-# "
-# "
-# "   let g:deoplete#omni#functions = {}
-# "
-# "   let g:deoplete#omni#functions.javascript = [ 'tern#Complete', 'jspc#omni' ]
-# "
-# "   let g:tern#command = ["/usr/bin/tern"]
-# "   let g:tern#arguments = ["--persistent"]
-# "
-# "
-# "   let g:deoplete#sources#jedi#enable_typeinfo = 0
-# "   let g:deoplete#sources#jedi#show_docstring = 1
-# "
-# "   " inoremap <silent><expr> <C-t> deoplete#manual_complete('file')
-# "
-# "   "let g:deoplete#enable_refresh_always = 0
-# "   let g:deoplete#enable_camel_case = 0
-# "   " let g:deoplete#auto_complete_delay = 50
-#     " let g:deoplete#auto_complete_start_length = 3
-#     call deoplete#enable()
-# '''
 
 
 [[plugins]]
@@ -281,88 +229,7 @@ repo =  'iamcco/devdocs.nvim'
 
 
 
-
-[[plugins]]
-repo = 'Shougo/defx.nvim'
-hook_add = '''
-
-nnoremap <silent>   <Space>F
-\ :<C-u>Defx -auto-cd -listed -show-ignored-files -resume -buffer-name=tab`tabpagenr()`<CR>
-'''
-hook_source = '''
-call defx#custom#column('mark', {
-      \ 'directory_icon': '▸',
-      \ 'readonly_icon': '✗',
-      \ 'selected_icon': '✓',
-      \ })
-'''
-[plugins.ftplugin]
-defx = '''
-" Define mappings
-nnoremap <silent><buffer><expr> <CR>
-\ defx#async_action('drop')
-nnoremap <silent><buffer><expr> c
-\ defx#do_action('copy')
-nnoremap <silent><buffer><expr> !
-\ defx#do_action('execute_command')
-nnoremap <silent><buffer><expr> m
-\ defx#do_action('move')
-nnoremap <silent><buffer><expr> p
-\ defx#do_action('paste')
-nnoremap <silent><buffer><expr> l
-\ defx#async_action('open')
-nnoremap <silent><buffer><expr> E
-\ defx#do_action('open', 'vsplit')
-nnoremap <silent><buffer><expr> P
-\ defx#do_action('open', 'pedit')
-nnoremap <silent><buffer><expr> K
-\ defx#do_action('new_directory')
-nnoremap <silent><buffer><expr> N
-\ defx#do_action('new_file')
-nnoremap <silent><buffer><expr> M
-\ defx#do_action('new_multiple_files')
-nnoremap <silent><buffer><expr> C
-\ defx#do_action('toggle_columns', 'mark:filename:type:size:time')
-nnoremap <silent><buffer><expr> S
-\ defx#do_action('toggle_sort', 'Time')
-nnoremap <silent><buffer><expr> d
-\ defx#do_action('remove_trash')
-nnoremap <silent><buffer><expr> r
-\ defx#do_action('rename')
-nnoremap <silent><buffer><expr> x
-\ defx#do_action('execute_system')
-nnoremap <silent><buffer><expr> >
-\ defx#do_action('toggle_ignored_files')
-nnoremap <silent><buffer><expr> .
-\ defx#do_action('repeat')
-nnoremap <silent><buffer><expr> yy
-\ defx#do_action('yank_path')
-nnoremap <silent><buffer><expr> h
-\ defx#do_action('cd', ['..'])
-nnoremap <silent><buffer><expr> ~
-\ defx#do_action('cd')
-nnoremap <silent><buffer><expr> \
-\ defx#do_action('cd', getcwd())
-nnoremap <silent><buffer><expr> q
-\ defx#do_action('quit')
-nnoremap <silent><buffer><expr> <Space>
-\ defx#do_action('toggle_select') . 'j'
-nnoremap <silent><buffer><expr> *
-\ defx#do_action('toggle_select_all')
-nnoremap <silent><buffer><expr> j
-\ line('.') == line('$') ? 'gg' : 'j'
-nnoremap <silent><buffer><expr> k
-\ line('.') == 1 ? 'G' : 'k'
-nnoremap <silent><buffer><expr> <C-l>
-\ defx#do_action('redraw')
-nnoremap <silent><buffer><expr> <C-g>
-\ defx#do_action('print')
-nnoremap <silent><buffer><expr> <Tab> winnr('$') != 1 ?
-\ ':<C-u>wincmd w<CR>' :
-\ ':<C-u>Defx -buffer-name=temp -split=vertical<CR>'
-'''
-
-
+# denite {{{
 
 [[plugin]]
 repo = 'machakann/vim-highlightedyank'
@@ -482,7 +349,7 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
 noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 
 
-noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -highlight-mode-insert=CursorLine register<CR>
+noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -highlight-mode-insert=CursorLine neoyank<CR>
 
 noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine line<CR>
 noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
@@ -586,7 +453,7 @@ let g:session_directory=expand("~/data/nvim/session")
 repo =  'Shougo/unite-outline'
 on_source = 'denite.nvim'
 
-# UNITE {{{
+
 [[plugins]]
 repo =  'Shougo/unite.vim'
 on_source = 'denite.nvim'
@@ -679,6 +546,7 @@ let g:unite_data_directory=expand("~/data/unite")
 '''
 
 # }}}
+
 
 
 
