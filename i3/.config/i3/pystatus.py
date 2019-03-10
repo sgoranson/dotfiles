@@ -55,12 +55,12 @@ color17 = '#d7af00'
 
 status = Status()
 
-
 # CLOCK ---------------------------------------------------------------
 status.register(
     "clock",
     hints={"markup": "pango"},
-    format="<span lang='clock' weight='normal' face='Font Awesome 5 Free Solid'></span> %a %e %I:%M:%S",
+    format=
+    "<span lang='clock' weight='normal' face='FontAwesome'></span> %a %e %I:%M:%S",
     color=color02,
     interval=1,
     # on_leftclick="zenity --calendar --text ''",
@@ -93,29 +93,9 @@ status.register(
     # on_rightclick="pavucontrol",
     color=color03,
     color_muted=color01,
-    format="墳{volume}%",
+    format=" {volume}%",
     format_muted=' [muted]',
 )
-status.register("network",
-    interface="wlp3s0",
-    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
-    format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
-    dynamic_color=True,
-    graph_style="braille-fill",
-    separate_color=True,
-    start_color=color14,
-    end_color=color15,
-    )
-status.register("network",
-    interface="enp0s25",
-    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
-    format_up=" {network_graph_recv}  {network_graph_sent}",
-    dynamic_color=True,
-    graph_style="braille-fill",
-    separate_color=True,
-    start_color=color14,
-    end_color=color15,
-    )
 
 # status.register(
 #     "network",
@@ -181,24 +161,32 @@ status.register(
     format=' {percent_used_mem}%',
 )
 # cpu frequency
-status.register(
-    "cpu_freq",
-    format="{avgg} Ghz",
-    color=color09,
-)
+# status.register(
+#     "cpu_freq",
+#     format=" {avgg} Ghz",
+#     color=color09,
+# )
 # load
-status.register(
-    "load",
-    format="\uf0e7\u3000 {avg1}",
-    color=color10,
-)
+# status.register(
+#     "load",
+#     format="  {avg1}",
+#     color=color10,
+# )
 
 # CPU USAGE -----------------------------------------------------------
 status.register(
     "cpu_usage",
-    color=color11,
     on_leftclick=terminal + " -e 'htop'",
-    format='  {usage:-4d}%',
+    format='  {usage:02d}%',
+    dynamic_color=True,
+    start_color=color11)
+status.register(
+    'cpu_usage_graph',
+    # format=('CPU: ' + cpubarformat),
+    format='{cpu_graph:<15}',
+    # bar_type='vertical',
+    dynamic_color=True,
+    hints={'min_width': '________________'},
 )
 # ping
 status.register(
@@ -208,22 +196,42 @@ status.register(
     color=color12,
 )
 
+# status.register(
+#     'net_speed',
+#     format='↓{speed_down:.1f}{down_units} ↑{speed_up:.1f}{up_units}',
+#     units='bytes',
+#     interval=5,
+# )
+
+status.register(
+    "network",
+    interface="wlp0s20u2",
+    format_up=
+    "{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent:3s} MB/s",
+    divisor=(1024 * 1024),
+    # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
+    dynamic_color=True,
+    graph_style="braille-fill",
+    separate_color=True,
+    start_color=color14,
+    end_color=color15,
+)
+status.register(
+    "network",
+    interface="enp0s25",
+    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
+    format_up="{network_graph_recv} {network_graph_sent}",
+    dynamic_color=True,
+    graph_style="braille-fill",
+    separate_color=True,
+    start_color=color14,
+    end_color=color15,
+)
 # weather  ------------------------------------------------------------
 status.register(
     'weather',
     format='{current_temp}{temp_unit}[ {icon}][ {update_error}]',
     colorize=True,
-    color_icons={
-        'Fair': ('☼ معتدل', color01),
-        'Cloudy': ('☁ غائم', '#f8f8ff'),
-        'Partly Cloudy': ('☁ غائم جزئيا', color01),
-        'Fog': (' الضباب', '#949494'),
-        'Sunny': ('☀ مشمس', '#ffff00'),
-        'default': ('', None),
-        'Rainy': ('⛈ ممطر', '#cbd2c0'),
-        'Thunderstorm': ('⚡ عاصفة رعدية', '#cbd2c0'),
-        'Snow': ('☃ ثلج', '#ffffff'),
-    },
     hints={'markup': 'pango'},
     backend=weathercom.Weathercom(
         location_code='USMA0502:1:US',

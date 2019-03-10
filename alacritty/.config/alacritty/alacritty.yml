@@ -80,20 +80,20 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
-    family: Ubuntu Mono
+    family: UbuntuMono Nerd Font Mono
     # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Bold font face
   bold:
-    family: Ubuntu Mono
+    family: UbuntuMono Nerd Font Mono
     # The `style` can be specified to pick a specific face.
     style: Regular
     #style: Bold
 
   # Italic font face
   italic:
-    family: Ubuntu Mono
+    family: UbuntuMono Nerd Font Mono
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
@@ -222,9 +222,20 @@ colors:
   # Example:
   #   `- { index: 16, color: '0xff00ff' }`
   #
-  indexed_colors: []# }}}
+  indexed_colors: []
+  # }}}
 
-
+# # alt color {{{
+# colors:
+#   bright: {black: '0x5c6370', blue: '0x62afee', cyan: '0x56b6c2', green: '0x98c379',
+#     magenta: '0xc678dd', red: '0xe06c75', white: '0xffffff', yellow: '0xd19a66'}
+#   normal: {black: '0x000000', blue: '0x61aeee', cyan: '0x56b6c2', green: '0x98c379',
+#     magenta: '0xc678dd', red: '0xE06C75', white: '0xabb2bf', yellow: '0xd19a66'}
+#   primary: {background: '0x0e1315', foreground: '0xabb2bf'}
+#   cursor:
+#     text: '0x000000'
+#     cursor: '0xD554AD'
+# # }}}
 # Visual Bell
 #
 # Any time the BEL code is received, Alacritty "rings" the visual bell. Once
