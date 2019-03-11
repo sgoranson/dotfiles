@@ -1,7 +1,9 @@
 #!env bash
 last=
 
-notify-send "alttabhax running"
+
+$HOME/util/kill-notify alttabhax
+
 xprop -root -spy _NET_ACTIVE_WINDOW | while :
 do
     read line

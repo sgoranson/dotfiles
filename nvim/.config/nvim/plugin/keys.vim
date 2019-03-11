@@ -142,26 +142,7 @@ nnoremap <M-D> "zdiw
 nnoremap <M-w> "zciW
 nnoremap <M-W> "zciw
 
-" <M-y>  yank inner word
-nnoremap <M-y> yiW
-nnoremap <M-Y> yiw
 
-" alt-p align paste (normal)
-nnoremap <M-p> p'[=']']o<Esc>
-nnoremap <M-P> P'[=']']o<Esc>
-
-" alt-p regular paste (insert)
-inoremap <M-p> <C-R>"<Esc>
-" alt-v regular paste (insert, normal, visual)
-inoremap <M-v> <C-R>"<Esc>
-noremap <M-v> p
-noremap <M-V> P
-
-" <M-a>/<M-x> inc/dec number
-nnoremap <silent> <M-a> :<C-u>call AddSubtract("\<C-a>", '')<CR>
-nnoremap <silent> <M-A> :<C-u>call AddSubtract("\<C-a>", 'b')<CR>
-nnoremap <silent> <M-x> :<C-u>call AddSubtract("\<C-x>", '')<CR>
-nnoremap <silent> <M-X> :<C-u>call AddSubtract("\<C-x>", 'b')<CR>
 " nnoremap <C-x>d :r!date +'\%F \%T'<CR>
 noremap <C-x>t :SGTimestamp<CR>
 " # }}}
@@ -267,13 +248,18 @@ noremap  <silent><leader>y       "+y
 
 " clipboard paste
 " noremap  <silent><leader>p       o<Esc>"+p'[=']']o<Esc>
-nnoremap  <silent><leader>p       "+p
-nnoremap  <silent><leader>P       "+P
-noremap  <silent>,p       "0p
+nnoremap  <silent><leader>p       "+=p
+nnoremap  <silent><leader>P       "+=P
+" alt-p regular paste (insert)
+inoremap <M-p> <C-R>+<Esc>
 
-nnoremap  <leader>r      :registers<CR>
+noremap <M-p> "+=P
 
-nnoremap <silent><Leader>tq :ThesaurusQueryReplaceCurrentWord<CR>
+noremap  <silent>,p       "0p 
+inoremap <M-y> <C-o>:Denite neoyank -default-action=append<CR> 
+
+
+
 
 
 "

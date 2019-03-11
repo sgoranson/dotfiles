@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+deadp="${1:?}"
+deadp="${1##*/}"
+
+notify-send "killing $deadp"
+if ! pkill --echo --full -KILL "$deadp"; then
+    echo "trying to kill ${deadp}.." >&2 
+    sudo pkill -KILL --full "$deadp"
+    sleep 1
+done
+
+notify-send "$deadp killed"

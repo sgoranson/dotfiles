@@ -16,7 +16,7 @@ augroup END
 "" ʕ◔ϖ◔ʔ disable python2
 let g:session_directory=expand("~/data/nvim/session")    
 let g:loaded_python_provider = 1
-let g:python3_host_prog  = '/usr/bin/python3'
+let g:python3_host_prog  = expand("~/.pyenv/shims/python")  
 "let g:python2_host_prog  = 'python2'
 
 " ʕ◔ϖ◔ʔ Define dein repo path
@@ -40,9 +40,6 @@ let g:dein#install_process_timeout = 9600
 if dein#load_state(expand(s:dein_dir))
   call dein#begin(expand(s:dein_dir), [expand('<sfile>')])
 
-  if exists('g:gonvim_running')
-    call dein#add('akiyosi/gonvim-fuzzy')
-  endif
 
   " ʕ◔ϖ◔ʔ Define dein toml file
   let s:toml_dir  = expand($XDG_CONFIG_HOME) . '/nvim'
@@ -80,25 +77,6 @@ nnoremap <Esc> :nohlsearch<CR>
 
 
 
-" ʕ◔ϖ◔ʔ Gonvim setting
-if exists('g:gonvim_running')
-  " ʕ◔ϖ◔ʔ Use Gonvim UI instead of vim native UII
-  set laststatus=0
-  set noshowmode
-  set noruler
-
-  " ʕ◔ϖ◔ʔ I use `ripgrep` for :GonvimFuzzyAg
-  let g:gonvim_fuzzy_ag_cmd = 'rg --column --line-number --no-heading --color never'
-
-  " ʕ◔ϖ◔ʔ Mapping for gonvim-fuzzy
-  nnoremap <leader><leader> :GonvimWorkspaceNew<CR>
-  nnoremap <leader>n :GonvimWorkspaceNext<CR>
-  nnoremap <leader>p :GonvimWorkspacePrevious<CR>
-  nnoremap <leader>ff :GonvimFuzzyFiles<CR>
-  nnoremap <leader>fg :GonvimFuzzyAg<CR>
-  nnoremap <leader>fb :GonvimFuzzyBuffers<CR>
-  nnoremap <leader>fl :GonvimFuzzyBLines<CR>
-endif
 
 filetype plugin indent on
 syn on
@@ -117,10 +95,4 @@ function! s:syntax_range_dein() abort
 endfunction
 
 
-
-" runtime rc/autocmd.vim
-" runtime rc/options.vim
-" runtime rc/keys.vim
-" runtime rc/color.vim
-" runtime rc/functions.vim
 

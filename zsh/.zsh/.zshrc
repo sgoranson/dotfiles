@@ -104,6 +104,7 @@ source $ZDOTDIR/completion/googler_at
 source $ZDOTDIR/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-autosuggestions.zsh
 source $ZDOTDIR/extract.plugin.zsh
+source $ZDOTDIR/base16-oxide
 
 # source $ZDOTDIR/anyenv.sh
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=4,fg=0'
@@ -201,28 +202,28 @@ stty -ixon -ixoff
 #     . "$HOME/.zshmine"
 # fi
 
-if [ "$TERM" = "linux" ]; then
-  /bin/echo -e "
-  \e]P0000000
-  \e]P1ff5555
-  \e]P250fa7b
-  \e]P3f1fa8c
-  \e]P46790eb
-  \e]P5ff79c6
-  \e]P68be9fd
-  \e]P7bfbfbf
-  \e]P879a9ff
-  \e]P9ff6e67
-  \e]PA5af78e
-  \e]PBf4f99d
-  \e]PC79a9ff
-  \e]PDff92d0
-  \e]PE9aedfe
-  \e]PFe6e6e6
-  "
-  # get rid of artifacts
-  clear
-fi
+# if [ "$TERM" = "linux" ]; then
+#   /bin/echo -e "
+#   \e]P0000000
+#   \e]P1ff5555
+#   \e]P250fa7b
+#   \e]P3f1fa8c
+#   \e]P46790eb
+#   \e]P5ff79c6
+#   \e]P68be9fd
+#   \e]P7bfbfbf
+#   \e]P879a9ff
+#   \e]P9ff6e67
+#   \e]PA5af78e
+#   \e]PBf4f99d
+#   \e]PC79a9ff
+#   \e]PDff92d0
+#   \e]PE9aedfe
+#   \e]PFe6e6e6
+#   "
+#   # get rid of artifacts
+#   clear
+# fi
 
 
 # export DISPLAY=:0

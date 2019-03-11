@@ -4,7 +4,7 @@
 # nmcli dev wifi rescan
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
+sleep 1000
 FIELDS=SSID,SECURITY,BARS
 POSITION=0
 YOFF=0

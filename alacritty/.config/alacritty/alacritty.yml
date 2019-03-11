@@ -74,26 +74,26 @@ scrolling:
 # Some applications, like Emacs, rely on knowing about the width of a tab.
 # To prevent unexpected behavior in these applications, it's also required to
 # change the `it` value in terminfo when altering this setting.
-tabspaces: 8
+tabspaces: 4 
 
 # Font configuration (changes require restart)
 font:
   # Normal (roman) font face
   normal:
-    family: Ubuntu Mono derivative Powerline
+    family: monospace
     # The `style` can be specified to pick a specific face.
     style: Regular
 
   # Bold font face
   bold:
-    family:  Ubuntu Mono derivative Powerline
+    family:  monospace
     # The `style` can be specified to pick a specific face.
     style: Regular
     #style: Bold
 
   # Italic font face
   italic:
-    family: Ubuntu Mono derivative Powerline
+    family: monospace
     # The `style` can be specified to pick a specific face.
     #style: Italic
 
@@ -459,8 +459,8 @@ key_bindings:
   # (Windows/Linux only)
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: V,        mods: Super,    action: Paste               }
-  - { key: C,        mods: Super,    action: Copy                }
+  # - { key: V,        mods: Super,    action: Paste               }
+  # - { key: C,        mods: Super,    action: Copy                }
   - { key: F1,                      chars: "\x1bOP"                      }
   - { key: F2,                      chars: "\x1bOQ"                      }
   - { key: F3,                      chars: "\x1bOR"                      }
@@ -471,8 +471,10 @@ key_bindings:
   - { key: F8,                      chars: "\x1b[18~"                    }
   - { key: F9,                     action: Copy                   }
   - { key: F10,                    action: Paste                  }
-  - { key: F11,                     chars: "\x1b[23~"                    }
-  - { key: F12,                     chars: "\x1b[24~"                    }
+  - { key: F11,                     action: Copy                   }
+  - { key: F12,                    action: Paste                  }
+  # - { key: F11,                     chars: "\x1b[23~"                    }
+  # - { key: F12,                     chars: "\x1b[24~"                    }
   #- { key: Insert,   mods: Shift,   action: PasteSelection               }
   #- { key: Key0,     mods: Control, action: ResetFontSize                }
   #- { key: Equals,   mods: Control, action: IncreaseFontSize             }

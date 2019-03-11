@@ -1,32 +1,27 @@
 # reset them all
 # unalias -m '*'
 
-alias m=mark
 alias v=nvim
+alias nv=nvim
 alias b=bat
 alias p=print
-alias nv="nvim +'cd ~/.dot' +':Denite file_mru/git'"
-
-alias nv-d="nvim +'cd ~/projects/spg-doc' +':Denite file_rec/git'"
+alias c=cat
+alias nvd="nvim +'cd ~/.dot' +':Denite file_mru/git'"
 alias nva='nvim ~/.zsh/aliases.zsh'
-alias c=cd
 
 
 alias ff="fd --hidden --exclude '.git' --search-path ."
-alias ffd="fd --type d --hidden --exclude '.git' --search-path ."
+alias fft='tree -a'
+alias lst='tree -a'
 
 alias zs-a='source ~/.zsh/aliases.zsh'
 
 
 # GLOBAL {{{1
-alias open="/mnt/c/Windows/System32/cmd.exe /c start"
-alias start="/mnt/c/Windows/System32/cmd.exe /c start"
 alias r=ranger
 alias RM=trash
 alias CM='chmod a+x'
 alias AX='chmod a+x'
-alias w='which'
-alias pb=pastebin
 alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 alias web='google-chrome-stable --new-window'
@@ -50,9 +45,8 @@ alias crontab="VIM_CRONTAB=true crontab"
 alias cp="cp -i"
 alias rm="rm -i"
 alias mv="mv -i"
-alias ln="ln -i --backup=numbered"
+alias ln="ln -i"
 alias tmux="TERM=xterm-256color \tmux"
-alias vim=nvim
 alias grep='grep --color=auto'
 # -b ignore blanks -B ignore newlines
 # alias diff="diff -ybB"
@@ -274,8 +268,8 @@ alias python-webserver='python3 -m http.server'
 
 alias rand-sh='echo $(( $(head -c 2 /dev/random | od -i  -An) % 10 ))'
 
-alias xclip-c='xclip -selection clipboard'
-alias xclip-p='xclip -selection clipboard -o'
+alias clipc='xclip -selection clipboard'
+alias clipp='xclip -selection clipboard -o'
 
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression

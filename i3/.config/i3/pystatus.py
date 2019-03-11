@@ -17,14 +17,14 @@ filemanager = "pcmanfm"
 
 color00 = '#1c1c1c'
 color01 = '#af005f'
-color02 = '#5faf00'
+color02 = '#5fafd7'
 color03 = '#d7af5f'
 color04 = '#5fafd7'
 color05 = '#808080'
 color06 = '#d7875f'
 color07 = '#d0d0d0'
 color08 = '#585858'
-color09 = '#5faf5f'
+color09 = '#d7af00'
 color10 = '#afd700'
 color11 = '#af87d7'
 color12 = '#ffaf00'
@@ -32,7 +32,7 @@ color13 = '#ff5faf'
 color14 = '#00afaf'
 color15 = '#5f8787'
 color16 = '#5fafd7'
-color17 = '#d7af00'
+color17 = '#5faf5f'
 
 # color00 = '#808080'
 # color01 = '#808080'
@@ -167,12 +167,12 @@ status.register(
 #     color=color09,
 # )
 # load
-# status.register(
-#     "load",
-#     format=' {avg1} {avg5} {avg15}',
-#     color=color10,
-#     critical_limit=6,
-# )
+status.register(
+    "load",
+    format=' {avg1} {avg5} {avg15}',
+    color=color10,
+    critical_limit=6,
+)
 
 # CPU USAGE -----------------------------------------------------------
 status.register(
@@ -187,15 +187,26 @@ status.register(
     format='{cpu_graph:<15}',
     # bar_type='vertical',
     dynamic_color=True,
-    hints={'min_width': '________________'},
+    hints={'min_width': '__________________'},
 )
 # ping
+# status.register(
+#         "ping",
+#         format="\uF079\u3000 {ping} ms",
+#         format_down="unreachable",
+#         color=color12,
+#         )
+
 status.register(
-    "ping",
-    format="\uF079\u3000 {ping} ms",
+    'ping',
+    format='128.sh → {ping:5.1f} ms',
     format_down="unreachable",
     color=color12,
-)
+    latency_threshold=150,
+    interval=15,
+    host='128.sh')
+
+status.register('external_ip', format='wan:→ {ip}', interval=60)
 
 # status.register(
 #     'net_speed',
@@ -204,29 +215,32 @@ status.register(
 #     interval=5,
 # )
 
+# status.register(
+#     "network",
+#     interface="wlp0s20u2",
+#     format_up=
+#     "{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent:3s} MB/s",
+#     divisor=(1024 * 1024),
+#     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
+#     dynamic_color=True,
+#     graph_style="braille-fill",
+#     separate_color=True,
+#     start_color=color14,
+#     end_color=color15,
+# )
 status.register(
     "network",
+    # interface="enp0s25",
     interface="wlp0s20u2",
-    format_up=
-    "{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent:3s} MB/s",
-    divisor=(1024 * 1024),
-    # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
-    dynamic_color=True,
-    graph_style="braille-fill",
-    separate_color=True,
-    start_color=color14,
-    end_color=color15,
-)
-status.register(
-    "network",
-    interface="enp0s25",
     # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
-    format_up="{network_graph_recv} {network_graph_sent}",
+    format_up="↓{network_graph_recv} ↑{network_graph_sent}",
+    #     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
     dynamic_color=True,
-    graph_style="braille-fill",
     separate_color=True,
+    graph_width=10,
     start_color=color14,
     end_color=color15,
+    hints={'min_width': '________________'},
 )
 # weather  ------------------------------------------------------------
 status.register(

@@ -32,16 +32,8 @@ define_multipurpose_modmap({
 # Keybindings for Firefox/Chrome
 define_keymap(re.compile("Firefox|Google-chrome"), {
 
-    K("C-x"): {
-        # C-x h (select all)
-        K("t"): K("C-Shift-TAB"),
-        K("esc"): pass_through_key,
-    },
-    K("C-x"): {
-        # C-x h (select all)
-        K("t"): K("C-TAB"),
-        K("esc"): pass_through_key,
-    },
+    K("M-h"): K("C-Shift-TAB"),
+    K("M-l"): K("C-TAB"),
 
     }, "Firefox and Chrome")
 

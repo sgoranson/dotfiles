@@ -170,12 +170,11 @@ bindsym $modx+r exec --no-startup-id rofi  -show run
 
 
 # bindsym $modx+Shift+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym $modx+Shift+c exec roficlip
+bindsym $modx+c exec roficlip
 # bindsym Control+Space exec roficlip
 bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
 
-bindsym Mod3+q kill
-bindsym Mod4+q kill
+bindsym Mod4+Shift+q kill
 bindsym Mod3+w focus output right
 
 bindsym $modx+s layout toggle splitv splith tabbed
@@ -184,8 +183,8 @@ bindsym $modx+s layout toggle splitv splith tabbed
 # reload the configuration file
 bindsym $modx+F1 restart
 bindsym $modx+F2 reload
-# bindsym $modx+F3 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-bindsym $modx+F3 exec "i3-msg exit"
+bindsym $modx+F3 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $modx+F3 exec "i3-msg exit"
 
 bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
 bindcode 115  exec pulseaudio-ctl up
@@ -226,41 +225,41 @@ bindsym $mody+2 [con_mark="mark2"] focus
 bindsym $mody+3 [con_mark="mark3"] focus
 bindsym $mody+4 [con_mark="mark4"] focus
 bindsym $mody+5 [con_mark="mark5"] focus
-bindsym Mod1+Tab [con_mark="_last"] focus
-bindsym $modx+Tab exec "rofi -show window -dpi 131 -width 90%"
+bindsym $modx+Tab [con_mark="_last"] focus
+bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
  # }}}
 
 # WORKSPACES {{{
-# set $ws1   "1: "
-# set $ws2   "2: "
-# set $ws3   "3: "
-# set $ws4   "4: "
-# set $ws5   "5: "
-# set $ws6   "6: "
-# set $ws7   "7: "
-# set $ws8   "8: "
-# set $ws9   "9: "
-# set $ws10  "10: "
-set $ws1   "1: ⚡"
-set $ws2   "2: Ψ"
-set $ws3   "3: Σ"
-set $ws4   "4: Ω"
-set $ws5   "5: ☮"
-set $ws6   "6: ☭"
-set $ws7   "7: "
-set $ws8   "8: ☯"
-set $ws9   "9: ♱"
-set $ws10  "10: ☥"
+set $ws1   "1: "
+set $ws2   "2: "
+set $ws3   "3: "
+set $ws4   "4: "
+set $ws5   "5: "
+set $ws6   "6: "
+set $ws7   "7: "
+set $ws8   "8: "
+set $ws9   "9: "
+set $ws10  "10: "
+# set $ws1   "1: ⚡"
+# set $ws2   "2: Ψ"
+# set $ws3   "3: Σ"
+# set $ws4   "4: Ω"
+# set $ws5   "5: ☮"
+# set $ws6   "6: ☭"
+# set $ws7   "7: "
+# set $ws8   "8: ☯"
+# set $ws9   "9: ♱"
+# set $ws10  "10: ☥"
 
-workspace $ws1 output DP-2
-workspace $ws2 output DP-2
-workspace $ws3 output DP-2
-workspace $ws4 output DP-2
-workspace $ws5 output DP-2
-workspace $ws7 output DP-1
-workspace $ws8 output DP-1
-workspace $ws9 output DP-1
-workspace $ws10 output DP-1
+# workspace $ws1 output DP-2
+# workspace $ws2 output DP-2
+# workspace $ws3 output DP-2
+# workspace $ws4 output DP-2
+# workspace $ws5 output DP-2
+# workspace $ws7 output DP-1
+# workspace $ws8 output DP-1
+# workspace $ws9 output DP-1
+# workspace $ws10 output DP-1
 
 
 # bindsym $modx+Control+w workspace back_and_forth
@@ -359,13 +358,14 @@ exec --no-startup-id ~/bin/start-xkeysnail
 
 # BAR {{{
 bar {
-     status_command python ~/.config/i3/pystatus.py
+     status_command python $HOME/.config/i3/pystatus.py
     # status_command python  ~/.local/lib/python3.7/site-packages/powerline/bindings/i3/powerline-i3.py  
 
         binding_mode_indicator yes
         tray_output primary
           # font pango:   xos4 Terminus 10
-          font pango:    Ubuntu Mono derivative Powerline 10
+          # font pango:    Ubuntu Mono derivative Powerline 10
+          font pango:    monospace 10
           # font pango:  Ubuntu Mono, siji, FontAwesome 11
         # font -wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1
 

@@ -56,6 +56,22 @@ key_info=(
   'BackTab'      "$terminfo[kcbt]"
 )
 
+# copy the active line from the command line buffer 
+# onto the system clipboard (requires clipcopy plugin)
+
+copybuffer () {
+    if which xclip &>/dev/null; then
+        echo $BUFFER | xclip -selection clipboard
+    else
+        echo "get xclip son" >&2
+    fi
+}
+
+zle -N copybuffer
+
+
+
+
 # # Set empty $key_info values to an invalid UTF-8 sequence to induce silent
 # # bindkey failure.
 # for key in "${(k)key_info[@]}"; do
@@ -89,6 +105,51 @@ zle -N edit-command-line
 zle -N copy-earlier-word
 zle -N insert-unicode-char
 zle -N insert-last-word smart-insert-last-word
+
+
+switch-to-dir () {
+	setopt localoptions nopushdminus
+	[[ ${#dirstack} -eq 0 ]] && return 1
+
+	while ! builtin pushd -q $1 &>/dev/null; do
+		# We found a missing directory: pop it out of the dir stack
+		builtin popd -q $1
+
+		# Stop trying if there are no more directories in the dir stack
+		[[ ${#dirstack} -eq 0 ]] && return 1
+	done
+}
+
+insert-cycledleft () {
+	switch-to-dir +1 || return
+
+	local fn
+	for fn (chpwd $chpwd_functions precmd $precmd_functions); do
+		(( $+functions[$fn] )) && $fn
+	done
+	zle reset-prompt
+}
+zle -N insert-cycledleft
+
+insert-cycledright () {
+	switch-to-dir -0 || return
+
+	local fn
+	for fn (chpwd $chpwd_functions precmd $precmd_functions); do
+		(( $+functions[$fn] )) && $fn
+	done
+	zle reset-prompt
+}
+zle -N insert-cycledright
+
+
+
+
+
+
+
+
+
 
 
 function where-widget() {
@@ -293,15 +354,20 @@ bindkey "$key_info[Control]_" redo
 # bindkey '^Xh' _complete_help
 # bindkey '^A'   beginning-of-line
 # bindkey '^E'   end-of-line
+bindkey "^[h" insert-cycledleft
+bindkey "^[l" insert-cycledright
+
 bindkey '^H'   backward-char
 bindkey '^I'   expand-or-complete-with-dots
 bindkey '^L'   forward-char
 bindkey '^M'   accept-line
 bindkey '^N'   history-substring-search-down
+bindkey "^O"   copybuffer
 bindkey '^P'   history-substring-search-up
 bindkey '^R'   fzf-history-widget
 bindkey '^Z'   grml-zsh-fg
 bindkey '^[,'  copy-earlier-word
+bindkey "^[c" copy-prev-shell-word  
 bindkey '^[.'  insert-last-word
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down

@@ -44,7 +44,7 @@ set linebreak                         " Wrap lines at convenient points
 set laststatus=2                      " always show statusline
 set list                              " enable showing the chars above
 set guioptions=egrLtmc
-set showtabline=2
+set showtabline=1
 set guifont=Consolas\ NF:style=Book:h12
 " set guifont=Consolas_for_Powerline_FixedD:h12:cANSI:qDRAFT
 " set tabline=%!Tabline()
