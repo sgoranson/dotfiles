@@ -290,6 +290,15 @@ function  rationalise-dot() {
     }
 zle -N rationalise-dot
 
+function expand-function() {
+    local func=${LBUFFER// /}
+    if (( $+functions[$func] )); then
+        print 
+        print -l $functions[$func]
+        zle redisplay
+    fi
+}
+zle -N expand-function
 
 function  insert-widget() {
     local target="$(locate -Ai -0 / | grep -z -vE '~$' | fzf --read0 -0 -1 --preview 'tree -C {} | head -200')"
@@ -379,7 +388,7 @@ bindkey '^tw'  where-widget
 bindkey '^d' fzf-cdr2
 bindkey '^xd' fzf-cdr
 bindkey '^xe'  edit-command-line
-bindkey '^xf'  fzf-file-widget
+bindkey '^xf'  expand-function
 bindkey '^xh'  run-help
 bindkey '^xr'  history-incremental-search-backward
 bindkey '^xu'  insert-unicode-char

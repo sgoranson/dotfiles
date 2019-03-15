@@ -167,12 +167,12 @@ status.register(
 #     color=color09,
 # )
 # load
-status.register(
-    "load",
-    format=' {avg1} {avg5} {avg15}',
-    color=color10,
-    critical_limit=6,
-)
+# status.register(
+#     "load",
+#     format=' {avg1} {avg5} {avg15}',
+#     color=color10,
+#     critical_limit=6,
+# )
 
 # CPU USAGE -----------------------------------------------------------
 status.register(
@@ -202,8 +202,6 @@ status.register(
     format='128.sh → {ping:5.1f} ms',
     format_down="unreachable",
     color=color12,
-    latency_threshold=150,
-    interval=15,
     host='128.sh')
 
 status.register('external_ip', format='wan:→ {ip}', interval=60)
@@ -215,33 +213,34 @@ status.register('external_ip', format='wan:→ {ip}', interval=60)
 #     interval=5,
 # )
 
+status.register(
+    "shell",
+    command="$HOME/bin/status/topcpu.sh")
+
+status.register(
+    "network",
+    interface="wlp0s20u2",
+    format_up="↓{bytes_recv:3s} MB/s ↑{bytes_sent:3s} MB/s",
+    divisor=(1024 * 1024),
+    # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
+    dynamic_color=True,
+    separate_color=True,
+    start_color=color14,
+    end_color=color15,
+)
 # status.register(
 #     "network",
 #     interface="wlp0s20u2",
-#     format_up=
-#     "{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent:3s} MB/s",
-#     divisor=(1024 * 1024),
-#     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
+#     # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
+#     format_up="↓{network_graph_recv} ↑{network_graph_sent}",
+#     #     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
 #     dynamic_color=True,
-#     graph_style="braille-fill",
 #     separate_color=True,
+#     graph_width=10,
 #     start_color=color14,
 #     end_color=color15,
+#     hints={'min_width': '________________'},
 # )
-status.register(
-    "network",
-    # interface="enp0s25",
-    interface="wlp0s20u2",
-    # format_up="{essid} {quality}%  {bytes_recv:3s} MB/s  {bytes_sent} MB/s",
-    format_up="↓{network_graph_recv} ↑{network_graph_sent}",
-    #     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
-    dynamic_color=True,
-    separate_color=True,
-    graph_width=10,
-    start_color=color14,
-    end_color=color15,
-    hints={'min_width': '________________'},
-)
 # weather  ------------------------------------------------------------
 status.register(
     'weather',

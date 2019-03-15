@@ -248,12 +248,12 @@ noremap  <silent><leader>y       "+y
 
 " clipboard paste
 " noremap  <silent><leader>p       o<Esc>"+p'[=']']o<Esc>
-nnoremap  <silent><leader>p       "+=p
-nnoremap  <silent><leader>P       "+=P
+nmap  <silent><leader>p       "+=p
+nmap  <silent><leader>P       "+=P
 " alt-p regular paste (insert)
 inoremap <M-p> <C-R>+<Esc>
 
-noremap <M-p> "+=P
+nmap <M-p> "+=P
 
 noremap  <silent>,p       "0p 
 inoremap <M-y> <C-o>:Denite neoyank -default-action=append<CR> 

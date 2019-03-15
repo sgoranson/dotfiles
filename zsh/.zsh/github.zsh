@@ -45,7 +45,7 @@ gh-init-add-create() { # [DIRECTORY]
     || return
   git commit -m 'Initial commit.' \
     || return
-  hub create \
+  hub create -p \
     || return
   git push -u origin master \
     || return

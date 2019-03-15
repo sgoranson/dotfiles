@@ -459,6 +459,7 @@ key_bindings:
   # (Windows/Linux only)
   - { key: V,        mods: Control|Shift,    action: Paste               }
   - { key: C,        mods: Control|Shift,    action: Copy                }
+  - { key: Space,        mods: Super,    chars: "~/"                }
   # - { key: V,        mods: Super,    action: Paste               }
   # - { key: C,        mods: Super,    action: Copy                }
   - { key: F1,                      chars: "\x1bOP"                      }

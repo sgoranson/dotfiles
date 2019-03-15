@@ -177,7 +177,7 @@ bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh
 bindsym Mod4+Shift+q kill
 bindsym Mod3+w focus output right
 
-bindsym $modx+s layout toggle splitv splith tabbed
+bindsym $modx+s layout toggle splith tabbed
 
 
 # reload the configuration file
@@ -322,7 +322,7 @@ bindsym $mody+minus gaps outer all minus 5
 
 # STARTUP EXE {{{
 assign [class="(?i)(?:telegramdesktop)"] → $ws8
-assign [class="(?i)(?:google-chrome)"]  → $ws2
+# assign [class="(?i)(?:google-chrome)"]  → $ws1
 # assign [class="(?i)(?:spotify)"]  → $ws7
 
 for_window [class="(?i)(?:gpick)"] floating enable

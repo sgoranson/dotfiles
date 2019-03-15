@@ -6,7 +6,7 @@ alias nv=nvim
 alias b=bat
 alias p=print
 alias c=cat
-alias nvd="nvim +'cd ~/.dot' +':Denite file_mru/git'"
+alias nvv="nvim +'cd ~/.dot' +':Denite file_mru/git'"
 alias nva='nvim ~/.zsh/aliases.zsh'
 
 
@@ -35,6 +35,9 @@ alias pu="pushd"
 alias po="popd"
 # alias ff="\rg --color=auto --hidden --files"
 alias gs="git status"
+
+alias ps-top-cpu='ps aux | head -1; ps aux | sort -rn +2 | head -10'
+alias ps-top-mem='ps aux | head -1; ps aux | sort -rn +3 | head -10'
 
 alias pss="ps -aef --sort=start_time | awk '\$3 != 2'"
 alias psst='sudo ps axjf'

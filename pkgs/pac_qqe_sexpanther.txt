@@ -2,6 +2,7 @@ acpi
 acroread
 acroread-fonts
 alacritty
+alsa-utils
 apache
 arc-icon-theme
 arc-solid-gtk-theme
@@ -20,11 +21,13 @@ bzip2
 caps2esc
 ccze
 clipster-git
+colorgrab
 compton
 consolas-font
 coreutils
 cronie
 cryptsetup
+dcfldd
 device-mapper
 dfc
 dhcpcd
@@ -32,6 +35,7 @@ dialog
 diff-so-fancy
 diffutils
 dkms
+docker
 dropbox-cli
 dunst
 e2fsprogs
@@ -71,6 +75,7 @@ gvfs
 gvfs-nfs
 gvfs-smb
 gzip
+haveged
 highlight
 htop
 httrack
@@ -133,11 +138,13 @@ pandoc
 paper-icon-theme
 parallel
 patch
+pavucontrol
 pciutils
 pcmanfm
 perl
 perl-font-ttf
 perl-image-exiftool
+pia-tools
 pkgconf
 pkgfile
 polybar
@@ -205,6 +212,7 @@ tldr
 tmux
 tmux-mem-cpu-load-git
 todotxt-git
+tomb-git
 tor
 tor-browser-en
 tp_smapi
@@ -294,3 +302,4 @@ yay-bin
 zip
 zsh
 zsh-completions
+zulucrypt

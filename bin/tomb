@@ -1963,13 +1963,13 @@ lock_tomb_with_key() {
 
 	_message "Formatting Luks mapped device."
 	_cryptsetup --batch-mode \
-				--cipher ${cipher} --key-size 512 --key-slot 0 \
+				--key-size 512 --key-slot 0 \
 				luksFormat ${nstloop}
 	[[ $? == 0 ]] || {
 		_warning "cryptsetup luksFormat returned an error."
 		_failure "Operation aborted." }
 
-	_cryptsetup --cipher ${cipher} luksOpen ${nstloop} tomb.tmp
+	_cryptsetup luksOpen ${nstloop} tomb.tmp
 	[[ $? == 0 ]] || {
 		_warning "cryptsetup luksOpen returned an error."
 		_failure "Operation aborted." }

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+REPO="$HOME/backup"
+ZHIST="$HOME/.cache/.zsh_history"
+
+
+(
+command cp "$ZHIST" "$REPO/zsh_history_$(hostname)"
+cd "$REPO"
+git add .
+git commit -m "zsh_history $(date)" 
+git push
+) |& tee /dev/tty |  logger -t $0
+
+
