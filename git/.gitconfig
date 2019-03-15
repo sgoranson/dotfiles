@@ -15,7 +15,7 @@
     default = simple
 
 [alias]
-    comm = !git add -A && git commit -m
+    comm = !git add -A && git commit -m "stuff" && git push
     save = !git add -A && git commit -m 'SAVEPOINT'
     undo = reset HEAD~1 --mixed
     restore-file = !git checkout $(git rev-list -n 1 HEAD -- "$1")~1 -- "$1"
