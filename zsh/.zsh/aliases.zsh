@@ -1,8 +1,7 @@
 # reset them all
 # unalias -m '*'
 
-alias v=nvim
-alias nv=nvim
+alias vim=nvim
 alias b=bat
 alias p=print
 alias c=cat
@@ -271,8 +270,8 @@ alias python-webserver='python3 -m http.server'
 
 alias rand-sh='echo $(( $(head -c 2 /dev/random | od -i  -An) % 10 ))'
 
-alias clipc='xclip -selection clipboard'
-alias clipp='xclip -selection clipboard -o'
+alias xclipc='xclip -selection clipboard'
+alias xclipp='xclip -selection clipboard -o'
 
 
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression

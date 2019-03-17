@@ -5,11 +5,12 @@ alacritty
 alsa-utils
 apache
 arc-icon-theme
-arc-solid-gtk-theme
+arch-install-scripts
 asciidoctor
 autoconf
 autofs
 automake
+base16-manager-git
 bash
 bash-completion
 bat
@@ -25,10 +26,13 @@ colorgrab
 compton
 consolas-font
 coreutils
+cowpatty
 cronie
 cryptsetup
 dcfldd
+dehydrated
 device-mapper
+devtools
 dfc
 dhcpcd
 dialog
@@ -53,6 +57,7 @@ flex
 fontconfig-ubuntu
 fontforge
 fontweak
+fpp-git
 fzf
 gawk
 gcc
@@ -63,10 +68,12 @@ gettext
 ghq
 glances
 glibc
+gnome-tweaks
 google-chrome
 googler
 gpa
 gparted
+gpick
 gptfdisk
 grep
 groff
@@ -81,6 +88,7 @@ htop
 httrack
 hub
 hugo
+hydra
 i3-gaps
 i3ipc-python-git
 i3pystatus-git
@@ -90,10 +98,12 @@ inetutils
 intel-ucode
 iproute2
 iputils
+ipython
 jfsutils
 jq
 kitty-git
 kodi
+leafpad
 lemonbar-clicks-git
 less
 lib32-gtk-engine-murrine
@@ -169,6 +179,7 @@ rainbarf-git
 ranger
 raw-thumbnailer
 rclone
+reaver
 refind-efi
 reflector
 reiserfsprogs
@@ -225,6 +236,7 @@ ttf-ubuntu-font-family
 ttf-unifont
 ttyload
 tumbler
+unrar
 usbutils
 util-linux
 vi
@@ -233,6 +245,7 @@ vivid
 w3m
 wget
 which
+wifite
 wireless_tools
 wpa_actiond
 wpa_supplicant
@@ -300,6 +313,8 @@ yad
 yapf
 yay-bin
 zip
+zmap
 zsh
 zsh-completions
+zsh-lovers
 zulucrypt

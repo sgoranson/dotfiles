@@ -34,24 +34,22 @@ color15 = '#5f8787'
 color16 = '#5fafd7'
 color17 = '#5faf5f'
 
-# color00 = '#808080'
-# color01 = '#808080'
-# color02 = '#808080'
-# color03 = '#808080'
-# color04 = '#808080'
-# color05 = '#808080'
-# color06 = '#808080'
-# color07 = '#808080'
-# color08 = '#808080'
-# color09 = '#808080'
-# color10 = '#808080'
-# color11 = '#808080'
-# color12 = '#808080'
-# color13 = '#808080'
-# color14 = '#808080'
-# color15 = '#808080'
-# color16 = '#808080'
-# color17 = '#808080'
+# color00 = '#01959F'
+# color01 = '#01959F'
+# color02 = '#01959F'
+# color03 = '#01959F'
+# color04 = '#01959F'
+# color05 = '#5E495A'
+# color06 = '#5E495A'
+# color07 = '#5E495A'
+# color08 = '#5E495A'
+# color09 = '#5E495A'
+# color10 = '#E96058'
+# color11 = '#E96058'
+# color12 = '#E96058'
+# color13 = '#E96058'
+# color14 = '#E96058'
+# color15 = '#E96058'
 
 status = Status()
 
@@ -156,7 +154,7 @@ status.register(
 status.register(
     "mem",
     color=color08,
-    warn_color=color13,
+    warn_color=color11,
     alert_color=color01,
     format=' {percent_used_mem}%',
 )
@@ -204,7 +202,7 @@ status.register(
     color=color12,
     host='128.sh')
 
-status.register('external_ip', format='wan:→ {ip}', interval=60)
+status.register('external_ip', format='wan:→ {ip}', color=color10, interval=60)
 
 # status.register(
 #     'net_speed',
@@ -215,7 +213,8 @@ status.register('external_ip', format='wan:→ {ip}', interval=60)
 
 status.register(
     "shell",
-    command="$HOME/bin/status/topcpu.sh")
+    command="$HOME/bin/status/topcpu.sh",
+    color=color04)
 
 status.register(
     "network",

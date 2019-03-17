@@ -156,8 +156,8 @@ bindsym $modx+Right  move right
 bindsym $mody+f floating toggle
 bindsym $mody+Shift+f focus mode_toggle
 
-bindsym $mody+Shift+z move scratchpad
-bindsym $mody+z scratchpad show
+bindsym $modx+Shift+z move scratchpad
+bindsym $modx+z scratchpad show
 
 bindsym $modx+p focus parent
 bindsym $modx+Shift+p focus child
@@ -174,7 +174,7 @@ bindsym $modx+c exec roficlip
 # bindsym Control+Space exec roficlip
 bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
 
-bindsym Mod4+Shift+q kill
+bindsym Mod4+q kill
 bindsym Mod3+w focus output right
 
 bindsym $modx+s layout toggle splith tabbed
