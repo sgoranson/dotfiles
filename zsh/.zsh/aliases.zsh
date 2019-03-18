@@ -13,7 +13,7 @@ alias ff="fd --hidden --exclude '.git' --search-path ."
 alias fft='tree -a'
 alias lst='tree -a'
 
-alias zs-a='source ~/.zsh/aliases.zsh'
+alias zsa='source ~/.zsh/aliases.zsh && print -P "%F{cyan}aliased reloaded" >&2'
 
 
 # GLOBAL {{{1
@@ -48,7 +48,7 @@ alias cp="cp -i"
 alias rm="rm -i"
 alias mv="mv -i"
 alias ln="ln -i"
-alias tmux="TERM=xterm-256color \tmux"
+# alias tmux="TERM=xterm-256color \tmux"
 alias grep='grep --color=auto'
 # -b ignore blanks -B ignore newlines
 # alias diff="diff -ybB"
@@ -85,15 +85,15 @@ alias PI="pip install --user --upgrade"
 alias PS="pip search"
 alias PL="pip list"
 
-NI() {
-    sudo npm -g install  ${1:?}
-    if [ $? -eq 0 ]; then
-        if ! grep -Eq "^${1}$" "$HOME/dotfiles/install/pkg-lists/npm.txt" ; then
-            echo $1 >> "$HOME/dotfiles/install/pkg-lists/npm.txt"
-        fi
-    fi
-}
-
+# NI() {
+#     sudo npm -g install  ${1:?}
+#     if [ $? -eq 0 ]; then
+#         if ! grep -Eq "^${1}$" "$HOME/dotfiles/install/pkg-lists/npm.txt" ; then
+#             echo $1 >> "$HOME/dotfiles/install/pkg-lists/npm.txt"
+#         fi
+#     fi
+# }
+alias NI="npm -g install"
 alias NR="npm -g uninstall"
 alias NS="npm search -l"
 alias NL="npm list -g --depth=0 2>/dev/null"
@@ -263,6 +263,7 @@ alias nmap-all-ports='sudo nmap -p- localhost'
 alias nmap-versions='sudo nmap -sV -sC localhost'
 
 alias pandoc-epub2pdf="pandoc -f epub -t latex  --latex-engine=xelatex blah.epub -o"
+alias od="od --format=x1caz"
 
 
 alias python-dbg='python -m trace --trace'
@@ -367,15 +368,15 @@ man() {
 
 pastebin() { curl -F "c=@${1:--}" https://ptpb.pw/ }
 
-ssh() {
-    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
-        tmux rename-window "$*"
-        command ssh "$@"
-        tmux set-window-option automatic-rename "on" 1>/dev/null
-    else
-        command ssh "$@"
-    fi
-}
+# ssh() {
+#     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+#         tmux rename-window "$*"
+#         command ssh "$@"
+#         tmux set-window-option automatic-rename "on" 1>/dev/null
+#     else
+#         command ssh "$@"
+#     fi
+# }
 
 
 # homegrown lazy extractor

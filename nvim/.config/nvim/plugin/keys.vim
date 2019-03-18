@@ -218,6 +218,7 @@ nnoremap <silent><leader>ll  :source $MYVIMRC<CR>
 " nnoremap <silent><leader>ses  :wa<Bar>exe "mksession! ~/.cache/vimses/"<CR>
 nnoremap <silent><leader>ses  :OpenSession<Space>
 
+noremap  <leader>m :exec &mouse!=""? "set mouse=" : "set mouse=nv"<CR>
 noremap  <silent><leader>ss      :exe ':split ' . g:scratch  <CR>:setlocal nobuflisted<CR>
 
 
