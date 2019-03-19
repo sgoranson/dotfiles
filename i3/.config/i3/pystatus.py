@@ -219,8 +219,8 @@ status.register(
 status.register(
     "network",
     interface="wlp0s20u2",
-    format_up="↓{bytes_recv:3s} MB/s ↑{bytes_sent:3s} MB/s",
-    divisor=(1024 * 1024),
+    format_up="↓{bytes_recv:3s} KB/s ↑{bytes_sent:3s} KB/s",
+    divisor=(1024),
     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
     dynamic_color=True,
     separate_color=True,
@@ -241,15 +241,15 @@ status.register(
 #     hints={'min_width': '________________'},
 # )
 # weather  ------------------------------------------------------------
-status.register(
-    'weather',
-    format='{current_temp}{temp_unit}[ {icon}][ {update_error}]',
-    colorize=True,
-    hints={'markup': 'pango'},
-    backend=weathercom.Weathercom(
-        location_code='USMA0502:1:US',
-        units='imperial',
-    ),
-)
+# status.register(
+#     'weather',
+#     format='{current_temp}{temp_unit}[ {icon}][ {update_error}]',
+#     colorize=True,
+#     hints={'markup': 'pango'},
+#     backend=weathercom.Weathercom(
+#         location_code='USMA0502:1:US',
+#         units='imperial',
+#     ),
+# )
 
 status.run()

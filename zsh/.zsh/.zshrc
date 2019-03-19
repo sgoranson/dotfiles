@@ -105,6 +105,8 @@ source $ZDOTDIR/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-autosuggestions.zsh
 source $ZDOTDIR/extract.plugin.zsh
 source $ZDOTDIR/base16-oxide
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
 
 # source $ZDOTDIR/anyenv.sh
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=4,fg=0'

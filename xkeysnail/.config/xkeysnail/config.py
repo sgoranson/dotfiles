@@ -21,7 +21,7 @@ define_modmap({
 define_multipurpose_modmap({
     # Enter is enter when pressed and released. Control when held down.
     # Key.ENTER: [Key.ENTER, Key.LEFT_META],
-    Key.ENTER: [Key.ENTER, Key.LEFT_CTRL],
+    # Key.ENTER: [Key.ENTER, Key.LEFT_CTRL],
 
     # Capslock is escape when pressed and released. Control when held down.
     Key.CAPSLOCK: [Key.ESC, Key.LEFT_META]
@@ -30,7 +30,7 @@ define_multipurpose_modmap({
 
 
 # Keybindings for Firefox/Chrome
-define_keymap(re.compile("Firefox|Google-chrome"), {
+define_keymap(re.compile("Firefox|Google-chrome|Pcmanfm"), {
 
     K("M-h"): K("C-Shift-TAB"),
     K("M-l"): K("C-TAB"),

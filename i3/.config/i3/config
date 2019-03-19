@@ -199,6 +199,8 @@ bindsym F8 exec pulseaudio-ctl mute
 
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+bindsym $modx+F5 exec --no-startup-id xdotool mousedown 1
+bindsym $modx+F4 exec --no-startup-id xdotool mouseup 1
 
 # use Mouse+$modx to drag floating windows to their wanted position. also resizing
 floating_modifier Mod4

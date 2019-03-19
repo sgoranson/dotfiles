@@ -1,6 +1,7 @@
 acpi
 acroread
 acroread-fonts
+alacritty-git
 alsa-utils
 apache
 arc-gtk-theme
@@ -46,6 +47,7 @@ dunst
 e2fsprogs
 elementary-icon-theme
 elinks
+evtest
 expac
 fakeroot
 fd
@@ -75,6 +77,7 @@ googler
 gpa
 gparted
 gpick
+gpointing-device-settings
 gptfdisk
 grep
 groff
@@ -99,6 +102,7 @@ imv
 inetutils
 innoextract-git
 intel-ucode
+iotop
 iproute2
 iputils
 ipython
@@ -144,6 +148,7 @@ network-manager-applet
 networkmanager
 nfs-utils
 nitrogen
+nmon
 nodejs
 nomacs
 npm
@@ -237,6 +242,7 @@ todotxt-git
 tomb-git
 tor
 tor-browser-en
+touchpad_config
 tp_smapi
 trash-cli
 tree
@@ -264,6 +270,7 @@ winetricks
 wireless_tools
 wpa_actiond
 wpa_supplicant
+xbindkeys
 xdg-utils
 xdotool
 xf86-input-evdev

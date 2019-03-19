@@ -1,6 +1,11 @@
+#!/usr/bin/env zsh
+#
 alias gh-starred='curl -s "https://api.github.com/users/$USER/starred?per_page=1000"'
 alias gh-repos='curl -s "https://api.github.com/users/$USER/repos?per_page=1000"'
 
+function gh-search-repo() {
+    curl 'https://api.github.com/search/repositories?q=iotop&sort=stars&order=desc' | jq  -c '.items[] |  .html_url,.description,.stargazers_count,.language ' 
+}
 
 
 # Set up hub wrapper for git, if it is available; https://github.com/github/hub

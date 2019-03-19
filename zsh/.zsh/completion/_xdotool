@@ -1,0 +1,35 @@
+#compdef xdotool
+# ------------------------------------------------------------------------------
+# Copyright (c) 2016 Github liangguohuan - http://github.com/liangguohuan
+# All rights reserved.
+#
+# ------------------------------------------------------------------------------
+# Description
+# -----------
+#
+#  Completion script for xdotool.
+#  
+# ------------------------------------------------------------------------------
+
+local curcontext="$curcontext" state line ret=1
+local -a _configs
+
+_arguments -C \
+  '1: :->cmds' \
+  '2:: :->args' && ret=0
+
+_commands=($(xdotool 2>&1 >/dev/null | sed '1,/commands/d' | tr -d '^ ' | tr '\n' ' ' ))
+
+case $state in
+  cmds)
+    _values "xdotool command" $_commands
+    ret=0
+    ;;
+  args)
+    _options=($( xdotool $line[1] -h | egrep -o '^--?[a-z]+' | tr "\n" " " ))
+    [[ -n "$_options" ]] && _values 'configs' $_options
+    ret=0
+    ;;
+esac
+
+return ret

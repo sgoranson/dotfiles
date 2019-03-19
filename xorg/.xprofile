@@ -36,7 +36,10 @@ else
     trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
     xinput --set-prop $trackpointid  'libinput Accel Profile Enabled' 0, 1
 # disables touchpad
-     xinput --list | grep -i touchpad | grep --only-matching --perl-regexp '(?#id=)\d\d' | xargs xinput --disable
+     # xinput --list | grep -i touchpad | grep --only-matching --perl-regexp '(?#id=)\d\d' | xargs xinput --disable
+
+     xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
+     xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
 fi
 
 
