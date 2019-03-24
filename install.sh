@@ -1,4 +1,4 @@
-#!/usr/bin/bash 
+#!/usr/bin/env zsh 
 
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -16,29 +16,9 @@ ln -i -s --no-target-directory "$DIR/util" "$HOME/util"
 mkdir -p "$HOME/data/nvim/session"
 
 
-stow -R ripgrep
-stow -R npm
-stow -R userdirs
-stow -R alacritty
-stow -R dunst
-stow -R xkeysnail
-stow -R terminfo
-stow -R ranger
-stow -R compton
-stow -R dircolors
-stow -R nvim
-stow -R polybar
-stow -R rofi
-stow -R i3
-stow -R sway
-stow -R kitty
-stow -R git
-stow -R xorg
-stow -R tmux
-stow -R zsh
-stow -R yay
-stow -R mpv
-stow -R colorls
-stow -R termite
+pkgs=(
+        ripgrep npm userdirs alacritty dunst xkeysnail terminfo ranger compton dircolors 
+        nvim polybar rofi i3 sway kitty git xorg tmux zsh yay mpv colorls termite geeqie xorg 
+        )
 
 pip install --user --upgrade 'python-language-server[all]'
