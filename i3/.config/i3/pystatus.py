@@ -86,14 +86,21 @@ status.register(
 #     format_muted='vol [muted]',
 # )
 status.register(
-    "alsa",
+    "pulseaudio",
     on_leftclick="amixer -D pulse set Master toggle",
     # on_rightclick="pavucontrol",
-    color=color03,
-    color_muted=color01,
     format=" {volume}%",
     format_muted=' [muted]',
 )
+# status.register(
+#     "alsa",
+#     on_leftclick="amixer -D pulse set Master toggle",
+#     # on_rightclick="pavucontrol",
+#     color=color03,
+#     color_muted=color01,
+#     format=" {volume}%",
+#     format_muted=' [muted]',
+# )
 
 # status.register(
 #     "network",

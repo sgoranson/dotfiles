@@ -22,3 +22,5 @@ pkgs=(
         )
 
 pip install --user --upgrade 'python-language-server[all]'
+
+sudo systemctl enable xlogin@steve  
