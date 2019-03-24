@@ -415,6 +415,7 @@ do
     printf "%-32s %s\n" $command $completion
 done | sort
 }
+alias zsh-doc='info -f zsh  --vi-keys -n  Modifiers'
 
 
 # SUFFIX HANDLERS {{{
