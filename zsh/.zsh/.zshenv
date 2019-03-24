@@ -111,4 +111,7 @@ export LESS_TERMCAP_so=$(printf "\e[7;49;93m")
 export LESS_TERMCAP_ue=$(printf "\e[0m")
 export LESS_TERMCAP_us=$(printf "\e[1;32m")
 
+if [[ -f "$HOME/.zshmine" ]]; then
+    . "$HOME/.zshmine"
+fi
 

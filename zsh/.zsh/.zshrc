@@ -189,9 +189,6 @@ stty -ixon -ixoff
 
 
 
-# if [ -f "$HOME/.zshmine" ]; then
-#     . "$HOME/.zshmine"
-# fi
 
 # if [ "$TERM" = "linux" ]; then
 #   /bin/echo -e "

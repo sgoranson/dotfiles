@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 import subprocess
-import os
 import os.path
 
 import os
@@ -14,6 +13,8 @@ from i3pystatus.updates import pacman, cower
 # Prog Variable
 terminal = "kitty"
 filemanager = "pcmanfm"
+
+MYETH = os.getenv('MYETH',"wlp0s20u2")
 
 color00 = '#1c1c1c'
 color01 = '#af005f'
@@ -225,7 +226,7 @@ status.register(
 
 status.register(
     "network",
-    interface="wlp0s20u2",
+    interface=MYETH,
     format_up="↓{bytes_recv:3s} KB/s ↑{bytes_sent:3s} KB/s",
     divisor=(1024),
     # format_up="{essid}  {network_graph_recv}  {network_graph_sent}",
