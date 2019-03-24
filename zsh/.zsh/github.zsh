@@ -13,61 +13,19 @@ if (( $+commands[hub] )); then
   alias git=hub
 fi
 
-# Functions #################################################################
 
-# Based on https://github.com/dbb/githome/blob/master/.config/zsh/functions
-
-# empty_gh <NAME_OF_REPO>
-#
-# Use this when creating a new repo from scratch.
-# Creates a new repo with a blank README.md in it and pushes it up to GitHub.
-gh-init-repo() { # [NAME_OF_REPO]
+gh-init-and-push() { # [DIRECTORY]
   emulate -L zsh
-  local repo=$1
+  local repo="${1?gimme a repo name}"
 
-  mkdir "$repo"
-  touch "$repo/README.md"
-  new_gh "$repo"
-}
+  git init || return
 
-# new_gh [DIRECTORY]
-#
-# Use this when you have a directory that is not yet set up for git.
-# This function will add all non-hidden files to git.
-gh-init-add-create() { # [DIRECTORY]
-  emulate -L zsh
-  local repo="$1"
-  cd "$repo" \
-    || return
-
-  git init \
-    || return
-  # add all non-dot files
-  print '.*'"\n"'*~' >> .gitignore
-  git add [^.]* \
-    || return
-  git add -f .gitignore \
-    || return
-  git commit -m 'Initial commit.' \
-    || return
-  hub create -p \
-    || return
-  git push -u origin master \
-    || return
-}
-
-# exist_gh [DIRECTORY]
-#
-# Use this when you have a git repo that's ready to go and you want to add it
-# to your GitHub.
-gh-hub-create() { # [DIRECTORY]
-    emulate -L zsh
-    local repo=$1
-    cd "$repo"
-
-  hub create \
-    || return
-  git push -u origin master
+  echo "$1 new repo" > readme.md || return
+  git add . || return
+  git commit -m 'Initial commit.' || return
+  hub create -p || return
+  
+  git push -u origin master || return
 }
 
 

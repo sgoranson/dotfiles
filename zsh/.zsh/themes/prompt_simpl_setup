@@ -117,9 +117,9 @@ PROMPT+='${PROMPT_LNBR2}${PROMPT_ARROW} $(_prompt_vimode)%#%f '
 
 # right prompt
 	if [[ -z "$SSH_CLIENT" ]]; then
-	RPROMPT='$(_git_status; ) %F{4}%n@%f%F{4}%m%f'
+	RPROMPT='$(_git_status; ) %F{4}%m%f'
 	else
-	RPROMPT='$(_git_status; ) %F{12}%n@%f%F{1}%m%f'
+	RPROMPT='$(_git_status; ) %F{1}%m%f'
 	fi
 
 # command continuation

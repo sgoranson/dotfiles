@@ -2,6 +2,7 @@ acpi
 acroread
 acroread-fonts
 alacritty-git
+alacritty-terminfo
 alsa-utils
 apache
 arc-gtk-theme

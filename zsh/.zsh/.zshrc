@@ -66,24 +66,13 @@ autoload -U promptinit && promptinit
 
 
 
-# eval "$(fasd --init auto)"
-# eval "$(cat "$ZDOTDIR/vividrc")"
-#
-if command -v vivid &>/dev/null; then
-    export LS_COLORS="$(vivid generate ayu)"
-else
-    eval "$(dircolors "$HOME"/.dircolors)"
-fi
-
-
 # nodejs
 # export NVM_LAZY_LOAD=true
 # source ~/.zsh-nvm/zsh-nvm.plugin.zsh
 
 
 #Set some zsh completion Options
-autoload -U compinit
-compinit -C
+autoload -U compinit && compinit -D
 
 autoload -U +X bashcompinit && bashcompinit
 ##Complete my dot files please
@@ -237,6 +226,13 @@ stty -ixon -ixoff
 # [ -n "$PS1" ] && \
 #     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
 #         eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+if command -v vivid &>/dev/null; then
+    export LS_COLORS="$(vivid generate ayu)"
+else
+    eval "$(dircolors "$HOME"/.dircolors)"
+fi
+
 
 
 # cat ~/bin/ansi/esc.txt

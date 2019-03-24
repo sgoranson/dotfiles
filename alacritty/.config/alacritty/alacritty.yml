@@ -160,7 +160,7 @@ colors:
   # the cursor color will be the inverse of the cell color.
   cursor:
     text: '0x000000'
-    cursor: '0xD554AD'
+    cursor: '0x00d7ff'
 
 
 

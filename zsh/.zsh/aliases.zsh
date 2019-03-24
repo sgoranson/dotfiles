@@ -399,13 +399,14 @@ xx() {
 # reload zshrc
 function zs()
 {
-    if autoload -U compinit -d "$XDG_CACHE_HOME/.zcompdump"; then
-        compinit -d "$XDG_CACHE_HOME/.zcompdump"
-    else
-        echo 'compinit fudged up' >&2
-    fi
+    source "$ZDOTDIR/.zshrc"
+    # if autoload -U compinit -d "$XDG_CACHE_HOME/.zcompdump"; then
+    #     compinit -d "$XDG_CACHE_HOME/.zcompdump"
+    # else
+    #     echo 'compinit fudged up' >&2
+    # fi
 
-    exec zsh
+    # exec zsh
 }
 
 zsh-list-completions() {
