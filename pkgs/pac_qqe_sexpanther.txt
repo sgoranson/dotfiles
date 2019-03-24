@@ -17,6 +17,7 @@ barrier-headless
 base16-manager-git
 bash
 bash-completion
+bash-language-server
 bat
 binutils
 bison
@@ -269,6 +270,7 @@ usbutils
 util-linux
 vi
 vim
+visual-studio-code-bin
 vivid
 vscode-html-languageserver-bin
 w3m

@@ -33,6 +33,7 @@ Author: Giampaolo Rodola' <g.rodola@gmail.com>
 import atexit
 import time
 import sys
+
 try:
     import curses
 except ImportError:
@@ -168,6 +169,7 @@ def refresh_window(procs, disks_read, disks_write):
 
 
 def main():
+
     try:
         interval = 0
         while True:

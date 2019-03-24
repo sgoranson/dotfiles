@@ -9,6 +9,7 @@ scriptencoding utf-8
 
 
 set mouse=a
+set updatetime=300
 set clipboard=unnamed
 set inccommand=split                   " holycrap there's interactive %s colors now!!!!
 set cursorline                         " highlight current line

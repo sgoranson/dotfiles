@@ -185,6 +185,9 @@ nmap ]e <Plug>(ale_previous_wrap)
 "  Ergo comfort:    50% (must leave home for leader. unless space?)
 "  Ergo speed:      60% (leader+{1,2} keystrokes)
 "  Available slots: effectively unlimited
+command! -nargs=0 Format :call CocAction('format')
+
+
 
 nnoremap <silent><leader>al  :call SGToggleAle()<CR>
 
@@ -358,7 +361,8 @@ cnoremap <C-b> <C-p>
 " When the <Enter> key is pressed while the popup menu is visible, it only
     " hides the menu. Use this mapping to close the menu and also start a new
     " line.
-    inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+    " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
     " Use <TAB> to select the popup menu:
     inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -493,5 +497,21 @@ vnoremap     >  >gv
 
 
 nnoremap zO zCzO
+
+nmap <silent> gD <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K for show documentation in preview window
+nnoremap <silent> gd :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 " # }}}
 

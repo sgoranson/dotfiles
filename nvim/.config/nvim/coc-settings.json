@@ -1,12 +1,25 @@
-{"codeLens.enable": true,
-  "coc.preferences.formatOnType": true,
-  "coc.preferences.hoverTarget": "preview",
-
-  "suggest.triggerAfterInsertEnter": true,
-  "suggest.autoTrigger": "always",
-  "suggest.enablePreview": true,
-  "suggest.snippetIndicator": "\uf5d4",
-  // Snippets
-  "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"]
-
+{
+    "codeLens.enable": true,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget": "preview",
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "always",
+    "suggest.enablePreview": true,
+    "suggest.snippetIndicator": "~",
+    // Snippets
+    "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
+    "languageserver": {
+        "efm": {
+            "command": "efm-langserver",
+            // custom config path
+            "args": ["-c", "/home/steve/.config/efm-langserver/config.yaml"],
+            "filetypes": ["vim", "eruby", "markdown"]
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": ["start"],
+            "filetypes": ["sh","zsh"],
+            "ignoredRootPaths": ["~"]
+        }
+    }
 }
