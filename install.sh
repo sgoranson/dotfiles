@@ -40,3 +40,5 @@ stow -R yay
 stow -R mpv
 stow -R colorls
 stow -R termite
+
+pip install --user --upgrade 'python-language-server[all]'

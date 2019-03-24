@@ -100,7 +100,7 @@ else
 fi
 
 ## coolx='\033[38;5;160mϟ\033[0m'
-PROMPT="$(__set_title)$prompt_newline${prompt_host} $prompt_newline%(?.%F{yellow}.%F{red})${fun1}%f%F{green}%(1j. [%j].)%f%F{10} %~ %f%F{blue}${fun2}%f "
+PROMPT="$prompt_newline${prompt_host} $prompt_newline%(?.%F{yellow}.%F{red})${fun1}%f%F{green}%(1j. [%j].)%f%F{10} %~ %f%F{blue}${fun2}%f "
 PROMPT_TIME='%F{12}[%f%F{blue}%T%f%F{12}]%f'
 
 # if [ -n "$LIGHT_PROMPT" ]; then

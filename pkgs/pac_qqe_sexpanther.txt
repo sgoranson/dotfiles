@@ -11,6 +11,7 @@ asciidoctor
 autoconf
 autofs
 automake
+barrier
 barrier-headless
 base16-manager-git
 bash
@@ -41,6 +42,7 @@ dialog
 diff-so-fancy
 diffutils
 dkms
+dmidecode
 docker
 dropbox-cli
 dunst
@@ -69,6 +71,7 @@ gconf
 geeqie
 gettext
 ghq
+gimp
 glances
 glibc
 gnome-tweaks
@@ -87,6 +90,7 @@ gvfs-nfs
 gvfs-smb
 gzip
 haveged
+hddtemp
 highlight
 htop
 httrack
@@ -102,10 +106,12 @@ imv
 inetutils
 innoextract-git
 intel-ucode
+inxi
 iotop
 iproute2
 iputils
 ipython
+javascript-typescript-langserver
 jfsutils
 jq
 kitty-git
@@ -141,9 +147,10 @@ mdadm
 mediainfo
 mlocate
 nano
-neovim
+neovim-git
 net-tools
 netctl
+nethogs
 network-manager-applet
 networkmanager
 nfs-utils
@@ -169,6 +176,7 @@ perl-font-ttf
 perl-image-exiftool
 perl-tidy
 pia-tools
+pinta
 pkgconf
 pkgfile
 play.it
@@ -185,12 +193,14 @@ python-beautifulsoup4
 python-colour
 python-geoip
 python-i3-py
+python-language-server
 python-neovim
 python-netifaces
 python-pip
 python-psutil
 python-pyalsaaudio
 python-zeroconf
+quicksynergy
 rainbarf-git
 ranger
 raw-thumbnailer
@@ -259,6 +269,7 @@ util-linux
 vi
 vim
 vivid
+vscode-html-languageserver-bin
 w3m
 wget
 which
@@ -333,6 +344,7 @@ xsel
 xterm
 yad
 yapf
+yarn
 yay-bin
 zenity
 zip

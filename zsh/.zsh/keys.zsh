@@ -292,9 +292,8 @@ zle -N rationalise-dot
 
 function expand-function() {
     local func=${LBUFFER// /}
-    if (( $+functions[$func] )); then
-        print 
-        print -l $functions[$func]
+    if (( ${+functions[$func]} )); then
+        LBUFFER="${functions[$func]}"
         zle redisplay
     fi
 }

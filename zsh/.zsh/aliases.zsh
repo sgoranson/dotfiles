@@ -295,7 +295,7 @@ alias tmux-window-hostname='tmux rename-window "$(hostname -s)"'
 
 alias ttycast="ttyd -p 8888 bash -c 'tmux new-session -d -s cast \; split-window -d \; attach -t cast'"
 
-alias useradd='useradd -m -G wheel -s /usr/bin/zsh'
+alias useradd='sudo command useradd -m -s /bin/zsh -G adm,systemd-journal,wheel,rfkill,games,network,video,audio,optical,floppy,storage,scanner,power'
 
 alias virt-install-arch='virt-install --name arch-linux_testing4 --memory 2024 --vcpus=2,maxvcpus=4 --cpu host --cdrom /home/steve/Downloads/archlinux-2019.02.01-x86_64.iso --disk size=10,format=qcow2 --network user --virt-type kvm'
 alias vnc-x11="sudo x11vnc -rfbauth /home/steve/.vnc/passwd  -auth guess  -geometry 1920x1080  -display :0"

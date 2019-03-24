@@ -1,17 +1,30 @@
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build =  'bash install.sh'
-hook_add = '''
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['solargraph', 'stdio'],
-    \ }
- let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
-'''
+repo = 'neoclide/coc.nvim'
+build = 'yarn install'
+
+[[plugins]]
+repo = 'neoclide/coc-html'
+
+[[plugins]]
+repo = 'neoclide/coc-tsserver'
+[[plugins]]
+repo = 'neoclide/coc-snippets'
+
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# rev = 'next'
+# build =  'bash install.sh'
+# hook_add = '''
+# let g:LanguageClient_serverCommands = {
+#     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+#     \ 'javascript': ['javascript-typescript-stdio'],
+#     \ 'html': ['html-languageserver', '--stdio'],
+#     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+#     \ 'python': ['pyls'],
+#     \ 'ruby': ['solargraph', 'stdio'],
+#     \ }
+#  let g:LanguageClient_loggingFile = expand('~/.cache/LanguageClient.log')
+# '''
 
 [[plugins]]
 repo =  'junegunn/fzf'
@@ -27,45 +40,45 @@ hook_add = '''
 let g:neoterm_autoinsert = 1
 '''
 
-[[plugins]]
-repo = 'ncm2/ncm2'
-hook_add = '''
-    " enable ncm2 for all buffers
-    autocmd BufEnter * call ncm2#enable_for_buffer()
+# [[plugins]]
+# repo = 'ncm2/ncm2'
+# hook_add = '''
+#     " enable ncm2 for all buffers
+#     autocmd BufEnter * call ncm2#enable_for_buffer()
 
-    " IMPORTANT: :help Ncm2PopupOpen for more information
-    set completeopt=noinsert,menuone,noselect
-      set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
+#     " IMPORTANT: :help Ncm2PopupOpen for more information
+#     set completeopt=noinsert,menuone,noselect
+#       set formatexpr=LanguageClient#textDocument_rangeFormatting_sync()
 
 
-call ncm2#register_source({'name' : 'css',
-            \ 'priority': 9, 
-            \ 'subscope_enable': 1,
-            \ 'scope': ['css', 'scss', 'less'],
-            \ 'mark': 'css',
-            \ 'word_pattern': '[\w\-]+',
-            \ 'complete_pattern': ':\s*',
-            \ 'on_complete': ['ncm2#on_complete#omni',
-            \               'csscomplete#CompleteCSS'],
-            \ })
-" set complete=.,w,b,u,t
-"set completeopt=longest,menuone,preview
-'''
-[[plugins]]
-repo = 'ncm2/ncm2-bufword'
-[[plugins]]
-repo = 'ncm2/ncm2-path'
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-[[plugins]]
-repo = 'ncm2/ncm2-vim'
-[[plugins]]
-repo = 'Shougo/neco-vim'
-[[plugins]]
-repo = 'ncm2/ncm2-html-subscope'
-[[plugins]]
-repo = 'ncm2/ncm2-tern'
-build = 'npm install'
+# call ncm2#register_source({'name' : 'css',
+#             \ 'priority': 9, 
+#             \ 'subscope_enable': 1,
+#             \ 'scope': ['css', 'scss', 'less'],
+#             \ 'mark': 'css',
+#             \ 'word_pattern': '[\w\-]+',
+#             \ 'complete_pattern': ':\s*',
+#             \ 'on_complete': ['ncm2#on_complete#omni',
+#             \               'csscomplete#CompleteCSS'],
+#             \ })
+# " set complete=.,w,b,u,t
+# "set completeopt=longest,menuone,preview
+# '''
+# [[plugins]]
+# repo = 'ncm2/ncm2-bufword'
+# [[plugins]]
+# repo = 'ncm2/ncm2-path'
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
+# [[plugins]]
+# repo = 'ncm2/ncm2-vim'
+# [[plugins]]
+# repo = 'Shougo/neco-vim'
+# [[plugins]]
+# repo = 'ncm2/ncm2-html-subscope'
+# [[plugins]]
+# repo = 'ncm2/ncm2-tern'
+# build = 'npm install'
                      
 
 [[plugins]]
@@ -254,7 +267,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
   function! AirlineInit()
 "  let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
     " let g:airline_section_d = airline#section#create(['%{getcwd()}'])
-    let g:airline_section_c = airline#section#create_left(['%{fnamemodify(getcwd(),":~")}', '%{airline#extensions#fugitiveline#bufname()}'])
+    let g:airline_section_c = airline#section#create_left(['%{fnamemodify(getcwd(),":~")}', '%{coc#status()}', '%{airline#extensions#fugitiveline#bufname()}'])
   endfunction
   autocmd User AirlineAfterInit call AirlineInit()
 '''

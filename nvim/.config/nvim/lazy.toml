@@ -158,36 +158,36 @@ repo = 'Shougo/context_filetype.vim'
 [[plugins]]
 repo = 'honza/vim-snippets'
 
-[[plugins]]
-repo = 'SirVer/ultisnips'
-depends = ['context_filetype.vim']
-on_event = 'InsertCharPre'
-hook_source = '''
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-s>"
-let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+# [[plugins]]
+# repo = 'SirVer/ultisnips'
+# depends = ['context_filetype.vim']
+# on_event = 'InsertCharPre'
+# hook_source = '''
+# let g:UltiSnipsExpandTrigger="<c-s>"
+# let g:UltiSnipsJumpForwardTrigger="<c-s>"
+# let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
+# let g:UltiSnipsSnippetDirectories=["UltiSnips", "snips"]
 
-  function! UltiSnipsCallUnite()
-    Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
-    return ''
-  endfunction
+#   function! UltiSnipsCallUnite()
+#     Unite -start-insert -winheight=100 -immediately -no-empty ultisnips
+#     return ''
+#   endfunction
 
-  inoremap <silent> <F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
-  nnoremap <silent> <F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+#   inoremap <silent> <F12> <C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
+#   nnoremap <silent> <F12> a<C-R>=(pumvisible()? "\<LT>C-E>":"")<CR><C-R>=UltiSnipsCallUnite()<CR>
 
-'''
+# '''
 
 
 
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = '''
-let g:echodoc#type = 'virtual'
-call echodoc#enable()
-'''
+# [[plugins]]
+# repo = 'Shougo/echodoc.vim'
+# on_event = 'CompleteDone'
+# hook_source = '''
+# let g:echodoc#type = 'virtual'
+# call echodoc#enable()
+# '''
 
 [[plugins]]
 repo =  'iamcco/devdocs.nvim'
