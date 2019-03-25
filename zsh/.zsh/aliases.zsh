@@ -278,6 +278,7 @@ alias xclipp='xclip -selection clipboard -o'
 # -r recurse -v verbose -a archive mode (checks TLM) -h human readable -z compression
 alias rsync-basic='rsync -rvahz --progress'
 
+alias reflector='sudo Reflector.py --verbose --country 'United States' -l 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist'
 alias smb-ls='sudo smbclient -L eth0 -I localhost'
 
 alias sed-strip-ansi='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
