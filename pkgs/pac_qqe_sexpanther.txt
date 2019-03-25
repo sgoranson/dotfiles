@@ -135,6 +135,7 @@ linux
 linux-firmware
 linux-headers
 logrotate
+lsd
 lshw
 lsof
 lvm2
@@ -271,6 +272,7 @@ util-linux
 vi
 vim
 visual-studio-code-bin
+vitunes
 vivid
 vscode-html-languageserver-bin
 w3m
