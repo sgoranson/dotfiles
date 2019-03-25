@@ -184,7 +184,8 @@ alias svc-u-reload='systemctl --user daemon-reload'
     alias rpi-gpu='/opt/vc/bin/vcgencmd  get_mem gpu'
     alias rpi-temp='/opt/vc/bin/vcgencmd  measure_temp'
 
-
+# }}}
+#
 # ALIAS ARG HELPERS {{{1
 alias adb-ls-pkgs='adb shell pm list packages'
 alias adb-shell-two='adb -s firetv:5555 shell'
@@ -295,6 +296,9 @@ alias tmux-ls-keys='tmux list-keys'
 alias tmux-window-hostname='tmux rename-window "$(hostname -s)"'
 
 alias ttycast="ttyd -p 8888 bash -c 'tmux new-session -d -s cast \; split-window -d \; attach -t cast'"
+
+alias url-decode='python -c "import sys; from urllib.parse import unquote; print(unquote(sys.stdin.read()));"'
+alias url-encode='python -c "import sys; from urllib.parse import quote; print(quote(sys.stdin.read()));"'
 
 alias useradd='sudo command useradd -m -s /bin/zsh -G adm,systemd-journal,wheel,rfkill,games,network,video,audio,optical,floppy,storage,scanner,power'
 
