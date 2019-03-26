@@ -22,10 +22,12 @@ bat
 binutils
 bison
 blueberry
+bluez-utils
 breeze-icons
 bzip2
 caps2esc
 ccze
+cheat-git
 clipster-git
 colorgrab
 compton
@@ -195,6 +197,7 @@ python-basiciw
 python-beautifulsoup4
 python-colour
 python-geoip
+python-html2text
 python-i3-py
 python-language-server
 python-neovim
@@ -228,6 +231,7 @@ shfmt
 siji-git
 socat
 speedtest-cli
+stalonetray
 stow
 sudo
 sxiv
@@ -248,6 +252,7 @@ termsyn-font
 texinfo
 thunar
 thunar-thumbnailers
+tigervnc
 tldr
 tmux-git
 tmux-mem-cpu-load-git
@@ -356,5 +361,6 @@ zip
 zmap
 zsh
 zsh-completions
+zsh-doc
 zsh-lovers
 zulucrypt

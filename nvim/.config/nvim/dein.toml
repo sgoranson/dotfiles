@@ -10,6 +10,9 @@ repo = 'neoclide/coc-tsserver'
 [[plugins]]
 repo = 'neoclide/coc-snippets'
 
+
+[[plugin]]
+repo = 'machakann/vim-highlightedyank'
 # [[plugins]]
 # repo = 'autozimu/LanguageClient-neovim'
 # rev = 'next'
@@ -237,10 +240,10 @@ hook_add = '''
     let g:airline_theme='minimalist'
     let g:airline_minimalist_showmod = 1
 
-  let g:airline_left_sep = ''
-  let g:airline_left_alt_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
 
 
   if ! exists('g:airline_symbols')
@@ -293,13 +296,13 @@ repo = 'tpope/vim-repeat'                          # dot repeat for plugins
 
 
 
-[[plugins]]
-repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
-hook_add = '''
-let g:formatters_python = ['yapf']
-let g:formatters_javascript = ['prettier']
-let g:formatters_css = ['prettier']
-'''
+# [[plugins]]
+# repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
+# hook_add = '''
+# let g:formatters_python = ['yapf']
+# let g:formatters_javascript = ['prettier']
+# let g:formatters_css = ['prettier']
+# '''
 [[plugins]]
 repo =  'chrisbra/Colorizer'
 
@@ -312,3 +315,11 @@ hook_add = '''
     let g:vcoolor_disable_mappings = 1
     '''
 on_cmd = 'Vcoolor'
+
+[[plugins]]
+repo =  'gabrielelana/vim-markdown'
+#hook_add = '''
+#let g:markdown_mapping_switch_status = '<Leader>s'
+#'''
+
+

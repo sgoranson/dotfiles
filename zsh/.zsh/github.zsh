@@ -1,7 +1,11 @@
 #!/usr/bin/env zsh
 #
-alias gh-starred='curl -s "https://api.github.com/users/$USER/starred?per_page=1000"'
-alias gh-repos='curl -s "https://api.github.com/users/$USER/repos?per_page=1000"'
+alias gh-curl-starred='curl -s "https://api.github.com/users/$USER/starred?per_page=1000"'
+alias gh-curl-repos='curl -s "https://api.github.com/users/$USER/repos?per_page=1000"'
+
+# alias gh-starred='cat ~/backup/gh-starred.json| jq  -r '\''"\(.html_url),\(.description)"'\'' '
+alias gh-starred='cat ~/backup/gh-starred.json| jq -s  -r '\'' .[] | .[] |  [  .html_url, .description ] | @tsv'\'' '
+
 
 function gh-search-repo() {
     curl 'https://api.github.com/search/repositories?q=iotop&sort=stars&order=desc' | jq  -c '.items[] |  .html_url,.description,.stargazers_count,.language ' 

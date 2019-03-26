@@ -4,6 +4,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 mkdir -p "$HOME/.local/share/steve"
+mkdir -p "$HOME/.local/share/barrier"
 
 mkdir -p  "$HOME/.cache/dein/repos/github.com/"
 
@@ -14,7 +15,9 @@ ln -i -s --no-target-directory  "$HOME/.cache/dein/repos/github.com/" "$HOME/plu
 ln -i -s --no-target-directory "$DIR/util" "$HOME/util"
 
 mkdir -p "$HOME/data/nvim/session"
+mkdir -p "$HOME/data/nvim/session"
 
+git clone git@github.com:sgoranson/backup.git ~/backup
 
 pkgs=(
         ripgrep npm userdirs alacritty dunst xkeysnail terminfo ranger compton dircolors 

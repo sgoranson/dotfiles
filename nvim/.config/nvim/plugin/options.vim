@@ -7,7 +7,7 @@ scriptencoding utf-8
 
 " Gui {{{
 
-
+set switchbuf=useopen,
 set mouse=a
 set updatetime=300
 set clipboard=unnamed

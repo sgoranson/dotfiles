@@ -144,7 +144,7 @@ nnoremap <M-W> "zciw
 
 
 " nnoremap <C-x>d :r!date +'\%F \%T'<CR>
-noremap <C-x>t :SGTimestamp<CR>
+noremap <leader>t :SGTimestamp<CR>
 " # }}}
 
 "  Brackets  {{{1
@@ -160,6 +160,8 @@ nmap ]<space> <Plug>unimpairedBlankDown
 nmap [h <Plug>GitGutterPrevHunk
 nmap ]h <Plug>GitGutterNextHunk
 
+nnoremap [B :bp<cr>
+nnoremap ]B :bn<cr>
 " changelist
 nnoremap [c g;
 nnoremap ]c g,
@@ -260,7 +262,7 @@ inoremap <M-p> <C-R>+<Esc>
 nmap <M-p> "+=P
 
 noremap  <silent>,p       "0p 
-inoremap <M-y> <C-o>:Denite neoyank -default-action=append<CR> 
+inoremap <M-y> <C-o>:Denite neoyank -default-action=yank<CR> 
 
 
 

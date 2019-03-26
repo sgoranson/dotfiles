@@ -211,10 +211,6 @@ repo =  'iamcco/devdocs.nvim'
 
 # denite {{{
 
-[[plugin]]
-repo = 'machakann/vim-highlightedyank'
-on_event = 'TextYankPost'
-
 
 
 [[plugins]]
@@ -223,8 +219,8 @@ on_event = 'TextYankPost'
 on_source = 'denite.nvim'
 hook_add = '''
 let g:neoyank#file = expand('$XDG_CACHE_HOME/neoyank.yanks')
-let g:neoyank#save_registers = [ '"', '+' ]
-let g:neoyank#limit = 25
+let g:neoyank#save_registers = [ '+', '"' ]
+let g:neoyank#limit = 10
 '''
 
 [[plugins]]
@@ -274,7 +270,6 @@ call denite#custom#var('grep/git', 'final_opts', [])
 
 call denite#custom#source('unite:mapping', 'sorters', ['sorter/word'])
 
-call denite#custom#var('neoyank', 'default_action', ['yank'])
 
 call denite#custom#source('grep,grep/git,file_mru,buffer,file_rec/git,line,help,unite', 'matchers', ['matcher_substring'])
 call denite#custom#source('file_rec', 'matchers', ['matcher_substring', 'matcher_project_files'])
@@ -329,7 +324,6 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
 noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 
 
-noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -highlight-mode-insert=CursorLine neoyank<CR>
 
 noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine line<CR>
 noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
@@ -355,19 +349,15 @@ nnoremap <silent> <Space>M  :<C-u>Denite -mode=insert -highlight-mode-insert=Cur
 noremap <silent> <Space>m  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  mark<CR>
 noremap <silent> <Space>o  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine outline<CR>
 noremap <silent> <Space>r  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine file_mru/git<CR>
-noremap <silent> <Space>S  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
-noremap <silent> <Space>s  :<C-u>Startify<CR>
 noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:tab<CR>
 
-
-noremap <silent> <C-s> :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:neosnippet<CR>
 
 nnoremap <silent> ]d :<C-u>Denite -resume -buffer-name='grepit' -select=+1 -immediately<CR>
 nnoremap <silent> [d :<C-u>Denite -resume -buffer-name='grepit' -select=-1 -immediately<CR>
 
 
-nnoremap <silent> ]B :<C-u>Denite -resume -buffer-name='mru' file_mru -select=+1 -immediately <CR>
-nnoremap <silent> [B :<C-u>Denite -resume -buffer-name='mru' file_mru -select=-1 -immediately <CR>
+nnoremap <silent> ]b :<C-u>Denite -resume -buffer-name='mru' buffer -select=+1 -immediately <CR>
+nnoremap <silent> [b :<C-u>Denite -resume -buffer-name='mru' buffer -select=-1 -immediately <CR>
 
 nnoremap <silent> <Space>v :Defx `expand('%:p:h')`-auto-cd -toggle -split=vertical -winwidth=50 -direction=topleft<CR>
 nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
@@ -378,6 +368,7 @@ nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
 nnoremap <silent> <Space>* :<C-u>DeniteCursorWord  -mode=insert -highlight-mode-insert=CursorLine
             \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
 
+noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -default-action=yank -highlight-mode-insert=CursorLine neoyank<CR>
 '''
 
 
@@ -607,15 +598,6 @@ on_ft = 'toml'
 repo =  'maralla/vim-toml-enhance'                # shows marks, m/ shortcuts
 on_ft = 'toml'
 
-
-
-
-[[plugins]]
-repo =  'plasticboy/vim-markdown'
-hook_add = '''
-let g:vim_markdown_folding_disabled = 1
-'''
-on_ft = 'md'
 
 
 [[plugins]]
