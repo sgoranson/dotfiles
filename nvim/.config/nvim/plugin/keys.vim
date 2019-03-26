@@ -26,6 +26,8 @@ vnoremap s :s//cg<Left><left><left>
 
 nnoremap ( [(
 nnoremap ) ])
+tnoremap <silent> <C-z> <C-\><C-n>:call spg#terminal#()<Enter>
+nnoremap <silent> <C-z> :call spg#terminal#()<Enter>
 
 " easy macro usage
 vnoremap <C-q>     :<C-U>'<,'>g/./ norm @q<CR>

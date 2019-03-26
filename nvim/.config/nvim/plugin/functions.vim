@@ -1,7 +1,20 @@
 " ########### autocmds ########### {{{
-"augroup spgFormat
-"    autocmd!
 
+function! Jumplast() abort
+	if empty(&buftype) && index(['diff', 'gitcommit'], &filetype, 0, v:true) == -1
+		if line("'\"") >= 1 && line("'\"") <= line('$')
+			execute 'normal! g`"zz'
+		endif
+	endif
+endfunction
+augroup spgFormat
+
+    autocmd!
+
+autocmd BufReadPost *? call Jumplast()
+
+
+  augroup END
 
 "    " autocmd InsertEnter * highlight  CursorLine  guibg=Black
 "    " autocmd InsertLeave * highlight  CursorLine guibg=#2c2421
