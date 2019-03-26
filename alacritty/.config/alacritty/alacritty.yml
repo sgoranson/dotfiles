@@ -17,9 +17,9 @@ window:
   #
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
-  dimensions:
-    columns: 150
-    lines: 40
+  # dimensions:
+  #   columns: 150
+  #   lines: 40
 
   # Window padding (changes require restart)
   #
@@ -95,11 +95,12 @@ font:
   italic:
     family: Ubuntu Mono
     # The `style` can be specified to pick a specific face.
+    style: Regular
     #style: Italic
 
 
   # Point size
-  size: 10.0
+  size: 13.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -283,8 +284,8 @@ background_opacity: .95
 #
 # All available `mods` and `action` values are documented in the key binding
 # section.
-mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+# mouse_bindings:
+#   - { mouse: Middle, action: PasteSelection }
 
 mouse:
   # Click settings

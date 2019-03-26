@@ -24,6 +24,8 @@ pkgs=(
         nvim polybar rofi i3 sway kitty git xorg tmux zsh yay mpv colorls termite geeqie xorg 
         )
 
-pip install --user --upgrade 'python-language-server[all]'
-
 sudo systemctl enable xlogin@steve  
+
+pip install --user --upgrade 'python-language-server[all]'
+npm -g install markdownlint-cli
+

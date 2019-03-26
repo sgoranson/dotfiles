@@ -261,7 +261,7 @@ function fzf-cdr() {
 zle -N fzf-cdr
 
 function fzf-cdr2() {
-    local selected_dir=$(cdr -l | awk '{ print $2 }' | fzf)
+    local selected_dir=$(cdr -l | awk -F'  +' '{print $2}' | fzf)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
@@ -351,6 +351,21 @@ bindkey -M isearch " "      magic-space     # normal space during searches
 
 ealias gc='git commit'
 ealias gp='git push'
+
+
+_back() { pushd +1 && zle reset-prompt && zle -M "dirs: $(dirs)" }
+zle -N _back
+bindkey '^[p' _back
+
+_forw() { pushd -1 && zle reset-prompt && zle -M "dirs: $(dirs)" }
+zle -N _forw
+bindkey '^[n' _forw
+
+# alt+up - go to upper dir
+_go_up() { cd .. && zle reset-prompt && zle -M "pwd: $PWD" }
+zle -N _go_up
+bindkey '^[u' _go_up
+
 
 
 
