@@ -130,7 +130,7 @@ if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
 fi
 chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-  ls --color=auto
+  command ls -t --color=auto
 }
 
 
