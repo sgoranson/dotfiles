@@ -367,6 +367,7 @@ exec --no-startup-id ~/bin/alttabhax
 exec --no-startup-id clipster -d
 exec --no-startup-id ~/bin/start-xkeysnail
 exec --no-startup-id telegram-desktop
+exec --no-startup-id barrierc  sexpanther
 
 # }}}
 
