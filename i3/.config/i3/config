@@ -202,14 +202,7 @@ bindsym $modx+F3 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. D
 # bindsym $modx+F5 exec --no-startup-id xdotool mousedown 1
 # bindsym $modx+F4 exec --no-startup-id xdotool mouseup 1
 
-# use Mouse+$modx to drag floating windows to their wanted position. also resizing
-floating_modifier $modx
 
-# The middle button and a modifer over any part of the window kills the window
-bindsym --whole-window $mody+button2 kill
-
-# The right button toggles floating
-bindsym --whole-window Mod3+Shift+button3 floating toggle
 
 bindsym $mody+p mode "$mode_launcher"
 bindsym $mody+r mode "resize"
@@ -230,6 +223,24 @@ bindsym $mody+5 [con_mark="mark5"] focus
 bindsym $modx+Tab [con_mark="_last"] focus
 bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
  # }}}
+
+# MOUSE {{{
+# use Mouse+$modx to drag floating windows to their wanted position. also resizing
+floating_modifier $modx
+
+# The middle button and a modifer over any part of the window kills the window
+bindsym --whole-window $mody+button2 kill
+
+# # The middle button over a titlebar kills the window
+# bindsym --release button2 kill
+
+# The right button toggles floating
+bindsym  --release button3 floating toggle
+bindsym   --whole-window Shift+button3 floating toggle
+bindsym   --whole-window Mod1+button3 floating toggle
+
+
+# }}}
 
 # WORKSPACES {{{
 set $ws1   "1: "
