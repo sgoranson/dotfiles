@@ -25,7 +25,7 @@ alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 alias web='google-chrome-stable --new-window'
 
-alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
+alias ls="\ls --almost-all --group-directories-first --file-type --color=auto -tr"
  alias ll="ls -lhAtr --file-type --color=auto"
 # alias ls="colorls --almost-all"
 # alias lsg="colorls --almost-all --group-directories-first"

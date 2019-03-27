@@ -15,32 +15,33 @@ export XDG_CONFIG_HOME
 
 
 if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-       eval `dbus-launch --sh-syntax --exit-with-session`
+    eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
 
 imwheel --kill
-
-# keyboard rate
-xset r rate 200 30
 xrdb -merge "$HOME/.Xresources"
 
-if [ "$(hostname)" = 'stinkbox' ]; then
-    #exec nvidia-settings --load-config-only
-    # xmodmap ~/.xmodmaprc
+# keyboard rate
+# xset r rate 200 30
 
-    xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
-    # xrandr  --output DP-2 --dpi 192
-else
-# disables mouse accel on my thinkpad
-    trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
-    xinput --set-prop $trackpointid  'libinput Accel Profile Enabled' 0, 1
+# if [ "$(hostname)" = 'stinkbox' ]; then
+#exec nvidia-settings --load-config-only
+# xmodmap ~/.xmodmaprc
+
+# xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
+# xrandr  --output DP-2 --dpi 192
 # disables touchpad
 
-     xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
-     xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
-fi
+# else
+# disables mouse accel on my thinkpad
+# trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
+
+xinput --set-prop TPPS/2\ IBM\ TrackPoint  'libinput Accel Profile Enabled' 0, 1
+xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
+xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
+# fi
 
 
 exec i3
- # exec openbox-session
+# exec openbox-session
