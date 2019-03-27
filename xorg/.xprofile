@@ -23,11 +23,11 @@ imwheel --kill
 
 # keyboard rate
 xset r rate 200 30
+xrdb -merge "$HOME/.Xresources"
 
 if [ "$(hostname)" = 'stinkbox' ]; then
     #exec nvidia-settings --load-config-only
-    xrdb -merge ~/.Xresources
-    xmodmap ~/.xmodmaprc
+    # xmodmap ~/.xmodmaprc
 
     xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
     # xrandr  --output DP-2 --dpi 192
@@ -36,7 +36,6 @@ else
     trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
     xinput --set-prop $trackpointid  'libinput Accel Profile Enabled' 0, 1
 # disables touchpad
-     # xinput --list | grep -i touchpad | grep --only-matching --perl-regexp '(?#id=)\d\d' | xargs xinput --disable
 
      xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
      xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1

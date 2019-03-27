@@ -64,7 +64,7 @@ set scrolloff=2                       " Start scrolling when we're 8 lines away 
 set sidescrolloff=2
 set sidescroll=1
 set signcolumn=yes
-set nowrap                            " Don't wrap lines
+set wrap                            " Don't wrap lines
 
 set t_vb=                             " disable the fk'ing bell
 set novisualbell                      " No sounds

@@ -1,10 +1,4 @@
 [[plugins]]
-repo =  'junegunn/fzf.vim'
-hook_add = '''
-let g:fzf_command_prefix = 'FZ'
-'''
-
-[[plugins]]
 repo =  'ryanoasis/vim-devicons'
 on_source = 'denite.nvim'
 depends = 'denite.nvim'
@@ -191,22 +185,6 @@ repo = 'honza/vim-snippets'
 
 [[plugins]]
 repo =  'iamcco/devdocs.nvim'
-
-# [[plugins]]
-# repo = 'Shougo/deol.nvim'
-# depends = 'denite.nvim'
-# hook_source = '''
-# "   let g:deol#prompt_pattern = '% \|%$'
-
-# " nnoremap <silent> [Space]s :<C-u>Deol zsh -edit<CR>
-# "nnoremap <silent> N :<C-u>call deol#new({'command': 'xonsh'})<CR>
-# "nnoremap <silent> [Space]s :<C-u>Deol xonsh<CR>
-# "nnoremap <silent> [Window]D  :<C-u>call deol#kill_editor()<CR>
-
-# "  nnoremap <silent> <C-t> :<C-u>Denite
-# "      \ -select=`tabpagenr()-1` -mode=normal deol:zsh<CR>
-# '''
-
 
 
 # denite {{{
@@ -648,10 +626,6 @@ on_source = 'denite.nvim'
 hook_add = '''
   nnoremap <silent> <space>ju :<C-u>Denite junkfile:new junkfile<CR>
 '''
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-on_ft = 'vim'
 
 
 [[plugins]]

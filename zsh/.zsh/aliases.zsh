@@ -162,12 +162,18 @@ alias netstat-listening='sudo ss -lptu'
 alias calc=pcalc
 
 alias svc='sudo systemctl'
-alias svcstat='sudo systemctl status'
-alias svcstop='sudo systemctl stop'
-alias svcstart='sudo systemctl start'
+alias svcj='sudo journalctl -xe'
 compdef _systemctl svc=systemctl
+compdef _systemctl svcj=journalctl
 
-alias svc-j='sudo journalctl -xe'
+alias svst='sudo systemctl status'
+alias sv0='sudo systemctl stop'
+alias sv1='sudo systemctl start'
+compdef _systemctl svst=systemctl
+compdef _systemctl sv1=systemctl
+compdef _systemctl sv0=systemctl
+
+
 alias svc-u='systemctl --user'
 alias svc-u-reload='systemctl --user daemon-reload'
 

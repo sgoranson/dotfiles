@@ -4,12 +4,6 @@ hook_add = '''
 " autocmd MyAutoCmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
-" Update filetype.
-autocmd MyAutoCmd BufWritePost * nested
-\ if &l:filetype ==# '' || exists('b:ftdetect')
-\ |   unlet! b:ftdetect
-\ |   filetype detect
-\ | endif
 
 " Reload .vimrc automatically.
 "autocmd MyAutoCmd BufWritePost .vimrc,vimrc,*.rc.vim,*.toml source $MYVIMRC | redraw
@@ -21,11 +15,6 @@ autocmd MyAutoCmd BufWritePost * nested
 "\ endif
 
 
-" Disable paste.
-autocmd MyAutoCmd InsertLeave *
-      \ if &paste | setlocal nopaste | echo 'nopaste' | endif |
-      \ if &l:diff | diffupdate | endif
-
 '''
 
 [ftplugin]
@@ -34,17 +23,6 @@ set mouse=a
 "highlight default link manBold manUnderline
 "highlight default link manItalic manUnderline
 "highlight! default link manSubheading Conditional
-'''
-
-vim = '''
-if line('$') > 1000
-  syntax sync minlines=200
-endif
-
-setlocal foldmethod=indent
-setlocal shiftwidth=2 softtabstop=2
-setlocal iskeyword+=:,#
-setlocal equalprg=prettier\ --stdin\ --stdin-filepath=/tmp/tmpx\ --parser=html
 '''
 
 qf = '''

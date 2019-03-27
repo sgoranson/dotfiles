@@ -15,7 +15,6 @@ ln -i -s --no-target-directory  "$HOME/.cache/dein/repos/github.com/" "$HOME/plu
 ln -i -s --no-target-directory "$DIR/util" "$HOME/util"
 
 mkdir -p "$HOME/data/nvim/session"
-mkdir -p "$HOME/data/nvim/session"
 
 git clone git@github.com:sgoranson/backup.git ~/backup
 

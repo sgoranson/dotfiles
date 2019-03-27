@@ -22,7 +22,7 @@ function is42 () {
     zstyle ':completion:*:default'         list-colors ${(s.:.)LS_COLORS}
 
     # format on completion
-    # zstyle ':completion:*:descriptions'    format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
+    zstyle ':completion:*:descriptions'    format $'~%{\e[0;31m%}%B%d%b%{\e[0m%}~'
     # zstyle ':completion:*:descriptions'    format $''
 
     # automatically complete 'cd -<tab>' and 'cd -<ctrl-d>' with menu
@@ -40,7 +40,7 @@ function is42 () {
     zstyle ':completion:*:history-words'   stop yes
 
     # match uppercase from lowercase
-    zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
+    # zstyle ':completion:*'                 matcher-list 'm:{a-z}={A-Z}'
 
     # separate matches into groups
     zstyle ':completion:*:matches'         group 'yes'
@@ -168,4 +168,4 @@ function is42 () {
     compdef _hosts upgrade
     compdef  _todo.sh todo   
 
-kitty + complete setup zsh | source /dev/stdin
+    (( ${+kitty} )) && { kitty + complete setup zsh | source /dev/stdin }
