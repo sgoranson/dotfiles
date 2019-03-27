@@ -343,7 +343,7 @@ exec_always --no-startup-id ~/bin/fix_xcursor
 # exec_always --no-startup-id greenclip daemon
 
 # exec --no-startup-id xfsettingsd
-exec --no-startup-id telegram-desktop
+exec --no-startup-id stalonetray
 # exec --no-startup-id spotify
 exec --no-startup-id google-chrome-stable
 # exec --no-startup-id $myterm
@@ -354,8 +354,8 @@ exec --no-startup-id compton -b
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id ~/bin/alttabhax
 exec --no-startup-id clipster -d
-exec --no-startup-id stalonetray
 exec --no-startup-id ~/bin/start-xkeysnail
+exec --no-startup-id telegram-desktop
 
 # }}}
 
