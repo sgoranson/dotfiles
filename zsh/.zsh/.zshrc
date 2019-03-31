@@ -259,7 +259,7 @@ if command -v vivid &>/dev/null; then
 else
     eval "$(dircolors "$HOME"/.dircolors)"
 fi
-
+LS_COLORS+=":ow=0;38;2;27;125;196"
 
 
 # cat ~/bin/ansi/esc.txt
