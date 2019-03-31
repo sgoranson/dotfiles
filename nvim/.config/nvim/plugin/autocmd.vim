@@ -55,6 +55,8 @@ augroup spgwtf
     " restores the cursor to make xterm et al happy
     " autocmd VimLeave * set guicursor=a:hor50
     " autocmd VimLeave * hi Cursor guifg=#eeeeee guibg=#979AD4
+    "
+    autocmd VimEnter * call dein#call_hook('post_source')
 
 augroup END
 

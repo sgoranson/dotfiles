@@ -1,9 +1,11 @@
 acpi
 acroread
 acroread-fonts
+adduser
 alacritty-git
 alacritty-terminfo
 alsa-utils
+antigen-git
 apache
 arc-gtk-theme
 arc-icon-theme
@@ -54,6 +56,7 @@ dunst
 e2fsprogs
 elementary-icon-theme
 elinks
+evince
 evtest
 expac
 fakeroot
@@ -151,6 +154,7 @@ make
 man-db
 man-pages
 man2html
+mariadb
 mdadm
 mediainfo
 mlocate
@@ -161,6 +165,7 @@ netctl
 nethogs
 network-manager-applet
 networkmanager
+nextcloud
 nfs-utils
 nitrogen
 nmon
@@ -183,6 +188,8 @@ perl
 perl-font-ttf
 perl-image-exiftool
 perl-tidy
+php-fpm
+php-intl
 pia-tools
 pinta
 pkgconf
@@ -190,10 +197,12 @@ pkgfile
 play.it
 playonlinux
 polybar
+popcorntime-bin
 prettier
 procps-ng
 psmisc
 pulseaudio
+pulseaudio-ctl
 pygmentize
 python
 python-basiciw
@@ -208,6 +217,7 @@ python-netifaces
 python-pip
 python-psutil
 python-pyalsaaudio
+python-virtualenv
 python-zeroconf
 qterminal
 qtwebkit-bin
@@ -228,6 +238,7 @@ ruby
 ruby-kramdown
 ruby-solargraph
 s-nail
+samba
 seahorse
 sed
 shadow
@@ -297,6 +308,7 @@ wine-mono
 wine_gecko
 winetricks
 wireless_tools
+wireshark-qt
 wpa_actiond
 wpa_supplicant
 xbindkeys
@@ -371,4 +383,6 @@ zsh
 zsh-completions
 zsh-doc
 zsh-lovers
+zsh-pure-prompt-git
+zsh-syntax-highlighting
 zulucrypt

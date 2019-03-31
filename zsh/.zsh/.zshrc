@@ -1,5 +1,16 @@
 #!env zsh
 
+# . /usr/share/zsh/share/antigen.zsh
+. ~/.zsh/share/antigen.zsh
+# antigen use oh-my-zsh
+# antigen bundle pip
+# antigen theme miekg/lean
+antigen bundle mafredri/zsh-async
+# antigen bundle https://github.com/maximbaz/spaceship-prompt 
+# antigen theme sinetoami/purien
+antigen bundle zdharma/fast-syntax-highlighting
+antigen apply
+
 
 # ZOPTIONS {{{
 HISTSIZE=99999999
@@ -62,7 +73,6 @@ setopt   AUTO_REMOVE_SLASH
 typeset -U fpath=("$ZDOTDIR/"{completion,themes} $fpath)
 
 
-autoload -U promptinit && promptinit
 
 
 
@@ -80,7 +90,6 @@ autoload -U +X bashcompinit && bashcompinit
 _comp_options+=(globdots)
 #zmodload -i zsh/complist
 
-source $ZDOTDIR/prompt.zsh
 source $ZDOTDIR/keys.zsh
 source $ZDOTDIR/clipboard.zsh
 source $ZDOTDIR/completion.zsh
@@ -94,6 +103,7 @@ source $ZDOTDIR/zsh-history-substring-search.zsh
 source $ZDOTDIR/zsh-autosuggestions.zsh
 source $ZDOTDIR/extract.plugin.zsh
 source $ZDOTDIR/base16-oxide
+source $ZDOTDIR/prompt.zsh
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 
@@ -259,7 +269,6 @@ cat ~/bin/ansi/cat.txt
 
 # }}}
 
-prompt simpl
 
 # Autostart if not already in tmux and enabled.
 # if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then

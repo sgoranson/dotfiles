@@ -244,4 +244,8 @@ command! SGGetChar call s:getchar()
 command! SGUndoToggle GundoToggle
 command! SGHlExport ExportColors "tmp.tmp"
 command! SGHlHTML call SGHighlightToHTML('gvim-color-test.tmp')
+
+command! -nargs=0 Format :call CocAction('format')
+
+
 " # }}}

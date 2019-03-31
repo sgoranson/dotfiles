@@ -186,11 +186,11 @@ bindsym $modx+F2 reload
 bindsym $modx+F3 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 # bindsym $modx+F3 exec "i3-msg exit"
 
-# bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
+bindsym XF86AudioRaiseVolume exec pulseaudio-ctl up
 # bindcode 115  exec pulseaudio-ctl up
-# bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
+bindsym XF86AudioLowerVolume exec pulseaudio-ctl down
 # bindcode 114  exec pulseaudio-ctl down
-# bindsym XF86AudioMute exec pulseaudio-ctl mute
+bindsym XF86AudioMute exec pulseaudio-ctl mute
 # bindcode 113  exec pulseaudio-ctl mute
 # bindcode 151 exec --no-startup-id rofi  -show run
 # bindsym F6 exec pulseaudio-ctl down
@@ -235,9 +235,9 @@ bindsym --whole-window $mody+button2 kill
 # bindsym --release button2 kill
 
 # The right button toggles floating
-bindsym  --release button3 floating toggle
-bindsym   --whole-window Shift+button3 floating toggle
-bindsym   --whole-window Mod1+button3 floating toggle
+# bindsym  --release button3 floating toggle
+# bindsym   --whole-window Shift+button3 floating toggle
+# bindsym   --whole-window Mod1+button3 floating toggle
 
 
 # }}}
@@ -367,7 +367,7 @@ exec --no-startup-id ~/bin/alttabhax
 exec --no-startup-id clipster -d
 exec --no-startup-id ~/bin/start-xkeysnail
 exec --no-startup-id telegram-desktop
-exec --no-startup-id barrierc  sexpanther
+# exec --no-startup-id barrierc  sexpanther
 
 # }}}
 

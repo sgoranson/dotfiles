@@ -1,124 +1,129 @@
 #!/usr/bin/env zsh
+#
 
-####### NEW #### {{{
+# SPACESHIP_TIME_SHOW=true
+# SPACESHIP_VI_MODE_SHOW=true
+# SPACESHIP_VI_MODE_PREFIX='VI'
+# SPACESHIP_VI_MODE_INSERT='I'
+# SPACESHIP_VI_MODE_NORMAL='N'
+# # SPACESHIP_BATTERY_SHOW=always
 
-# https://joshdick.net/2017/06/08/my_git_prompt_for_zsh_revisited.html
-__git_info() {
+# SPACESHIP_RPROMPT_ORDER=( 
+# time 
+# vi_mode
+# )
+
+export SPACESHIP_PROMPT_ORDER=(
+  user
+  dir
+  host
+  git_branch
+  git_status
+  kubecontext
+  azure
+  exec_time
+  line_sep
+  jobs
+  char
+)
+export SPACESHIP_RPROMPT_ORDER=(
+time 
+)
+
+export SPACESHIP_CHAR_SYMBOL="❯ "
+export SPACESHIP_JOBS_SYMBOL="»"
+export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_USER_PREFIX="as "
+export SPACESHIP_USER_SHOW="needed"
+export SPACESHIP_DIR_TRUNC_PREFIX=".../"
+export SPACESHIP_DIR_TRUNC_REPO=false
+export SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(
+  red -prod-
+)
+# ORDER
+# SPACESHIP_PROMPT_ORDER=(
+#   time     #
+#   vi_mode  # these sections will be
+#   user     # before prompt char
+#   host     #
+#   char
+#   dir
+#   git
+#   node
+#   ruby
+#   xcode
+#   swift
+#   golang
+#   docker
+#   venv
+#   pyenv
+# )
+
+# # USER
+# SPACESHIP_USER_PREFIX="" # remove `with` before username
+# SPACESHIP_USER_SUFFIX="" # remove space before host
+
+# # HOST
+# # Result will look like this:
+# #   username@:(hostname)
+# SPACESHIP_HOST_PREFIX="@:("
+# SPACESHIP_HOST_SUFFIX=") "
+
+# # DIR
+# SPACESHIP_DIR_PREFIX='' # disable directory prefix, cause it's not the first section
+# SPACESHIP_DIR_TRUNC='1' # show only last directory
+
+# # GIT
+# # Disable git symbol
+# SPACESHIP_GIT_SYMBOL="" # disable git prefix
+# SPACESHIP_GIT_BRANCH_PREFIX="" # disable branch prefix too
+# # Wrap git in `git:(...)`
+# SPACESHIP_GIT_PREFIX='git:('
+# SPACESHIP_GIT_SUFFIX=") "
+# SPACESHIP_GIT_BRANCH_SUFFIX="" # remove space after branch name
+# # Unwrap git status from `[...]`
+# SPACESHIP_GIT_STATUS_PREFIX=""
+# SPACESHIP_GIT_STATUS_SUFFIX=""
+
+# # NODE
+# SPACESHIP_NODE_PREFIX="node:("
+# SPACESHIP_NODE_SUFFIX=") "
+# SPACESHIP_NODE_SYMBOL=""
+
+# # RUBY
+# SPACESHIP_RUBY_PREFIX="ruby:("
+# SPACESHIP_RUBY_SUFFIX=") "
+# SPACESHIP_RUBY_SYMBOL=""
+
+# # XCODE
+# SPACESHIP_XCODE_PREFIX="xcode:("
+# SPACESHIP_XCODE_SUFFIX=") "
+# SPACESHIP_XCODE_SYMBOL=""
+
+# # SWIFT
+# SPACESHIP_SWIFT_PREFIX="swift:("
+# SPACESHIP_SWIFT_SUFFIX=") "
+# SPACESHIP_SWIFT_SYMBOL=""
+
+# # GOLANG
+# SPACESHIP_GOLANG_PREFIX="go:("
+# SPACESHIP_GOLANG_SUFFIX=") "
+# SPACESHIP_GOLANG_SYMBOL=""
+
+# # DOCKER
+# SPACESHIP_DOCKER_PREFIX="docker:("
+# SPACESHIP_DOCKER_SUFFIX=") "
+# SPACESHIP_DOCKER_SYMBOL=""
+
+# # VENV
+# SPACESHIP_VENV_PREFIX="venv:("
+# SPACESHIP_VENV_SUFFIX=") "
+
+# # PYENV
+# SPACESHIP_PYENV_PREFIX="python:("
+# SPACESHIP_PYENV_SUFFIX=") "
+# SPACESHIP_PYENV_SYMBOL=""
 
 
-    # Git branch/tag, or name-rev if on detached head
-    #local GIT_LOCATION=${$((git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null)#(refs/heads/|tags/)}
-    local GIT_LOCATION="$(git branch 2>/dev/null | grep '*' | awk '{ print $2 }')"
-
-
-    if [ -n "$GIT_LOCATION" ]; then
-
-        local AHEAD="%F{red}⇡NUM%f"
-        local BEHIND="%F{cyan}⇣NUM%f"
-        #local MERGING="%F{magenta}︎%f"
-        local MERGING="%F{magenta}8%f"
-        local UNTRACKED="%F{red}●%f"
-        local MODIFIED="%F{yellow}●%f"
-        local STAGED="%F{green}●%f"
-
-        local -a DIVERGENCES
-        local -a FLAGS
-
-        local NUM_AHEAD="$(git log --oneline @\{u\}.. 2> /dev/null | wc -l | tr -d ' ')"
-        if [ "$NUM_AHEAD" -gt 0 ]; then
-            DIVERGENCES+=( "${AHEAD//NUM/$NUM_AHEAD}" )
-        fi
-
-        local NUM_BEHIND="$(git log --oneline ..@\{u\} 2> /dev/null | wc -l | tr -d ' ')"
-        if [ "$NUM_BEHIND" -gt 0 ]; then
-            DIVERGENCES+=( "${BEHIND//NUM/$NUM_BEHIND}" )
-        fi
-
-        local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
-        if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
-            FLAGS+=( "$MERGING" )
-        fi
-
-        if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
-            FLAGS+=( "$UNTRACKED" )
-        fi
-
-        if ! git diff --quiet 2> /dev/null; then
-            FLAGS+=( "$MODIFIED" )
-        fi
-
-        if ! git diff --cached --quiet 2> /dev/null; then
-            FLAGS+=( "$STAGED" )
-        fi
-
-        local -a GIT_INFO
-        #GIT_INFO+=( "%F{12}%f" )
-        #GIT_INFO+=( "%F{12}G%f" )
-        [ -n "$GIT_STATUS" ] && GIT_INFO+=( "$GIT_STATUS" )
-        [[ ${#DIVERGENCES[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)DIVERGENCES}" )
-        [[ ${#FLAGS[@]} -ne 0 ]] && GIT_INFO+=( "${(j::)FLAGS}" )
-        echo "${(j: :)GIT_INFO} %F{12}[%f%F{blue}$GIT_LOCATION%f%F{12}]%f"
-
-    fi
-
-
-}
-
-__set_title() {
-    printf '\e]1;%s\a' $(hostname)
-}
-
-### }}}
-
-##### CURRENT {{{
-
-## mix and match! docs/kewlunicode.txt for more
-##  ☆ ☆  ➤   ➔   ➜   λ   ➜   ❯ ᛋ ϟ  ►
-fun1='λ'
-#fun2='⟩'
-#fun2='⯈'
-#fun2='►'
-#fun2='❯'
-#fun2='►'
-fun2='>'
-
-check_last_exit_code() {
-    local LAST_EXIT_CODE=$?
-    if [[ $LAST_EXIT_CODE -ne 0 ]]; then
-        local EXIT_CODE_PROMPT=' '
-        EXIT_CODE_PROMPT+="%F{red}-%f"
-        EXIT_CODE_PROMPT+="%F{red}%B$LAST_EXIT_CODE%b%f"
-        EXIT_CODE_PROMPT+="%F{red}-%f"
-        echo "$EXIT_CODE_PROMPT"
-    fi
-}
-
-if [[ -z "$SSH_CLIENT" ]]; then
-    prompt_host="%F{4}%n@%f%F{4}%m%f "
-else
-    prompt_host="%F{12}%n@%f%F{1}%m%f "
-fi
-
-## coolx='\033[38;5;160mϟ\033[0m'
-PROMPT="$prompt_newline${prompt_host} $prompt_newline%(?.%F{yellow}.%F{red})${fun1}%f%F{green}%(1j. [%j].)%f%F{10} %~ %f%F{blue}${fun2}%f "
-PROMPT_TIME='%F{12}[%f%F{blue}%T%f%F{12}]%f'
-
-# if [ -n "$LIGHT_PROMPT" ]; then
-#     RPROMPT='$PROMPT_TIME'
-# else
-#     RPROMPT='$(__git_info) $PROMPT_TIME'
-# fi
-
-# prompt.lite() {
-#     export RPROMPT='$PROMPT_TIME'
-# }
-
-
-# prompt.full() {
-#     export RPROMPT='$(__git_info) $PROMPT_TIME'
-# }
-
-
-RPROMPT='$(__git_info) $PROMPT_TIME'
-
-
+autoload -U promptinit && promptinit
+prompt spg

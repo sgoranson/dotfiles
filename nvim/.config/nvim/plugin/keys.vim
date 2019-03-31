@@ -164,6 +164,9 @@ nmap ]h <Plug>GitGutterNextHunk
 
 nnoremap [B :bp<cr>
 nnoremap ]B :bn<cr>
+nnoremap [b :BuffergatorMruCyclePrev<CR>
+nnoremap ]b :BuffergatorMruCycleNext<CR>
+
 " changelist
 nnoremap [c g;
 nnoremap ]c g,
@@ -189,9 +192,6 @@ nmap ]e <Plug>(ale_previous_wrap)
 "  Ergo comfort:    50% (must leave home for leader. unless space?)
 "  Ergo speed:      60% (leader+{1,2} keystrokes)
 "  Available slots: effectively unlimited
-command! -nargs=0 Format :call CocAction('format')
-
-
 
 nnoremap <silent><leader>al  :call SGToggleAle()<CR>
 
@@ -266,7 +266,7 @@ nmap <M-p> "+=P
 noremap  <silent>,p       "0p 
 inoremap <M-y> <C-o>:Denite neoyank -default-action=yank<CR> 
 
-
+nnoremap <leader>u :UndotreeToggle<CR>
 
 
 
@@ -358,23 +358,74 @@ cnoremap <C-b> <C-p>
 "  Denite  {{{1
 
 
+  nnoremap <silent> <space>/      :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
+  nnoremap <silent> <space>*           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
+  nnoremap <silent> ;;          :<C-u>Denite command_history<CR>
+
+  nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register neoyank<CR>
+  xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register neoyank<CR>
+
+noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
+
+
+
+noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine line<CR>
+noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
+noremap <silent> <Space>b  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
+noremap <silent> <Space>B  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine unite:bookmark<CR>
+noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  change<CR>
+" noremap <silent> <Space>Co  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  colorscheme<CR>
+noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
+noremap <silent> <Space>d :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  directory_mru<CR>
+noremap <silent> <Space>e :<C-u>Denite -buffer-name='mru' -mode=insert -highlight-mode-insert=CursorLine file_mru<CR>
+
+nnoremap <silent> <Space>f :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine
+            \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+
+nnoremap <silent> <Space>gr :<C-u>Denite  -mode=normal -highlight-mode-insert=CursorLine -buffer-name='grepit' -vertical-preview -resume<CR>
+nnoremap <silent> <Space>gp :<C-u>Denite  -mode=normal  -highlight-mode-normal=CursorLine  -post-action=open
+            \ -buffer-name='grepit' -no-empty
+            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
+
+noremap <silent> <Space>h  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine -smartcase help<CR>
+noremap <silent> <Space>j  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine jump<CR>
+nnoremap <silent> <Space>M  :<C-u>Denite -mode=insert -highlight-mode-insert=CursorLine unite:mapping<CR>
+noremap <silent> <Space>m  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  mark<CR>
+noremap <silent> <Space>o  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine outline<CR>
+noremap <silent> <Space>r  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine file_mru/git<CR>
+noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:tab<CR>
+
+
+nnoremap <silent> ]d :<C-u>Denite -resume -buffer-name='grepit' -select=+1 -immediately<CR>
+nnoremap <silent> [d :<C-u>Denite -resume -buffer-name='grepit' -select=-1 -immediately<CR>
+
+nnoremap <silent> <Space>v :Defx `expand('%:p:h')`-auto-cd -toggle -split=vertical -winwidth=50 -direction=topleft<CR>
+nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
+
+
+
+
+nnoremap <silent> <Space>* :<C-u>DeniteCursorWord  -mode=insert -highlight-mode-insert=CursorLine
+            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
+
+noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -default-action=yank -highlight-mode-insert=CursorLine neoyank<CR>
+
 
 " # }}}
 
 "  Completion  {{{1
-" When the <Enter> key is pressed while the popup menu is visible, it only
-    " hides the menu. Use this mapping to close the menu and also start a new
-    " line.
-    " inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-    " Use <TAB> to select the popup menu:
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+let g:coc_snippet_next = '<TAB>'
+let g:coc_snippet_prev = '<S-TAB>'
 
 "inoremap <silent><expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
 "inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
@@ -429,9 +480,6 @@ inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 
-imap <C-s>  <Plug>(neosnippet_expand_or_jump)
-smap <C-s>  <Plug>(neosnippet_expand_or_jump)
-xmap <C-s>  <Plug>(neosnippet_expand_target)
 " # }}}
 
 "  Plumbing  {{{1

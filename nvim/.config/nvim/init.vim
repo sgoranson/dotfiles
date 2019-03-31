@@ -75,9 +75,6 @@ let mapleader = "\\"
 nnoremap <Esc> :nohlsearch<CR>
 
 
-
-
-
 filetype plugin indent on
 syn on
 

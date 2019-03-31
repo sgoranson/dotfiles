@@ -94,6 +94,8 @@ function bindkey-all {
 }
 
 autoload -Uz edit-command-line
+autoload -Uz expand-absolute-path
+
 autoload -Uz copy-earlier-word
 autoload -Uz smart-insert-last-word
 autoload -Uz smart-insert-last-word
@@ -102,6 +104,7 @@ autoload -Uz run-help
 
 zle -N run-help
 zle -N edit-command-line
+zle -N expand-absolute-path
 zle -N copy-earlier-word
 zle -N insert-unicode-char
 zle -N insert-last-word smart-insert-last-word
@@ -406,6 +409,8 @@ bindkey '^xf'  expand-function
 bindkey '^xh'  run-help
 bindkey '^xr'  history-incremental-search-backward
 bindkey '^xu'  insert-unicode-char
+bindkey "^\\\a" expand-absolute-path
+bindkey "^xa" expand-absolute-path
 # bindkey -s     '^xg' ' 2>&1 '
 bindkey .      rationalise-dot
 bindkey -M     isearch . self-insert

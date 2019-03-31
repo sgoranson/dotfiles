@@ -114,4 +114,3 @@ export LESS_TERMCAP_us=$(printf "\e[1;32m")
 if [[ -f "$HOME/.zshmine" ]]; then
     . "$HOME/.zshmine"
 fi
-

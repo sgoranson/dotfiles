@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+
+sudo killall -q telegram-desktop
+while pgrep -x xkeysnail >/dev/null; do sleep 1; done
+notify-send 'xkeysnail killed'
+
+sudo xkeysnail  ~/.config/xkeysnail/config.py 2>&1 > /tmp/xkeysnail.log  &
+sleep 5 
+#sudo xmodmap ~/.xmodmaprc
+#( while !  xmodmap -pm | grep -Pq 'mod3\s+Control_R'; do 
+#    sudo xmodmap ~/.xmodmaprc
+#    sleep 1
+#done ) >>/tmp/xkeysnail.log
+
+xset r rate 200 30
+notify-send 'xset ok'

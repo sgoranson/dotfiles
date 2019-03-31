@@ -1,13 +1,22 @@
 {
+    "prettier.printWidth": 100,
+    "prettier.tabWidth": 4,
     "codeLens.enable": true,
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "preview",
+    "coc.preferences.enableFloatHighlight": true,
+      // make vim select first item on completion
+  "suggest.noselect": true,
+  // when snippet activated and pumvisible, prefer complete completion.
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+
     "suggest.triggerAfterInsertEnter": true,
     "suggest.autoTrigger": "always",
     "suggest.enablePreview": true,
     "suggest.snippetIndicator": "~",
+    "snippets.autoTrigger": true,
     // Snippets
-    "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
+    //"snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
     "languageserver": {
         "efm": {
             "command": "efm-langserver",

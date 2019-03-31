@@ -20,28 +20,22 @@ fi
 
 
 imwheel --kill
+
+
 xrdb -merge "$HOME/.Xresources"
 
 # keyboard rate
 # xset r rate 200 30
 
-# if [ "$(hostname)" = 'stinkbox' ]; then
 #exec nvidia-settings --load-config-only
-# xmodmap ~/.xmodmaprc
 
 # xrandr --output DP-2 --primary --output DP-5 --left-of DP-2 --output HDMI-0 --right-of DP-2
 # xrandr  --output DP-2 --dpi 192
-# disables touchpad
-
-# else
-# disables mouse accel on my thinkpad
-# trackpointid="$( xinput --list | grep -i trackpoint | grep --only-matching --perl-regexp '(?#id=)\d\d')"
 
 xinput --set-prop TPPS/2\ IBM\ TrackPoint  'libinput Accel Profile Enabled' 0, 1
-xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
-xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
-# fi
-
+# xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
+# xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
+xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 2
+xinput --set-button-map  TPPS/2\ IBM\ TrackPoint 1 3 2 4 5 6 7
 
 exec i3
-# exec openbox-session

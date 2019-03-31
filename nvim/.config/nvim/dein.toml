@@ -199,8 +199,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 [[plugins]]
 repo = 'tpope/vim-eunuch'                          # :Delete, :Rename, :SudoWrite
 
-[[plugins]]
-repo = 'tpope/vim-unimpaired'                      # yo, ]b, etc
 
 [[plugins]]
 repo = 'tpope/vim-commentary'                      # gcc, gcW, g/TODO/Commentary
@@ -244,3 +242,8 @@ let g:markdown_enable_spell_checking = 0
 '''
 
 
+[[plugins]]
+repo =  'jeetsukumaran/vim-buffergator'
+hook_add = '''
+let  g:buffergator_suppress_keymaps=1
+'''
