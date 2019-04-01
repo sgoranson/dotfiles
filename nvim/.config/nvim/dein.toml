@@ -78,8 +78,8 @@ nmap <leader>rn <Plug>(coc-rename)
 
 let g:coc_global_extensions = [
 \ 'coc-json', 'coc-yaml', 'coc-lists', 
-\ 'coc-pyls', 'coc-highlight', 'coc-yank', 'coc-solargraph',
-\ 'coc-tsserver', 'coc-html', 'coc-css', 'coc-pairs',
+\ 'coc-python', 'coc-highlight', 'coc-yank', 'coc-solargraph',
+\ 'coc-tsserver', 'coc-html', 'coc-css', 
 \  'coc-snippets', 'coc-emoji', 'coc-prettier', 'coc-emmet'
 \ ]
 

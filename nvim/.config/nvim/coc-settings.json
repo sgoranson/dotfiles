@@ -1,7 +1,10 @@
 {
     "prettier.printWidth": 100,
     "prettier.tabWidth": 4,
-
+"python.jediEnabled": false,
+"python.linting.enabled": true,
+"suggest.maxPreviewWidth": 80,
+"suggest.echodocSupport": true,
     "codeLens.enable": true,
     "coc.preferences.colorSupport": true,
     "coc.preferences.formatOnType": true,
