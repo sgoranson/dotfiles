@@ -233,7 +233,7 @@ command! SGTimestamp call s:sgtimestamp()
 command! -complete=dir -nargs=* Ctags :!ctags -R --totals --extra=+q --fields=+iaS --c++-kinds=+p <args>
 command! -nargs=+ -complete=command SGExBuf call s:SGExBuf(<q-args>)
 command! -nargs=+ -complete=command SGExGet call s:SGExGet(<q-args>)
-command! -nargs=+ -complete=file -bar Rg sil! gr! <args>|cw|redr!|let @/="<args>"|set hls
+" command! -nargs=+ -complete=file -bar Rg sil! gr! <args>|cw|redr!|let @/="<args>"|set hls
 command! -nargs=1 -complete=command SGSubWithCount call s:SGSubWithCount()
 command! SGBufCloseNotMe BufOnly
 command! SGFormatPosh call <SID>SGFormatPosh()
@@ -244,8 +244,6 @@ command! SGGetChar call s:getchar()
 command! SGUndoToggle GundoToggle
 command! SGHlExport ExportColors "tmp.tmp"
 command! SGHlHTML call SGHighlightToHTML('gvim-color-test.tmp')
-
-command! -nargs=0 Format :call CocAction('format')
 
 
 " # }}}

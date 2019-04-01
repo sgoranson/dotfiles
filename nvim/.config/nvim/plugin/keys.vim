@@ -416,66 +416,6 @@ noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matche
 "  Completion  {{{1
 
 
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
-
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-let g:coc_snippet_next = '<TAB>'
-let g:coc_snippet_prev = '<S-TAB>'
-
-"inoremap <silent><expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<C-h>"
-"inoremap <silent><expr><TAB>    pumvisible() ? "\<C-n>" : <SID>check_back_space() ?
-"            \ "\<TAB>" : deoplete#manual_complete()
-
-"function! s:check_back_space() abort
-"    let l:col = col('.') - 1
-"    return !l:col || getline('.')[l:col - 1]  =~# '\s'
-"endfunction
-
-
-
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <silent><expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-"inoremap <silent><expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-"inoremap <silent><expr><C-g>       deoplete#refresh()
-"inoremap <silent><expr><C-l>       deoplete#complete_common_string()
-
-""imap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-""function! s:my_cr_function() abort
-"""  return deoplete#cancel_popup() . "\<CR>"
-""   if  pumvisible()
-""       "return deoplete#close_popup()."\<C-y>"
-""       return deoplete#close_popup()
-""   else
-""       return "\<CR>"
-""   endif"
-""endfunction
-"inoremap <silent><expr><CR> pumvisible() ? deoplete#close_popup() : "\<CR>"
-
-"" <C-j>, <C-k>"
-"imap <expr><Down>  pumvisible() ? "\<Tab>" : "\<Down>"
-"imap <expr><Up>  pumvisible() ? "\<S-Tab>" : "\<Up>"
-
-
-
-
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-"" <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function() abort
-"    return deoplete#close_popup() . "\<CR>"
-"endfunction
 
 
 
