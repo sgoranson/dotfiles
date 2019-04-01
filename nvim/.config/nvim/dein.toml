@@ -130,7 +130,6 @@ set cmdheight=2
 
 
 
-
 [[plugins]]
 repo = 'mbbill/undotree'
 
@@ -258,7 +257,6 @@ hook_add = '''
 " let g:airline_left_alt_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_right_alt_sep = ''
-let g:airline#extensions#coc#enabled = 1
 
 
   if ! exists('g:airline_symbols')
@@ -291,6 +289,8 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 "   let g:airline_section_c = airline#section#create_left(['%{fnamemodify(getcwd(),":~")}', '%{coc#status()}', '%{airline#extensions#fugitiveline#bufname()}'])
 " endfunction
 " autocmd User AirlineAfterInit call AirlineInit()
+"  let g:airline#extensions#disable_rtp_load = 1
+"  let g:airline_extensions = ['branch', 'coc', 'fugitiveline', 'hunks', 'quickfix', 'term', 'undotree', 'whitespace' ]
 '''
 
 [[plugins]]
