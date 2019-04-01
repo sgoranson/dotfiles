@@ -3,7 +3,7 @@
     "prettier.tabWidth": 4,
 
     "codeLens.enable": true,
-    "coc.preferences.echodocSupport": true,
+    "coc.preferences.colorSupport": true,
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "preview",
     "coc.preferences.enableFloatHighlight": true,
