@@ -226,10 +226,10 @@ bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
 
 # MOUSE {{{
 # use Mouse+$modx to drag floating windows to their wanted position. also resizing
-floating_modifier $modx
+floating_modifier Mod1
 
 # The middle button and a modifer over any part of the window kills the window
-bindsym --whole-window $mody+button2 kill
+# bindsym --whole-window $mody+button2 kill
 
 # # The middle button over a titlebar kills the window
 # bindsym --release button2 kill

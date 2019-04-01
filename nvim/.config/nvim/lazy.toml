@@ -136,14 +136,6 @@ hook_add = '''
 # '''
 # }}}
 
-[[plugins]]
-repo = 'lambdalisue/vim-gista'
-on_cmd = 'Gista'
-
-[[plugins]]
-repo = 'lambdalisue/vim-gista-unite'
-depends = 'vim-gista'
-on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
