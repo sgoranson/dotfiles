@@ -148,6 +148,7 @@ lshw
 lsof
 lvm2
 lxappearance-gtk3
+lxrandr
 lxterminal
 m4
 make
