@@ -128,7 +128,7 @@ mode "marks" {
 
 # start a terminal
 bindsym --release $modx+Return  exec --no-startup-id $myterm
-bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  alacritty
+bindsym $mody+Return exec tdrop   -a -m  -x 10% -y 10%  -h 75% -w 80%  alacritty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  $myterm; focus mode_toggle
 
 
