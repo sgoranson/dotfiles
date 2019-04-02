@@ -58,5 +58,7 @@ augroup spgwtf
     "
     autocmd VimEnter * call dein#call_hook('post_source')
 
+    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
 augroup END
 

@@ -173,6 +173,7 @@ bindsym $modx+r exec --no-startup-id rofi  -show run
 bindsym $modx+c exec roficlip
 # bindsym Control+Space exec roficlip
 bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
+bindsym --release $modx+v exec --no-startup-id xdotool key --clearmodifiers ctrl+v
 
 bindsym Mod4+q kill
 bindsym Mod3+w focus output right

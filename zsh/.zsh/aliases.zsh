@@ -45,6 +45,7 @@ alias psl='ps wwaxo pid,ppid,stat,args --sort=start_time'
 # cron dont like backupfiles
 alias crontab="VIM_CRONTAB=true crontab"
 alias cp="cp -i"
+alias cp!="command rsync --progress"
 alias rm="rm -i"
 alias mv="mv -i"
 alias ln="ln -i"
@@ -155,6 +156,7 @@ alias AD="yay  --color=auto -Si"
 
 # AD() { yaourt -Qi ${1:?} | grep Depends | cut -d: -f2 }
  compdef _pacman_completions_all_packages AI=yay
+ compdef _pacman_completions_all_packages AL=yay
  compdef _pacman_completions_all_packages AS=yay
  _yay &>/dev/null
 

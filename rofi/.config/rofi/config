@@ -60,7 +60,7 @@ rofi.run-shell-command:                {terminal} -- zsh -c "{cmd}"
 ! "Use sorting" Set from: Default
 ! rofi.sort:                           false
 ! "Use levenshtein sorting also for fuzzy matching" Set from: Default
-! rofi.levenshtein-sort:               false
+rofi.levenshtein-sort:               true
 ! "Set case-sensitivity" Set from: Default
 ! rofi.case-sensitive:                 false
 ! "Cycle through the results list" Set from: Default

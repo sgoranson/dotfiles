@@ -28,6 +28,7 @@ nnoremap ( [(
 nnoremap ) ])
 tnoremap <silent> <C-z> <C-\><C-n>:call spg#terminal#()<Enter>
 nnoremap <silent> <C-z> :call spg#terminal#()<Enter>
+nnoremap <leader><c-z> :stop<CR>
 
 " easy macro usage
 vnoremap <C-q>     :<C-U>'<,'>g/./ norm @q<CR>
@@ -324,7 +325,7 @@ nnoremap <C-t>n  :tabnew<CR>
 " # }}}
 
 "  Terminal  {{{1
-tnoremap <Esc> <C-\><C-n>
+tnoremap <leader><Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
