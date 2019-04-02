@@ -228,9 +228,11 @@ repo = 'terryma/vim-expand-region'
 [[plugins]]
 repo =  'easymotion/vim-easymotion'
 hook_add = '''
-let g:EasyMotion_keys = 'asdfghjkl;qwertyuiopzxcvbnmASDFGHJKLQWERTYUIOPZXCVBNM'
 let g:Easymotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 '''
 
 [[plugins]]
@@ -245,12 +247,13 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+depends = 'vim-airline-themes'
 hook_add = '''
 
 
 
   let g:airline_powerline_fonts = 1
-    let g:airline_theme='minimalist'
+    let g:airline_theme='base16_spacemacs'
     let g:airline_minimalist_showmod = 1
 
 " let g:airline_left_sep = ''
@@ -268,12 +271,12 @@ hook_add = '''
   let g:airline_symbols.linenr = '☰'
   let g:airline_symbols.maxlinenr = ''
 
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tabline#close_symbol = '×'
 let g:airline#extensions#tabline#show_close_button = 0
 " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'

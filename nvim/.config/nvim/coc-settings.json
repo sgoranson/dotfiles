@@ -1,31 +1,52 @@
 {
+
+
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.formatOnType": true,
+    "coc.preferences.hoverTarget":"float",
+
+    "codeLens.enable": true,
+    "diagnostic.enable": true,
+    "diagnostic.messageTarget": "float",
+    "diagnostic.virtualText": false,
+    "diagnostic.virtualTextPrefix": "VT",
+
+    "list.maxPreviewHeight": 30,
+
+
     "prettier.printWidth": 100,
     "prettier.tabWidth": 4,
+
     "python.jediEnabled": false,
     "python.linting.enabled": true,
-    "suggest.maxPreviewWidth": 100,
+
+    "signature.target":"float",
+   "signature.enable": true, 
+    "signature.maxWindowHeight": 20,
+
+    "snippets.autoTrigger": true,
+
+    "suggest.autoTrigger": "always",
     "suggest.echodocSupport": true,
-    "codeLens.enable": false,
-    "signature.target": "echo",
-    "diagnostic.virtualTextPrefix": "VT",
-    "diagnostic.messageTarget": "echo",
-    "coc.preferences.colorSupport": true,
-    "coc.preferences.formatOnType": true,
-    "coc.preferences.hoverTarget": "preview",
-    "coc.preferences.enableFloatHighlight": true,
+    "suggest.enablePreview": true,
+    "suggest.maxPreviewWidth": 100,
+    "suggest.minTriggerInputLength": 1,
+    "suggest.snippetIndicator": "[snippet]",
+    "suggest.triggerAfterInsertEnter": true,
+   
+
     // make vim select first item on completion
     "suggest.noselect": true,
     // when snippet activated and pumvisible, prefer complete completion.
     "suggest.preferCompleteThanJumpPlaceholder": true,
+    "suggest.languageSourcePriority": 99,
+    "coc.source.around.priority": 1,
+     
+    
+    
 
-    "suggest.triggerAfterInsertEnter": true,
-    "suggest.autoTrigger": "always",
-    "diagnostic.enable": true,
-    "diagnostic.virtualText": true,
-    "suggest.enablePreview": true,
-    "suggest.snippetIndicator": "~",
-    "snippets.autoTrigger": true,
-    "list.maxPreviewHeight": 30,
+
     // Snippets
     //"snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
     "languageserver": {

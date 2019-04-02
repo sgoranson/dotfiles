@@ -109,6 +109,7 @@ rofi.hide-scrollbar:                 true
 ! rofi.fake-background:                screenshot
 ! "Window Format. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
 ! rofi.window-format:                  {w}    {i}{c}   {t}
+rofi.window-format:                  {n}{t}
 ! "Click outside the window to exit" Set from: Default
 ! rofi.click-to-exit:                  true
 ! "Indicate how it match by underlining it." Set from: Default
@@ -285,3 +286,4 @@ rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
 ! vim:set ft=xdefaults:
+rofi.theme: /usr/share/rofi/themes/blue.rasi

@@ -48,6 +48,9 @@ nmap vq viq
 map  H  <Plug>(easymotion-bl)
 map  L  <Plug>(easymotion-wl)
 
+nmap F <plug>(easymotion-Fl)
+nmap f <plug>(easymotion-fl)
+
 nnoremap <silent> M  :normal <C-R>=(virtcol('$')/2)<CR>\|<CR>
 
 nmap     <silent> Y  yiW
@@ -149,6 +152,8 @@ nnoremap <M-W> "zciw
 " nnoremap <C-x>d :r!date +'\%F \%T'<CR>
 noremap <leader>t :SGTimestamp<CR>
 " # }}}
+
+
 
 "  Brackets  {{{1
 "  Ergo comfort:    70%
@@ -260,9 +265,12 @@ noremap  <silent><leader>y       "+y
 nmap  <silent><leader>p       "+=p
 nmap  <silent><leader>P       "+=P
 " alt-p regular paste (insert)
-inoremap <M-p> <C-R>+<Esc>
+inoremap <M-p> <C-R><C-O>"
+cnoremap <M-p> <C-R><C-O>"
 
-nmap <M-p> "+=P
+inoremap <M-=> <C-R><C-O>+
+nnoremap <M-=> "+p
+nnoremap <M-+> "+P
 
 noremap  <silent>,p       "0p 
 inoremap <M-y> <C-o>:Denite neoyank -default-action=yank<CR> 
@@ -293,7 +301,6 @@ endif
 nnoremap [t :tabprev<CR>
 nnoremap ]t :tabnext<CR>
 
-nnoremap tt  :tabedit %<CR>
 nnoremap tc  :tabclose<CR>
 nnoremap tq  :tabclose<CR>
 
@@ -312,6 +319,13 @@ nnoremap <C-t>h :tabprev<CR>
 nnoremap <C-t>q  :tabclose<CR>
 nnoremap <C-t>c  :tabclose<CR>
 nnoremap <C-t>n  :tabnew<CR>
+nnoremap <C-t>e  :tabedit %<CR>
+tnoremap <C-t>l  <C-\><C-n>:tabnext<CR>
+tnoremap <C-t>h  <C-\><C-n>:tabprev<CR>
+tnoremap <C-t>q  <C-\><C-n>:tabclose<CR>
+tnoremap <C-t>c  <C-\><C-n>:tabclose<CR>
+tnoremap <C-t>n  <C-\><C-n>:tabnew<CR>
+tnoremap <C-t>e  <C-\><C-n>:tabedit %<CR>
 
 " nnoremap <C-t>l  :tabnext<CR>
 " nnoremap <C-t>h  :tabprev<CR>
@@ -325,7 +339,7 @@ nnoremap <C-t>n  :tabnew<CR>
 " # }}}
 
 "  Terminal  {{{1
-tnoremap <leader><Esc> <C-\><C-n>
+tnoremap <M-[> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
@@ -423,50 +437,6 @@ noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matche
 
 " # }}}
 
-"  Plumbing  {{{1
-" TODO I am depending on the OS to remap <C-j>/<C-k> to <Up>/<Down>.
-" <C-j>/<C-k> are frequently unable to stop being LF/VF and that sucks.
-"
-" <S-space> == <F13>
-" map <F13> <S-Space>
-" map! <F13> <S-Space>
-" map ∑ <M-w>
-" map! ∑ <M-w>
-" map „ <M-W>
-" map! „ <M-W>
-" map ¥ <M-y>
-" map! ¥ <M-y>
-" map Á <M-Y>
-" map! Á <M-Y>
-" map ß <M-s>
-" map! ß <M-s>
-" map Í <M-S>
-" map! Í <M-S>
-" map π <M-p>
-" map! π <M-p>
-" map ∏ <M-P>
-" map! ∏ <M-P>
-" map ∂ <M-d>
-" map! ∂ <M-d>
-" map Î <M-D>
-" map! Î <M-D>
-" map å <M-a>
-" map! å <M-a>
-" map Å <M-A>
-" map! Å <M-A>
-" map ≈ <M-x>
-" map! ≈ <M-x>
-" map ˛ <M-X>
-" map! ˛ <M-X>
-" map ç <M-c>
-" map! ç <M-c>
-" map Ç <M-C>
-" map! Ç <M-C>
-" map! √ <M-v>
-" map √ <M-v>
-" map! ◊ <M-V>
-" map ◊ <M-V>
-" # }}}
 
 "  Ambient Tweaks  {{{1
 " noremap <ScrollWheelUp> <C-U>

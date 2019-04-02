@@ -107,10 +107,6 @@ alias SGG='echo tert.havkwhaxvr@arg | tr a-z@. n-za-m.@'
 
 # dir shortcuts
 alias ddot="pu ~/dotfiles"
-alias mkdir="env mkdir -p"
-
-mkdirc() { env mkdir -p ${1:?} && cd $1 }
-mkd() { env mkdir -p ${1:?} && cd $1 }
 
 a() { awk "{ print \$${1:-0} }" } # shortcut for awk '/ print $1/'
     hh() { $1 --help | vless }
@@ -449,22 +445,22 @@ alias -s vim='nvim'
 
 
 #f5# Create Directory and \kbd{cd} to it
-function _mkcd () {
+function mkdir! () {
+    if [[ "$1" == "-p" ]]; then
+        shift
+    fi
     if (( ARGC != 1 )); then
-        printf 'usage: mkcd <new-directory>\n'
+        printf 'usage: mkdir <new-directory>\n'
         return 1;
     fi
     if [[ ! -d "$1" ]]; then
         command mkdir -p "$1"
-    else
-        printf '`%s'\'' already exists: cd-ing.\n' "$1"
     fi
     builtin cd "$1"
 }
-alias mkcd=_mkcd
 
 #f5# Create temporary directory and \kbd{cd} to it
-function cdt () {
+function mkdir!! () {
     builtin cd "$(mktemp -d)"
     builtin pwd
 }
