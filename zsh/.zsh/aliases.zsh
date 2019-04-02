@@ -201,6 +201,7 @@ alias arp-subnet='arp -a'
 
 alias cP='rsync --progress'
 
+alias column='column -t --separator=$'\t' -T 3'
 alias curl-moz="curl -L -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.112 Safari/534.30'"
 
 # -d draw title -S sort files
