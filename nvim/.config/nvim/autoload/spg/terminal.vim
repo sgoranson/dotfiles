@@ -56,6 +56,7 @@ function! spg#terminal#create() abort
 
         enew
         call termopen(&shell, g:terminal.opts)
+        startinsert
 
         let g:terminal.term.loaded = v:true
         let g:terminal.term.bufferid = bufnr('')

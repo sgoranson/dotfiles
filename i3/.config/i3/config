@@ -128,7 +128,7 @@ mode "marks" {
 
 # start a terminal
 bindsym --release $modx+Return  exec --no-startup-id $myterm
-bindsym $mody+Return exec tdrop   -a  -x 10% -y 10%  -h 75% -w 80%  alacritty
+bindsym $mody+Return exec tdrop   -a -m  -x 10% -y 10%  -h 75% -w 80%  alacritty
 # bindsym $modx+Shift+Return exec tdrop --wm i3 -a -m  $myterm; focus mode_toggle
 
 
@@ -172,7 +172,8 @@ bindsym $modx+r exec --no-startup-id rofi  -show run
 # bindsym $modx+Shift+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 bindsym $modx+c exec roficlip
 # bindsym Control+Space exec roficlip
-bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
+# bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
+# bindsym --release $modx+v exec --no-startup-id xdotool key --clearmodifiers ctrl+v
 
 bindsym Mod4+q kill
 bindsym Mod3+w focus output right
@@ -221,7 +222,7 @@ bindsym $mody+3 [con_mark="mark3"] focus
 bindsym $mody+4 [con_mark="mark4"] focus
 bindsym $mody+5 [con_mark="mark5"] focus
 bindsym $modx+Tab [con_mark="_last"] focus
-bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
+# bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
  # }}}
 
 # MOUSE {{{
@@ -367,6 +368,7 @@ exec --no-startup-id ~/bin/alttabhax
 exec --no-startup-id clipster -d
 exec --no-startup-id ~/bin/start-xkeysnail
 exec --no-startup-id telegram-desktop
+exec --no-startup-id alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64
 # exec --no-startup-id barrierc  sexpanther
 
 # }}}

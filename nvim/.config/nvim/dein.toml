@@ -78,8 +78,8 @@ nmap <leader>rn <Plug>(coc-rename)
 
 let g:coc_global_extensions = [
 \ 'coc-json', 'coc-yaml', 'coc-lists', 
-\ 'coc-pyls', 'coc-highlight', 'coc-yank', 'coc-solargraph',
-\ 'coc-tsserver', 'coc-html', 'coc-css', 'coc-pairs',
+\ 'coc-python', 'coc-highlight', 'coc-yank', 'coc-solargraph',
+\ 'coc-tsserver', 'coc-html', 'coc-css', 
 \  'coc-snippets', 'coc-emoji', 'coc-prettier', 'coc-emmet'
 \ ]
 
@@ -125,7 +125,6 @@ repo = 'Shougo/echodoc.vim'
 hook_add = '''
 set cmdheight=2
 '''
-
 
 
 
@@ -229,9 +228,11 @@ repo = 'terryma/vim-expand-region'
 [[plugins]]
 repo =  'easymotion/vim-easymotion'
 hook_add = '''
-let g:EasyMotion_keys = 'asdfghjkl;qwertyuiopzxcvbnmASDFGHJKLQWERTYUIOPZXCVBNM'
 let g:Easymotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 '''
 
 [[plugins]]
@@ -246,19 +247,19 @@ repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+depends = 'vim-airline-themes'
 hook_add = '''
 
 
 
   let g:airline_powerline_fonts = 1
-    let g:airline_theme='minimalist'
+    let g:airline_theme='base16_spacemacs'
     let g:airline_minimalist_showmod = 1
 
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
 " let g:airline_right_sep = ''
 " let g:airline_right_alt_sep = ''
-let g:airline#extensions#coc#enabled = 1
 
 
   if ! exists('g:airline_symbols')
@@ -270,12 +271,12 @@ let g:airline#extensions#coc#enabled = 1
   let g:airline_symbols.linenr = '☰'
   let g:airline_symbols.maxlinenr = ''
 
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tabs = 0
+let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tabline#close_symbol = '×'
 let g:airline#extensions#tabline#show_close_button = 0
 " let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
@@ -291,6 +292,8 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 "   let g:airline_section_c = airline#section#create_left(['%{fnamemodify(getcwd(),":~")}', '%{coc#status()}', '%{airline#extensions#fugitiveline#bufname()}'])
 " endfunction
 " autocmd User AirlineAfterInit call AirlineInit()
+"  let g:airline#extensions#disable_rtp_load = 1
+"  let g:airline_extensions = ['branch', 'coc', 'fugitiveline', 'hunks', 'quickfix', 'term', 'undotree', 'whitespace' ]
 '''
 
 [[plugins]]

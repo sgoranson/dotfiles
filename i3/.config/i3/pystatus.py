@@ -4,7 +4,6 @@ import subprocess
 import os.path
 
 import os
-
 from i3pystatus import Status
 
 from i3pystatus.weather import weathercom
@@ -235,6 +234,7 @@ status.register(
     start_color=color14,
     end_color=color15,
 )
+
 # status.register(
 #     "network",
 #     interface="wlp0s20u2",
