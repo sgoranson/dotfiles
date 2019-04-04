@@ -45,8 +45,6 @@ endfunction
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
@@ -115,6 +113,13 @@ endfunction
 
 nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
+
+
+nmap <silent> gD <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd :call <SID>show_documentation()<CR>
 
 
 
@@ -244,6 +249,9 @@ repo =  'junegunn/vim-easy-align'                   # ga =
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'

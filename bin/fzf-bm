@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+cat  ~/.config/google-chrome/Default/Bookmarks | jq -r  ' .. |  try  [.date_added, .url, .name ] | select(.[0] and .[1]) | @tsv' | sort  -t $'	' -k1,1 -nr  | fzf --no-sort 

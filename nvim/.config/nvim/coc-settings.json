@@ -2,7 +2,8 @@
 
 
     "coc.preferences.colorSupport": true,
-    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.enableFloatHighlight": false,
+    
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget":"float",
 
@@ -12,7 +13,8 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextPrefix": "VT",
 
-    "list.maxPreviewHeight": 30,
+    "list.maxPreviewHeight": 100,
+    "list.maxHeight": 30,
 
 
     "prettier.printWidth": 100,
@@ -23,7 +25,7 @@
 
     "signature.target":"float",
    "signature.enable": true, 
-    "signature.maxWindowHeight": 20,
+    "signature.maxWindowHeight": 100,
 
     "snippets.autoTrigger": true,
 
@@ -34,6 +36,7 @@
     "suggest.minTriggerInputLength": 1,
     "suggest.snippetIndicator": "[snippet]",
     "suggest.triggerAfterInsertEnter": true,
+    "suggest.reloadPumOnInsertChar": false,
    
 
     // make vim select first item on completion
@@ -42,6 +45,7 @@
     "suggest.preferCompleteThanJumpPlaceholder": true,
     "suggest.languageSourcePriority": 99,
     "coc.source.around.priority": 1,
+    "coc.source.emoji.filetypes": null,
      
     
     
@@ -64,3 +68,4 @@
         }
     }
 }
+

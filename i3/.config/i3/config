@@ -170,7 +170,7 @@ bindsym $modx+r exec --no-startup-id rofi  -show run
 
 
 # bindsym $modx+Shift+c exec --no-startup-id rofi  -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
-bindsym $modx+c exec roficlip
+bindsym $modx+c exec ~/bin/roficlip
 # bindsym Control+Space exec roficlip
 # bindsym $modx+Shift+v exec --no-startup-id ~/bin/greenclip-paste.sh 
 # bindsym --release $modx+v exec --no-startup-id xdotool key --clearmodifiers ctrl+v
