@@ -259,6 +259,8 @@ imap <C-x>cp <C-o>:call Paste(v:register, "v", "P")<CR>
 imap <C-x>cP <C-o>:call Paste(v:register, "v", "p")<CR>
 " clipboard yank
 noremap  <silent><leader>y       "+y
+noremap Y "+
+noremap! Y "+
 
 " clipboard paste
 " noremap  <silent><leader>p       o<Esc>"+p'[=']']o<Esc>

@@ -279,6 +279,15 @@ hook_add = '''
   let g:airline_symbols.linenr = '☰'
   let g:airline_symbols.maxlinenr = ''
 
+let g:airline_left_sep = "\uE0B8"
+let g:airline_left__alt_sep = "\uE0B9"
+let g:airline_right_sep = "\uE0Ba"
+let g:airline_right_alt_sep = "\uE0cb"
+" let g:airline_left_sep =       "\uE0c0"
+" let g:airline_left__alt_sep =  "\uE0c1"
+" let g:airline_right_sep =      "\uE0c2"
+" let g:airline_right_alt_sep =  "\uE0c3"
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
