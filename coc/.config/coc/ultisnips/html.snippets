@@ -1,0 +1,64 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+snippet meta-refresh "meta refresh" b
+<meta http-equiv="refresh" content="5">
+endsnippet
+snippet bootstrap "bootstrap stuff" b
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+				<title>${1:sometitle}</title>
+				<meta charset="utf-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1">
+				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		</head>
+		<body>
+
+				<div class="jumbotron text-center">
+				<h1>My First Bootstrap Page</h1>
+				<p>Resize this responsive page to see the effect!</p> 
+				</div>
+				
+				<div class="container">
+				div class="row">
+					<div class="col-sm-6">
+						<h3>Column 1</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+					</div>
+					<div class="col-sm-6">
+						<h3>Column 2</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+						<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+					</div>
+				</div>
+				</div>
+
+		</body>
+	</html>
+endsnippet

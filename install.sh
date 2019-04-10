@@ -5,6 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 mkdir -p "$HOME/.local/share/steve"
 mkdir -p "$HOME/.local/share/barrier"
+mkdir -p "$HOME/public_html"
 
 mkdir -p  "$HOME/.cache/dein/repos/github.com/"
 
@@ -15,6 +16,10 @@ ln -i -s --no-target-directory  "$HOME/.cache/dein/repos/github.com/" "$HOME/plu
 ln -i -s --no-target-directory "$DIR/util" "$HOME/util"
 
 mkdir -p "$HOME/data/nvim/session"
+
+chmod o+x ~/public_html
+chmod o+x ~
+chmod -R o+r ~/public_html
 
 git clone git@github.com:sgoranson/backup.git ~/backup
 
