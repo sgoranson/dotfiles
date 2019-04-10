@@ -45,8 +45,6 @@ endfunction
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use K for show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 " Remap for format selected region
 vmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
@@ -115,6 +113,13 @@ endfunction
 
 nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
 
+
+
+nmap <silent> gD <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd :call <SID>show_documentation()<CR>
 
 
 
@@ -246,6 +251,9 @@ repo = 'vim-airline/vim-airline-themes'
 
 
 [[plugins]]
+repo = 'Shougo/deol.nvim'
+
+[[plugins]]
 repo = 'vim-airline/vim-airline'
 depends = 'vim-airline-themes'
 hook_add = '''
@@ -270,6 +278,15 @@ hook_add = '''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = '☰'
   let g:airline_symbols.maxlinenr = ''
+
+let g:airline_left_sep = "\uE0B8"
+let g:airline_left__alt_sep = "\uE0B9"
+let g:airline_right_sep = "\uE0Ba"
+let g:airline_right_alt_sep = "\uE0cb"
+" let g:airline_left_sep =       "\uE0c0"
+" let g:airline_left__alt_sep =  "\uE0c1"
+" let g:airline_right_sep =      "\uE0c2"
+" let g:airline_right_alt_sep =  "\uE0c3"
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0

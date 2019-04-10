@@ -259,6 +259,8 @@ imap <C-x>cp <C-o>:call Paste(v:register, "v", "P")<CR>
 imap <C-x>cP <C-o>:call Paste(v:register, "v", "p")<CR>
 " clipboard yank
 noremap  <silent><leader>y       "+y
+noremap Y "+
+noremap! Y "+
 
 " clipboard paste
 " noremap  <silent><leader>p       o<Esc>"+p'[=']']o<Esc>
@@ -339,6 +341,7 @@ tnoremap <C-t>e  <C-\><C-n>:tabedit %<CR>
 " # }}}
 
 "  Terminal  {{{1
+tnoremap <Esc> <C-\><C-n>
 tnoremap <M-[> <C-\><C-n>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -460,21 +463,6 @@ vnoremap     >  >gv
 
 
 nnoremap zO zCzO
-
-nmap <silent> gD <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-" Use K for show documentation in preview window
-nnoremap <silent> gd :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 " # }}}
 
