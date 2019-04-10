@@ -45,10 +45,8 @@ if dein#load_state(expand(s:dein_dir))
   let s:toml_dir  = expand($XDG_CONFIG_HOME) . '/nvim'
   let s:toml_file = s:toml_dir . '/dein.toml'
   let s:toml_lazy_file = s:toml_dir . '/lazy.toml'
-  let s:toml_ft_file = s:toml_dir . '/ft.toml'
-  call dein#load_toml(s:toml_file, {'lazy': 0})
-  call dein#load_toml(s:toml_lazy_file, {'lazy': 1})
-  call dein#load_toml(s:toml_ft_file)
+  call dein#load_toml(s:toml_file, {'trusted': 1, 'merged': 0, 'lazy': 0,})
+  call dein#load_toml(s:toml_lazy_file, {'trusted': 1, 'merged': 0, 'lazy': 1,})
 
 
 
