@@ -161,6 +161,7 @@ mediainfo
 mlocate
 nano
 neovim-git
+nerd-fonts-ubuntu-mono
 net-tools
 netctl
 nethogs
@@ -245,6 +246,7 @@ sed
 shadow
 shfmt
 siji-git
+smplayer
 socat
 speedtest-cli
 stalonetray
