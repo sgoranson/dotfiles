@@ -140,7 +140,11 @@ if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
 fi
 chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-  command ls -t --color=auto
+  # command ls --almost-all --group-directories-first --file-type --color=auto 
+  lsd  --date relative --group-dirs first
+
+
+
 }
 
 

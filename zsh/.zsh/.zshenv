@@ -21,6 +21,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config
 export GHQ_ROOT=$HOME/kewl
 export TODO_DIR=$HOME/Dropbox/todo
 export TODOTXT_CFG_FILE=$HOME/Dropbox/todo/config
+export QT_QPA_PLATFORMTHEME=qt5ct
 
 export MANPATH=":$HOME/.local/share/man"
 # automatically remove duplicates from these arrays

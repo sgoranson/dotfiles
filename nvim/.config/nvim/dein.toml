@@ -122,7 +122,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> gd :call <SID>show_documentation()<CR>
 
-
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
 
 '''
 
@@ -227,6 +228,9 @@ repo = 'kana/vim-textobj-help'
 
 [[plugins]]
 repo = 'rhysd/vim-textobj-anyblock'               # b textobj (parens, quotes, brackets, <)
+
+[[plugins]]
+repo = 'wellle/targets.vim'               # b textobj (parens, quotes, brackets, <)
 
 [[plugins]]
 repo = 'terryma/vim-expand-region'

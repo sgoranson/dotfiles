@@ -10,7 +10,6 @@ alias nva='nvim ~/.zsh/aliases.zsh'
 
 
 alias ff="fd --hidden --exclude '.git' --search-path ."
-alias fft='tree -a'
 alias lst='tree -a'
 
 alias zsa='source ~/.zsh/aliases.zsh && print -P "%F{cyan}aliased reloaded" >&2'
@@ -25,8 +24,15 @@ alias chrome-lodpi='GDK_DPI_SCALE=0.5 google-chrome-stable'
 alias chrome='google-chrome-stable --new-window'
 alias web='google-chrome-stable --new-window'
 
-alias ls="\ls --almost-all --group-directories-first --file-type --color=auto -tr"
- alias ll="ls -lhAtr --file-type --color=auto"
+alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
+alias ll="\ls -l --almost-all --group-directories-first --file-type --color=auto"
+alias lls="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
+if (( $+commands[lsd] )); then
+    alias ls='lsd  --date relative --group-dirs first'
+    alias ll='lsd  -l --date relative --group-dirs first'
+    alias lst='ls --tree'
+fi
+
 # alias ls="colorls --almost-all"
 # alias lsg="colorls --almost-all --group-directories-first"
 # alias ll="colorls -lAtr"

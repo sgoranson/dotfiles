@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+
+sudo killall -q compton
+while pgrep -x compton >/dev/null; do sleep 1; done
+notify-send 'compton killed'
+
+compton -b   2>&1 > /tmp/compton.log  &
+sleep 5 
+#sudo xmodmap ~/.xmodmaprc
+#( while !  xmodmap -pm | grep -Pq 'mod3\s+Control_R'; do 
+#    sudo xmodmap ~/.xmodmaprc
+#    sleep 1
+#done ) >>/tmp/compton.log
+
+notify-send 'compton ok'

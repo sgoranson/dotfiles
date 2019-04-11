@@ -264,13 +264,14 @@ noremap! Y "+
 
 " clipboard paste
 " noremap  <silent><leader>p       o<Esc>"+p'[=']']o<Esc>
-nmap  <silent><leader>p       "+=p
-nmap  <silent><leader>P       "+=P
+nmap  <silent><leader>p       "+]p
+nmap  <silent><leader>P       "+]P
 " alt-p regular paste (insert)
 inoremap <M-p> <C-R><C-O>"
-cnoremap <M-p> <C-R><C-O>"
 
 inoremap <M-=> <C-R><C-O>+
+
+cnoremap <M-p> <C-R><C-O>"
 nnoremap <M-=> "+p
 nnoremap <M-+> "+P
 

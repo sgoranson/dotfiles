@@ -135,7 +135,7 @@ let g:inactive_statusline.='%( %M %)'
 "let g:inactive_statusline.='%(%{g:ale_enabled?" Lint |":""}%)'
 let g:inactive_statusline.=' %(%2p%% %)'
 
-let &statusline = g:active_statusline
+" let &statusline = g:active_statusline
 
 " # }}}
 

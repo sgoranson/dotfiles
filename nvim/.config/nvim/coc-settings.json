@@ -47,9 +47,15 @@
     "suggest.languageSourcePriority": 99,
     "coc.source.around.priority": 1,
     "coc.source.emoji.enable": true,
+    "coc.source.emoji.filetypes": [ "markdown" ],
+    "coc.source.emoji.disableSyntaxes": [ "zsh"],
      
     
-    
+	"javascript.suggest.completeFunctionCalls": true,    
+	"html.experimental.custom.attributes": [],
+	"tsserver.npm": "/usr/bin/npm",
+	"tsserver.log": "verbose",
+
     
 
 
