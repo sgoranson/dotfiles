@@ -30,6 +30,7 @@ bzip2
 caps2esc
 ccze
 cheat-git
+chromium
 clipster-git
 colorgrab
 compton
@@ -187,6 +188,7 @@ patch
 pavucontrol
 pciutils
 pcmanfm
+pcmanfm-qt
 perl
 perl-font-ttf
 perl-image-exiftool
@@ -222,6 +224,7 @@ python-psutil
 python-pyalsaaudio
 python-virtualenv
 python-zeroconf
+qt5ct
 qterminal
 qtwebkit-bin
 rainbarf-git
@@ -247,7 +250,6 @@ sed
 shadow
 shfmt
 siji-git
-smplayer
 socat
 speedtest-cli
 stalonetray
@@ -300,7 +302,6 @@ util-linux
 vi
 vim
 visual-studio-code-bin
-vitunes
 vivid
 vscode-html-languageserver-bin
 w3m
