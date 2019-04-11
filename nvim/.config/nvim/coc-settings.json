@@ -17,8 +17,10 @@
     "list.maxHeight": 30,
 
 
-    "prettier.printWidth": 100,
+    "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
+    
 
     "python.jediEnabled": false,
     "python.linting.enabled": true,
@@ -37,27 +39,34 @@
    "suggest.snippetIndicator": "[snippet]",
    "suggest.triggerAfterInsertEnter": true,
 
-
+    "suggest.autoTrigger": "always",
+    "suggest.echodocSupport": true,
+    "suggest.enablePreview": true,
+    "suggest.maxPreviewWidth": 100,
+    "suggest.minTriggerInputLength": 1,
+    "suggest.snippetIndicator": "►",
+    "suggest.triggerAfterInsertEnter": true,
     // make vim select first item on completion
     "suggest.noselect": true,
     // when snippet activated and pumvisible, prefer complete completion.
     "suggest.preferCompleteThanJumpPlaceholder": true,
     "suggest.languageSourcePriority": 99,
+
     "coc.source.around.priority": 1,
     "coc.source.emoji.filetypes": null,
-
-
-
+    "coc.source.emoji.enable": true,
 
 
     // Snippets
-    //"snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
+//    "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
+"snippets.ultisnips.directories": ["./snippets"],
+    "snippets.ultisnips.pythonVersion": 3,
     "languageserver": {
         "efm": {
             "command": "efm-langserver",
             // custom config path
             "args": ["-c", "/home/steve/.config/efm-langserver/config.yaml"],
-            "filetypes": ["vim", "eruby", "markdown"]
+            "filetypes": ["vim", "eruby"]
         },
         "bash": {
             "command": "bash-language-server",
