@@ -526,9 +526,6 @@ autocmd FileType info nmap U :InfoUp<CR>
 
 
 
-[[plugins]]
-repo =  'junegunn/gv.vim'
-
 
 
 [[plugins]]
@@ -570,10 +567,4 @@ on_ft = 'todo'
 
 
 
-[[plugins]]
-repo = 'tpope/vim-unimpaired'                      # yo, ]b, etc
-on_event = 'InsertCharPre'
-hook_add = '''
-    let g:undotree_SetFocusWhenToggle = 1
-'''
 
