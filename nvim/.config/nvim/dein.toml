@@ -160,6 +160,9 @@ let g:session_autosave = 'no'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk jumps
+hook_add = '''
+let g:gitgutter_highlight_lines=1
+'''
 
 [[plugins]]
 repo =  'kshenoy/vim-signature'                # shows marks, m/ shortcuts
@@ -336,6 +339,15 @@ repo = 'tommcdo/vim-exchange'                        # cx holy shit
 repo = 'tpope/vim-repeat'                          # dot repeat for plugins
 
 
+[[plugins]]
+repo = 'tpope/vim-unimpaired'                      # yo, ]b, etc
+
+[[plugins]]
+repo =  'junegunn/gv.vim'
+
+
+[[plugins]]
+repo =  'lambdalisue/gina.vim'
 
 # [[plugins]]
 # repo =  'Chiel92/vim-autoformat'                # shows marks, m/ shortcuts
