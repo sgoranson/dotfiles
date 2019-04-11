@@ -1,11 +1,9 @@
 {
-
-
     "coc.preferences.colorSupport": true,
-    "coc.preferences.enableFloatHighlight": false,
-    
+    "coc.preferences.enableFloatHighlight": true,
+
     "coc.preferences.formatOnType": true,
-    "coc.preferences.hoverTarget":"float",
+    "coc.preferences.hoverTarget": "float",
 
     "codeLens.enable": true,
     "diagnostic.enable": true,
@@ -16,20 +14,19 @@
     "list.maxPreviewHeight": 100,
     "list.maxHeight": 30,
 
-
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
     "prettier.useTabs": false,
-    
 
     "python.jediEnabled": false,
     "python.linting.enabled": true,
 
-    "signature.target":"float",
-   "signature.enable": true, 
+    "signature.target": "float",
+    "signature.enable": true,
     "signature.maxWindowHeight": 100,
 
     "snippets.autoTrigger": true,
+
 
     "suggest.autoTrigger": "always",
     "suggest.echodocSupport": true,
@@ -38,30 +35,23 @@
     "suggest.minTriggerInputLength": 1,
     "suggest.snippetIndicator": "►",
     "suggest.triggerAfterInsertEnter": true,
-   
-
     // make vim select first item on completion
     "suggest.noselect": true,
     // when snippet activated and pumvisible, prefer complete completion.
     "suggest.preferCompleteThanJumpPlaceholder": true,
     "suggest.languageSourcePriority": 99,
+
     "coc.source.around.priority": 1,
+    "coc.source.emoji.filetypes": null,
     "coc.source.emoji.enable": true,
-    "coc.source.emoji.filetypes": [ "markdown" ],
-    "coc.source.emoji.disableSyntaxes": [ "zsh"],
-     
-    
-	"javascript.suggest.completeFunctionCalls": true,    
-	"html.experimental.custom.attributes": [],
-	"tsserver.npm": "/usr/bin/npm",
-	"tsserver.log": "verbose",
-
-    
-
+    "javascript.suggest.completeFunctionCalls": true,
+    "html.experimental.custom.attributes": [],
+    "tsserver.npm": "/usr/bin/npm",
+    "tsserver.log": "verbose",
 
     // Snippets
-//    "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
-"snippets.ultisnips.directories": ["./snippets"],
+    //    "snippets.ultisnips.directories": ["/home/steve/.config/nvim/snippets"],
+    "snippets.ultisnips.directories": ["./snippets"],
     "snippets.ultisnips.pythonVersion": 3,
     "languageserver": {
         "efm": {
@@ -78,4 +68,3 @@
         }
     }
 }
-

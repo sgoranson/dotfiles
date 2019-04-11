@@ -101,6 +101,7 @@ gvfs-smb
 gzip
 haveged
 hddtemp
+heimdall-git
 highlight
 htop
 httrack
