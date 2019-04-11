@@ -1,9 +1,9 @@
 {
 
 
-    "coc.preferences.colorSupport": true,
-    "coc.preferences.enableFloatHighlight": false,
-    
+   "coc.preferences.colorSupport": true,
+    "coc.preferences.enableFloatHighlight": true,
+
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget":"float",
 
@@ -29,15 +29,14 @@
 
     "snippets.autoTrigger": true,
 
-    "suggest.autoTrigger": "always",
-    "suggest.echodocSupport": true,
-    "suggest.enablePreview": true,
-    "suggest.maxPreviewWidth": 100,
-    "suggest.minTriggerInputLength": 1,
-    "suggest.snippetIndicator": "[snippet]",
-    "suggest.triggerAfterInsertEnter": true,
-    "suggest.reloadPumOnInsertChar": false,
-   
+   "suggest.autoTrigger": "always",
+   "suggest.echodocSupport": true,
+   "suggest.enablePreview": true,
+   "suggest.maxPreviewWidth": 100,
+   "suggest.minTriggerInputLength": 1,
+   "suggest.snippetIndicator": "[snippet]",
+   "suggest.triggerAfterInsertEnter": true,
+
 
     // make vim select first item on completion
     "suggest.noselect": true,
@@ -46,9 +45,9 @@
     "suggest.languageSourcePriority": 99,
     "coc.source.around.priority": 1,
     "coc.source.emoji.filetypes": null,
-     
-    
-    
+
+
+
 
 
     // Snippets

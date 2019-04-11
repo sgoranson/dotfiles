@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neoclide/coc.nvim'
-build = 'yarn install'
+build = 'call coc#util#install()'
 hook_add = '''
 
 " Smaller updatetime for CursorHold & CursorHoldI
