@@ -9,3 +9,4 @@ polybar2/
 zsh/.zsh/.zhistory
 .zshrc.zwc
 coc/.config/coc/mru
+mpv/.config/mpv/bookmarker.json

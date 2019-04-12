@@ -28,9 +28,9 @@ alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
 alias ll="\ls -l --almost-all --group-directories-first --file-type --color=auto"
 alias lls="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
 if (( $+commands[lsd] )); then
-    alias ls='lsd  --date relative --group-dirs first'
-    alias ll='lsd  -l --date relative --group-dirs first'
-    alias lst='ls --tree'
+    alias ls='lsd -a  --date relative --group-dirs first --'
+    alias ll='lsd  -al --date relative --group-dirs first --'
+    alias lst='ls -a --tree'
 fi
 
 # alias ls="colorls --almost-all"
