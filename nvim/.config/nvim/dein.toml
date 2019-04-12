@@ -161,7 +161,7 @@ let g:session_autosave = 'no'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk jumps
 hook_add = '''
-let g:gitgutter_highlight_lines=1
+let g:gitgutter_highlight_lines=0
 '''
 
 [[plugins]]
