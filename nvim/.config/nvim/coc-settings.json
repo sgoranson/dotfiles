@@ -11,8 +11,8 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextPrefix": "VT",
 
-    "list.maxPreviewHeight": 100,
-    "list.maxHeight": 30,
+    "list.maxPreviewHeight": 12,
+    "list.maxHeight": 10,
 
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,

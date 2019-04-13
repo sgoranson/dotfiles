@@ -37,6 +37,7 @@ compton
 consolas-font
 coreutils
 cowpatty
+create_ap
 cronie
 cryptsetup
 dcfldd
@@ -67,6 +68,7 @@ file
 filesystem
 findutils
 firefox
+fish
 flex
 fontconfig-ubuntu
 fontforge
@@ -126,7 +128,6 @@ ipython
 javascript-typescript-langserver
 jfsutils
 jq
-kitty-git
 kodi
 leafpad
 lemonbar-clicks-git
@@ -145,7 +146,7 @@ linux
 linux-firmware
 linux-headers
 logrotate
-lsd
+ls_extended-git
 lshw
 lsof
 lvm2
@@ -241,8 +242,10 @@ rsync
 rtl8812au_8821au_linux-dkms-git
 rtl88xxau-aircrack-dkms-git
 ruby
+ruby-colorls
 ruby-kramdown
 ruby-solargraph
+rxvt-unicode
 s-nail
 samba
 seahorse
@@ -302,7 +305,6 @@ util-linux
 vi
 vim
 visual-studio-code-bin
-vivid
 vscode-html-languageserver-bin
 w3m
 wget

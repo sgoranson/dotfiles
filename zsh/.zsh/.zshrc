@@ -9,6 +9,10 @@ antigen bundle mafredri/zsh-async
 # antigen bundle https://github.com/maximbaz/spaceship-prompt 
 # antigen theme sinetoami/purien
 antigen bundle zdharma/fast-syntax-highlighting
+antigen bundle b4b4r07/enhancd
+
+antigen bundle momo-lab/zsh-abbrev-alias
+
 antigen apply
 
 
@@ -140,8 +144,12 @@ if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
 fi
 chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-  # command ls --almost-all --group-directories-first --file-type --color=auto 
-  lsd  --date relative --group-dirs first
+
+  if (( $+commands[ls_extended] )); then
+      ls_extended -As 
+  else
+      command ls --almost-all --group-directories-first --file-type --color=auto 
+  fi
 
 
 

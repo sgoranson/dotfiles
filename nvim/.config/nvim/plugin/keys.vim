@@ -66,8 +66,8 @@ nnoremap <silent> <leader>w      :set wrap!<CR>
 
 inoremap <C-H> <Left>
 inoremap <C-L> <Right>
-inoremap <C-w> <C-g>u<C-w>
-inoremap <C-u> <C-g>u<C-u>
+" inoremap <C-w> <C-g>u<C-w>
+" inoremap <C-u> <C-g>u<C-u>
 
 " paste clipboard during insert
 " inoremap <silent>  <C-p>  <C-r>+<Esc>'[=']']
@@ -150,7 +150,8 @@ nnoremap <M-W> "zciw
 
 
 " nnoremap <C-x>d :r!date +'\%F \%T'<CR>
-noremap <leader>t :SGTimestamp<CR>
+noremap <leader>T :SGTimestamp<CR>
+noremap <leader>t :NERDTreeToggle<CR>
 " # }}}
 
 
@@ -276,7 +277,7 @@ nnoremap <M-=> "+p
 nnoremap <M-+> "+P
 
 noremap  <silent>,p       "0p 
-inoremap <M-y> <C-o>:Denite neoyank -default-action=yank<CR> 
+inoremap <M-y> <C-o>:CocList yank<CR>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
@@ -312,7 +313,6 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 nnoremap tn :tabnew<CR>
 
-nnoremap tm  :tabm<Space>
 nnoremap tj  :-tabm<CR>
 nnoremap tk  :+tabm<CR>
 
@@ -344,10 +344,22 @@ tnoremap <C-t>e  <C-\><C-n>:tabedit %<CR>
 "  Terminal  {{{1
 tnoremap <Esc> <C-\><C-n>
 tnoremap <M-[> <C-\><C-n>
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
+" tnoremap <A-h> <C-\><C-N><C-w>h
+" tnoremap <A-j> <C-\><C-N><C-w>j
+" tnoremap <A-k> <C-\><C-N><C-w>k
+" tnoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <M-1> <C-\><C-n>1gt
+tnoremap <M-2> <C-\><C-n>2gt
+tnoremap <M-3> <C-\><C-n>3gt
+tnoremap <M-4> <C-\><C-n>4gt
+tnoremap <M-5> <C-\><C-n>5gt
+noremap <M-1> 1gt
+noremap <M-2> 2gt
+noremap <M-3> 3gt
+noremap <M-4> 4gt
+noremap <M-5> 5gt
+
+
 inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k

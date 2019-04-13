@@ -5,6 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 mkdir -p "$HOME/.local/share/steve"
 mkdir -p "$HOME/.local/share/barrier"
+mkdir -p "$HOME/sgbin"
 mkdir -p "$HOME/public_html"
 
 mkdir -p  "$HOME/.cache/dein/repos/github.com/"

@@ -33,9 +33,8 @@ xrdb -merge "$HOME/.Xresources"
 # xrandr  --output DP-2 --dpi 192
 
 xinput --set-prop TPPS/2\ IBM\ TrackPoint  'libinput Accel Profile Enabled' 0, 1
-# xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
-# xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
-xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 2
-xinput --set-button-map  TPPS/2\ IBM\ TrackPoint 1 3 2 4 5 6 7
+xinput  --set-prop TPPS/2\ IBM\ TrackPoint 'libinput Button Scrolling Button' 3
+xinput --set-prop TPPS/2\ IBM\ TrackPoint  --type=int  'libinput Middle Emulation Enabled' 1
+# xinput --set-button-map  TPPS/2\ IBM\ TrackPoint 1 3 2 4 5 6 7
 
 exec i3

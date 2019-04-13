@@ -1,6 +1,18 @@
 # reset them all
 # unalias -m '*'
 
+
+abbrev-alias -i
+abbrev-alias -g G=' | grep -i'
+abbrev-alias -g F=' | fzf'
+abbrev-alias -g H=' | head'
+abbrev-alias -g HL='--help |& less'
+abbrev-alias -g C=' | xclip -r -selection clipboard -i'
+abbrev-alias -g L=' | less'
+
+abbrev-alias -g dot='~/.dot/'
+
+
 alias vim=nvim
 alias b=bat
 alias p=print
@@ -27,10 +39,9 @@ alias web='google-chrome-stable --new-window'
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
 alias ll="\ls -l --almost-all --group-directories-first --file-type --color=auto"
 alias lls="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
-if (( $+commands[lsd] )); then
-    alias ls='lsd -a  --date relative --group-dirs first --'
-    alias ll='lsd  -al --date relative --group-dirs first --'
-    alias lst='ls -a --tree'
+if (( $+commands[ls_extended] )); then
+    alias ls='ls_extended -As'
+    alias ll='ls_extended -Alsh'
 fi
 
 # alias ls="colorls --almost-all"
@@ -53,7 +64,9 @@ alias crontab="VIM_CRONTAB=true crontab"
 alias cp="cp -i"
 alias cp!="command rsync --progress"
 alias rm="rm -i"
-alias mv="mv -i"
+if (( $+commands[trash] )); then
+    alias rm=trash
+fi
 alias ln="ln -i"
 # alias tmux="TERM=xterm-256color \tmux"
 alias grep='grep --color=auto'
@@ -80,13 +93,6 @@ alias a3="awk '{ print \$3}'"
 alias a4="awk '{ print \$4}'"
 alias a5="awk '{ print \$5}'"
 
-alias -g G=' | grep -i'
-alias -g F=' | fzf'
-alias -g H=' | head'
-# alias -g Hl=' --help |& less -r'
-alias -g GH='--help |& less'
-# alias -g GH='--help |& less +/'
-alias -g C=' | xclip -r -selection clipboard -i'
 
 alias PI="pip install --user --upgrade"
 alias PS="pip search"
@@ -129,11 +135,6 @@ fi
 # cheat sheets
 alias cheatsh='curl cheat.sh'
 
-if command -v bat >/dev/null 2>&1; then
-    alias -g L=' | bat'
-else
-    alias -g L=' | less'
-fi
 
 alias pkg-config="pkg-config  --keep-system-libs  --keep-system-cflags"
 
