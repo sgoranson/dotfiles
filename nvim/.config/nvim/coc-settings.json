@@ -1,6 +1,7 @@
 {
     "coc.preferences.colorSupport": true,
     "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.jumpCommand":"edit",
 
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "float",
@@ -13,6 +14,7 @@
 
     "list.maxPreviewHeight": 12,
     "list.maxHeight": 10,
+    
 
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,

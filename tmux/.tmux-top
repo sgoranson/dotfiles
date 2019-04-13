@@ -77,7 +77,7 @@
     "net": {
         "interfaces": {
             "wlp0s20u1": {
-                "alias": "E",
+                "alias": "W",
                 "label_color_fg": "white",
                 "label_color_bg": "default",
                 "address_color_fg": "colour4",
@@ -92,7 +92,7 @@
         "download_label_fg": "white",
         "intervals": [
             {
-                "from": "25KB",
+                "from": "0KB",
                 "to": "256KB",
                 "bg_color": "default",
                 "fg_color": "green"
@@ -105,18 +105,18 @@
             },
             {
                 "from": "512KB",
-                "to": "2MB",
+                "to": "2048KB",
                 "bg_color": "default",
                 "fg_color": "colour1"
             },
             {
-                "from": "2MB",
-                "to": "4MB",
+                "from": "2048KB",
+                "to": "4096KB",
                 "bg_color": "colour166",
                 "fg_color": "white"
             },
             {
-                "from": "4MB",
+                "from": "4096KB",
                 "bg_color": "colour1",
                 "fg_color": "white"
             }
@@ -137,7 +137,7 @@
         },
         "read_label": "⬆",
         "read_label_bg": "default",
-        "read_label_fg": "white",
+         "read_label_fg": "white",
         "write_label": "⬇",
         "write_label_bg": "default",
         "write_label_fg": "white",
