@@ -12,6 +12,7 @@ augroup spgwtf
     autocmd BufEnter * :syntax sync fromstart
 
     autocmd ColorScheme * hi! Normal guibg=NONE ctermbg=NONE
+    autocmd ColorScheme * hi! Comment guifg=#444444
 
     " auto detect filechanges
     autocmd FileChangedShell * echohl WarningMsg | echo "file changed outside vim!" | echohl None

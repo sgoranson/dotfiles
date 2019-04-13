@@ -6,6 +6,8 @@
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "float",
 
+    "yank.highlight.duration": 100, 
+
     "codeLens.enable": true,
     "diagnostic.enable": true,
     "diagnostic.messageTarget": "float",

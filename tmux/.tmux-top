@@ -92,18 +92,6 @@
         "download_label_fg": "white",
         "intervals": [
             {
-                "from": "0KB",
-                "to": "256KB",
-                "bg_color": "default",
-                "fg_color": "green"
-            },
-            {
-                "from": "256KB",
-                "to": "512KB",
-                "bg_color": "default",
-                "fg_color": "colour166"
-            },
-            {
                 "from": "512KB",
                 "to": "2048KB",
                 "bg_color": "default",
@@ -113,12 +101,12 @@
                 "from": "2048KB",
                 "to": "4096KB",
                 "bg_color": "colour166",
-                "fg_color": "white"
+                "fg_color": "colour0"
             },
             {
                 "from": "4096KB",
                 "bg_color": "colour1",
-                "fg_color": "white"
+                "fg_color": "colour0"
             }
         ]
     },
