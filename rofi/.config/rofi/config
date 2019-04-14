@@ -20,11 +20,11 @@ rofi.font:                          Ubuntu Mono 20
 ! "X-offset relative to location" Set from: Default
 ! rofi.xoffset:                        0
 ! "Always show number of lines" Set from: Default
-! rofi.fixed-num-lines:                true
+rofi.fixed-num-lines:                false
 ! "Whether to load and show icons" Set from: Default
 rofi.show-icons:                     true
 ! "Terminal to use" Set from: Default
-rofi.terminal:                       kitty
+rofi.terminal:                       termite
 
 ! "Ssh client to use" Set from: Default
 rofi.ssh-client:                     ssh
@@ -66,7 +66,7 @@ rofi.levenshtein-sort:               true
 ! "Cycle through the results list" Set from: Default
 ! rofi.cycle:                          true
 ! "Enable sidebar-mode" Set from: Default
-rofi.sidebar-mode:                   true
+rofi.sidebar-mode:                   false
 ! "Row height (in chars)" Set from: Default
 ! rofi.eh:                             1
 ! "Enable auto select mode" Set from: Default
@@ -132,7 +132,7 @@ rofi.kb-accept-alt:                  Shift+Return
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
-! rofi.combi-hide-mode-prefix:         false
+rofi.combi-hide-mode-prefix:         yes
 ! "Pidfile location" Set from: Default
 ! rofi.pid:                            /run/user/1000/rofi.pid
 ! "The display name of this browser" Set from: Default
@@ -286,4 +286,4 @@ rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
 ! vim:set ft=xdefaults:
-rofi.theme: /usr/share/rofi/themes/blue.rasi
+rofi.theme: /usr/share/rofi/themes/Paper.rasi
