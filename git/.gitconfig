@@ -23,6 +23,7 @@
     ls = ls-files --error-unmatch
     amnd = commit -a --amend
 	cloner = clone --recursive
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f

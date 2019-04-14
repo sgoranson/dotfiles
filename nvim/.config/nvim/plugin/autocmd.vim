@@ -12,6 +12,7 @@ augroup spgwtf
     autocmd BufEnter * :syntax sync fromstart
 
     autocmd ColorScheme * hi! Normal guibg=NONE ctermbg=NONE
+    autocmd ColorScheme * hi! Comment guifg=#444444
 
     " auto detect filechanges
     autocmd FileChangedShell * echohl WarningMsg | echo "file changed outside vim!" | echohl None
@@ -43,7 +44,9 @@ augroup spgwtf
     autocmd CursorHold * silent! call CocActionAsync('highlight')
     autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-    autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    " autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
+    "
+      autocmd TermOpen  *  :call s:OnTermOpen(+expand('<abuf>'))
 
     autocmd BufWinEnter * call s:OnBufEnter()
 
@@ -61,6 +64,14 @@ function! s:OnBufEnter()
   endif
   unlet name
 endfunction
+
+function! s:OnTermOpen(buf)
+  setl nolist norelativenumber nonumber
+  if &buftype ==# 'terminal'
+    nnoremap <buffer> q :<C-U>bd!<CR>
+  endif
+endfunction
+
 
 " helper funcions {{{
 function! s:save_buffer() abort

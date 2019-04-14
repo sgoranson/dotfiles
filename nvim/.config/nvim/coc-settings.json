@@ -1,9 +1,12 @@
 {
     "coc.preferences.colorSupport": true,
     "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.jumpCommand":"edit",
 
     "coc.preferences.formatOnType": true,
     "coc.preferences.hoverTarget": "float",
+
+    "yank.highlight.duration": 100, 
 
     "codeLens.enable": true,
     "diagnostic.enable": true,
@@ -11,8 +14,9 @@
     "diagnostic.virtualText": false,
     "diagnostic.virtualTextPrefix": "VT",
 
-    "list.maxPreviewHeight": 100,
-    "list.maxHeight": 30,
+    "list.maxPreviewHeight": 12,
+    "list.maxHeight": 10,
+    
 
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,

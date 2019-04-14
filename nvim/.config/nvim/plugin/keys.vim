@@ -66,8 +66,8 @@ nnoremap <silent> <leader>w      :set wrap!<CR>
 
 inoremap <C-H> <Left>
 inoremap <C-L> <Right>
-inoremap <C-w> <C-g>u<C-w>
-inoremap <C-u> <C-g>u<C-u>
+" inoremap <C-w> <C-g>u<C-w>
+" inoremap <C-u> <C-g>u<C-u>
 
 " paste clipboard during insert
 " inoremap <silent>  <C-p>  <C-r>+<Esc>'[=']']
@@ -95,9 +95,6 @@ vnoremap af :<c-u>normal! ]zV[z<cr>
 " align
 nmap                    ga <Plug>(EasyAlign)
 xmap                    ga <Plug>(EasyAlign)
-
-nmap                    gcc  <Plug>CommentaryLine
-map                     gc   <Plug>Commentary
 
 function! VisualStarSearchSet(cmdtype,...) " {{{
     let temp = @"
@@ -150,7 +147,8 @@ nnoremap <M-W> "zciw
 
 
 " nnoremap <C-x>d :r!date +'\%F \%T'<CR>
-noremap <leader>t :SGTimestamp<CR>
+noremap <leader>T :SGTimestamp<CR>
+noremap <leader>t :NERDTreeToggle<CR>
 " # }}}
 
 
@@ -276,7 +274,7 @@ nnoremap <M-=> "+p
 nnoremap <M-+> "+P
 
 noremap  <silent>,p       "0p 
-inoremap <M-y> <C-o>:Denite neoyank -default-action=yank<CR> 
+inoremap <M-y> <C-o>:CocList yank<CR>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
@@ -312,7 +310,6 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 nnoremap tn :tabnew<CR>
 
-nnoremap tm  :tabm<Space>
 nnoremap tj  :-tabm<CR>
 nnoremap tk  :+tabm<CR>
 
@@ -344,10 +341,22 @@ tnoremap <C-t>e  <C-\><C-n>:tabedit %<CR>
 "  Terminal  {{{1
 tnoremap <Esc> <C-\><C-n>
 tnoremap <M-[> <C-\><C-n>
-tnoremap <A-h> <C-\><C-N><C-w>h
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
+" tnoremap <A-h> <C-\><C-N><C-w>h
+" tnoremap <A-j> <C-\><C-N><C-w>j
+" tnoremap <A-k> <C-\><C-N><C-w>k
+" tnoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <M-1> <C-\><C-n>1gt
+tnoremap <M-2> <C-\><C-n>2gt
+tnoremap <M-3> <C-\><C-n>3gt
+tnoremap <M-4> <C-\><C-n>4gt
+tnoremap <M-5> <C-\><C-n>5gt
+noremap <M-1> 1gt
+noremap <M-2> 2gt
+noremap <M-3> 3gt
+noremap <M-4> 4gt
+noremap <M-5> 5gt
+
+
 inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
@@ -378,11 +387,8 @@ cnoremap <C-b> <C-p>
 
 
   nnoremap <silent> <space>/      :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-  nnoremap <silent> <space>*           :<C-u>DeniteCursorWord -buffer-name=search -auto-highlight -mode=normal line<CR>
   nnoremap <silent> ;;          :<C-u>Denite command_history<CR>
 
-  nnoremap <silent> ;r          :<C-u>Denite -buffer-name=register neoyank<CR>
-  xnoremap <silent> ;r          :<C-u>Denite -default-action=replace -buffer-name=register neoyank<CR>
 
 noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 
@@ -390,28 +396,65 @@ noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=Cursor
 
 noremap <silent> <Space>/  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine line<CR>
 noremap <silent> <Space>a  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine tag:include<CR>
-noremap <silent> <Space>b  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
 noremap <silent> <Space>B  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine unite:bookmark<CR>
 noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  change<CR>
 " noremap <silent> <Space>Co  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  colorscheme<CR>
 noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
 noremap <silent> <Space>d :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  directory_mru<CR>
-noremap <silent> <Space>e :<C-u>Denite -buffer-name='mru' -mode=insert -highlight-mode-insert=CursorLine file_mru<CR>
 
-nnoremap <silent> <Space>f :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine
-            \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+noremap <silent> <Space>f :<C-u>CocList files<CR>
+noremap <silent> <space>y  :<C-u>CocList -A  yank<CR>
+noremap <silent> <space>r  :<C-u>CocList mru -A<CR>
+noremap <silent> <space>e  :<C-u>CocList mru<CR>
+noremap <silent> <space>b  :<C-u>CocList buffers<CR>
 
-nnoremap <silent> <Space>gr :<C-u>Denite  -mode=normal -highlight-mode-insert=CursorLine -buffer-name='grepit' -vertical-preview -resume<CR>
-nnoremap <silent> <Space>gp :<C-u>Denite  -mode=normal  -highlight-mode-normal=CursorLine  -post-action=open
-            \ -buffer-name='grepit' -no-empty
-            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
+
+vnoremap <space>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
+nnoremap <space>g :<C-u>set operatorfunc=<SID>GrepFromSelected<CR>g@
+ 
+function! s:GrepFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList grep '.word
+endfunction
+ 
+
+vnoremap <space>* :<C-u>call <SID>WordFromSelected(visualmode())<CR>
+nnoremap <space>* :<C-u>set operatorfunc=<SID>WordFromSelected<CR>g@
+ 
+function! s:WordFromSelected(type)
+  let saved_unnamed_register = @@
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
+  let word = substitute(@@, '\n$', '', 'g')
+  let word = escape(word, '| ')
+  let @@ = saved_unnamed_register
+  execute 'CocList -I --normal --input='.word.' words'
+endfunction
+
+
+nnoremap <silent> <space>w  :exe 'CocList -I --normal --input='.expand('<cword>').' words'<CR>
+
 
 noremap <silent> <Space>h  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine -smartcase help<CR>
 noremap <silent> <Space>j  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine jump<CR>
 nnoremap <silent> <Space>M  :<C-u>Denite -mode=insert -highlight-mode-insert=CursorLine unite:mapping<CR>
 noremap <silent> <Space>m  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  mark<CR>
 noremap <silent> <Space>o  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine outline<CR>
-noremap <silent> <Space>r  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine file_mru/git<CR>
 noremap <silent> <Space>t  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  unite:tab<CR>
 
 
@@ -422,12 +465,6 @@ nnoremap <silent> <Space>v :Defx `expand('%:p:h')`-auto-cd -toggle -split=vertic
 nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
 
 
-
-
-nnoremap <silent> <Space>* :<C-u>DeniteCursorWord  -mode=insert -highlight-mode-insert=CursorLine
-            \ `finddir('.git', ';') != '' ? 'grep/git' : 'grep'`<CR>
-
-noremap <silent> <Space>y  :<C-u>Denite  -input=^ -sorters='sorter/word' -matchers='matcher/regexp' -mode=insert -default-action=yank -highlight-mode-insert=CursorLine neoyank<CR>
 
 
 " # }}}

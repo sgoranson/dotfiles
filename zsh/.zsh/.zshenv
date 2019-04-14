@@ -1,4 +1,4 @@
-ZDOTDIR="$HOME/.zsh"
+export ZDOTDIR="$HOME/.zsh"
 
 export EDITOR=nvim
 export MYOS="ARCH"
@@ -29,7 +29,7 @@ typeset -U path cdpath fpath manpath
 
 
 
-path=("$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/" "$HOME/util/"  "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.npm/bin/"  "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
+path=( "$HOME/sgbin" "$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/" "$HOME/util/"  "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.npm/bin/"  "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
 path+=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bin" "/sbin"   )
 
 # Lazy load rbenv {{{
