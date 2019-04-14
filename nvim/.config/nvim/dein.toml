@@ -159,9 +159,10 @@ let g:session_autosave = 'no'
 
 
 [[plugins]]
-repo = 'airblade/vim-gitgutter'                  # shows changed lines, ]c hunk jumps
+repo = 'mhinz/vim-signify'                  # shows changed lines, ]c hunk jumps
 hook_add = '''
-let g:gitgutter_highlight_lines=0
+ let g:signify_vcs_list = [ 'git' ]
+ let g:signify_realtime = 1
 '''
 
 [[plugins]]
@@ -311,6 +312,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
+  let g:airline#extensions#fugitiveline#enabled = 0
 " function! AirlineInit()
 "  let root = fnamemodify(get(b:, 'git_dir'), ':~:h')
 "   " let g:airline_section_d = airline#section#create(['%{getcwd()}'])

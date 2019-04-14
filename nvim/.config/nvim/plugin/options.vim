@@ -30,7 +30,7 @@ set foldlevel=99                      " 0 is start folded
 set foldmethod=marker                 " default marker folding
 "set foldnestmax=20                   " deepest fold is 3 levels
 
-set noruler
+set ruler
 set nolazyredraw                        " supposedly speeds things up
 set number                            " Line numbers are good
 set showcmd                           " Show incomplete cmds down the bottom

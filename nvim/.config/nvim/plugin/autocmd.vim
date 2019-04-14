@@ -18,7 +18,7 @@ augroup spgwtf
 
 
     autocmd InsertLeave,TextChanged * nested call s:save_buffer()
-    autocmd WinEnter,FocusGained,BufEnter,CursorHold * silent! checktime
+    autocmd BufEnter,FocusGained * checktime
 
 
     " Update filetype.
@@ -45,7 +45,22 @@ augroup spgwtf
 
     autocmd BufEnter * if &buftype == 'terminal' | :startinsert | endif
 
+    autocmd BufWinEnter * call s:OnBufEnter()
+
 augroup END
+
+function! s:OnBufEnter()
+  let name = bufname(+expand('<abuf>'))
+  " quickly leave those temporary buffers
+  if &previewwindow || name =~# '^term://' || &buftype ==# 'nofile' || &buftype ==# 'help'
+    if !mapcheck('q', 'n')
+      nnoremap <buffer> q :<C-U>bd!<CR>
+    endif
+  elseif name =~# '/tmp/'
+    setl bufhidden=delete
+  endif
+  unlet name
+endfunction
 
 " helper funcions {{{
 function! s:save_buffer() abort
