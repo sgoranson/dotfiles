@@ -8,6 +8,7 @@ scriptencoding utf-8
 " Gui {{{
 
 set switchbuf=useopen,
+set pumblend=20
 set mouse=a
 set updatetime=300
 set clipboard=unnamed
@@ -187,7 +188,7 @@ set wildignore+=vendor/rails/**
 set wildignore=*.o,*.obj,*~           "stuff to ignore when tab completing
 set nowildignorecase
 set wildmenu                          "enable ctrl-n and ctrl-p to scroll thru matches
-set wildmode=list:longest            " shows a list
+set wildmode=longest:list,full
 " set helpheight=50
 " set wildmode=longest:full,full
 " setglobal fileencoding=utf-8          " The encoding written to file.

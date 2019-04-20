@@ -385,9 +385,9 @@ cnoremap <C-b> <C-p>
 
 "  Denite  {{{1
 
-
+map ; :
   nnoremap <silent> <space>/      :<C-u>Denite -buffer-name=search -auto-highlight line<CR>
-  nnoremap <silent> ;;          :<C-u>Denite command_history<CR>
+  nnoremap <silent> <space>;          :<C-u>Denite command_history<CR>
 
 
 noremap <silent> <C-p>  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine buffer<CR>
@@ -402,11 +402,19 @@ noremap <silent> <Space>c  :<C-u>Denite  -mode=insert -highlight-mode-insert=Cur
 noremap <silent> <Space>C  :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  command_history<CR>
 noremap <silent> <Space>d :<C-u>Denite  -mode=insert -highlight-mode-insert=CursorLine  directory_mru<CR>
 
-noremap <silent> <Space>f :<C-u>CocList files<CR>
 noremap <silent> <space>y  :<C-u>CocList -A  yank<CR>
-noremap <silent> <space>r  :<C-u>CocList mru -A<CR>
-noremap <silent> <space>e  :<C-u>CocList mru<CR>
-noremap <silent> <space>b  :<C-u>CocList buffers<CR>
+
+" noremap <silent> <space>r  :<C-u>CocList mru -A<CR>
+" noremap <silent> <Space>f :<C-u>CocList files<CR>
+" noremap <silent> <space>e  :<C-u>CocList mru<CR>
+" noremap <silent> <space>b  :<C-u>CocList buffers<CR>
+
+noremap <silent> <space>f  :<C-u>Denite file/rec<CR>
+noremap <silent> <space>F  :<C-u>Denite menu:fav<CR>
+noremap <silent> <space>e  :<C-u>Denite file_mru<CR>
+noremap <silent> <space>r  :<C-u>Denite file_mru/git<CR>
+noremap <silent> <space>b  :<C-u>Denite buffer<CR>
+
 
 
 vnoremap <space>g :<C-u>call <SID>GrepFromSelected(visualmode())<CR>
@@ -478,7 +486,15 @@ nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
 
 " # }}}
 
-
+"{{{ window commands
+nnoremap    [Window]   <Nop>
+nmap    s [Window]
+nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
+nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> <Tab>      :wincmd w<CR>
+nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+"}}}
+"
 "  Ambient Tweaks  {{{1
 " noremap <ScrollWheelUp> <C-U>
 " noremap <ScrollWheelDown> <C-D>

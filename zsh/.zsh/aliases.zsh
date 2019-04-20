@@ -39,10 +39,13 @@ alias web='google-chrome-stable --new-window'
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
 alias ll="\ls -l --almost-all --group-directories-first --file-type --color=auto"
 alias lls="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
-if (( $+commands[ls_extended] )); then
-    alias ls='ls_extended -As'
-    alias ll='ls_extended -Alsh'
+if (( $+commands[colorls] )); then
+    alias cls='colorls -Al --sd --sort=time --reverse'
 fi
+# if (( $+commands[ls_extended] )); then
+#     alias ls='ls_extended -As'
+#     alias ll='ls_extended -Alsh'
+# fi
 
 # alias ls="colorls --almost-all"
 # alias lsg="colorls --almost-all --group-directories-first"
@@ -218,6 +221,7 @@ alias ffmpeg-quality='ffmpeg -i in.avi -c:a copy -c:v libx264 out.avi'
 alias ffmpeg-resize='ffmpeg -i in.mp4 -vf scale=320:-1 out.mp4'
 
 alias find-recent-mod='find -cmin -5'
+alias find-images="find ~+ -type f -exec file -i '{}' \; | tee /tmp/findx | grep image | cut -d: -f1"
 # %p is the relpath, %T@ is unixtime. so very sortable. %t is simple ctime
 alias find-print-tlm='find . -type f -printf "%T@ %p\n"'
 alias find-most-files="du --inodes -S | sort -h"

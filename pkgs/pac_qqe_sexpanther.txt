@@ -5,8 +5,10 @@ adduser
 alacritty-git
 alacritty-terminfo
 alsa-utils
+android-tools
 antigen-git
 apache
+arandr
 arc-gtk-theme
 arc-icon-theme
 arch-install-scripts
@@ -21,6 +23,7 @@ bash
 bash-completion
 bash-language-server
 bat
+bftpd
 binutils
 bison
 blueberry
@@ -128,6 +131,7 @@ ipython
 javascript-typescript-langserver
 jfsutils
 jq
+kitty
 kodi
 leafpad
 lemonbar-clicks-git
@@ -163,6 +167,7 @@ mdadm
 mediainfo
 mlocate
 nano
+ncftp
 neovim-git
 nerd-fonts-ubuntu-mono
 net-tools
@@ -209,6 +214,7 @@ procps-ng
 psmisc
 pulseaudio
 pulseaudio-ctl
+pure-ftpd
 pygmentize
 python
 python-basiciw
@@ -232,6 +238,7 @@ rainbarf-git
 ranger
 raw-thumbnailer
 rclone
+realvnc-vnc-server
 reaver
 refind-efi
 reflector
@@ -258,6 +265,7 @@ speedtest-cli
 stalonetray
 stow
 sudo
+swh-plugins
 sxiv
 sysfsutils
 sysstat
@@ -277,7 +285,6 @@ termsyn-font
 texinfo
 thunar
 thunar-thumbnailers
-tigervnc
 tldr
 tmux-git
 tmux-mem-cpu-load-git

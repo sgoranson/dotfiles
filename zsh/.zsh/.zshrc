@@ -145,11 +145,12 @@ fi
 chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 
-  if (( $+commands[ls_extended] )); then
-      ls_extended -As 
-  else
-      command ls --almost-all --group-directories-first --file-type --color=auto 
-  fi
+  # if (( $+commands[ls_extended] )); then
+  #     ls_extended -As 
+  # else
+  #
+  # fi
+  command ls --almost-all --group-directories-first --file-type --color=auto 
 
 
 

@@ -153,8 +153,6 @@ bindsym $modx+Up  move up
 bindsym $modx+Left  move left
 bindsym $modx+Right  move right
 
-bindsym $mody+f floating toggle
-bindsym $mody+Shift+f focus mode_toggle
 
 bindsym $modx+Shift+z move scratchpad
 bindsym $modx+z scratchpad show
@@ -164,6 +162,8 @@ bindsym $modx+Shift+p focus child
  # bindsym $mody+b split h
 # bindsym $mody+v split v
 bindsym $modx+f fullscreen toggle
+bindsym $modx+t floating toggle
+bindsym $modx+Shift+t focus mode_toggle
 
 # bindsym $modx+Control+r exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 bindsym $modx+r exec --no-startup-id rofi  -show run
@@ -227,7 +227,7 @@ bindsym $mody+3 [con_mark="mark3"] focus
 bindsym $mody+4 [con_mark="mark4"] focus
 bindsym $mody+5 [con_mark="mark5"] focus
 bindsym $modx+Tab [con_mark="_last"] focus
-# bindsym Mod1+Tab exec "rofi -show window -dpi 131 -width 90%"
+bindsym Mod1+Tab --release exec "/usr/local/bin/rofi -selected-row 1 -show window -dpi 131 -width 90%"
  # }}}
 
 # MOUSE {{{

@@ -5,7 +5,7 @@ export MYOS="ARCH"
 export PAGER=bat
 export VISUAL=nvim
 export MANPAGER="nvim -c 'set ft=man' -"   
-export TERMINAL=kitty
+export TERMINAL=alacritty
 export BROWSER='google-chrome-stable --new-window'
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -16,6 +16,7 @@ export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export CLICOLOR=1
+export RANGER_LOAD_DEFAULT_RC=FALSE
 export LESS="--ignore-case --RAW-CONTROL-CHARS --LONG-PROMPT --QUIET --jump-target=50 --status-column"
 export RIPGREP_CONFIG_PATH=$HOME/.config/ripgrep/config
 export GHQ_ROOT=$HOME/kewl

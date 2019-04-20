@@ -13,7 +13,7 @@ from i3pystatus.updates import pacman, cower
 terminal = "kitty"
 filemanager = "pcmanfm"
 
-MYETH = os.getenv('MYETH',"wlp0s20u2")
+MYETH = os.getenv('MYETH', "wlp0s20u1")
 
 color00 = '#1c1c1c'
 color01 = '#af005f'

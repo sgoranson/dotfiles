@@ -280,7 +280,37 @@ call denite#custom#option(fname, dopt, a:opts[fname][dopt])
     endfor
     endfunction
 
-    runtime rc/menu.vim
+    " runtime rc/menu.vim
+
+	let s:menus = {}
+
+	let s:menus.zsh = {
+		\ 'description': 'Edit your import zsh configuration'
+		\ }
+	let s:menus.fav = {
+		\ 'fav dirs/projects': 'pick one, son'
+		\ }
+	let s:menus.fav.file_candidates = [
+		\ ['.dot', '~/.dot/'],
+		\ ['.vim', '~/.vim/'],
+		\ ['spgdoc', '~/projects/spgdoc'],
+		\ ]
+
+	let s:menus.zsh.file_candidates = [
+		\ ['zshrc', '~/.config/zsh/.zshrc'],
+		\ ['zshenv', '~/.zshenv'],
+		\ ]
+
+	let s:menus.my_commands = {
+		\ 'description': 'Example commands'
+		\ }
+	let s:menus.my_commands.command_candidates = [
+		\ ['Split the window', 'vnew'],
+		\ ['Open zsh menu', 'Denite menu:zsh'],
+		\ ['Format code', 'FormatCode', 'go,python'],
+		\ ]
+
+	call denite#custom#var('menu', 'menus', s:menus)
 
     call s:profile(s:denite_options)
 '''
