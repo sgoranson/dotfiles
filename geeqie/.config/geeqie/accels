@@ -98,6 +98,7 @@
 (gtk_accel_path "<Actions>/MenuActions/NextImageAlt2" "f")
 ; (gtk_accel_path "<Actions>/MenuActions/AddMark1" "")
 ; (gtk_accel_path "<Actions>/MenuActions/IntMark1" "")
+; (gtk_accel_path "<Actions>/MenuActionsExternal/viewnior.desktop" "")
 ; (gtk_accel_path "<Actions>/MenuActions/DeleteAlt1" "Delete")
 ; (gtk_accel_path "<Actions>/MenuActions/SelectMark1" "<Primary>1")
 ; (gtk_accel_path "<Actions>/MenuActions/NextImageAlt1" "Page_Down")

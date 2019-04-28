@@ -62,7 +62,7 @@
             "command": "efm-langserver",
             // custom config path
             "args": ["-c", "/home/steve/.config/efm-langserver/config.yaml"],
-            "filetypes": ["vim", "eruby"]
+            "filetypes": ["vim", "eruby" ]
         },
         "bash": {
             "command": "bash-language-server",

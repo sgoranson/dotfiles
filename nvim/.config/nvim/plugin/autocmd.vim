@@ -13,6 +13,7 @@ augroup spgwtf
 
     autocmd ColorScheme * hi! Normal guibg=NONE ctermbg=NONE
     autocmd ColorScheme * hi! Comment guifg=#444444
+    autocmd ColorScheme * hi! Search guifg=#00ff39 guibg=#000000
 
     " auto detect filechanges
     autocmd FileChangedShell * echohl WarningMsg | echo "file changed outside vim!" | echohl None
