@@ -5,6 +5,7 @@ adduser
 alacritty-git
 alacritty-terminfo
 alsa-utils
+android-emulator
 android-tools
 antigen-git
 apache
@@ -28,6 +29,7 @@ binutils
 bison
 blueberry
 bluez-utils
+bookworm
 breeze-icons
 bzip2
 caps2esc
@@ -167,6 +169,7 @@ mdadm
 mediainfo
 mlocate
 nano
+ncdu
 ncftp
 neovim-git
 nerd-fonts-ubuntu-mono
@@ -311,6 +314,7 @@ usbutils
 util-linux
 vi
 vim
+virtualbox
 visual-studio-code-bin
 vscode-html-languageserver-bin
 w3m

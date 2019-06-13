@@ -38,7 +38,8 @@ alias web='google-chrome-stable --new-window'
 
 alias ls="\ls --almost-all --group-directories-first --file-type --color=auto"
 alias ll="\ls -l --almost-all --group-directories-first --file-type --color=auto"
-alias lls="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
+alias lss="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=size --reverse"
+alias lst="\ls -l --almost-all --group-directories-first --file-type --color=auto --human-readable --sort=time --reverse"
 if (( $+commands[colorls] )); then
     alias cls='colorls -Al --sd --sort=time --reverse'
 fi

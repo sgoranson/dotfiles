@@ -10,3 +10,4 @@ zsh/.zsh/.zhistory
 .zshrc.zwc
 coc/.config/coc/mru
 mpv/.config/mpv/bookmarker.json
+mpv/.config/mpv/watch_later/
