@@ -6,6 +6,7 @@ scriptencoding utf-8
 let g:mapleader = '\'
 let g:maplocalleader = '\'
 
+nmap <C-Space> i  <Esc>h 
 
 map ' `
 nnoremap <silent> <Esc>     :<C-u>:nohlsearch<CR><Esc>
@@ -409,7 +410,7 @@ noremap <silent> <space>y  :<C-u>CocList -A  yank<CR>
 " noremap <silent> <space>e  :<C-u>CocList mru<CR>
 " noremap <silent> <space>b  :<C-u>CocList buffers<CR>
 
-noremap <silent> <space>f  :<C-u>Denite file/rec<CR>
+noremap <silent> <space>f  :<C-u>Denite file/rec/git<CR>
 noremap <silent> <space>F  :<C-u>Denite menu:fav<CR>
 noremap <silent> <space>e  :<C-u>Denite file_mru<CR>
 noremap <silent> <space>r  :<C-u>Denite file_mru/git<CR>

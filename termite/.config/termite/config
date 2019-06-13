@@ -51,7 +51,7 @@ background = #282A36
 # special
 foreground      = #f8f8f2
 foreground_bold = #f8f8f2
-cursor          = #e68080
+cursor          = #2dff00
 #background      = #282a36
 
 # black

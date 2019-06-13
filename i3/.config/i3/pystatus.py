@@ -13,7 +13,17 @@ from i3pystatus.updates import pacman, cower
 terminal = "kitty"
 filemanager = "pcmanfm"
 
-MYETH = os.getenv('MYETH', "wlp0s20u1")
+
+
+
+
+
+if os.getenv('HOST', 'wtf') == 'stinkbox2':
+    MYETH = 'wlp0s20u8'
+else:
+    MYETH = 'wlp0s20u8'
+
+
 
 color00 = '#1c1c1c'
 color01 = '#af005f'

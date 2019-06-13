@@ -220,10 +220,13 @@ else
                 \ ['ag', '--follow', '--hidden', '--nocolor', '--nogroup', '-g', ''])
 endif
 
+" Define alias
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
+      \ ['git', 'ls-files', '-co', '--exclude-standard'])
+
+
 call denite#custom#alias('source', 'file_mru/git', 'file_mru')
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-        \   ['git', 'ls-files', '--cached', '--others', '--exclude-standard'] )
 
 call denite#custom#alias('source', 'grep/git', 'grep')
 call denite#custom#var('grep/git', 'command', ['git', '--no-pager', 'grep'])

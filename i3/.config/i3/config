@@ -140,8 +140,8 @@ bindsym $modx+l focus right
 
 bindsym $mody+h  workspace prev
 bindsym $mody+l  workspace next
-bindsym Control+Mod1+h  workspace prev
-bindsym Control+Mod1+l  workspace next
+bindsym Control+Mod1+h  workspace prev_on_output
+bindsym Control+Mod1+l  workspace next_on_output
 
 
 bindsym $modx+Shift+o move container to workspace next
