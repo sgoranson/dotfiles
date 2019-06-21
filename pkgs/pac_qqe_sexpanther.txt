@@ -31,6 +31,7 @@ blueberry
 bluez-utils
 bookworm
 breeze-icons
+byzanz
 bzip2
 caps2esc
 ccze
@@ -88,6 +89,8 @@ gconf
 geeqie
 gettext
 ghq
+gifcurry
+gifski
 gimp
 glances
 glibc
@@ -198,6 +201,7 @@ pavucontrol
 pciutils
 pcmanfm
 pcmanfm-qt
+peek
 perl
 perl-font-ttf
 perl-image-exiftool
@@ -263,6 +267,7 @@ sed
 shadow
 shfmt
 siji-git
+silentcast
 socat
 speedtest-cli
 stalonetray
@@ -297,6 +302,7 @@ tor
 tor-browser-en
 touchpad_config
 tp_smapi
+transmission-qt
 trash-cli
 tree
 ttf-consolas-powerline

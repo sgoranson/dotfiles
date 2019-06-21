@@ -385,7 +385,7 @@ bar {
 
         binding_mode_indicator yes
         tray_output primary
-          font pango:    monospace 10
+          font pango:    monospace 8
            # font pango:  Ubuntu Mono, siji, FontAwesome 11
          # font -wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1
 
