@@ -175,9 +175,9 @@ repo = 'honza/vim-snippets'
 # call echodoc#enable()
 # '''
 
-[[plugins]]
-repo =  'iamcco/devdocs.nvim'
-
+# [[plugins]]
+# repo =  'iamcco/devdocs.nvim'
+#
 
 # denite {{{
 
