@@ -21,7 +21,7 @@ filemanager = "pcmanfm"
 if os.getenv('HOST', 'wtf') == 'stinkbox2':
     MYETH = 'wlp0s20u8'
 else:
-    MYETH = 'wlp0s20u8'
+    MYETH = 'wlp0s20u1'
 
 
 
