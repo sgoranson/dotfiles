@@ -297,7 +297,10 @@ alias xclipp='xclip -selection clipboard -o'
 alias rsync-basic='rsync -rvahz --progress'
 
 alias reflector='sudo Reflector.py --verbose --country 'United States' -l 200 -p http -p https --sort rate --save /etc/pacman.d/mirrorlist'
-alias smb-ls='sudo smbclient -L eth0 -I localhost'
+alias smb-ls-local='sudo smbclient -L eth0 -I localhost'
+alias smb-ls-host='sudo smbclient -L hostx -I 192.168.3.3'
+alias smb-ls-net='nmblookup -S WORKGROUP'
+alias smb-mount='sudo mount -t cifs -o username=steve //stinkpc/complete ./stinkpc'
 
 alias sed-strip-ansi='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
 
