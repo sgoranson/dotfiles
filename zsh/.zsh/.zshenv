@@ -30,7 +30,7 @@ typeset -U path cdpath fpath manpath
 
 
 
-path=( "$HOME/.gem/ruby/2.6.0/bin" "$HOME/sgbin" "$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/" "$HOME/util/"  "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.npm/bin/"  "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
+path=( "/mnt/c/bin/nw2" "$HOME/.gem/ruby/2.6.0/bin" "$HOME/sgbin" "$HOME/.local/bin" "$HOME/bin/" "$HOME/mvp/" "$HOME/util/"  "$HOME/go/bin" "$HOME/.node/bin/" "$HOME/.npm/bin/"  "$HOME/.rbenv/bin" "$HOME/.cargo/bin/" "$HOME/.npm-global/bin/" "/usr/bin/core_perl" $path )
 path+=("$HOME/bin/color"  "/usr/local/bin"  "/usr/bin"    "/usr/local/sbin" "/bin" "/sbin"   )
 
 # Lazy load rbenv {{{
