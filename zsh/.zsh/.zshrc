@@ -12,6 +12,7 @@ antigen bundle zdharma/fast-syntax-highlighting
 antigen bundle b4b4r07/enhancd
 
 antigen bundle momo-lab/zsh-abbrev-alias
+antigen bundle davidparsson/zsh-pyenv-lazy
 
 antigen apply
 

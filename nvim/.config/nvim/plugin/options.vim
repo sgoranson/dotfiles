@@ -142,7 +142,7 @@ let g:inactive_statusline.=' %(%2p%% %)'
 
 " Etc {{{
 set shellcmdflag&
-set shell=/usr/bin/zsh\ -l
+" set shell=/usr/bin/zsh\ -l
 set shellxquote&
 set formatoptions=jql
 set gdefault                         " s///g implied

@@ -15,8 +15,9 @@ augroup END
 
 "" ʕ◔ϖ◔ʔ disable python2
 let g:session_directory=expand("~/data/nvim/session")    
-let g:loaded_python_provider = 1
-let g:python3_host_prog  = '/usr/bin/python'
+" let g:loaded_python_provider = 1
+let g:python3_host_prog  = 'python3'
+let g:python_host_prog  = 'python2'
 "let g:python2_host_prog  = 'python2'
 
 " ʕ◔ϖ◔ʔ Define dein repo path

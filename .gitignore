@@ -8,7 +8,5 @@ zsh_zplug/
 polybar2/
 zsh/.zsh/.zhistory
 .zshrc.zwc
-coc/.config/coc/mru
-coc/.config/coc/extensions
 mpv/.config/mpv/bookmarker.json
 mpv/.config/mpv/watch_later/

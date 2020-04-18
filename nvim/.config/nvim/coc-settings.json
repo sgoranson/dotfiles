@@ -16,7 +16,7 @@
 
     "list.maxPreviewHeight": 12,
     "list.maxHeight": 10,
-    
+    "list.source.files.args": ["--hidden"],    
 
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,

@@ -2,15 +2,14 @@
 # unalias -m '*'
 
 
-abbrev-alias -i
-abbrev-alias -g G=' | grep -i'
-abbrev-alias -g F=' | fzf'
-abbrev-alias -g H=' | head'
-abbrev-alias -g HL='--help |& less'
-abbrev-alias -g C=' | xclip -r -selection clipboard -i'
-abbrev-alias -g L=' | less'
+# abbrev-alias -i
+alias -g G=' | grep -i'
+alias -g F=' | fzf'
+alias -g H=' | head'
+alias -g HL='--help |& less'
+alias -g C=' | xclip -r -selection clipboard -i'
+alias -g L=' | less'
 
-abbrev-alias -g dot='~/.dot/'
 
 
 alias vim=nvim

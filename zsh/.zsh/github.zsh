@@ -1,30 +1,18 @@
-#!/usr/bin/env zsh
-
-alias gh-curl-user-repos='curl -s "https://api.github.com/users/$USER/repos?per_page=1000"'
-
-function gh-search-repo() {
-    curl  'https://api.github.com/search/repositories?q=hashcat&sort=stars&order=desc' | 
-        tee /tmp/x.json  | 
-        jq -r   ' .items | .[] | [ .stargazers_count,.full_name,.description ]| @tsv' | 
-        column -t --separator=$'\t' -T 3
-    }
-
-
 # alias gh-starred='cat ~/backup/gh-starred.json| jq  -r '\''"\(.html_url),\(.description)"'\'' '
 
 function gh-starred-fresh() {
 
     STARS=$(curl -sI https://api.github.com/users/sgoranson/starred?per_page=1 | 
-        egrep '^Link'| egrep -o 'page=[0-9]+' | tail -1 |cut -c6-)
+        grep -Pi '^Link'| grep -Po 'page=[0-9]+' | tail -1 |cut -c6-)
     PAGES=$(($STARS/100+1))
 
-    echo "You have $STARS starred repositories."
+    echo "You have ${STARS?curl api fucked up} starred repositories."
     echo
 
-    for PAGE in `seq $PAGES`; do
-        curl -sH "Accept: application/vnd.github.v3.star+json" "https://api.github.com/users/sgoranson/starred?per_page=100&page=$PAGE" | 
-            jq -r '.[]|[.starred_at,.repo.full_name,.repo.description]|@tsv' |
-            column -t -s $'\t' -c 120 -T3
+    for PAGE in $(seq $PAGES); do
+        command curl -sH "Accept: application/vnd.github.v3.star+json" "https://api.github.com/users/sgoranson/starred?per_page=100&page=$PAGE" | 
+            command jq -r '.[]|[.starred_at,.repo.full_name,.repo.description]|@tsv' |
+            command column -t -s $'\t' -c 120 
     done | tee ~/backup/gh-starred.txt
 
 }

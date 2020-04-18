@@ -5,7 +5,7 @@ scriptencoding utf-8
 
 let g:mapleader = '\'
 let g:maplocalleader = '\'
-
+" basics {{{
 nmap <C-Space> i  <Esc>h 
 
 map ' `
@@ -78,7 +78,7 @@ onoremap if :<c-u>normal! [zv]z<cr>
 onoremap af :<c-u>normal! [zV]z<cr>
 vnoremap if :<c-u>normal! ]zv[z<cr>
 vnoremap af :<c-u>normal! ]zV[z<cr>
-
+"}}}
 "  just use cgn and .
 "
 " " change this word, repeatable
@@ -384,6 +384,77 @@ cnoremap <C-f> <C-n>
 cnoremap <C-b> <C-p>
 " # }}}
 
+"  Completion  {{{1
+
+
+
+
+
+
+" # }}}
+
+"{{{ window commands
+nnoremap    [Window]   <Nop>
+nmap    s [Window]
+nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
+nnoremap <silent> [Window]o  :<C-u>only<CR>
+nnoremap <silent> <Tab>      :wincmd w<CR>
+nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
+"}}}
+"
+"  Ambient Tweaks  {{{1
+" noremap <ScrollWheelUp> <C-U>
+" noremap <ScrollWheelDown> <C-D>
+
+nnoremap <S-ScrollWheelUp> :vertical resize +5<cr>
+nnoremap <S-ScrollWheelDown> :vertical resize -5<cr>
+
+" Smart <C-f>, <C-b>.
+noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
+noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
+" map <C-o> <C-o>zz
+" map <C-i> <C-i>zz
+
+nnoremap ZZ  <Nop>
+
+"noremap      x  "_x
+vnoremap     y  ygv<Esc>
+vnoremap     <  <gv
+vnoremap     >  >gv
+
+
+nnoremap zO zCzO
+" Define mappings
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <Esc> 
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+endfunction
+
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+function! s:denite_filter_my_settings() abort
+    inoremap <silent><buffer> <C-j>
+                \ <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+    inoremap <silent><buffer> <C-k>
+                \ <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
+      imap <silent><buffer> <Esc> <Plug>(denite_filter_quit)
+endfunction
+
+" # }}}
+
+
 "  Denite  {{{1
 
 map ; :
@@ -477,47 +548,3 @@ nnoremap <silent> <Space>V :Defx -auto-cd `expand('%:p:h')`<CR>
 
 
 " # }}}
-
-"  Completion  {{{1
-
-
-
-
-
-
-" # }}}
-
-"{{{ window commands
-nnoremap    [Window]   <Nop>
-nmap    s [Window]
-nnoremap <silent> [Window]p  :<C-u>vsplit<CR>:wincmd w<CR>
-nnoremap <silent> [Window]o  :<C-u>only<CR>
-nnoremap <silent> <Tab>      :wincmd w<CR>
-nnoremap <silent><expr> q winnr('$') != 1 ? ':<C-u>close<CR>' : ""
-"}}}
-"
-"  Ambient Tweaks  {{{1
-" noremap <ScrollWheelUp> <C-U>
-" noremap <ScrollWheelDown> <C-D>
-
-nnoremap <S-ScrollWheelUp> :vertical resize +5<cr>
-nnoremap <S-ScrollWheelDown> :vertical resize -5<cr>
-
-" Smart <C-f>, <C-b>.
-noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('w$') >= line('$') ? "L" : "M")
-noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('w0') <= 1 ? "H" : "M")
-" map <C-o> <C-o>zz
-" map <C-i> <C-i>zz
-
-nnoremap ZZ  <Nop>
-
-"noremap      x  "_x
-vnoremap     y  ygv<Esc>
-vnoremap     <  <gv
-vnoremap     >  >gv
-
-
-nnoremap zO zCzO
-
-" # }}}
-
